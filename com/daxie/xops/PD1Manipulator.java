@@ -139,6 +139,23 @@ public class PD1Manipulator {
 	}
 	
 	/**
+	 * Invert z-axis.
+	 * This method will be used to make a mission for a mirrored map.
+	 */
+	public void InvertZ() {
+		for(Point point:points) {
+			Vector position=point.GetPosition();
+			position.SetZ(position.GetZ()*(-1.0f));
+			point.SetPosition(position);
+			
+			float rotation=point.GetRotation();
+			rotation*=(-1.0f);
+			rotation+=(float)Math.PI;
+			point.SetRotation(rotation);
+		}
+	}
+	
+	/**
 	 * Write data to a PD1 file.
 	 * @param pd1_filename Filename
 	 */

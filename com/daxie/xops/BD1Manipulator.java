@@ -150,6 +150,61 @@ public class BD1Manipulator {
 	}
 	
 	/**
+	 * Invert z-axis.<br>
+	 * This method will be used to make a mirrored map.
+	 */
+	public void InvertZ() {
+		for(Block block:blocks) {
+			Vector[] vertex_positions=block.GetVertexPositions();
+			
+			for(int i=0;i<vertex_positions.length;i++) {
+				vertex_positions[i].SetZ(vertex_positions[i].GetZ()*(-1.0f));
+			}
+			
+			for(int i=0;i<vertex_positions.length;i++) {
+				block.SetVertexPosition(i, vertex_positions[i]);
+			}
+		}
+		
+		for(Block block:blocks) {
+			//Invert vertex positions.
+			Vector[] vertex_positions=block.GetVertexPositions();
+			
+			int[] vertex_ids;
+			int[] vertex_ids_inverted;
+			for(int i=0;i<2;i++) {
+				vertex_ids=BD1Functions.GetFaceCorrespondingVertexIDs(i);
+				vertex_ids_inverted=BD1Functions.GetFaceCorrespondingVertexIDs_InvertedZ(i);
+				
+				for(int j=0;j<4;j++) {
+					block.SetVertexPosition(vertex_ids[j], vertex_positions[vertex_ids_inverted[j]]);
+				}
+			}
+			
+			//Invert UVs.
+			float[] us=block.GetUs();
+			float[] vs=block.GetVs();
+			
+			int[] uvs_ids;
+			int[] uvs_ids_inverted;
+			for(int i=0;i<6;i++) {
+				uvs_ids=BD1Functions.GetFaceCorrespondingUVIDs(i);
+				uvs_ids_inverted=BD1Functions.GetFaceCorrespondingUVIDs_InvertedZ(i);
+				
+				for(int j=0;j<4;j++) {
+					block.SetUVs(uvs_ids[j], us[uvs_ids_inverted[j]], vs[uvs_ids_inverted[j]]);
+				}
+			}
+			
+			//Swap texture IDs.
+			int[] texture_ids=block.GetTextureIDs();
+			
+			block.SetTextureID(2, texture_ids[4]);
+			block.SetTextureID(4, texture_ids[2]);
+		}
+	}
+	
+	/**
 	 * Write data to a BD1 file.
 	 * @param bd1_filename Filename
 	 */
