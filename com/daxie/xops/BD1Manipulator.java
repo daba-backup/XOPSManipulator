@@ -154,50 +154,85 @@ public class BD1Manipulator {
 	 * This method will be used to make a mirrored map.
 	 */
 	public void InvertZ() {
+		//Invert z-coordinate of the vertices.
 		for(Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
-			
-			for(int i=0;i<vertex_positions.length;i++) {
+			for(int i=0;i<8;i++) {
 				vertex_positions[i].SetZ(vertex_positions[i].GetZ()*(-1.0f));
 			}
-			
-			for(int i=0;i<vertex_positions.length;i++) {
+			for(int i=0;i<8;i++) {
 				block.SetVertexPosition(i, vertex_positions[i]);
 			}
 		}
-		
+		//Resolve inconsistencies in the vertices.
 		for(Block block:blocks) {
-			//Invert vertex positions.
 			Vector[] vertex_positions=block.GetVertexPositions();
-			
-			int[] vertex_ids;
-			int[] vertex_ids_inverted;
-			for(int i=0;i<2;i++) {
-				vertex_ids=BD1Functions.GetFaceCorrespondingVertexIDs(i);
-				vertex_ids_inverted=BD1Functions.GetFaceCorrespondingVertexIDs_InvertedZ(i);
-				
-				for(int j=0;j<4;j++) {
-					block.SetVertexPosition(vertex_ids[j], vertex_positions[vertex_ids_inverted[j]]);
-				}
-			}
-			
-			//Invert UVs.
 			float[] us=block.GetUs();
 			float[] vs=block.GetVs();
+			int[] texture_ids=block.GetTextureIDs();
 			
-			int[] uvs_ids;
-			int[] uvs_ids_inverted;
-			for(int i=0;i<6;i++) {
-				uvs_ids=BD1Functions.GetFaceCorrespondingUVIDs(i);
-				uvs_ids_inverted=BD1Functions.GetFaceCorrespondingUVIDs_InvertedZ(i);
-				
-				for(int j=0;j<4;j++) {
-					block.SetUVs(uvs_ids[j], us[uvs_ids_inverted[j]], vs[uvs_ids_inverted[j]]);
-				}
+			for(int i=0;i<4;i++) {
+				block.SetVertexPosition(i, vertex_positions[3-i]);
+			}
+			for(int i=0;i<4;i++) {
+				block.SetVertexPosition(i+4, vertex_positions[7-i]);
 			}
 			
-			//Swap texture IDs.
-			int[] texture_ids=block.GetTextureIDs();
+			float[] us_orig=us.clone();
+			float[] vs_orig=vs.clone();
+			
+			us[0]=us_orig[3];
+			us[1]=us_orig[2];
+			us[2]=us_orig[1];
+			us[3]=us_orig[0];
+			us[4]=us_orig[7];
+			us[5]=us_orig[6];
+			us[6]=us_orig[5];
+			us[7]=us_orig[4];
+			us[8]=us_orig[17];
+			us[9]=us_orig[16];
+			us[10]=us_orig[19];
+			us[11]=us_orig[18];
+			us[12]=us_orig[13];
+			us[13]=us_orig[12];
+			us[14]=us_orig[15];
+			us[15]=us_orig[14];
+			us[16]=us_orig[9];
+			us[17]=us_orig[8];
+			us[18]=us_orig[11];
+			us[19]=us_orig[10];
+			us[20]=us_orig[21];
+			us[21]=us_orig[20];
+			us[22]=us_orig[23];
+			us[23]=us_orig[22];
+			vs[0]=vs_orig[3];
+			vs[1]=vs_orig[2];
+			vs[2]=vs_orig[1];
+			vs[3]=vs_orig[0];
+			vs[4]=vs_orig[7];
+			vs[5]=vs_orig[6];
+			vs[6]=vs_orig[5];
+			vs[7]=vs_orig[4];
+			vs[8]=vs_orig[17];
+			vs[9]=vs_orig[16];
+			vs[10]=vs_orig[19];
+			vs[11]=vs_orig[18];
+			vs[12]=vs_orig[13];
+			vs[13]=vs_orig[12];
+			vs[14]=vs_orig[15];
+			vs[15]=vs_orig[14];
+			vs[16]=vs_orig[9];
+			vs[17]=vs_orig[8];
+			vs[18]=vs_orig[11];
+			vs[19]=vs_orig[10];
+			vs[20]=vs_orig[21];
+			vs[21]=vs_orig[20];
+			vs[22]=vs_orig[23];
+			vs[23]=vs_orig[22];
+			
+			for(int i=0;i<24;i++) {
+				block.SetUVs(i, us[i], vs[i]);
+			}
 			
 			block.SetTextureID(2, texture_ids[4]);
 			block.SetTextureID(4, texture_ids[2]);
