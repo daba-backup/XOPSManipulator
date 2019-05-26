@@ -24,14 +24,14 @@ public class MissionInfo {
 	public MissionInfo() {
 		mission_name="";
 		mission_formal_name="";
-		bd1_filename="";
-		pd1_filename="";
+		bd1_filename="./";
+		pd1_filename="./addon/";
 		sky_type=0;
 		additional_hitcheck_flag=false;
 		darken_screen_flag=false;
-		article_info_filename="";
-		image1_filename="";
-		image2_filename="";
+		article_info_filename="!";
+		image1_filename="./data/briefing/np.bmp";
+		image2_filename="!";
 		briefing_text=new ArrayList<>();
 	}
 	public MissionInfo(MissionInfo mi) {
