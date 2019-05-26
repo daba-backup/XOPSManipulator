@@ -26,6 +26,12 @@ public class PD1Manipulator {
 		PD1Parser pd1_parser=new PD1Parser(pd1_filename);
 		points=pd1_parser.GetPoints();
 	}
+	/**
+	 * In case PD1Parser is not used.
+	 */
+	public PD1Manipulator() {
+		points=new ArrayList<>();
+	}
 	
 	/**
 	 * Get points.

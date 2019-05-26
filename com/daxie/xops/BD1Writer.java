@@ -122,7 +122,15 @@ class BD1Writer {
 			dos.flush();
 		}
 		catch(IOException e) {
-			System.out.println("IOException");
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				dos.close();
+			}
+			catch(IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}	
 }

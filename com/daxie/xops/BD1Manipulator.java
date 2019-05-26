@@ -2,6 +2,7 @@ package com.daxie.xops;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,13 @@ public class BD1Manipulator {
 		
 		blocks=bd1_parser.GetBlocks();
 		texture_filenames_map=bd1_parser.GetTextureFilenamesMap();
+	}
+	/**
+	 * In case BD1Parser is not used.
+	 */
+	public BD1Manipulator() {
+		blocks=new ArrayList<Block>();
+		texture_filenames_map=new HashMap<>();
 	}
 	
 	/**
