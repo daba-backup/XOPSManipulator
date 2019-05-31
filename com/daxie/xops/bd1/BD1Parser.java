@@ -1,4 +1,4 @@
-package com.daxie.xops;
+package com.daxie.xops.bd1;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;

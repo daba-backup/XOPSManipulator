@@ -1,4 +1,4 @@
-package com.daxie.xops;
+package com.daxie.xops.mif;
 
 import java.util.ArrayList;
 import java.util.List;

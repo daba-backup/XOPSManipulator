@@ -1,4 +1,4 @@
-package com.daxie.xops;
+package com.daxie.xops.pd1;
 
 import com.daxie.basis.vector.Vector;
 
