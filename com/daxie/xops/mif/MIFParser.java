@@ -3,6 +3,7 @@ package com.daxie.xops.mif;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
+import com.daxie.log.LogFile;
 import com.daxie.tool.FileFunctions;
 
 /**
@@ -19,7 +20,7 @@ class MIFParser {
 		
 		String[] lines=FileFunctions.GetFileAllLines(mif_filename,encoding);
 		if(lines.length<10) {
-			System.out.println("Too few lines in the MIF file.");
+			LogFile.WriteError("[MIFParser-<init>] Too few lines in the MIF file.");
 			return;
 		}
 		

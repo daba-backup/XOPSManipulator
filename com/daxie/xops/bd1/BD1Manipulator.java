@@ -10,6 +10,8 @@ import com.daxie.basis.matrix.Matrix;
 import com.daxie.basis.matrix.MatrixFunctions;
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
+import com.daxie.log.LogFile;
+import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Manipulate a BD1 file.
@@ -257,7 +259,12 @@ public class BD1Manipulator {
 			bd1_writer.Write(bd1_filename);
 		}
 		catch(FileNotFoundException e) {
-			System.out.println("Failed to write.");
+			LogFile.WriteFatal("[BD1Manipulator-Write] Failed to write data. Below is the stack trace.");
+			
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteLine(str);
+			
+			System.exit(1);
 		}
 	}
 }

@@ -3,6 +3,9 @@ package com.daxie.xops.mif;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
+import com.daxie.log.LogFile;
+import com.daxie.tool.ExceptionFunctions;
+
 /**
  * Manipulate a MIF file.
  * @author Daba
@@ -33,7 +36,12 @@ public class MIFManipulator {
 			mif_writer.Write(mif_filename, encoding);
 		}
 		catch(FileNotFoundException e) {
-			System.out.println("Failed to write.");
+			LogFile.WriteFatal("[MIFManipulator-Write] Failed to write data. Below is the stack trace.");
+			
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteLine(str);
+			
+			System.exit(1);
 		}
 	}
 }
