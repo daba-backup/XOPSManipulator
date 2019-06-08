@@ -8,6 +8,9 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import com.daxie.log.LogFile;
+import com.daxie.tool.ExceptionFunctions;
+
 /**
  * Write data to a MIF file.
  * @author Daba
@@ -59,14 +62,26 @@ class MIFWriter {
 			br.flush();
 		}
 		catch(IOException e) {
-			e.printStackTrace();
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteFatal("[MIFWriter-Write] Below is the stack trace.");
+			LogFile.WriteLine(str);
+			
+			LogFile.CloseLogFile();
+			
+			System.exit(1);
 		}
 		finally {
 			try {
 				br.close();
 			}
 			catch(IOException e) {
-				e.printStackTrace();
+				String str=ExceptionFunctions.GetPrintStackTraceString(e);
+				LogFile.WriteFatal("[MIFWriter-Write] Below is the stack trace.");
+				LogFile.WriteLine(str);
+				
+				LogFile.CloseLogFile();
+				
+				System.exit(1);
 			}
 		}
 	}

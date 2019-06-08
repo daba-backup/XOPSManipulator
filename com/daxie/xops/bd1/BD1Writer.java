@@ -10,7 +10,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.daxie.basis.vector.Vector;
+import com.daxie.log.LogFile;
 import com.daxie.tool.ByteFunctions;
+import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Write data to a BD1 file.
@@ -122,14 +124,26 @@ class BD1Writer {
 			dos.flush();
 		}
 		catch(IOException e) {
-			e.printStackTrace();
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteFatal("[BD1Writer-Write] Below is the stack trace.");
+			LogFile.WriteLine(str);
+			
+			LogFile.CloseLogFile();
+			
+			System.exit(1);
 		}
 		finally {
 			try {
 				dos.close();
 			}
 			catch(IOException e) {
-				e.printStackTrace();
+				String str=ExceptionFunctions.GetPrintStackTraceString(e);
+				LogFile.WriteFatal("[BD1Writer-Write] Below is the stack trace.");
+				LogFile.WriteLine(str);
+				
+				LogFile.CloseLogFile();
+				
+				System.exit(1);
 			}
 		}
 	}	

@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
+import com.daxie.log.LogFile;
+
 /**
  * Methods to handle files.
  * @author Daba
@@ -41,7 +43,13 @@ public class FileFunctions {
 			}
 		}
 		catch(IOException e) {
-			e.printStackTrace();
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteFatal("[FileFunctions-GetFileAllLines] Below is the stack trace.");
+			LogFile.WriteLine(str);
+			
+			LogFile.CloseLogFile();
+			
+			System.exit(1);
 		}
 		finally {
 			try {
@@ -50,7 +58,13 @@ public class FileFunctions {
 				}
 			}
 			catch(IOException e) {
-				e.printStackTrace();
+				String str=ExceptionFunctions.GetPrintStackTraceString(e);
+				LogFile.WriteFatal("[FileFunctions-GetFileAllLines] Below is the stack trace.");
+				LogFile.WriteLine(str);
+				
+				LogFile.CloseLogFile();
+				
+				System.exit(1);
 			}
 		}
 		

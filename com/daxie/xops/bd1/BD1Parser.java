@@ -11,7 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.daxie.log.LogFile;
 import com.daxie.tool.ByteFunctions;
+import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.FilenameFunctions;
 
 /**
@@ -45,7 +47,13 @@ class BD1Parser {
 			//to the finally block.
 		}
 		catch(IOException e) {
-			e.printStackTrace();
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteFatal("[BD1Parser-<init>] Below is the stack trace.");
+			LogFile.WriteLine(str);
+			
+			LogFile.CloseLogFile();
+			
+			System.exit(1);
 		}
 		finally {
 			try {
@@ -54,7 +62,13 @@ class BD1Parser {
 				}
 			}
 			catch(IOException e) {
-				e.printStackTrace();
+				String str=ExceptionFunctions.GetPrintStackTraceString(e);
+				LogFile.WriteFatal("[BD1Parser-<init>] Below is the stack trace.");
+				LogFile.WriteLine(str);
+				
+				LogFile.CloseLogFile();
+				
+				System.exit(1);
 			}
 		}
 		

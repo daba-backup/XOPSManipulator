@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.daxie.log.LogFile;
 import com.daxie.tool.ByteFunctions;
+import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Read data from a PD1 file.
@@ -40,7 +42,13 @@ class PD1Parser {
 			//to the finally block.
 		}
 		catch(IOException e) {
-			e.printStackTrace();
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteFatal("[PD1Parser-<init>] Below is the stack trace.");
+			LogFile.WriteLine(str);
+			
+			LogFile.CloseLogFile();
+			
+			System.exit(1);
 		}
 		finally {
 			try {
@@ -49,7 +57,13 @@ class PD1Parser {
 				}
 			}
 			catch(IOException e) {
-				e.printStackTrace();
+				String str=ExceptionFunctions.GetPrintStackTraceString(e);
+				LogFile.WriteFatal("[PD1Parser-<init>] Below is the stack trace.");
+				LogFile.WriteLine(str);
+				
+				LogFile.CloseLogFile();
+				
+				System.exit(1);
 			}
 		}
 		

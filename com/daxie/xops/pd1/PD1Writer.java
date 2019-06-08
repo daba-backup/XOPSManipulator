@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
+import com.daxie.log.LogFile;
 import com.daxie.tool.ByteFunctions;
+import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Write data to a PD1 file.
@@ -71,14 +73,26 @@ class PD1Writer {
 			dos.flush();
 		}
 		catch(IOException e) {
-			e.printStackTrace();
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteFatal("[PD1Writer-Write] Below is the stack trace.");
+			LogFile.WriteLine(str);
+			
+			LogFile.CloseLogFile();
+			
+			System.exit(1);
 		}
 		finally {
 			try {
 				dos.close();
 			}
 			catch(IOException e) {
-				e.printStackTrace();
+				String str=ExceptionFunctions.GetPrintStackTraceString(e);
+				LogFile.WriteFatal("[PD1Writer-Write] Below is the stack trace.");
+				LogFile.WriteLine(str);
+				
+				LogFile.CloseLogFile();
+				
+				System.exit(1);
 			}
 		}
 	}

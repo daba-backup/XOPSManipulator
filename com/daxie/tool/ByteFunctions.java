@@ -116,4 +116,19 @@ public class ByteFunctions {
 		
 		return res;
 	}
+	
+	/**
+	 * Convert a 2-byte byte array to a short value.
+	 * @param b A 2-byte little-endian byte array
+	 * @return A short value
+	 */
+	public static short byte_to_short_le(byte[] b) {
+		if(b.length!=2)return 0;
+		
+		short ret;
+		if(b[1]==0x00)ret=(short)Byte.toUnsignedInt(b[0]);
+		else ret=(short)(Byte.toUnsignedInt(b[0])-0xFF);
+		
+		return ret;
+	}
 }
