@@ -15,7 +15,7 @@ import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
- * Write data to a BD1 file.
+ * Writes data to a BD1 file.
  * @author Daba
  *
  */
@@ -29,7 +29,10 @@ class BD1Writer {
 	}
 	
 	public void Write(String bd1_filename) throws FileNotFoundException{
-		if(blocks==null||texture_filenames_map==null)return;
+		if(blocks==null||texture_filenames_map==null) {
+			LogFile.WriteError("[BD1Writer-Write] Data is null.");
+			return;
+		}
 		
 		DataOutputStream dos;
 		dos=new DataOutputStream(

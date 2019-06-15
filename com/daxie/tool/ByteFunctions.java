@@ -9,7 +9,7 @@ import java.nio.ByteBuffer;
  */
 public class ByteFunctions {
 	/**
-	 * Convert a 4-byte byte array to a float value.
+	 * Converts a 4-byte byte array to a float value.
 	 * @param b A 4-byte big-endian byte array
 	 * @return A float value
 	 */
@@ -71,7 +71,7 @@ public class ByteFunctions {
 		return res;
 	}
 	/**
-	 * Convert a 4-byte byte array to a float value.<br>
+	 * Converts a 4-byte byte array to a float value.<br>
 	 * @see byte_to_float(byte[])
 	 * @param b A 4-byte little-endian byte array
 	 * @return A float value
@@ -92,7 +92,7 @@ public class ByteFunctions {
 	}
 	
 	/**
-	 * Convert a float value to a 4-byte byte array.
+	 * Converts a float value to a 4-byte byte array.
 	 * @param f A float value
 	 * @return A 4-byte big-endian byte array
 	 */
@@ -100,7 +100,7 @@ public class ByteFunctions {
 		return ByteBuffer.allocate(4).putFloat(f).array();
 	}
 	/**
-	 * Convert a float value to a 4-byte byte array.
+	 * Converts a float value to a 4-byte byte array.
 	 * @see float_to_byte(float)
 	 * @param f A float value
 	 * @return A 4-byte little-endian byte array
@@ -118,7 +118,39 @@ public class ByteFunctions {
 	}
 	
 	/**
-	 * Convert a 2-byte byte array to a short value.
+	 * Converts a 2-byte byte array to a short value.
+	 * @param b A 2-byte byte array
+	 * @return A short value
+	 */
+	public static short byte_to_short(byte[] b) {
+		if(b.length!=2)return 0;
+		
+		short ret;
+		
+		//Check the MSB.
+		byte temp=(byte)(b[0]>>7);
+		
+		//Positive value
+		if((temp&0b00000001)==0) {
+			ret=(short)((b[0]<<8)+b[1]);
+		}
+		//Negative value
+		else {
+			byte[] bcopy=b.clone();
+			
+			bcopy[0]=(byte)~bcopy[0];
+			bcopy[1]=(byte)~bcopy[1];
+			bcopy[1]++;
+			
+			short abs=(short)((bcopy[0]<<8)+bcopy[1]);
+			ret=(short)(abs*(-1));
+		}
+		
+		return ret;
+	}
+	/**
+	 * Converts a 2-byte byte array to a short value.
+	 * @see byte_to_short(byte[])
 	 * @param b A 2-byte little-endian byte array
 	 * @return A short value
 	 */
@@ -126,9 +158,131 @@ public class ByteFunctions {
 		if(b.length!=2)return 0;
 		
 		short ret;
-		if(b[1]==0x00)ret=(short)Byte.toUnsignedInt(b[0]);
-		else ret=(short)(Byte.toUnsignedInt(b[0])-0xFF);
+		
+		byte[] buffer=new byte[2];
+		buffer[0]=b[1];
+		buffer[1]=b[0];
+		
+		ret=byte_to_short(buffer);
 		
 		return ret;
+	}
+	
+	/**
+	 * Converts a short value to a 2-byte byte array.
+	 * @param s A short value
+	 * @return A 2-byte byte array
+	 */
+	public static byte[] short_to_byte(short s) {
+		byte[] b=new byte[2];
+		
+		if(s>=0) {
+			b[0]=(byte)(s>>8);
+			b[1]=(byte)s;
+		}
+		else {
+			short abs=(short)(s*(-1));
+			abs--;
+			
+			b[0]=(byte)(abs>>8);
+			b[1]=(byte)abs;
+			
+			b[0]=(byte)~b[0];
+			b[1]=(byte)~b[1];
+		}
+		
+		return b;
+	}
+	/**
+	 * Converts a short value to a 2-byte byte array.
+	 * @see short_to_byte(short)
+	 * @param s A short value
+	 * @return A 2-byte little-endian byte array
+	 */
+	public static byte[] short_to_byte_le(short s) {
+		byte[] b=new byte[2];
+		
+		if(s>=0) {
+			b[1]=(byte)(s>>8);
+			b[0]=(byte)s;
+		}
+		else {
+			short abs=(short)(s*(-1));
+			abs--;
+			
+			b[1]=(byte)(abs>>8);
+			b[0]=(byte)abs;
+			
+			b[1]=(byte)~b[1];
+			b[0]=(byte)~b[0];
+		}
+		
+		return b;
+	}
+	
+	/**
+	 * Converts a 2-byte byte array to an unsigned short value.
+	 * @param b A 2-byte byte array
+	 * @return An unsigned short value
+	 */
+	public static short byte_to_ushort(byte[] b) {
+		if(b.length!=2)return 0;
+		
+		short ret;
+		int first,second;
+		
+		first=Byte.toUnsignedInt(b[0]);
+		second=Byte.toUnsignedInt(b[1]);
+		
+		ret=(short)((first<<8)+second);
+		
+		return ret;
+	}
+	/**
+	 * Converts a 2-byte byte array to an unsigned short value.
+	 * @see byte_to_ushort(byte[])
+	 * @param b A 2-byte little-endian byte array
+	 * @return An unsigned short value
+	 */
+	public static short byte_to_ushort_le(byte[] b) {
+		if(b.length!=2)return 0;
+		
+		short ret;
+		
+		byte[] buffer=new byte[2];
+		buffer[0]=b[1];
+		buffer[1]=b[0];
+		
+		ret=byte_to_ushort(buffer);
+		
+		return ret;
+	}
+	
+	/**
+	 * Converts an unsigned short value to a 2-byte byte array.
+	 * @param s An unsigned short value
+	 * @return A 2-byte byte array
+	 */
+	public static byte[] ushort_to_byte(short s) {
+		byte[] b=new byte[2];
+		
+		b[0]=(byte)(s>>8);
+		b[1]=(byte)s;
+		
+		return b;
+	}
+	/**
+	 * Converts an unsigned short value to a 2-byte byte array.
+	 * @see ushort_to_byte(short)
+	 * @param s An unsigned short value
+	 * @return A 2-byte little-endian byte array
+	 */
+	public static byte[] ushort_to_byte_le(short s) {
+		byte[] b=new byte[2];
+		
+		b[1]=(byte)(s>>8);
+		b[0]=(byte)s;
+		
+		return b;
 	}
 }

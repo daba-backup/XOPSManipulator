@@ -7,7 +7,7 @@ import com.daxie.log.LogFile;
 import com.daxie.tool.FileFunctions;
 
 /**
- * Read data from a MIF file.
+ * Reads data from a MIF file.
  * @author Daba
  *
  */

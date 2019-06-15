@@ -3,13 +3,13 @@ package com.daxie.basis.matrix;
 import com.daxie.basis.vector.Vector;
 
 /**
- * Methods to handle matrices.
+ * Offers methods to handle matrices.
  * @author Daba
  *
  */
 public class MatrixFunctions {
 	/**
-	 * Multiply two matrices together.
+	 * Multiplies two matrices together.
 	 * @param m1 First matrix
 	 * @param m2 Second matrix
 	 * @return m1*m2
@@ -33,7 +33,7 @@ public class MatrixFunctions {
 		return ret;
 	}
 	/**
-	 * Get an identity matrix.
+	 * Returns an identity matrix.
 	 * @return Identity matrix
 	 */
 	public static Matrix MGetIdent() {
@@ -47,7 +47,7 @@ public class MatrixFunctions {
 		return ret;
 	}
 	/**
-	 * Get a scaling matrix.
+	 * Returns a scaling matrix.
 	 * @param scale Scaling vector
 	 * @return Scaling matrix
 	 */
@@ -74,7 +74,7 @@ public class MatrixFunctions {
 		return ret;
 	}
 	/**
-	 * Get a translation matrix.
+	 * Returns a translation matrix.
 	 * @param translate Translation vector
 	 * @return Translation matrix
 	 */
@@ -101,7 +101,7 @@ public class MatrixFunctions {
 		return ret;
 	}
 	/**
-	 * Get a rotation matrix around x-axis.
+	 * Returns a rotation matrix around x-axis.
 	 * @param th Rotation angle (radiant)
 	 * @return Rotation matrix
 	 */
@@ -128,7 +128,7 @@ public class MatrixFunctions {
 		return ret;
 	}
 	/**
-	 * Get a rotation matrix around y-axis.
+	 * Returns a rotation matrix around y-axis.
 	 * @param th Rotation angle (radiant)
 	 * @return Rotation matrix
 	 */
@@ -155,7 +155,7 @@ public class MatrixFunctions {
 		return ret;
 	}
 	/**
-	 * Get a rotation matrix around z-axis.
+	 * Returns a rotation matrix around z-axis.
 	 * @param th Rotation angle (radiant)
 	 * @return Rotation matrix
 	 */
@@ -182,7 +182,7 @@ public class MatrixFunctions {
 		return ret;
 	}
 	/**
-	 * Transpose a matrix.
+	 * Transposes a matrix.
 	 * @param m Original matrix
 	 * @return Transposed matrix
 	 */

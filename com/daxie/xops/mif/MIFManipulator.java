@@ -7,7 +7,7 @@ import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
- * Manipulate a MIF file.
+ * Manipulates a MIF file.
  * @author Daba
  *
  */

@@ -13,7 +13,7 @@ import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
- * Write data to a PD1 file.
+ * Writes data to a PD1 file.
  * @author Daba
  *
  */
@@ -25,7 +25,10 @@ class PD1Writer {
 	}
 	
 	public void Write(String pd1_filename) throws FileNotFoundException{
-		if(points==null)return;
+		if(points==null) {
+			LogFile.WriteError("[PD1Writer-Write] Data is null.");
+			return;
+		}
 		
 		DataOutputStream dos;
 		dos=new DataOutputStream(

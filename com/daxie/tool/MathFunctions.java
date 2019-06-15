@@ -7,7 +7,7 @@ package com.daxie.tool;
  */
 public class MathFunctions {
 	/**
-	 * Convert degree to radian.
+	 * Converts degree to radian.
 	 * @param deg Degree
 	 * @return Radian
 	 */
@@ -15,7 +15,7 @@ public class MathFunctions {
 		return (float)Math.PI/180.0f*deg;
 	}
 	/**
-	 * Convert radian to degree.
+	 * Converts radian to degree.
 	 * @param rad Radian
 	 * @return Degree
 	 */

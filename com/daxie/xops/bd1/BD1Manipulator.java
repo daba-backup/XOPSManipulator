@@ -14,7 +14,7 @@ import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
- * Manipulate a BD1 file.
+ * Manipulates a BD1 file.
  * @author Daba
  *
  */
@@ -32,23 +32,20 @@ public class BD1Manipulator {
 		blocks=bd1_parser.GetBlocks();
 		texture_filenames_map=bd1_parser.GetTextureFilenamesMap();
 	}
-	/**
-	 * In case BD1Parser is not used.
-	 */
 	public BD1Manipulator() {
 		blocks=new ArrayList<Block>();
 		texture_filenames_map=new HashMap<>();
 	}
 	
 	/**
-	 * Get blocks.
+	 * Returns blocks.
 	 * @return Blocks
 	 */
 	public List<Block> GetBlocks(){
 		return new ArrayList<>(blocks);
 	}
 	/**
-	 * Set blocks.
+	 * Sets blocks.
 	 * @param blocks Blocks
 	 */
 	public void SetBlocks(List<Block> blocks) {
@@ -56,7 +53,7 @@ public class BD1Manipulator {
 	}
 	
 	/**
-	 * Get the number of blocks contained in the BD1 file.
+	 * Returns the number of blocks contained in the BD1 file.
 	 * @return Number of blocks
 	 */
 	public int GetBlockNum() {
@@ -64,7 +61,7 @@ public class BD1Manipulator {
 	}
 	
 	/**
-	 * Get the texture filename associated with the texture ID.
+	 * Returns the texture filename associated with the texture ID.
 	 * @param texture_id Texture ID
 	 * @return Texture filename
 	 */
@@ -75,7 +72,7 @@ public class BD1Manipulator {
 		return texture_filename;
 	}
 	/**
-	 * Set the texture filename associated with the texture ID.
+	 * Sets the texture filename associated with the texture ID.
 	 * @param texture_id Texture ID
 	 * @param texture_filename Texture filename
 	 */
@@ -86,7 +83,7 @@ public class BD1Manipulator {
 	}
 	
 	/**
-	 * Translate every block.
+	 * Translates every block.
 	 * @param translate Translation vector
 	 */
 	public void Translate(Vector translate) {
@@ -101,7 +98,7 @@ public class BD1Manipulator {
 		}
 	}
 	/**
-	 * Rotate every block.
+	 * Rotates every block.
 	 * @param rotate Angles of rotation (radian)
 	 */
 	public void Rotate(Vector rotate) {
@@ -122,7 +119,7 @@ public class BD1Manipulator {
 		}
 	}
 	/**
-	 * Rescale every block.
+	 * Rescales every block.
 	 * @param scale Scaling vector
 	 */
 	public void Rescale(Vector scale) {
@@ -144,7 +141,7 @@ public class BD1Manipulator {
 		}
 	}
 	/**
-	 * Transform every block with a matrix.
+	 * Transforms every block with a matrix.
 	 * @param m Transformation matrix
 	 */
 	public void SetMatrix(Matrix m) {
@@ -160,7 +157,7 @@ public class BD1Manipulator {
 	}
 	
 	/**
-	 * Invert z-axis.<br>
+	 * Inverts z-axis.<br>
 	 * This method will be used to make a mirrored map.
 	 */
 	public void InvertZ() {
@@ -250,7 +247,7 @@ public class BD1Manipulator {
 	}
 	
 	/**
-	 * Write data to a BD1 file.
+	 * Writes out data to a BD1 file.
 	 * @param bd1_filename Filename
 	 */
 	public void Write(String bd1_filename) {

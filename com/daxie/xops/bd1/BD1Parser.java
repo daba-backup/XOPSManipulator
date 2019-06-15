@@ -17,7 +17,7 @@ import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.FilenameFunctions;
 
 /**
- * Read data from a BD1 file.
+ * Reads data from a BD1 file.
  * @author Daba
  *
  */

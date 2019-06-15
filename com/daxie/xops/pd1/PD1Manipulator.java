@@ -12,7 +12,7 @@ import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
- * Manipulate a PD1 file.
+ * Manipulates a PD1 file.
  * @author Daba
  *
  */
@@ -28,22 +28,19 @@ public class PD1Manipulator {
 		PD1Parser pd1_parser=new PD1Parser(pd1_filename);
 		points=pd1_parser.GetPoints();
 	}
-	/**
-	 * In case PD1Parser is not used.
-	 */
 	public PD1Manipulator() {
 		points=new ArrayList<>();
 	}
 	
 	/**
-	 * Get points.
+	 * Returns points.
 	 * @return Points
 	 */
 	public List<Point> GetPoints(){
 		return new ArrayList<>(points);
 	}
 	/**
-	 * Set points.
+	 * Sets points.
 	 * @param points Points
 	 */
 	public void SetPoints(List<Point> points) {
@@ -51,14 +48,14 @@ public class PD1Manipulator {
 	}
 	
 	/**
-	 * Get the number of points contained in the PD1 file.
+	 * Returns the number of points contained in the PD1 file.
 	 * @return Number of points
 	 */
 	public int GetPointNum() {
 		return points.size();
 	}
 	/**
-	 * Get the number of the specified type of points contained in the PD1 file.
+	 * Returns the number of the specified type of points contained in the PD1 file.
 	 * @param param_1 Parameter 1
 	 * @return Number of points
 	 */
@@ -74,7 +71,7 @@ public class PD1Manipulator {
 	}
 	
 	/**
-	 * Translate every point.
+	 * Translates every point.
 	 * @param translate Translation vector
 	 */
 	public void Translate(Vector translate) {
@@ -85,7 +82,7 @@ public class PD1Manipulator {
 		}
 	}
 	/**
-	 * Rotate every point.
+	 * Rotates every point.
 	 * @param rotate Rotation vector
 	 */
 	public void Rotate(Vector rotate) {
@@ -104,7 +101,7 @@ public class PD1Manipulator {
 		}
 	}
 	/**
-	 * Rescale every point.
+	 * Rescales every point.
 	 * @param scale Scaling vector
 	 */
 	public void Rescale(Vector scale) {
@@ -124,7 +121,7 @@ public class PD1Manipulator {
 		}
 	}
 	/**
-	 * Transform every point with a matrix.
+	 * Transforms every point with a matrix.
 	 * @param m Transformation matrix
 	 */
 	public void SetMatrix(Matrix m) {
@@ -135,7 +132,7 @@ public class PD1Manipulator {
 		}
 	}
 	/**
-	 * Rotate the direction of every point.
+	 * Rotates the direction of every point.
 	 * @param rotate Rotation angle (radian)
 	 */
 	public void RotateDirection(float rotate) {
@@ -147,7 +144,7 @@ public class PD1Manipulator {
 	}
 	
 	/**
-	 * Invert z-axis.
+	 * Inverts z-axis.
 	 * This method will be used to make a mission for a mirrored map.
 	 */
 	public void InvertZ() {
@@ -164,7 +161,7 @@ public class PD1Manipulator {
 	}
 	
 	/**
-	 * Write data to a PD1 file.
+	 * Writes out data to a PD1 file.
 	 * @param pd1_filename Filename
 	 */
 	public void Write(String pd1_filename) {

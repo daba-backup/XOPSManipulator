@@ -14,7 +14,7 @@ import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
- * Read data from a PD1 file.
+ * Reads data from a PD1 file.
  * @author Daba
  *
  */

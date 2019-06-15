@@ -12,7 +12,7 @@ import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
- * Write data to a MIF file.
+ * Writes data to a MIF file.
  * @author Daba
  *
  */
@@ -24,7 +24,10 @@ class MIFWriter {
 	}
 	
 	public void Write(String mif_filename,String encoding) throws FileNotFoundException,UnsupportedEncodingException{
-		if(mission_info==null)return;
+		if(mission_info==null) {
+			LogFile.WriteError("[MIFWriter-Write] Data is null.");
+			return;
+		}
 		
 		BufferedWriter br=null;
 		br=new BufferedWriter(

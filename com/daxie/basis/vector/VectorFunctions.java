@@ -3,13 +3,13 @@ package com.daxie.basis.vector;
 import com.daxie.basis.matrix.Matrix;
 
 /**
- * Methods to handle vectors.
+ * Offers methods to handle vectors.
  * @author Daba
  *
  */
 public class VectorFunctions {
 	/**
-	 * Generate a vector.
+	 * Generates a vector.
 	 * @param x X-coordinate
 	 * @param y Y-coordinate
 	 * @param z Z-coordinate
@@ -19,7 +19,7 @@ public class VectorFunctions {
 		return new Vector(x,y,z);
 	}
 	/**
-	 * Add two vectors.
+	 * Adds two vectors.
 	 * @param lhs First vector
 	 * @param rhs Second vector
 	 * @return lhs+rhs
@@ -32,7 +32,7 @@ public class VectorFunctions {
 		return res;
 	}
 	/**
-	 * Subtract a vector from another vector.
+	 * Subtracts a vector from another vector.
 	 * @param lhs First vector
 	 * @param rhs Second vector
 	 * @return lhs-rhs
@@ -45,7 +45,7 @@ public class VectorFunctions {
 		return res;
 	}
 	/**
-	 * Get the size of a vector.
+	 * Returns the size of a vector.
 	 * @param v Vector
 	 * @return Size of v
 	 */
@@ -62,7 +62,7 @@ public class VectorFunctions {
 		return size;
 	}
 	/**
-	 * Get the square size of a vector.
+	 * Returns the square size of a vector.
 	 * @param v Vector
 	 * @return Square size of v
 	 */
@@ -79,7 +79,7 @@ public class VectorFunctions {
 		return size;
 	}
 	/**
-	 * Normalize a vector.
+	 * Normalizes a vector.
 	 * @param v Vector
 	 * @return Normalized vector
 	 */
@@ -92,7 +92,7 @@ public class VectorFunctions {
 		return res;
 	}
 	/**
-	 * Rescale a vector.
+	 * Rescales a vector.
 	 * @param v Vector
 	 * @param scale Scale
 	 * @return Rescaled vector
@@ -105,7 +105,7 @@ public class VectorFunctions {
 		return res;
 	}
 	/**
-	 * Get the dot product.
+	 * Returns the dot product.
 	 * @param lhs First vector
 	 * @param rhs Second vector
 	 * @return lhs・rhs
@@ -118,7 +118,7 @@ public class VectorFunctions {
 		return res;
 	}
 	/**
-	 * Get the cross product.
+	 * Returns the cross product.
 	 * @param lhs First vector
 	 * @param rhs Second vector
 	 * @return lhs×rhs
@@ -133,7 +133,7 @@ public class VectorFunctions {
 		return res;
 	}
 	/**
-	 * Multiply a vector by a matrix.
+	 * Multiplies a vector by a matrix.
 	 * @param v Vector
 	 * @param m Matrix
 	 * @return m*v

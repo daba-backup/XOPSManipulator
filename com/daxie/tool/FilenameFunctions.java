@@ -7,7 +7,7 @@ package com.daxie.tool;
  */
 public class FilenameFunctions {
 	/**
-	 * Replace '\' with '/'.
+	 * Replaces '\' with '/'.
 	 * @param filename Original filename
 	 * @return Replaced filename
 	 */
@@ -18,7 +18,7 @@ public class FilenameFunctions {
 		return ret;
 	}
 	/**
-	 * Get the directory of a file.
+	 * Returns the directory of a file.
 	 * @param filename Filename
 	 * @return Directory
 	 */
@@ -30,7 +30,7 @@ public class FilenameFunctions {
 		return directory;
 	}
 	/**
-	 * Get the file extension.
+	 * Returns the file extension.
 	 * @param filename Filename
 	 * @return Extension
 	 */
@@ -40,5 +40,18 @@ public class FilenameFunctions {
 		
 		String extension=filename.substring(last_dot_pos+1);
 		return extension;
+	}
+	/**
+	 * Returns the filename without extension.
+	 * @param filename Filename
+	 * @return Filename without extension
+	 */
+	public static String GetFilenameWithoutExtension(String filename) {
+		int last_dot_pos=filename.lastIndexOf('.');
+		if(last_dot_pos==-1)return filename;
+		
+		String ret=filename.substring(0, last_dot_pos);
+		
+		return ret;
 	}
 }

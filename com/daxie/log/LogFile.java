@@ -8,6 +8,15 @@ import java.io.OutputStreamWriter;
 
 import com.daxie.tool.DateFunctions;
 
+/**
+ * Offers log functions.<br>
+ * <br>
+ * This class has six flags to set to what extent events should be logged.<br>
+ * Flags are assigned as follows.<br>
+ * |0|0|TRACE|DEBUG|INFO|WARN|ERROR|FATAL|
+ * @author Daba
+ *
+ */
 public class LogFile {
 	private static String directory="./";
 	private static String filename="log.txt";
@@ -23,17 +32,38 @@ public class LogFile {
 	
 	private static BufferedWriter bw=null;
 	
+	/**
+	 * Sets the directory where the log file will be created.<br>
+	 * @param a_directory Directory name
+	 */
 	public static void SetLogDirectory(String a_directory) {
 		directory=a_directory;
 	}
+	/**
+	 * Sets the filename of the log file.
+	 * @param a_filename Filename
+	 */
 	public static void SetLogFilename(String a_filename) {
 		filename=a_filename;
 	}
+	/**
+	 * Sets the flags to specify to what extent events should be logged.
+	 * @param flags Flags
+	 */
 	public static void SetLogLevelFlags(int flags) {
 		log_level_flags=flags;
 	}
 	
+	/**
+	 * Creates a log file.<br>
+	 * Call this method before logging.
+	 */
 	public static void OpenLogFile() {
+		//Close the opened log file first.
+		if(bw!=null) {
+			CloseLogFile();
+		}
+		
 		File log_directory=new java.io.File(directory);
 		if(log_directory.exists()==false)log_directory.mkdirs();
 		
@@ -46,9 +76,13 @@ public class LogFile {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Closes the log file.
+	 */
 	public static void CloseLogFile() {
 		if(bw!=null) {
 			try {
+				bw.flush();
 				bw.close();
 				bw=null;
 			}
@@ -57,6 +91,9 @@ public class LogFile {
 			}
 		}
 	}
+	/**
+	 * Flushes the stream.
+	 */
 	public static void Flush() {
 		if(bw!=null) {
 			try {
@@ -68,6 +105,10 @@ public class LogFile {
 		}
 	}
 	
+	/**
+	 * Writes a string.
+	 * @param str String
+	 */
 	public static void WriteString(String str) {
 		if(bw!=null) {
 			try {
@@ -78,6 +119,10 @@ public class LogFile {
 			}
 		}
 	}
+	/**
+	 * Writes a line.
+	 * @param str String
+	 */
 	public static void WriteLine(String str) {
 		if(bw!=null) {
 			try {
@@ -90,6 +135,10 @@ public class LogFile {
 		}
 	}
 	
+	/**
+	 * Writes a trace string.
+	 * @param str String
+	 */
 	//TRACE
 	public static void WriteTrace(String str) {
 		int op=log_level_flags&LOG_LEVEL_TRACE;
@@ -104,6 +153,10 @@ public class LogFile {
 		
 		WriteLine(message);
 	}
+	/**
+	 * Writes a debug string.
+	 * @param str String
+	 */
 	//DEBUG
 	public static void WriteDebug(String str) {
 		int op=log_level_flags&LOG_LEVEL_DEBUG;
@@ -118,6 +171,10 @@ public class LogFile {
 		
 		WriteLine(message);
 	}
+	/**
+	 * Writes an info string.
+	 * @param str String
+	 */
 	//INFO
 	public static void WriteInfo(String str) {
 		int op=log_level_flags&LOG_LEVEL_INFO;
@@ -132,6 +189,10 @@ public class LogFile {
 		
 		WriteLine(message);
 	}
+	/**
+	 * Writes a warning string.
+	 * @param str String
+	 */
 	//WARN
 	public static void WriteWarn(String str) {
 		int op=log_level_flags&LOG_LEVEL_WARN;
@@ -146,6 +207,10 @@ public class LogFile {
 		
 		WriteLine(message);
 	}
+	/**
+	 * Writes an error string.
+	 * @param str String
+	 */
 	//ERROR
 	public static void WriteError(String str) {
 		int op=log_level_flags&LOG_LEVEL_ERROR;
@@ -160,6 +225,10 @@ public class LogFile {
 		
 		WriteLine(message);
 	}
+	/**
+	 * Writes a fatal string.
+	 * @param str String
+	 */
 	//FATAL
 	public static void WriteFatal(String str) {
 		int op=log_level_flags&LOG_LEVEL_FATAL;
