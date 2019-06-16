@@ -118,6 +118,9 @@ public class LogFile {
 				e.printStackTrace();
 			}
 		}
+		else {
+			System.out.print(str);
+		}
 	}
 	/**
 	 * Writes a line.
@@ -132,6 +135,9 @@ public class LogFile {
 			catch(IOException e) {
 				e.printStackTrace();
 			}
+		}
+		else {
+			System.out.println(str);
 		}
 	}
 	
