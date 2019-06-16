@@ -113,11 +113,11 @@ class XGSParser {
 			weapon_data_array[i].SetFiringInterval(itemp);
 			count+=2;
 			
-			//Speed
+			//Velocity
 			b[0]=bin.get(count);
 			b[1]=bin.get(count+1);
 			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetSpeed(itemp);
+			weapon_data_array[i].SetVelocity(itemp);
 			count+=2;
 			
 			//Number of bullets
@@ -287,7 +287,7 @@ class XGSParser {
 			weapon_data_array[i].SetScale(itemp*0.1f);
 			count+=2;
 			
-			//Cartridge speed
+			//Cartridge velocity
 			vtemp=new Vector();
 			
 			b[0]=bin.get(count);
@@ -304,7 +304,7 @@ class XGSParser {
 			
 			vtemp.SetZ(0.0f);
 			
-			weapon_data_array[i].SetCartridgeSpeed(vtemp);
+			weapon_data_array[i].SetCartridgeVelocity(vtemp);
 			
 			//Sound ID
 			b[0]=bin.get(count);

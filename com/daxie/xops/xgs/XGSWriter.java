@@ -84,8 +84,8 @@ class XGSWriter {
 				b=ByteFunctions.short_to_byte_le((short)itemp);
 				dos.write(b);
 				
-				//Speed
-				itemp=weapon_data_array[i].GetSpeed();
+				//Velocity
+				itemp=weapon_data_array[i].GetVelocity();
 				b=ByteFunctions.short_to_byte_le((short)itemp);
 				dos.write(b);
 				
@@ -196,8 +196,8 @@ class XGSWriter {
 				b=ByteFunctions.short_to_byte_le((short)itemp);
 				dos.write(b);
 				
-				//Cartridge speed
-				vtemp=weapon_data_array[i].GetCartridgeSpeed();
+				//Cartridge velocity
+				vtemp=weapon_data_array[i].GetCartridgeVelocity();
 				
 				itemp=Math.round(vtemp.GetX());
 				b=ByteFunctions.short_to_byte_le((short)itemp);

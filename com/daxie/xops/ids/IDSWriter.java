@@ -74,8 +74,8 @@ class IDSWriter {
 			b=ByteFunctions.short_to_byte_le((short)itemp);
 			dos.write(b);
 			
-			//Speed
-			itemp=weapon_data.GetSpeed();
+			//Velocity
+			itemp=weapon_data.GetVelocity();
 			b=ByteFunctions.short_to_byte_le((short)itemp);
 			dos.write(b);
 			
@@ -186,8 +186,8 @@ class IDSWriter {
 			b=ByteFunctions.short_to_byte_le((short)itemp);
 			dos.write(b);
 			
-			//Cartridge speed
-			vtemp=weapon_data.GetCartridgeSpeed();
+			//Cartridge velocity
+			vtemp=weapon_data.GetCartridgeVelocity();
 			
 			itemp=Math.round(vtemp.GetX());
 			b=ByteFunctions.short_to_byte_le((short)itemp);

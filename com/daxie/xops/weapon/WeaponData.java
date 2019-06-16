@@ -9,7 +9,7 @@ public class WeaponData {
 	private int attack_power;
 	private int penetration;
 	private int firing_interval;
-	private int speed;
+	private int velocity;
 	private int number_of_bullets;
 	private int reloading_time;
 	private int recoil;
@@ -18,7 +18,7 @@ public class WeaponData {
 	private Vector position;
 	private Vector flash_position;
 	private Vector cartridge_position;
-	private Vector cartridge_speed;
+	private Vector cartridge_velocity;
 	private boolean rapid_fire_enabled_flag;
 	private WeaponScopeMode scope_mode;
 	private float scale;
@@ -36,7 +36,7 @@ public class WeaponData {
 		attack_power=0;
 		penetration=0;
 		firing_interval=0;
-		speed=0;
+		velocity=0;
 		number_of_bullets=0;
 		reloading_time=0;
 		recoil=0;
@@ -45,7 +45,7 @@ public class WeaponData {
 		position=new Vector();
 		flash_position=new Vector();
 		cartridge_position=new Vector();
-		cartridge_speed=new Vector();
+		cartridge_velocity=new Vector();
 		rapid_fire_enabled_flag=false;
 		scope_mode=WeaponScopeMode.NONE;
 		scale=1.0f;
@@ -63,7 +63,7 @@ public class WeaponData {
 		attack_power=w.GetAttackPower();
 		penetration=w.GetPenetration();
 		firing_interval=w.GetFiringInterval();
-		speed=w.GetSpeed();
+		velocity=w.GetVelocity();
 		number_of_bullets=w.GetNumberOfBullets();
 		reloading_time=w.GetReloadingTime();
 		recoil=w.GetRecoil();
@@ -72,7 +72,7 @@ public class WeaponData {
 		position=w.GetPosition();
 		flash_position=w.GetFlashPosition();
 		cartridge_position=w.GetCartridgePosition();
-		cartridge_speed=w.GetCartridgeSpeed();
+		cartridge_velocity=w.GetCartridgeVelocity();
 		rapid_fire_enabled_flag=w.GetRapidFireEnabledFlag();
 		scope_mode=w.GetScopeMode();
 		scale=w.GetScale();
@@ -95,7 +95,7 @@ public class WeaponData {
 		ret+="attack_power:"+attack_power+separator;
 		ret+="penetration:"+penetration+separator;
 		ret+="firing_interval:"+firing_interval+separator;
-		ret+="speed:"+speed+separator;
+		ret+="velocity:"+velocity+separator;
 		ret+="number_of_bullets:"+number_of_bullets+separator;
 		ret+="reloading_time:"+reloading_time+separator;
 		ret+="recoil:"+recoil+separator;
@@ -104,7 +104,7 @@ public class WeaponData {
 		ret+="position:"+position+separator;
 		ret+="flash_position:"+flash_position+separator;
 		ret+="cartridge_position:"+cartridge_position+separator;
-		ret+="cartridge_speed:"+cartridge_speed+separator;
+		ret+="cartridge_velocity:"+cartridge_velocity+separator;
 		ret+="rapid_fire_enabled_flag:"+rapid_fire_enabled_flag+separator;
 		
 		ret+="scope_mode:";
@@ -144,8 +144,8 @@ public class WeaponData {
 	public void SetFiringInterval(int firing_interval) {
 		this.firing_interval=firing_interval;
 	}
-	public void SetSpeed(int speed) {
-		this.speed=speed;
+	public void SetVelocity(int velocity) {
+		this.velocity=velocity;
 	}
 	public void SetNumberOfBullets(int number_of_bullets) {
 		this.number_of_bullets=number_of_bullets;
@@ -171,8 +171,8 @@ public class WeaponData {
 	public void SetCartridgePosition(Vector cartridge_position) {
 		this.cartridge_position=cartridge_position;
 	}
-	public void SetCartridgeSpeed(Vector cartridge_speed) {
-		this.cartridge_speed=cartridge_speed;
+	public void SetCartridgeVelocity(Vector cartridge_velocity) {
+		this.cartridge_velocity=cartridge_velocity;
 	}
 	public void SetRapidFireEnabledFlag(boolean rapid_fire_enabled_flag) {
 		this.rapid_fire_enabled_flag=rapid_fire_enabled_flag;
@@ -220,8 +220,8 @@ public class WeaponData {
 	public int GetFiringInterval() {
 		return firing_interval;
 	}
-	public int GetSpeed() {
-		return speed;
+	public int GetVelocity() {
+		return velocity;
 	}
 	public int GetNumberOfBullets() {
 		return number_of_bullets;
@@ -247,8 +247,8 @@ public class WeaponData {
 	public Vector GetCartridgePosition() {
 		return new Vector(cartridge_position);
 	}
-	public Vector GetCartridgeSpeed() {
-		return new Vector(cartridge_speed);
+	public Vector GetCartridgeVelocity() {
+		return new Vector(cartridge_velocity);
 	}
 	public boolean GetRapidFireEnabledFlag() {
 		return rapid_fire_enabled_flag;

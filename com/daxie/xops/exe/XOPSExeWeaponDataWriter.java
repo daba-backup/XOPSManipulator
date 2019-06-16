@@ -65,8 +65,8 @@ class XOPSExeWeaponDataWriter {
 			bin.set(pos+1, b[1]);
 			pos+=2;
 			
-			//Speed
-			itemp=weapon_data_array[i].GetSpeed();
+			//Velocity
+			itemp=weapon_data_array[i].GetVelocity();
 			b=ByteFunctions.short_to_byte_le((short)itemp);
 			bin.set(pos, b[0]);
 			bin.set(pos+1, b[1]);
@@ -219,8 +219,8 @@ class XOPSExeWeaponDataWriter {
 			bin.set(pos+1, b[1]);
 			pos+=2;
 			
-			//Cartridge speed
-			vtemp=weapon_data_array[i].GetCartridgeSpeed();
+			//Cartridge velocity
+			vtemp=weapon_data_array[i].GetCartridgeVelocity();
 			
 			itemp=Math.round(vtemp.GetX());
 			b=ByteFunctions.short_to_byte_le((short)itemp);
