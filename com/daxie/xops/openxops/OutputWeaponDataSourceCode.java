@@ -68,7 +68,7 @@ public class OutputWeaponDataSourceCode {
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "size", weapon_data.GetScale())+separator;
 			
 			int sound_id=weapon_data.GetSoundID();
-			sound_id=SpecifierConverter.GetOpenXOPSSoundIDFromXOPSSoundID(sound_id);
+			sound_id=WeaponSpecifierConverter.GetOpenXOPSSoundIDFromXOPSSoundID(sound_id);
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "soundid", sound_id)+separator;
 			
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "soundvolume", weapon_data.GetSoundVolume())+separator;
