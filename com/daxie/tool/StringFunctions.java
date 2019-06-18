@@ -99,4 +99,37 @@ public class StringFunctions {
 		
 		return ret;
 	}
+	
+	/**
+	 * Returns the first non-space character.
+	 * @param str A string
+	 * @return First non-space character
+	 */
+	public static char GetFirstNonSpaceCharacter(String str) {
+		char ret=0;
+		
+		for(int i=0;i<str.length();i++) {
+			if(str.charAt(i)!=' ') {
+				ret=str.charAt(i);
+				break;
+			}
+		}
+		
+		return ret;
+	}
+	
+	/**
+	 * Removes double quotation marks from a string enclosed with them.
+	 * @param str A string
+	 * @return A string without double quotation marks
+	 */
+	public static String RemoveDQMs(String str) {
+		int first_dqm_pos=str.indexOf('\"');
+		int last_dqm_pos=str.indexOf('\"');
+		
+		if(first_dqm_pos<0)return str;
+		else if(first_dqm_pos==last_dqm_pos)return str;
+		
+		return str.substring(first_dqm_pos+1, last_dqm_pos);
+	}
 }

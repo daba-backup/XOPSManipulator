@@ -13,10 +13,10 @@ import com.daxie.xops.character.CharacterTextureType;
  * @author Daba
  *
  */
-public class OutputCharacterDataSourceCode {
+public class CharacterDataCodeOutputter {
 	private List<CharacterData> character_data_list;
 	
-	public OutputCharacterDataSourceCode(List<CharacterData> character_data_list) {
+	public CharacterDataCodeOutputter(List<CharacterData> character_data_list) {
 		this.character_data_list=character_data_list;
 	}
 	

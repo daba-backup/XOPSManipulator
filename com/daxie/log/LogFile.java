@@ -28,7 +28,13 @@ public class LogFile {
 	public static final int LOG_LEVEL_INFO=0b00001000;
 	public static final int LOG_LEVEL_DEBUG=0b00010000;
 	public static final int LOG_LEVEL_TRACE=0b00100000;
+	
+	public static final int LOG_LEVEL_NONE=0b00000000;
+	public static final int LOG_LEVEL_ALL=0b00111111;
+	
 	private static int log_level_flags=LOG_LEVEL_FATAL|LOG_LEVEL_ERROR;
+	
+	private static boolean output_log_flag=true;
 	
 	private static BufferedWriter bw=null;
 	
@@ -52,6 +58,13 @@ public class LogFile {
 	 */
 	public static void SetLogLevelFlags(int flags) {
 		log_level_flags=flags;
+	}
+	/**
+	 * Sets the flag to determine whether to use log output.
+	 * @param a_output_log_flag Output log flag
+	 */
+	public static void SetOutputLogFlag(boolean a_output_log_flag) {
+		output_log_flag=a_output_log_flag;
 	}
 	
 	/**
@@ -110,6 +123,8 @@ public class LogFile {
 	 * @param str String
 	 */
 	public static void WriteString(String str) {
+		if(output_log_flag==false)return;
+		
 		if(bw!=null) {
 			try {
 				bw.write(str);
@@ -127,6 +142,8 @@ public class LogFile {
 	 * @param str String
 	 */
 	public static void WriteLine(String str) {
+		if(output_log_flag==false)return;
+		
 		if(bw!=null) {
 			try {
 				bw.write(str);

@@ -12,10 +12,10 @@ import com.daxie.xops.weapon.WeaponData;
  * @author Daba
  *
  */
-public class OutputWeaponDataSourceCode {
+public class WeaponDataCodeOutputter {
 	private List<WeaponData> weapon_data_list;
 	
-	public OutputWeaponDataSourceCode(List<WeaponData> weapon_data_list) {
+	public WeaponDataCodeOutputter(List<WeaponData> weapon_data_list) {
 		this.weapon_data_list=weapon_data_list;
 	}
 	
