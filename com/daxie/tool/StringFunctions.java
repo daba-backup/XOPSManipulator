@@ -119,17 +119,18 @@ public class StringFunctions {
 	}
 	
 	/**
-	 * Removes double quotation marks from a string enclosed with them.
+	 * Returns a string enclosed with two characters.
 	 * @param str A string
-	 * @return A string without double quotation marks
+	 * @param first_character First character
+	 * @param second_character Second character
+	 * @return A string between the first character and the second character
 	 */
-	public static String RemoveDQMs(String str) {
-		int first_dqm_pos=str.indexOf('\"');
-		int last_dqm_pos=str.indexOf('\"');
+	public static String GetFirstStringInBetween(String str,char first_character,char second_character) {
+		int first_pos=str.indexOf(first_character);
+		int second_pos=str.indexOf(second_character, first_pos+1);
 		
-		if(first_dqm_pos<0)return str;
-		else if(first_dqm_pos==last_dqm_pos)return str;
+		if(first_pos<0||second_pos<0)return str;
 		
-		return str.substring(first_dqm_pos+1, last_dqm_pos);
+		return str.substring(first_pos+1, second_pos);
 	}
 }
