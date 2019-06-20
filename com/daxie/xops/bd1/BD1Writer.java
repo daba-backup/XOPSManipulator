@@ -72,10 +72,9 @@ class BD1Writer {
 			
 			//Number of blocks
 			int block_num=blocks.size();
-			byte lower_byte=(byte)block_num;
-			byte higher_byte=(byte)(block_num>>8);
-			dos.writeByte(lower_byte);
-			dos.writeByte(higher_byte);
+			
+			byte[] block_num_buffer=ByteFunctions.ushort_to_byte_le(block_num);
+			dos.write(block_num_buffer);
 			
 			//Block data
 			for(int i=0;i<blocks.size();i++) {

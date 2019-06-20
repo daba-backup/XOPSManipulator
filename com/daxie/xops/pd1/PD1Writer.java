@@ -38,10 +38,9 @@ class PD1Writer {
 		try {
 			//Number of points
 			int point_num=points.size();
-			byte lower_byte=(byte)point_num;
-			byte higher_byte=(byte)(point_num>>8);
-			dos.writeByte(lower_byte);
-			dos.writeByte(higher_byte);
+			
+			byte[] point_num_buffer=ByteFunctions.ushort_to_byte_le(point_num);
+			dos.write(point_num_buffer);
 			
 			//Point data
 			for(int i=0;i<points.size();i++) {

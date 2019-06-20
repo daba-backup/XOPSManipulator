@@ -70,7 +70,12 @@ class PD1Parser {
 		int count=0;
 		
 		//Number of points
-		int point_num=Byte.toUnsignedInt(bin.get(count));
+		byte[] point_num_buffer=new byte[2];
+		point_num_buffer[0]=bin.get(count);
+		point_num_buffer[1]=bin.get(count+1);
+		
+		int point_num=ByteFunctions.byte_to_ushort_le(point_num_buffer);
+		
 		count+=2;
 		
 		//Points

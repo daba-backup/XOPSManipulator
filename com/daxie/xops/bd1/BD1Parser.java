@@ -100,7 +100,12 @@ class BD1Parser {
 		}
 		
 		//Number of blocks
-		int block_num=Byte.toUnsignedInt(bin.get(count));
+		byte[] block_num_buffer=new byte[2];
+		block_num_buffer[0]=bin.get(count);
+		block_num_buffer[1]=bin.get(count+1);
+		
+		int block_num=ByteFunctions.byte_to_ushort_le(block_num_buffer);
+		
 		count+=2;
 		
 		//Blocks

@@ -225,16 +225,16 @@ public class ByteFunctions {
 	 * @param b A 2-byte byte array
 	 * @return An unsigned short value
 	 */
-	public static short byte_to_ushort(byte[] b) {
+	public static int byte_to_ushort(byte[] b) {
 		if(b.length!=2)return 0;
 		
-		short ret;
+		int ret;
 		int first,second;
 		
 		first=Byte.toUnsignedInt(b[0]);
 		second=Byte.toUnsignedInt(b[1]);
 		
-		ret=(short)((first<<8)+second);
+		ret=(first<<8)+second;
 		
 		return ret;
 	}
@@ -244,10 +244,10 @@ public class ByteFunctions {
 	 * @param b A 2-byte little-endian byte array
 	 * @return An unsigned short value
 	 */
-	public static short byte_to_ushort_le(byte[] b) {
+	public static int byte_to_ushort_le(byte[] b) {
 		if(b.length!=2)return 0;
 		
-		short ret;
+		int ret;
 		
 		byte[] buffer=new byte[2];
 		buffer[0]=b[1];
@@ -263,7 +263,7 @@ public class ByteFunctions {
 	 * @param s An unsigned short value
 	 * @return A 2-byte byte array
 	 */
-	public static byte[] ushort_to_byte(short s) {
+	public static byte[] ushort_to_byte(int s) {
 		byte[] b=new byte[2];
 		
 		b[0]=(byte)(s>>8);
@@ -277,7 +277,7 @@ public class ByteFunctions {
 	 * @param s An unsigned short value
 	 * @return A 2-byte little-endian byte array
 	 */
-	public static byte[] ushort_to_byte_le(short s) {
+	public static byte[] ushort_to_byte_le(int s) {
 		byte[] b=new byte[2];
 		
 		b[1]=(byte)(s>>8);
