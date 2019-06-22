@@ -32,6 +32,7 @@ public class IDSManipulator {
 	 * @return Weapon data
 	 */
 	public WeaponData GetWeaponData() {
+		if(weapon_data==null)return null;
 		return new WeaponData(weapon_data);
 	}
 	/**

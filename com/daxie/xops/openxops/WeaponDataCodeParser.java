@@ -318,10 +318,10 @@ public class WeaponDataCodeParser {
 		}
 	}
 	
-	public Map<Integer, WeaponData> GetWeaponDataMap(){
+	public HashMap<Integer, WeaponData> GetWeaponDataMap(){
 		return new HashMap<>(weapon_data_map);
 	}
-	public Map<Integer, WeaponData> GetWeaponDataOrderedMap(){
+	public TreeMap<Integer, WeaponData> GetWeaponDataOrderedMap(){
 		return new TreeMap<>(weapon_data_map);
 	}
 }

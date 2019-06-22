@@ -132,7 +132,7 @@ public class ByteFunctions {
 		
 		//Positive value
 		if((temp&0b00000001)==0) {
-			ret=(short)((b[0]<<8)+b[1]);
+			ret=(short)((b[0]<<8)+Byte.toUnsignedInt(b[1]));
 		}
 		//Negative value
 		else {
@@ -142,7 +142,7 @@ public class ByteFunctions {
 			bcopy[1]=(byte)~bcopy[1];
 			bcopy[1]++;
 			
-			short abs=(short)((bcopy[0]<<8)+bcopy[1]);
+			short abs=(short)((bcopy[0]<<8)+Byte.toUnsignedInt(bcopy[1]));
 			ret=(short)(abs*(-1));
 		}
 		

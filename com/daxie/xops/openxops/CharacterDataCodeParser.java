@@ -166,10 +166,10 @@ public class CharacterDataCodeParser {
 		}
 	}
 	
-	public Map<Integer, CharacterData> GetCharacterDataMap(){
+	public HashMap<Integer, CharacterData> GetCharacterDataMap(){
 		return new HashMap<>(character_data_map);
 	}
-	public Map<Integer, CharacterData> GetCharacterDataOrderedMap(){
+	public TreeMap<Integer, CharacterData> GetCharacterDataOrderedMap(){
 		return new TreeMap<>(character_data_map);
 	}
 }

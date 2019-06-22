@@ -18,8 +18,8 @@ import com.daxie.xops.weapon.WeaponData;
  *
  */
 public class XOPSExeManipulator {
-	private WeaponData[] weapon_data_array;
-	private CharacterData[] character_data_array;
+	private WeaponData[] weapon_data_array=null;
+	private CharacterData[] character_data_array=null;
 	
 	/**
 	 * 
@@ -127,6 +127,8 @@ public class XOPSExeManipulator {
 	 * @return A weapon data array
 	 */
 	public WeaponData[] GetWeaponDataArray() {
+		if(weapon_data_array==null)return null;
+		
 		WeaponData[] ret=new WeaponData[weapon_data_array.length];
 		for(int i=0;i<ret.length;i++) {
 			ret[i]=new WeaponData(weapon_data_array[i]);
@@ -139,6 +141,8 @@ public class XOPSExeManipulator {
 	 * @return A character data array
 	 */
 	public CharacterData[] GetCharacterDataArray() {
+		if(character_data_array==null)return null;
+		
 		CharacterData[] ret=new CharacterData[character_data_array.length];
 		for(int i=0;i<ret.length;i++) {
 			ret[i]=new CharacterData(character_data_array[i]);
@@ -164,17 +168,20 @@ public class XOPSExeManipulator {
 	/**
 	 * Writes out data to an EXE file.
 	 * @param xops_filename Filename of the file where data will be overwritten
+	 * @param create_backup_flag Flag to set whether to create a backup file
 	 * @throws FileNotFoundException File to overwrite not found
 	 */
-	public void Write(String xops_filename) throws FileNotFoundException{
+	public void Write(String xops_filename,boolean create_backup_flag) throws FileNotFoundException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
 		
 		//Create a backup.
-		String date=DateFunctions.GetDateStringWithoutDelimiters();
-		String filename_without_extension=FilenameFunctions.GetFilenameWithoutExtension(xops_filename);
-		String backup_filename=filename_without_extension+date+".exe";
-		
-		FileFunctions.CreateBinFile(backup_filename, bin);
+		if(create_backup_flag==true) {
+			String date=DateFunctions.GetDateStringWithoutDelimiters();
+			String filename_without_extension=FilenameFunctions.GetFilenameWithoutExtension(xops_filename);
+			String backup_filename=filename_without_extension+"_"+date+".exe";
+			
+			FileFunctions.CreateBinFile(backup_filename, bin);
+		}
 		
 		//Create a modified file (overwrite).
 		XOPSExeWeaponDataWriter weapon_data_writer=new XOPSExeWeaponDataWriter(weapon_data_array);
@@ -236,18 +243,21 @@ public class XOPSExeManipulator {
 	 * @param weapon_data_start_pos Start address of weapon data
 	 * @param weapon_name_start_pos Start address of weapon name
 	 * @param character_data_start_pos Start address of character data
+	 * @param create_backup_flag Flag to set whether to create a backup file
 	 * @throws FileNotFoundException File to overwrite not found
 	 */
-	public void Write(String xops_filename,
-			int weapon_data_start_pos,int weapon_name_start_pos,int character_data_start_pos) throws FileNotFoundException{
+	public void Write(String xops_filename,int weapon_data_start_pos,int weapon_name_start_pos,
+			int character_data_start_pos,boolean create_backup_flag) throws FileNotFoundException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
 		
 		//Create a backup.
-		String date=DateFunctions.GetDateStringWithoutDelimiters();
-		String filename_without_extension=FilenameFunctions.GetFilenameWithoutExtension(xops_filename);
-		String backup_filename=filename_without_extension+date+".exe";
-		
-		FileFunctions.CreateBinFile(backup_filename, bin);
+		if(create_backup_flag==true) {
+			String date=DateFunctions.GetDateStringWithoutDelimiters();
+			String filename_without_extension=FilenameFunctions.GetFilenameWithoutExtension(xops_filename);
+			String backup_filename=filename_without_extension+"_"+date+".exe";
+			
+			FileFunctions.CreateBinFile(backup_filename, bin);
+		}
 		
 		//Create a modified file (overwrite).
 		XOPSExeWeaponDataWriter weapon_data_writer=new XOPSExeWeaponDataWriter(weapon_data_array);

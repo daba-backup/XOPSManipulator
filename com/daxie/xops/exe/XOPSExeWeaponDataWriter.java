@@ -29,7 +29,7 @@ class XOPSExeWeaponDataWriter {
 	
 	public void Write(List<Byte> bin,int weapon_data_start_pos,int weapon_name_start_pos) {
 		if(weapon_data_array==null) {
-			LogFile.WriteError("[XOPSExeWeaponDataWriter-Write] Data is null.");
+			LogFile.WriteInfo("[XOPSExeWeaponDataWriter-Write] Data is null. No operation for weapon data.");
 			return;
 		}
 		if(weapon_data_array.length!=XOPSConstants.WEAPON_NUM) {

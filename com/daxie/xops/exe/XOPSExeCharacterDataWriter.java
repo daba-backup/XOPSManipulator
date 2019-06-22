@@ -26,7 +26,7 @@ class XOPSExeCharacterDataWriter {
 	
 	public void Write(List<Byte> bin,int character_data_start_pos) {
 		if(character_data_array==null) {
-			LogFile.WriteError("[XOPSExeCharacterDataWriter-Write] Data is null.");
+			LogFile.WriteInfo("[XOPSExeCharacterDataWriter-Write] Data is null. No operation for character data.");
 			return;
 		}
 		if(character_data_array.length!=XOPSConstants.CHARACTER_NUM) {

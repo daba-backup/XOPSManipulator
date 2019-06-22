@@ -40,7 +40,7 @@ public class XGSManipulator {
 			ret[i]=new WeaponData(weapon_data_array[i]);
 		}
 		
-		return weapon_data_array;
+		return ret;
 	}
 	/**
 	 * Sets a weapon data array.
