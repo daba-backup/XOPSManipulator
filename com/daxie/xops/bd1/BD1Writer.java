@@ -66,7 +66,7 @@ class BD1Writer {
 			
 			byte[] null_buffer=new byte[31];
 			for(int i=0;i<31;i++)null_buffer[i]=0;
-			for(int i=texture_count;texture_count<10;i++) {
+			for(int i=texture_count;i<10;i++) {
 				dos.write(null_buffer);
 			}
 			
