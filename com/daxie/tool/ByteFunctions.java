@@ -273,7 +273,7 @@ public class ByteFunctions {
 	}
 	/**
 	 * Converts an unsigned short value to a 2-byte byte array.
-	 * @see ushort_to_byte(short)
+	 * @see ushort_to_byte(int)
 	 * @param s An unsigned short value
 	 * @return A 2-byte little-endian byte array
 	 */

@@ -12,7 +12,7 @@ import com.daxie.xops.character.CharacterTextureType;
 public class CharacterSpecifierConverter {
 	/**
 	 * Converts XOPS texture type to OpenXOPS texture ID.
-	 * @param texture_type XOPS texture type
+	 * @param xops_texture_type XOPS texture type
 	 * @return OpenXOPS texture ID
 	 */
 	public static int GetOpenXOPSTextureIDFromXOPSTextureType(CharacterTextureType xops_texture_type) {
