@@ -11,7 +11,6 @@ import com.daxie.basis.matrix.MatrixFunctions;
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
 import com.daxie.log.LogFile;
-import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Manipulates a BD1 file.
@@ -249,19 +248,18 @@ public class BD1Manipulator {
 	/**
 	 * Writes out data to a BD1 file.
 	 * @param bd1_filename Filename
+	 * @return -1 on error and 0 on success
 	 */
-	public void Write(String bd1_filename) {
+	public int Write(String bd1_filename) {
 		BD1Writer bd1_writer=new BD1Writer(blocks, texture_filenames_map);
 		try {
 			bd1_writer.Write(bd1_filename);
 		}
 		catch(FileNotFoundException e) {
-			LogFile.WriteFatal("[BD1Manipulator-Write] Failed to write data. Below is the stack trace.");
-			
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteLine(str);
-			
-			System.exit(1);
+			LogFile.WriteError("[BD1Manipulator-Write] Failed to write data.");
+			return -1;
 		}
+		
+		return 0;
 	}
 }

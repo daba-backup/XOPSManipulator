@@ -9,7 +9,6 @@ import com.daxie.basis.matrix.MatrixFunctions;
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
 import com.daxie.log.LogFile;
-import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Manipulates a PD1 file.
@@ -163,19 +162,18 @@ public class PD1Manipulator {
 	/**
 	 * Writes out data to a PD1 file.
 	 * @param pd1_filename Filename
+	 * @return -1 on error and 0 on success
 	 */
-	public void Write(String pd1_filename) {
+	public int Write(String pd1_filename) {
 		PD1Writer pd1_writer=new PD1Writer(points);
 		try {
 			pd1_writer.Write(pd1_filename);
 		}
 		catch(FileNotFoundException e) {
-			LogFile.WriteFatal("[PD1Manipulator-Write] Failed to write data. Below is the stack trace.");
-			
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteLine(str);
-			
-			System.exit(1);
+			LogFile.WriteError("[PD1Manipulator-Write] Failed to write data.");
+			return -1;
 		}
+		
+		return 0;
 	}
 }

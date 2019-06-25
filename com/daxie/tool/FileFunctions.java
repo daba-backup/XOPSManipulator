@@ -137,22 +137,11 @@ public class FileFunctions {
 	 * @param filename Filename
 	 * @param bin A list of bytes
 	 */
-	public static void CreateBinFile(String filename,List<Byte> bin) {
+	public static void CreateBinFile(String filename,List<Byte> bin) throws FileNotFoundException{
 		DataOutputStream dos=null;
-		try {
-			dos=new DataOutputStream(
-					new BufferedOutputStream(
-							new FileOutputStream(filename)));
-		}
-		catch(FileNotFoundException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[FileFunctions-CreateBinFile] Below is the stack trace.");
-			LogFile.WriteLine(str);
-			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
-		}
+		dos=new DataOutputStream(
+				new BufferedOutputStream(
+						new FileOutputStream(filename)));
 		
 		try {
 			for(Byte b:bin) {

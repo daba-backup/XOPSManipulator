@@ -3,7 +3,6 @@ package com.daxie.xops.ids;
 import java.io.FileNotFoundException;
 
 import com.daxie.log.LogFile;
-import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.weapon.WeaponData;
 
 /**
@@ -46,19 +45,18 @@ public class IDSManipulator {
 	/**
 	 * Writes out data to an IDS file.
 	 * @param ids_filename Filename
+	 * @return -1 on error and 0 on success
 	 */
-	public void Write(String ids_filename) {
+	public int Write(String ids_filename) {
 		IDSWriter ids_writer=new IDSWriter(weapon_data);
 		try {
 			ids_writer.Write(ids_filename);
 		}
 		catch(FileNotFoundException e) {
-			LogFile.WriteFatal("[IDSManipulator-Write] Failed to write data. Below is the stack trace.");
-			
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteLine(str);
-			
-			System.exit(1);
+			LogFile.WriteError("[IDSManipulator-Write] Failed to write data.");			
+			return -1;
 		}
+		
+		return 0;
 	}
 }

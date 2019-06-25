@@ -3,7 +3,6 @@ package com.daxie.xops.xgs;
 import java.io.FileNotFoundException;
 
 import com.daxie.log.LogFile;
-import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.weapon.WeaponData;
 
 /**
@@ -53,19 +52,18 @@ public class XGSManipulator {
 	/**
 	 * Writes out data to a XGS file.
 	 * @param xgs_filename Filename
+	 * @return -1 on error and 0 on success
 	 */
-	public void Write(String xgs_filename) {
+	public int Write(String xgs_filename) {
 		XGSWriter xgs_writer=new XGSWriter(weapon_data_array);
 		try {
 			xgs_writer.Write(xgs_filename);
 		}
 		catch(FileNotFoundException e) {
-			LogFile.WriteFatal("[XGSManipulator-Write] Failed to write data. Below is the stack trace.");
-			
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteLine(str);
-			
-			System.exit(1);
+			LogFile.WriteError("[XGSManipulator-Write] Failed to write data.");
+			return -1;
 		}
+		
+		return 0;
 	}
 }
