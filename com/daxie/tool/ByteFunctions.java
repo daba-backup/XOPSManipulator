@@ -71,7 +71,7 @@ public class ByteFunctions {
 		return res;
 	}
 	/**
-	 * Converts a 4-byte byte array to a float value.<br>
+	 * Converts a 4-byte byte array to a float value.
 	 * @see byte_to_float(byte[])
 	 * @param b A 4-byte little-endian byte array
 	 * @return A float value

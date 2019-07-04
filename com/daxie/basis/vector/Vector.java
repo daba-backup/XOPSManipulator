@@ -58,7 +58,4 @@ public class Vector {
 	public float GetZ() {
 		return z;
 	}
-	public Vector GetVector() {
-		return this;
-	}
 }
