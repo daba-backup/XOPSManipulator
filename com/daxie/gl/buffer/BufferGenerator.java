@@ -9,6 +9,7 @@ import com.daxie.basis.coloru8.ColorU8;
 import com.daxie.basis.vector.Vector;
 import com.daxie.gl.shape.Triangle;
 import com.daxie.gl.shape.Vertex;
+import com.daxie.log.LogFile;
 
 /**
  * Generates suitable buffers for OpenGL.
@@ -19,6 +20,11 @@ public class BufferGenerator {
 	private static final int SIZEOF_FLOAT=4;
 	
 	public static FloatBuffer GetPosBuffer(List<Triangle> triangles) {
+		if(triangles==null) {
+			LogFile.WriteError("[BufferGenerator-GetPosBuffer] Null argument passed.");
+			return null;
+		}
+		
 		ByteBuffer bb=ByteBuffer.allocateDirect(triangles.size()*9*SIZEOF_FLOAT);
 		bb.order(ByteOrder.nativeOrder());
 		
@@ -39,6 +45,11 @@ public class BufferGenerator {
 		return pos_buffer;
 	}
 	public static FloatBuffer GetNormBuffer(List<Triangle> triangles) {
+		if(triangles==null) {
+			LogFile.WriteError("[BufferGenerator-GetNormBuffer] Null argument passed.");
+			return null;
+		}
+		
 		ByteBuffer bb=ByteBuffer.allocateDirect(triangles.size()*9*SIZEOF_FLOAT);
 		bb.order(ByteOrder.nativeOrder());
 		
@@ -59,6 +70,11 @@ public class BufferGenerator {
 		return norm_buffer;
 	}
 	public static FloatBuffer GetDifBuffer(List<Triangle> triangles) {
+		if(triangles==null) {
+			LogFile.WriteError("[BufferGenerator-GetDifBuffer] Null argument passed.");
+			return null;
+		}
+		
 		ByteBuffer bb=ByteBuffer.allocateDirect(triangles.size()*12*SIZEOF_FLOAT);
 		bb.order(ByteOrder.nativeOrder());
 		
@@ -80,6 +96,11 @@ public class BufferGenerator {
 		return dif_buffer;
 	}
 	public static FloatBuffer GetSpcBuffer(List<Triangle> triangles) {
+		if(triangles==null) {
+			LogFile.WriteError("[BufferGenerator-GetSpcBuffer] Null argument passed.");
+			return null;
+		}
+		
 		ByteBuffer bb=ByteBuffer.allocateDirect(triangles.size()*12*SIZEOF_FLOAT);
 		bb.order(ByteOrder.nativeOrder());
 		
@@ -101,6 +122,11 @@ public class BufferGenerator {
 		return spc_buffer;
 	}
 	public static FloatBuffer GetUVBuffer(List<Triangle> triangles) {
+		if(triangles==null) {
+			LogFile.WriteError("[BufferGenerator-GetUVBuffer] Null argument passed.");
+			return null;
+		}
+		
 		ByteBuffer bb=ByteBuffer.allocateDirect(triangles.size()*6*SIZEOF_FLOAT);
 		bb.order(ByteOrder.nativeOrder());
 		

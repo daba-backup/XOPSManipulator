@@ -10,6 +10,7 @@ import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
 import com.daxie.gl.shape.Triangle;
 import com.daxie.gl.shape.Vertex;
+import com.daxie.log.LogFile;
 import com.daxie.xops.bd1.Block;
 
 /**
@@ -73,6 +74,11 @@ public class BD1Triangulator {
 	}
 	
 	public void TriangulateBlock(Block block) {
+		if(block==null) {
+			LogFile.WriteError("[BD1Triangulator-TriangulateBlock] Null argument passed.");
+			return;
+		}
+		
 		Vector[] positions=block.GetVertexPositions();
 		float[] us=block.GetUs();
 		float[] vs=block.GetVs();
@@ -137,6 +143,11 @@ public class BD1Triangulator {
 		}
 	}
 	public void TriangulateBlocks(List<Block> blocks) {
+		if(blocks==null) {
+			LogFile.WriteError("[BD1Triangulator-TriangulateBlocks] Null argument passed.");
+			return;
+		}
+		
 		for(Block block:blocks) {
 			TriangulateBlock(block);
 		}
