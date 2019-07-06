@@ -3,6 +3,7 @@ package com.daxie.tool;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
@@ -11,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +80,6 @@ public class FileFunctions {
 		
 		return sb.toString().split("\n");
 	}
-	
 	/**
 	 * Returns all bytes of a binary file.
 	 * @param filename Filename to load
@@ -131,7 +132,51 @@ public class FileFunctions {
 		
 		return bin;
 	}
-	
+	/**
+	 * Creates a text file.
+	 * @param filename Filename
+	 * @param encoding Encoding
+	 * @param lines Lines to write in the file
+	 */
+	public static void CreateTextFile(String filename,String encoding,List<String> lines) 
+			throws FileNotFoundException,UnsupportedEncodingException{
+		BufferedWriter br=null;
+		br=new BufferedWriter(
+				new OutputStreamWriter(
+						new FileOutputStream(filename),encoding));
+		
+		try {
+			for(String line:lines) {
+				br.write(line);
+				br.newLine();
+			}
+			
+			br.flush();
+		}
+		catch(IOException e) {
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			LogFile.WriteFatal("[FileFunctions-CreateTextFile] Below is the stack trace.");
+			LogFile.WriteLine(str);
+			
+			LogFile.CloseLogFile();
+			
+			System.exit(1);
+		}
+		finally {
+			try {
+				br.close();
+			}
+			catch(IOException e) {
+				String str=ExceptionFunctions.GetPrintStackTraceString(e);
+				LogFile.WriteFatal("[FileFunctions-CreateTextFile] Below is the stack trace.");
+				LogFile.WriteLine(str);
+				
+				LogFile.CloseLogFile();
+				
+				System.exit(1);
+			}
+		}
+	}
 	/**
 	 * Creates a binary file.
 	 * @param filename Filename

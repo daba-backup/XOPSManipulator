@@ -3,6 +3,7 @@ package com.daxie.xops.xcs;
 import java.io.FileNotFoundException;
 
 import com.daxie.log.LogFile;
+import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.character.CharacterData;
 
 /**
@@ -59,7 +60,13 @@ public class XCSManipulator {
 			xcs_writer.Write(xcs_filename);
 		}
 		catch(FileNotFoundException e) {
+			String str=ExceptionFunctions.GetPrintStackTraceString(e);
+			
 			LogFile.WriteError("[XCSManipulator-Write] Failed to write data.");
+			
+			LogFile.WriteLine("Below is the stack trace.");
+			LogFile.WriteLine(str);
+			
 			return -1;
 		}
 		
