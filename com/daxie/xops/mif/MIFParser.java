@@ -35,8 +35,8 @@ class MIFParser {
 		
 		if((flags&0b00000010)!=0)mission_info.SetDarkenScreenFlag(true);
 		else mission_info.SetDarkenScreenFlag(false);
-		if((flags&0b00000001)!=0)mission_info.SetAdditionalHitcheckFlag(true);
-		else mission_info.SetAdditionalHitcheckFlag(false);
+		if((flags&0b00000001)!=0)mission_info.SetExtraHitcheckFlag(true);
+		else mission_info.SetExtraHitcheckFlag(false);
 		
 		mission_info.SetArticleInfoFilename(lines[6]);
 		mission_info.SetImage1Filename(lines[7]);

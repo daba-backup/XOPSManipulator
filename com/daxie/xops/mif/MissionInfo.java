@@ -14,7 +14,7 @@ public class MissionInfo {
 	private String bd1_filename;
 	private String pd1_filename;
 	private int sky_type;
-	private boolean additional_hitcheck_flag;
+	private boolean extra_hitcheck_flag;
 	private boolean darken_screen_flag;
 	private String article_info_filename;
 	private String image1_filename;
@@ -27,7 +27,7 @@ public class MissionInfo {
 		bd1_filename="./";
 		pd1_filename="./addon/";
 		sky_type=0;
-		additional_hitcheck_flag=false;
+		extra_hitcheck_flag=false;
 		darken_screen_flag=false;
 		article_info_filename="!";
 		image1_filename="./data/briefing/np.bmp";
@@ -40,7 +40,7 @@ public class MissionInfo {
 		bd1_filename=mi.GetBD1Filename();
 		pd1_filename=mi.GetPD1Filename();
 		sky_type=mi.GetSkyType();
-		additional_hitcheck_flag=mi.GetAdditionalHitcheckFlag();
+		extra_hitcheck_flag=mi.GetExtraHitcheckFlag();
 		darken_screen_flag=mi.GetDarkenScreenFlag();
 		article_info_filename=mi.GetArticleInfoFilename();
 		image1_filename=mi.GetImage1Filename();
@@ -63,8 +63,8 @@ public class MissionInfo {
 	public void SetSkyType(int sky_type) {
 		this.sky_type=sky_type;
 	}
-	public void SetAdditionalHitcheckFlag(boolean additional_hitcheck_flag) {
-		this.additional_hitcheck_flag=additional_hitcheck_flag;
+	public void SetExtraHitcheckFlag(boolean extra_hitcheck_flag) {
+		this.extra_hitcheck_flag=extra_hitcheck_flag;
 	}
 	public void SetDarkenScreenFlag(boolean darken_screen_flag) {
 		this.darken_screen_flag=darken_screen_flag;
@@ -97,8 +97,8 @@ public class MissionInfo {
 	public int GetSkyType() {
 		return sky_type;
 	}
-	public boolean GetAdditionalHitcheckFlag() {
-		return additional_hitcheck_flag;
+	public boolean GetExtraHitcheckFlag() {
+		return extra_hitcheck_flag;
 	}
 	public boolean GetDarkenScreenFlag() {
 		return darken_screen_flag;

@@ -45,9 +45,9 @@ class MIFWriter {
 			br.write(sky_type+windows_separator);
 	
 			int flags=0;
-			boolean additional_hitcheck_flag=mission_info.GetAdditionalHitcheckFlag();
+			boolean extra_hitcheck_flag=mission_info.GetExtraHitcheckFlag();
 			boolean darken_screen_flag=mission_info.GetDarkenScreenFlag();
-			if(additional_hitcheck_flag==true)flags=flags|0b00000001;
+			if(extra_hitcheck_flag==true)flags=flags|0b00000001;
 			if(darken_screen_flag==true)flags=flags|0b00000010;
 			
 			String str_flags=""+flags;
