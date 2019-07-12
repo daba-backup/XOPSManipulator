@@ -85,7 +85,7 @@ class XGSWriter {
 				dos.write(b);
 				
 				//Velocity
-				itemp=weapon_data_array[i].GetVelocity();
+				itemp=weapon_data_array[i].GetBulletSpeed();
 				b=ByteFunctions.short_to_byte_le((short)itemp);
 				dos.write(b);
 				

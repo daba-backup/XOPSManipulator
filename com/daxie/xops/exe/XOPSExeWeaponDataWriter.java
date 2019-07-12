@@ -66,7 +66,7 @@ class XOPSExeWeaponDataWriter {
 			pos+=2;
 			
 			//Velocity
-			itemp=weapon_data_array[i].GetVelocity();
+			itemp=weapon_data_array[i].GetBulletSpeed();
 			b=ByteFunctions.short_to_byte_le((short)itemp);
 			bin.set(pos, b[0]);
 			bin.set(pos+1, b[1]);

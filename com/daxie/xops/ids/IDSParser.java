@@ -113,7 +113,7 @@ class IDSParser {
 		b[0]=bin.get(count);
 		b[1]=bin.get(count+1);
 		itemp=ByteFunctions.byte_to_short_le(b);
-		weapon_data.SetVelocity(itemp);
+		weapon_data.SetBulletSpeed(itemp);
 		count+=2;
 		
 		//Number of bullets

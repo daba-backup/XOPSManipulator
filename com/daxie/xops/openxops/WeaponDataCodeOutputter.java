@@ -39,7 +39,7 @@ public class WeaponDataCodeOutputter {
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "attacks", weapon_data.GetAttackPower())+separator;
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "penetration", weapon_data.GetPenetration())+separator;
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "blazings", weapon_data.GetFiringInterval())+separator;
-			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "speed", weapon_data.GetVelocity())+separator;
+			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "speed", weapon_data.GetBulletSpeed())+separator;
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "nbsmax", weapon_data.GetNumberOfBullets())+separator;
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "reloads", weapon_data.GetReloadingTime())+separator;
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "reaction", weapon_data.GetRecoil())+separator;

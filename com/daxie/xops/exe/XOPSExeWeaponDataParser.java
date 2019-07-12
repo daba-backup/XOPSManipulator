@@ -60,7 +60,7 @@ class XOPSExeWeaponDataParser {
 			b[0]=bin.get(pos);
 			b[1]=bin.get(pos+1);
 			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetVelocity(itemp);
+			weapon_data_array[i].SetBulletSpeed(itemp);
 			pos+=2;
 			
 			//Number of bullets

@@ -117,7 +117,7 @@ class XGSParser {
 			b[0]=bin.get(count);
 			b[1]=bin.get(count+1);
 			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetVelocity(itemp);
+			weapon_data_array[i].SetBulletSpeed(itemp);
 			count+=2;
 			
 			//Number of bullets

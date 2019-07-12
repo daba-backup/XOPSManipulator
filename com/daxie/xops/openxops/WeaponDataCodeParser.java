@@ -136,7 +136,7 @@ public class WeaponDataCodeParser {
 				case "speed":
 					value=value.replace(" ","");
 					itemp=Integer.parseInt(value);
-					weapon_data.SetVelocity(itemp);
+					weapon_data.SetBulletSpeed(itemp);
 					break;
 				case "nbsmax":
 					value=value.replace(" ","");

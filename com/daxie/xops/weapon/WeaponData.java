@@ -9,7 +9,7 @@ public class WeaponData {
 	private int attack_power;
 	private int penetration;
 	private int firing_interval;
-	private int velocity;
+	private int bullet_speed;
 	private int number_of_bullets;
 	private int reloading_time;
 	private int recoil;
@@ -36,7 +36,7 @@ public class WeaponData {
 		attack_power=0;
 		penetration=0;
 		firing_interval=0;
-		velocity=0;
+		bullet_speed=0;
 		number_of_bullets=0;
 		reloading_time=0;
 		recoil=0;
@@ -63,7 +63,7 @@ public class WeaponData {
 		attack_power=w.GetAttackPower();
 		penetration=w.GetPenetration();
 		firing_interval=w.GetFiringInterval();
-		velocity=w.GetVelocity();
+		bullet_speed=w.GetBulletSpeed();
 		number_of_bullets=w.GetNumberOfBullets();
 		reloading_time=w.GetReloadingTime();
 		recoil=w.GetRecoil();
@@ -95,7 +95,7 @@ public class WeaponData {
 		ret+="attack_power:"+attack_power+separator;
 		ret+="penetration:"+penetration+separator;
 		ret+="firing_interval:"+firing_interval+separator;
-		ret+="velocity:"+velocity+separator;
+		ret+="bullet_speed:"+bullet_speed+separator;
 		ret+="number_of_bullets:"+number_of_bullets+separator;
 		ret+="reloading_time:"+reloading_time+separator;
 		ret+="recoil:"+recoil+separator;
@@ -144,8 +144,8 @@ public class WeaponData {
 	public void SetFiringInterval(int firing_interval) {
 		this.firing_interval=firing_interval;
 	}
-	public void SetVelocity(int velocity) {
-		this.velocity=velocity;
+	public void SetBulletSpeed(int bullet_speed) {
+		this.bullet_speed=bullet_speed;
 	}
 	public void SetNumberOfBullets(int number_of_bullets) {
 		this.number_of_bullets=number_of_bullets;
@@ -220,8 +220,8 @@ public class WeaponData {
 	public int GetFiringInterval() {
 		return firing_interval;
 	}
-	public int GetVelocity() {
-		return velocity;
+	public int GetBulletSpeed() {
+		return bullet_speed;
 	}
 	public int GetNumberOfBullets() {
 		return number_of_bullets;
