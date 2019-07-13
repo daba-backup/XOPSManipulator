@@ -14,6 +14,7 @@ import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.XMLFunctions;
+import com.daxie.xops.openxops.WeaponSpecifierConverter;
 import com.daxie.xops.weapon.WeaponData;
 
 /**
@@ -23,12 +24,18 @@ import com.daxie.xops.weapon.WeaponData;
  */
 public class WeaponDataXMLOutputter {
 	private List<WeaponData> weapon_data_list;
+	private boolean openxops_compatible_flag;
 	
 	/**
 	 * @param weapon_data_list List of weapon data
 	 */
 	public WeaponDataXMLOutputter(List<WeaponData> weapon_data_list) {
 		this.weapon_data_list=weapon_data_list;
+		openxops_compatible_flag=true;
+	}
+	
+	public void SetOpenXOPSCompatibleFlag(boolean openxops_compatible_flag) {
+		this.openxops_compatible_flag=openxops_compatible_flag;
 	}
 	
 	/**
@@ -167,8 +174,12 @@ public class WeaponDataXMLOutputter {
 			el_scale.setTextContent(""+weapon_data.GetScale());
 			el_weapon.appendChild(el_scale);
 			//Sound ID
+			int sound_id=weapon_data.GetSoundID();
+			if(openxops_compatible_flag==true) {
+				sound_id=WeaponSpecifierConverter.GetOpenXOPSSoundIDFromXOPSSoundID(sound_id);
+			}
 			Element el_sound_id=document.createElement("soundid");
-			el_sound_id.setTextContent(""+weapon_data.GetSoundID());
+			el_sound_id.setTextContent(""+sound_id);
 			el_weapon.appendChild(el_sound_id);
 			//Sound volume
 			Element el_sound_volume=document.createElement("soundvolume");
