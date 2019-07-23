@@ -44,6 +44,10 @@ public class PD1Manipulator {
 	 * @param points Points
 	 */
 	public void SetPoints(List<Point> points) {
+		if(points==null) {
+			LogFile.WriteError("[PD1Manipulator-SetPoints] Null argument where non-null required.");
+			return;
+		}
 		this.points=points;
 	}
 	

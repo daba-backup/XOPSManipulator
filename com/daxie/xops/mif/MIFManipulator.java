@@ -3,6 +3,8 @@ package com.daxie.xops.mif;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
+import com.daxie.log.LogFile;
+
 /**
  * Manipulates a MIF file.
  * @author Daba
@@ -21,6 +23,10 @@ public class MIFManipulator {
 	}
 	
 	public void SetMissionInfo(MissionInfo mission_info) {
+		if(mission_info==null) {
+			LogFile.WriteError("[MIFManipulator-SetMissionInfo] Null argument where non-null required.");
+			return;
+		}
 		this.mission_info=mission_info;
 	}
 	public MissionInfo GetMissionInfo() {

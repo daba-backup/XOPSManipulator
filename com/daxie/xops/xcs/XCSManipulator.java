@@ -46,6 +46,10 @@ public class XCSManipulator {
 	 * @param character_data_array A character data array
 	 */
 	public void SetCharacterDataArray(CharacterData[] character_data_array) {
+		if(character_data_array==null) {
+			LogFile.WriteError("[XCSManipulator-SetCharacterDataArray] Null argument where non-null required.");
+			return;
+		}
 		this.character_data_array=character_data_array;
 	}
 	

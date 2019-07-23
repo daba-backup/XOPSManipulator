@@ -47,6 +47,10 @@ public class XGSManipulator {
 	 * @param weapon_data_array A weapon data array
 	 */
 	public void SetWeaponDataArray(WeaponData[] weapon_data_array) {
+		if(weapon_data_array==null) {
+			LogFile.WriteError("[XGSManipulator-SetWeaponDataArray] Null argument where non-null required.");
+			return;
+		}
 		this.weapon_data_array=weapon_data_array;
 	}
 	

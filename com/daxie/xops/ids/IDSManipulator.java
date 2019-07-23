@@ -40,6 +40,10 @@ public class IDSManipulator {
 	 * @param weapon_data Weapon data
 	 */
 	public void SetWeaponData(WeaponData weapon_data) {
+		if(weapon_data==null) {
+			LogFile.WriteError("[IDSManipulator-SetWeaponData] Null argument where non-null required.");
+			return;
+		}
 		this.weapon_data=weapon_data;
 	}
 	

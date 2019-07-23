@@ -49,6 +49,10 @@ public class BD1Manipulator {
 	 * @param blocks Blocks
 	 */
 	public void SetBlocks(List<Block> blocks) {
+		if(blocks==null) {
+			LogFile.WriteError("[BD1Manipulator-SetBlocks] Null argument where non-null required.");
+			return;
+		}
 		this.blocks=blocks;
 	}
 	
@@ -189,52 +193,52 @@ public class BD1Manipulator {
 			float[] vs_orig=vs.clone();
 			
 			us[0]=us_orig[3];
-			us[1]=us_orig[2];
-			us[2]=us_orig[1];
-			us[3]=us_orig[0];
-			us[4]=us_orig[7];
-			us[5]=us_orig[6];
-			us[6]=us_orig[5];
-			us[7]=us_orig[4];
-			us[8]=us_orig[17];
-			us[9]=us_orig[16];
-			us[10]=us_orig[19];
-			us[11]=us_orig[18];
-			us[12]=us_orig[13];
-			us[13]=us_orig[12];
-			us[14]=us_orig[15];
-			us[15]=us_orig[14];
-			us[16]=us_orig[9];
-			us[17]=us_orig[8];
-			us[18]=us_orig[11];
-			us[19]=us_orig[10];
-			us[20]=us_orig[21];
-			us[21]=us_orig[20];
-			us[22]=us_orig[23];
-			us[23]=us_orig[22];
 			vs[0]=vs_orig[3];
+			us[1]=us_orig[2];
 			vs[1]=vs_orig[2];
+			us[2]=us_orig[1];
 			vs[2]=vs_orig[1];
+			us[3]=us_orig[0];
 			vs[3]=vs_orig[0];
+			us[4]=us_orig[7];
 			vs[4]=vs_orig[7];
+			us[5]=us_orig[6];
 			vs[5]=vs_orig[6];
+			us[6]=us_orig[5];
 			vs[6]=vs_orig[5];
+			us[7]=us_orig[4];
 			vs[7]=vs_orig[4];
+			us[8]=us_orig[17];
 			vs[8]=vs_orig[17];
+			us[9]=us_orig[16];
 			vs[9]=vs_orig[16];
+			us[10]=us_orig[19];
 			vs[10]=vs_orig[19];
+			us[11]=us_orig[18];
 			vs[11]=vs_orig[18];
+			us[12]=us_orig[13];
 			vs[12]=vs_orig[13];
+			us[13]=us_orig[12];
 			vs[13]=vs_orig[12];
+			us[14]=us_orig[15];
 			vs[14]=vs_orig[15];
+			us[15]=us_orig[14];
 			vs[15]=vs_orig[14];
+			us[16]=us_orig[9];
 			vs[16]=vs_orig[9];
+			us[17]=us_orig[8];
 			vs[17]=vs_orig[8];
+			us[18]=us_orig[11];
 			vs[18]=vs_orig[11];
+			us[19]=us_orig[10];
 			vs[19]=vs_orig[10];
+			us[20]=us_orig[21];
 			vs[20]=vs_orig[21];
+			us[21]=us_orig[20];
 			vs[21]=vs_orig[20];
+			us[22]=us_orig[23];
 			vs[22]=vs_orig[23];
+			us[23]=us_orig[22];
 			vs[23]=vs_orig[22];
 			
 			for(int i=0;i<24;i++) {
