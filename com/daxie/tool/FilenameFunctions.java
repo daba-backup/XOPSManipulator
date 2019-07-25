@@ -54,4 +54,17 @@ public class FilenameFunctions {
 		
 		return ret;
 	}
+	/**
+	 * Returns the filename without directory name.
+	 * @param filename Filename
+	 * @return Filename without directory name
+	 */
+	public static String GetFilenameWithoutDirectory(String filename) {
+		int last_slash_pos=filename.lastIndexOf('/');
+		if(last_slash_pos==-1)return filename;
+		
+		String ret=filename.substring(last_slash_pos+1);
+		
+		return ret;
+	}
 }

@@ -251,7 +251,7 @@ public class BD1Manipulator {
 	}
 	
 	/**
-	 * Writes out data to a BD1 file.
+	 * Writes out data in a BD1 file.
 	 * @param bd1_filename Filename
 	 * @return -1 on error and 0 on success
 	 */
@@ -267,6 +267,23 @@ public class BD1Manipulator {
 			LogFile.WriteLine("Below is the stack trace.");
 			LogFile.WriteLine(str);
 			
+			return -1;
+		}
+		
+		return 0;
+	}
+	
+	/**
+	 * Writes out data in an OBJ file.
+	 * @param obj_filename Filename
+	 * @return -1 on error and 0 on success
+	 */
+	public int WriteAsOBJ(String obj_filename) {
+		BD1OBJWriter obj_writer=new BD1OBJWriter(texture_filenames_map, blocks);
+		
+		int ret=obj_writer.Write(obj_filename);
+		if(ret<0) {
+			LogFile.WriteError("[BD1Manipulator-WriteAsOBJ] Failed to write blocks in an OBJ file.");
 			return -1;
 		}
 		
