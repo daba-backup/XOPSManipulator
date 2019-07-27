@@ -243,7 +243,7 @@ class BD1OBJWriter {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[BD1OBJWriter-WriteOBJ] Below is the stack trace.");
+			LogFile.WriteError("[BD1OBJWriter-Write] Below is the stack trace.");
 			LogFile.WriteLine(str);
 			
 			return -1;
@@ -256,7 +256,7 @@ class BD1OBJWriter {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[BD1OBJWriter-WriteOBJ] Below is the stack trace.");
+			LogFile.WriteError("[BD1OBJWriter-Write] Below is the stack trace.");
 			LogFile.WriteLine(str);
 			
 			return -1;

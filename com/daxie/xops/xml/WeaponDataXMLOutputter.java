@@ -154,12 +154,14 @@ public class WeaponDataXMLOutputter {
 			el_weapon.appendChild(el_cartridge_px);
 			el_weapon.appendChild(el_cartridge_py);
 			el_weapon.appendChild(el_cartridge_pz);
-			//Cartridge speed
+			//Cartridge velocity
 			Element el_cartridge_sx=document.createElement("yakkyou_sx");
 			Element el_cartridge_sy=document.createElement("yakkyou_sy");
 			Vector cartridge_velocity=weapon_data.GetCartridgeVelocity();
 			el_cartridge_sx.setTextContent(""+cartridge_velocity.GetX());
 			el_cartridge_sy.setTextContent(""+cartridge_velocity.GetY());
+			el_weapon.appendChild(el_cartridge_sx);
+			el_weapon.appendChild(el_cartridge_sy);
 			//Rapid fire
 			Element el_rapid_fire=document.createElement("blazingmode");
 			if(weapon_data.GetRapidFireEnabledFlag()==false)el_rapid_fire.setTextContent("false");
