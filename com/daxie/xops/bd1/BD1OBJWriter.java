@@ -53,100 +53,29 @@ class BD1OBJWriter {
 			//Calculate normals.
 			Vector[] normals=new Vector[6];
 			Vector v1,v2;
-			//Face 0
-			v1=VectorFunctions.VSub(vertex_positions[3], vertex_positions[0]);
-			v2=VectorFunctions.VSub(vertex_positions[1], vertex_positions[0]);
-			normals[0]=VectorFunctions.VCross(v1, v2);
-			normals[0]=VectorFunctions.VNorm(normals[0]);
-			//Face 1
-			v1=VectorFunctions.VSub(vertex_positions[5], vertex_positions[4]);
-			v2=VectorFunctions.VSub(vertex_positions[7], vertex_positions[4]);
-			normals[1]=VectorFunctions.VCross(v1, v2);
-			normals[1]=VectorFunctions.VNorm(normals[1]);
-			//Face 2
-			v1=VectorFunctions.VSub(vertex_positions[7], vertex_positions[3]);
-			v2=VectorFunctions.VSub(vertex_positions[2], vertex_positions[3]);
-			normals[2]=VectorFunctions.VCross(v1, v2);
-			normals[2]=VectorFunctions.VNorm(normals[2]);
-			//Face 3
-			v1=VectorFunctions.VSub(vertex_positions[6], vertex_positions[2]);
-			v2=VectorFunctions.VSub(vertex_positions[1], vertex_positions[2]);
-			normals[3]=VectorFunctions.VCross(v1, v2);
-			normals[3]=VectorFunctions.VNorm(normals[3]);
-			//Face 4
-			v1=VectorFunctions.VSub(vertex_positions[5], vertex_positions[1]);
-			v2=VectorFunctions.VSub(vertex_positions[0], vertex_positions[1]);
-			normals[4]=VectorFunctions.VCross(v1, v2);
-			normals[4]=VectorFunctions.VNorm(normals[4]);
-			//Face 5
-			v1=VectorFunctions.VSub(vertex_positions[4], vertex_positions[0]);
-			v2=VectorFunctions.VSub(vertex_positions[3], vertex_positions[0]);
-			normals[5]=VectorFunctions.VCross(v1, v2);
-			normals[5]=VectorFunctions.VNorm(normals[5]);
+			for(int i=0;i<6;i++) {
+				int[] vertex_indices=BD1Functions.GetFaceCorrespondingVertexIndices(i);
+				
+				v1=VectorFunctions.VSub(vertex_positions[vertex_indices[3]], vertex_positions[vertex_indices[0]]);
+				v2=VectorFunctions.VSub(vertex_positions[vertex_indices[1]], vertex_positions[vertex_indices[0]]);
+				
+				normals[i]=VectorFunctions.VCross(v1, v2);
+				normals[i]=VectorFunctions.VNorm(normals[i]);
+			}
 			
 			BD1Face[] faces=new BD1Face[6];
 			for(int i=0;i<6;i++)faces[i]=new BD1Face();
 			
-			//Face 0
-			faces[0].SetVertexPosition(0, vertex_positions[0]);
-			faces[0].SetVertexPosition(1, vertex_positions[1]);
-			faces[0].SetVertexPosition(2, vertex_positions[2]);
-			faces[0].SetVertexPosition(3, vertex_positions[3]);
-			faces[0].SetUV(0, us[3], vs[3]);
-			faces[0].SetUV(1, us[2], vs[2]);
-			faces[0].SetUV(2, us[1], vs[1]);
-			faces[0].SetUV(3, us[0], vs[0]);
-			faces[0].SetNormal(normals[0]);
-			//Face 1
-			faces[1].SetVertexPosition(0, vertex_positions[5]);
-			faces[1].SetVertexPosition(1, vertex_positions[4]);
-			faces[1].SetVertexPosition(2, vertex_positions[7]);
-			faces[1].SetVertexPosition(3, vertex_positions[6]);
-			faces[1].SetUV(0, us[7], vs[7]);
-			faces[1].SetUV(1, us[6], vs[6]);
-			faces[1].SetUV(2, us[5], vs[5]);
-			faces[1].SetUV(3, us[4], vs[4]);
-			faces[1].SetNormal(normals[1]);
-			//Face 2
-			faces[2].SetVertexPosition(0, vertex_positions[1]);
-			faces[2].SetVertexPosition(1, vertex_positions[0]);
-			faces[2].SetVertexPosition(2, vertex_positions[4]);
-			faces[2].SetVertexPosition(3, vertex_positions[5]);
-			faces[2].SetUV(0, us[9], vs[9]);
-			faces[2].SetUV(1, us[8], vs[8]);
-			faces[2].SetUV(2, us[11], vs[11]);
-			faces[2].SetUV(3, us[10], vs[10]);
-			faces[2].SetNormal(normals[2]);
-			//Face 3
-			faces[3].SetVertexPosition(0, vertex_positions[2]);
-			faces[3].SetVertexPosition(1, vertex_positions[1]);
-			faces[3].SetVertexPosition(2, vertex_positions[5]);
-			faces[3].SetVertexPosition(3, vertex_positions[6]);
-			faces[3].SetUV(0, us[13], vs[13]);
-			faces[3].SetUV(1, us[12], vs[12]);
-			faces[3].SetUV(2, us[15], vs[15]);
-			faces[3].SetUV(3, us[14], vs[14]);
-			faces[3].SetNormal(normals[3]);
-			//Face 4
-			faces[4].SetVertexPosition(0, vertex_positions[3]);
-			faces[4].SetVertexPosition(1, vertex_positions[2]);
-			faces[4].SetVertexPosition(2, vertex_positions[6]);
-			faces[4].SetVertexPosition(3, vertex_positions[7]);
-			faces[4].SetUV(0, us[17], vs[17]);
-			faces[4].SetUV(1, us[16], vs[16]);
-			faces[4].SetUV(2, us[19], vs[19]);
-			faces[4].SetUV(3, us[18], vs[18]);
-			faces[4].SetNormal(normals[4]);
-			//Face 5
-			faces[5].SetVertexPosition(0, vertex_positions[0]);
-			faces[5].SetVertexPosition(1, vertex_positions[3]);
-			faces[5].SetVertexPosition(2, vertex_positions[7]);
-			faces[5].SetVertexPosition(3, vertex_positions[4]);
-			faces[5].SetUV(0, us[21], vs[21]);
-			faces[5].SetUV(1, us[20], vs[20]);
-			faces[5].SetUV(2, us[23], vs[23]);
-			faces[5].SetUV(3, us[22], vs[22]);
-			faces[5].SetNormal(normals[5]);
+			for(int i=0;i<6;i++) {
+				int[] vertex_indices=BD1Functions.GetFaceCorrespondingVertexIndices(i);
+				int[] uv_indices=BD1Functions.GetFaceCorrespondingUVIndices(i);
+				
+				for(int j=0;j<4;j++) {
+					faces[i].SetVertexPosition(j, vertex_positions[vertex_indices[j]]);
+					faces[i].SetUV(j, us[uv_indices[j]], vs[uv_indices[j]]);
+				}
+				faces[i].SetNormal(normals[i]);
+			}
 			
 			for(int i=0;i<6;i++) {
 				int texture_id=texture_ids[i];
