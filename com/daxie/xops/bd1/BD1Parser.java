@@ -23,7 +23,7 @@ import com.daxie.tool.FilenameFunctions;
  */
 class BD1Parser {
 	private Map<Integer, String> texture_filenames_map;//(texture_id,texture_filename)
-	private List<Block> blocks;
+	private List<BD1Block> blocks;
 	
 	public BD1Parser(String bd1_filename)  throws FileNotFoundException{
 		texture_filenames_map=new HashMap<>();
@@ -110,7 +110,7 @@ class BD1Parser {
 		
 		//Blocks
 		for(int i=0;i<block_num;i++) {
-			Block block=new Block();
+			BD1Block block=new BD1Block();
 			
 			byte[] byte_buffer=new byte[4];
 			float coordinate_temp;
@@ -180,8 +180,8 @@ class BD1Parser {
 		}
 	}
 	
-	public List<Block> GetBlocks(){
-		return new ArrayList<Block>(blocks);
+	public List<BD1Block> GetBlocks(){
+		return new ArrayList<BD1Block>(blocks);
 	}
 	public Map<Integer, String> GetTextureFilenamesMap(){
 		return new HashMap<Integer,String>(texture_filenames_map);

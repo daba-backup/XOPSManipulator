@@ -18,7 +18,7 @@ import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.openxops.WeaponSpecifierConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponEquipmentMethod;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponScopeMode;
 
 /**
@@ -324,22 +324,22 @@ public class WeaponDataXMLParser {
 						if(strtemp.equals("false"))weapon_data.SetSuppressorEnabledFlag(false);
 						else weapon_data.SetSuppressorEnabledFlag(true);
 					}
-					//Equipment method
+					//Shooting stance
 					else if(element_sub_name.equals("WeaponP")) {
 						itemp=Integer.parseInt(strtemp);
 						
-						WeaponEquipmentMethod[] values=WeaponEquipmentMethod.values();
+						WeaponShootingStance[] values=WeaponShootingStance.values();
 						if(!(0<=itemp&&itemp<values.length)) {
 							LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.");
 							
 							String str="";
 							str+="weapon_id:"+weapon_id+" ";
-							str+="equipment_method:"+itemp;
+							str+="shooting_stance:"+itemp;
 							LogFile.WriteLine(str);
 							
-							weapon_data.SetEquipmentMethod(WeaponEquipmentMethod.RIFLE);
+							weapon_data.SetShootingStance(WeaponShootingStance.RIFLE);
 						}
-						else weapon_data.SetEquipmentMethod(values[itemp]);
+						else weapon_data.SetShootingStance(values[itemp]);
 					}
 					//Changeable weapon
 					else if(element_sub_name.equals("ChangeWeapon")) {

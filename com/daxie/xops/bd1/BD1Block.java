@@ -8,14 +8,14 @@ import com.daxie.basis.vector.VectorFunctions;
  * @author Daba
  *
  */
-public class Block {
+public class BD1Block {
 	private Vector[] vertex_positions;
 	private float[] us;
 	private float[] vs;
 	private int[] texture_ids;
 	private boolean enabled_flag;
 	
-	public Block() {
+	public BD1Block() {
 		vertex_positions=new Vector[8];
 		us=new float[24];
 		vs=new float[24];

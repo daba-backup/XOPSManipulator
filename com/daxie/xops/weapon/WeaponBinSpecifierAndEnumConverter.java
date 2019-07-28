@@ -299,33 +299,33 @@ public class WeaponBinSpecifierAndEnumConverter {
 		
 		return spc;
 	}
-	public static WeaponEquipmentMethod GetWeaponEquipmentMethodFromBinSpecifier(int spc) {
-		WeaponEquipmentMethod equipment_method;
+	public static WeaponShootingStance GetWeaponShootingStanceFromBinSpecifier(int spc) {
+		WeaponShootingStance shooting_stance;
 		
 		switch(spc) {
 		case 0x08:
-			equipment_method=WeaponEquipmentMethod.RIFLE;
+			shooting_stance=WeaponShootingStance.RIFLE;
 			break;
 		case 0x09:
-			equipment_method=WeaponEquipmentMethod.HANDGUN;
+			shooting_stance=WeaponShootingStance.HANDGUN;
 			break;
 		case 0x1B:
-			equipment_method=WeaponEquipmentMethod.CARRY;
+			shooting_stance=WeaponShootingStance.CARRY;
 			break;
 		default:
-			LogFile.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponEquipmentMethodFromBinSpecifier]");
+			LogFile.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponShootingStanceFromBinSpecifier]");
 			LogFile.WriteLine("Unknown equipment method specifier. specifier:"+spc);
 			
-			equipment_method=WeaponEquipmentMethod.RIFLE;
+			shooting_stance=WeaponShootingStance.RIFLE;
 			break;
 		}
 		
-		return equipment_method;
+		return shooting_stance;
 	}
-	public static int GetBinSpecifierFromWeaponEquipmentMethod(WeaponEquipmentMethod equipment_method) {
+	public static int GetBinSpecifierFromWeaponShootingStance(WeaponShootingStance shooting_stance) {
 		int spc=0x08;
 		
-		switch(equipment_method) {
+		switch(shooting_stance) {
 		case RIFLE:
 			spc=0x08;
 			break;

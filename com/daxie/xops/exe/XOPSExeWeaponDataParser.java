@@ -7,7 +7,7 @@ import com.daxie.tool.ByteFunctions;
 import com.daxie.xops.XOPSConstants;
 import com.daxie.xops.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponEquipmentMethod;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponModelFilenamesStock;
 import com.daxie.xops.weapon.WeaponModelType;
 import com.daxie.xops.weapon.WeaponScopeMode;
@@ -167,16 +167,16 @@ class XOPSExeWeaponDataParser {
 			
 			weapon_data_array[i].SetCartridgePosition(vtemp);
 			
-			//Equipment method
-			WeaponEquipmentMethod equipment_method;
+			//Shooting stance
+			WeaponShootingStance shooting_stance;
 			
 			b[0]=bin.get(pos);
 			b[1]=bin.get(pos+1);
 			itemp=ByteFunctions.byte_to_short_le(b);
 			pos+=2;
 			
-			equipment_method=WeaponBinSpecifierAndEnumConverter.GetWeaponEquipmentMethodFromBinSpecifier(itemp);
-			weapon_data_array[i].SetEquipmentMethod(equipment_method);
+			shooting_stance=WeaponBinSpecifierAndEnumConverter.GetWeaponShootingStanceFromBinSpecifier(itemp);
+			weapon_data_array[i].SetShootingStance(shooting_stance);
 			
 			//Rapid fire
 			b[0]=bin.get(pos);

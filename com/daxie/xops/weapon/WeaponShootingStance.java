@@ -1,6 +1,6 @@
 package com.daxie.xops.weapon;
 
-public enum WeaponEquipmentMethod {
+public enum WeaponShootingStance {
 	RIFLE,
 	HANDGUN,
 	CARRY

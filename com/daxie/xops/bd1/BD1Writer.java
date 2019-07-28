@@ -20,10 +20,10 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 class BD1Writer {
-	private List<Block> blocks;
+	private List<BD1Block> blocks;
 	private Map<Integer, String> texture_filenames_map;
 	
-	public BD1Writer(List<Block> blocks,Map<Integer, String> texture_filenames_map) {
+	public BD1Writer(List<BD1Block> blocks,Map<Integer, String> texture_filenames_map) {
 		this.blocks=blocks;
 		this.texture_filenames_map=texture_filenames_map;
 	}
@@ -78,7 +78,7 @@ class BD1Writer {
 			
 			//Block data
 			for(int i=0;i<blocks.size();i++) {
-				Block block=blocks.get(i);
+				BD1Block block=blocks.get(i);
 				
 				Vector[] vertex_positions=block.GetVertexPositions();
 				float[] us=block.GetUs();

@@ -25,7 +25,7 @@ public class WeaponData {
 	private int sound_id;
 	private int sound_volume;
 	private boolean suppressor_enabled_flag;
-	private WeaponEquipmentMethod equipment_method;
+	private WeaponShootingStance shooting_stance;
 	private int changeable_weapon;
 	private int number_of_projectiles;
 	
@@ -52,7 +52,7 @@ public class WeaponData {
 		sound_id=0;
 		sound_volume=0;
 		suppressor_enabled_flag=false;
-		equipment_method=WeaponEquipmentMethod.RIFLE;
+		shooting_stance=WeaponShootingStance.RIFLE;
 		changeable_weapon=-1;
 		number_of_projectiles=1;
 	}
@@ -79,7 +79,7 @@ public class WeaponData {
 		sound_id=w.GetSoundID();
 		sound_volume=w.GetSoundVolume();
 		suppressor_enabled_flag=w.GetSuppressorEnabledFlag();
-		equipment_method=w.GetEquipmentMethod();
+		shooting_stance=w.GetShootingStance();
 		changeable_weapon=w.GetChangeableWeapon();
 		number_of_projectiles=w.GetNumberOfProjectiles();
 	}
@@ -116,8 +116,8 @@ public class WeaponData {
 		ret+="sound_volume:"+sound_volume+separator;
 		ret+="suppressor_enabled_flag:"+suppressor_enabled_flag+separator;
 		
-		ret+="equipment_method:";
-		ret+=equipment_method.toString().toLowerCase();
+		ret+="shooting_stance:";
+		ret+=shooting_stance.toString().toLowerCase();
 		ret+=separator;
 	
 		ret+="changeable_weapon:"+changeable_weapon+separator;
@@ -192,8 +192,8 @@ public class WeaponData {
 	public void SetSuppressorEnabledFlag(boolean suppressor_enabled_flag) {
 		this.suppressor_enabled_flag=suppressor_enabled_flag;
 	}
-	public void SetEquipmentMethod(WeaponEquipmentMethod equipment_method) {
-		this.equipment_method=equipment_method;
+	public void SetShootingStance(WeaponShootingStance shooting_stance) {
+		this.shooting_stance=shooting_stance;
 	}
 	public void SetChangeableWeapon(int changeable_weapon) {
 		this.changeable_weapon=changeable_weapon;
@@ -268,8 +268,8 @@ public class WeaponData {
 	public boolean GetSuppressorEnabledFlag() {
 		return suppressor_enabled_flag;
 	}
-	public WeaponEquipmentMethod GetEquipmentMethod() {
-		return equipment_method;
+	public WeaponShootingStance GetShootingStance() {
+		return shooting_stance;
 	}
 	public int GetChangeableWeapon() {
 		return changeable_weapon;

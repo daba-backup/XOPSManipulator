@@ -33,7 +33,7 @@ class BD1OBJWriter {
 	private Map<Integer, String> texture_filenames_map;
 	private Map<Integer, List<BD1Face>> faces_map;
 	
-	public BD1OBJWriter(Map<Integer, String> texture_filenames_map,List<Block> blocks) {
+	public BD1OBJWriter(Map<Integer, String> texture_filenames_map,List<BD1Block> blocks) {
 		data_prepared_flag=false;
 		if(texture_filenames_map==null||blocks==null) {
 			LogFile.WriteError("[BD1OBJWriter-<init>] Null argument(s) where non-null required.");
@@ -43,7 +43,7 @@ class BD1OBJWriter {
 		this.texture_filenames_map=texture_filenames_map;
 		faces_map=new HashMap<>();
 		
-		for(Block block:blocks) {
+		for(BD1Block block:blocks) {
 			int[] texture_ids=block.GetTextureIDs();
 			
 			Vector[] vertex_positions=block.GetVertexPositions();

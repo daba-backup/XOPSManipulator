@@ -19,7 +19,7 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 public class BD1Manipulator {
-	private List<Block> blocks;
+	private List<BD1Block> blocks;
 	private Map<Integer, String> texture_filenames_map;
 	
 	/**
@@ -33,7 +33,7 @@ public class BD1Manipulator {
 		texture_filenames_map=bd1_parser.GetTextureFilenamesMap();
 	}
 	public BD1Manipulator() {
-		blocks=new ArrayList<Block>();
+		blocks=new ArrayList<BD1Block>();
 		texture_filenames_map=new HashMap<>();
 	}
 	
@@ -41,14 +41,14 @@ public class BD1Manipulator {
 	 * Returns blocks.
 	 * @return Blocks
 	 */
-	public List<Block> GetBlocks(){
+	public List<BD1Block> GetBlocks(){
 		return new ArrayList<>(blocks);
 	}
 	/**
 	 * Sets blocks.
 	 * @param blocks Blocks
 	 */
-	public void SetBlocks(List<Block> blocks) {
+	public void SetBlocks(List<BD1Block> blocks) {
 		if(blocks==null) {
 			LogFile.WriteError("[BD1Manipulator-SetBlocks] Null argument where non-null required.");
 			return;
@@ -91,7 +91,7 @@ public class BD1Manipulator {
 	 * @param translate Translation vector
 	 */
 	public void Translate(Vector translate) {
-		for(Block block:blocks) {
+		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			for(int i=0;i<vertex_positions.length;i++) {
 				vertex_positions[i]=VectorFunctions.VAdd(vertex_positions[i], translate);
@@ -110,7 +110,7 @@ public class BD1Manipulator {
 		Matrix rot_y=MatrixFunctions.MGetRotY(rotate.GetY());
 		Matrix rot_z=MatrixFunctions.MGetRotZ(rotate.GetZ());
 		
-		for(Block block:blocks) {
+		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			for(int i=0;i<vertex_positions.length;i++) {
 				vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_x);
@@ -127,7 +127,7 @@ public class BD1Manipulator {
 	 * @param scale Scaling vector
 	 */
 	public void Rescale(Vector scale) {
-		for(Block block:blocks) {
+		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			for(int i=0;i<vertex_positions.length;i++) {
 				float x,y,z;
@@ -149,7 +149,7 @@ public class BD1Manipulator {
 	 * @param m Transformation matrix
 	 */
 	public void SetMatrix(Matrix m) {
-		for(Block block:blocks) {
+		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			for(int i=0;i<vertex_positions.length;i++) {
 				vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], m);
@@ -166,7 +166,7 @@ public class BD1Manipulator {
 	 */
 	public void InvertZ() {
 		//Invert z-coordinate of the vertices.
-		for(Block block:blocks) {
+		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			for(int i=0;i<8;i++) {
 				vertex_positions[i].SetZ(vertex_positions[i].GetZ()*(-1.0f));
@@ -176,7 +176,7 @@ public class BD1Manipulator {
 			}
 		}
 		//Resolve inconsistencies in the vertices.
-		for(Block block:blocks) {
+		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			float[] us=block.GetUs();
 			float[] vs=block.GetVs();

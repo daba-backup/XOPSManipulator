@@ -192,10 +192,10 @@ public class WeaponDataXMLOutputter {
 			if(weapon_data.GetSuppressorEnabledFlag()==false)el_suppressor.setTextContent("false");
 			else el_suppressor.setTextContent("true");
 			el_weapon.appendChild(el_suppressor);
-			//Equipment method
-			Element el_equipment_method=document.createElement("WeaponP");
-			el_equipment_method.setTextContent(""+weapon_data.GetEquipmentMethod().ordinal());
-			el_weapon.appendChild(el_equipment_method);
+			//Shooting stance
+			Element el_shooting_stance=document.createElement("WeaponP");
+			el_shooting_stance.setTextContent(""+weapon_data.GetShootingStance().ordinal());
+			el_weapon.appendChild(el_shooting_stance);
 			//Changeable weapon
 			Element el_changeable_weapon=document.createElement("ChangeWeapon");
 			el_changeable_weapon.setTextContent(""+weapon_data.GetChangeableWeapon());

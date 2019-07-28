@@ -12,7 +12,7 @@ import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponEquipmentMethod;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponModelFilenamesStock;
 import com.daxie.xops.weapon.WeaponModelType;
 import com.daxie.xops.weapon.WeaponScopeMode;
@@ -149,9 +149,9 @@ class IDSWriter {
 			b=ByteFunctions.short_to_byte_le((short)itemp);
 			dos.write(b);
 			
-			//Equipment method
-			WeaponEquipmentMethod equipment_method=weapon_data.GetEquipmentMethod();
-			itemp=WeaponBinSpecifierAndEnumConverter.GetBinSpecifierFromWeaponEquipmentMethod(equipment_method);
+			//Shooting stance
+			WeaponShootingStance shooting_stance=weapon_data.GetShootingStance();
+			itemp=WeaponBinSpecifierAndEnumConverter.GetBinSpecifierFromWeaponShootingStance(shooting_stance);
 			b=ByteFunctions.short_to_byte_le((short)itemp);
 			dos.write(b);
 			

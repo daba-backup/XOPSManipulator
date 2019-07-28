@@ -12,7 +12,7 @@ import com.daxie.log.LogFile;
 import com.daxie.tool.FileFunctions;
 import com.daxie.tool.StringFunctions;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponEquipmentMethod;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponScopeMode;
 
 /**
@@ -287,12 +287,12 @@ public class WeaponDataCodeParser {
 				case "WeaponP":
 					value=value.replace(" ","");
 					itemp=Integer.parseInt(value);
-					WeaponEquipmentMethod[] equipment_methods=WeaponEquipmentMethod.values();
-					if(!(0<=itemp&&itemp<equipment_methods.length)) {
+					WeaponShootingStance[] shooting_stances=WeaponShootingStance.values();
+					if(!(0<=itemp&&itemp<shooting_stances.length)) {
 						LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Value out of bounds. line:"+i);
 						continue;
 					}
-					weapon_data.SetEquipmentMethod(equipment_methods[itemp]);
+					weapon_data.SetShootingStance(shooting_stances[itemp]);
 					break;
 				case "ChangeWeapon":
 					value=value.replace(" ","");

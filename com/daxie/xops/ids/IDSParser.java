@@ -15,7 +15,7 @@ import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponEquipmentMethod;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponModelFilenamesStock;
 import com.daxie.xops.weapon.WeaponModelType;
 import com.daxie.xops.weapon.WeaponScopeMode;
@@ -220,16 +220,16 @@ class IDSParser {
 		
 		weapon_data.SetCartridgePosition(vtemp);
 		
-		//Equipment method
-		WeaponEquipmentMethod equipment_method;
+		//Shooting stance
+		WeaponShootingStance shooting_stance;
 		
 		b[0]=bin.get(count);
 		b[1]=bin.get(count+1);
 		itemp=ByteFunctions.byte_to_short_le(b);
 		count+=2;
 		
-		equipment_method=WeaponBinSpecifierAndEnumConverter.GetWeaponEquipmentMethodFromBinSpecifier(itemp);
-		weapon_data.SetEquipmentMethod(equipment_method);
+		shooting_stance=WeaponBinSpecifierAndEnumConverter.GetWeaponShootingStanceFromBinSpecifier(itemp);
+		weapon_data.SetShootingStance(shooting_stance);
 		
 		//Rapid fire
 		b[0]=bin.get(count);

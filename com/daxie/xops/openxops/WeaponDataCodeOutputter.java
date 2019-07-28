@@ -73,7 +73,7 @@ public class WeaponDataCodeOutputter {
 			
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "soundvolume", weapon_data.GetSoundVolume())+separator;
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "silencer", weapon_data.GetSuppressorEnabledFlag())+separator;
-			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "WeaponP", weapon_data.GetEquipmentMethod().ordinal())+separator;
+			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "WeaponP", weapon_data.GetShootingStance().ordinal())+separator;
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "ChangeWeapon", weapon_data.GetChangeableWeapon())+separator;
 			ret+=StringFunctions.GetCPPArrayFormatString(array_name, i, "burst", weapon_data.GetNumberOfProjectiles())+separator;
 		}
