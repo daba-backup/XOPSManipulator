@@ -17,7 +17,7 @@ You could download the game from the [official website](https://hp.vector.co.jp/
 - Loading and writing data from and to EXE files of XOPS
 - Support several file formats used in XMS (IDS, XGS and XCS files)
 - XML input and output for XOPS-related data
-- Support the source code of OpenXOPS
+- Support the source code of OpenXOPS for weapon data and character data
 
 ## Dependencies
 
