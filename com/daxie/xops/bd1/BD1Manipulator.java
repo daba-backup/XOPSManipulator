@@ -220,7 +220,7 @@ public class BD1Manipulator {
 	 * @param bd1_filename Filename
 	 * @return -1 on error and 0 on success
 	 */
-	public int Write(String bd1_filename) {
+	public int WriteAsBD1(String bd1_filename) {
 		BD1Writer bd1_writer=new BD1Writer(blocks, texture_filenames_map);
 		try {
 			bd1_writer.Write(bd1_filename);
