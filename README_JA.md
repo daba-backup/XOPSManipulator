@@ -1,32 +1,32 @@
 # XOPSManipulator
 
-XOPSManipulator is a Java library that offers several functions to manipulate matters relating to X operations.
+XOPSManipulatorはX operationsに関する事柄を操作するための機能を提供するJavaライブラリです。
 
-# About X operations
+# X operationsについて
 
-X operations (abbreviated to XOPS) is a classical FPS game first released in 2003 by a production team "team MITEI", which consists of two members, a programmer "nine-two" and a graphic designer "TENNKUU".
+X operations(略してXOPS)は2003年に初リリースされたFPSゲームで、プログラマのnine-two氏とグラフィックデザイナーのTENNKUU氏からなる制作チームteam MITEIによって制作されました。
 
-You could download the game from the [official website](https://hp.vector.co.jp/authors/VA022962/xops/).
+[公式サイト](https://hp.vector.co.jp/authors/VA022962/xops/)からゲームをダウンロードすることができます。
 
-# Overview
+# 概要
 
-## Features
+## 機能
 
-- Manipulation of BD1, PD1 and MIF files
-- Conversion from the BD1 format to the Wavefront OBJ format
-- Loading and writing from and to EXE files of XOPS (weapon data and character data)
-- Support of the several file formats used in XMS (IDS, XGS and XCS files)
-- XML input and output for XOPS-related data
-- Parse and output of the source code of OpenXOPS (weapon data and character data)
+- BD1, PD1, MIFファイルの操作
+- BD1形式からWavefront OBJ形式への変換
+- XOPSの実行ファイルに対する武器情報・キャラクター情報の読込と書込
+- XMSで使用されるいくつかのファイル形式のサポート(IDS, XGS, XCSファイル)
+- XOPSに関するデータのXML入力および出力
+- OpenXOPSのソースコードに対する武器情報・キャラクター情報の解析と出力
 
-## Dependencies
+## 依存
 
 - [javagl/Obj](https://github.com/javagl/Obj)
-  This library is used to output Wavefront OBJ files.
+  Wavefront OBJファイルを出力するために使用しています。
 
-## Licenses
+## ライセンス
 
-XOPSManipulator is released under the MIT license. See LICENSE for further information.
+XOPSManipulatorはMITライセンスの下に公開されています。
 
 ### javagl/Obj
 
@@ -55,14 +55,14 @@ XOPSManipulator is released under the MIT license. See LICENSE for further infor
 > FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 > OTHER DEALINGS IN THE SOFTWARE.
 
-# External links
+# 外部リンク
 
 - [X operations WEB](https://hp.vector.co.jp/authors/VA022962/xops/)
-  Official website of X operations
+  X operationsの公式サイト
 - [OpenXOPS公式サイト](http://openxops.net/)
-  Official website of OpenXOPS
+  OpenXOPSの公式サイト
 - [XOPSアドオン倉庫](https://sites.google.com/site/xopsaddonwarehouse/home)
-  The author (Daba)'s website
+  作者(駄場)のウェブサイト
 - [Twitter](https://twitter.com/Daxie_tksm6)
-  The author's Twitter account
+  作者のTwitterアカウント
 
