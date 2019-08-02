@@ -18,9 +18,9 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 class PD1Writer {
-	private List<Point> points;
+	private List<PD1Point> points;
 	
-	public PD1Writer(List<Point> points) {
+	public PD1Writer(List<PD1Point> points) {
 		this.points=points;
 	}
 	
@@ -44,7 +44,7 @@ class PD1Writer {
 			
 			//Point data
 			for(int i=0;i<points.size();i++) {
-				Point point=points.get(i);
+				PD1Point point=points.get(i);
 				
 				Vector position=point.GetPosition();
 				float rotation=point.GetRotation();

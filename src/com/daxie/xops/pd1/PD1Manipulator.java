@@ -17,7 +17,7 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 public class PD1Manipulator {
-	private List<Point>points;
+	private List<PD1Point>points;
 	
 	/**
 	 * 
@@ -36,14 +36,14 @@ public class PD1Manipulator {
 	 * Returns points.
 	 * @return Points
 	 */
-	public List<Point> GetPoints(){
+	public List<PD1Point> GetPoints(){
 		return new ArrayList<>(points);
 	}
 	/**
 	 * Sets points.
 	 * @param points Points
 	 */
-	public void SetPoints(List<Point> points) {
+	public void SetPoints(List<PD1Point> points) {
 		if(points==null) {
 			LogFile.WriteError("[PD1Manipulator-SetPoints] Null argument where non-null required.");
 			return;
@@ -66,7 +66,7 @@ public class PD1Manipulator {
 	public int GetPointNum(int param_1) {
 		int point_num=0;
 		
-		for(Point point:points) {
+		for(PD1Point point:points) {
 			int p=point.GetParameter(0);
 			if(p==param_1)point_num++;
 		}
@@ -79,7 +79,7 @@ public class PD1Manipulator {
 	 * @param translate Translation vector
 	 */
 	public void Translate(Vector translate) {
-		for(Point point:points) {
+		for(PD1Point point:points) {
 			Vector position=point.GetPosition();
 			position=VectorFunctions.VAdd(position, translate);
 			point.SetPosition(position);
@@ -94,7 +94,7 @@ public class PD1Manipulator {
 		Matrix rot_y=MatrixFunctions.MGetRotY(rotate.GetY());
 		Matrix rot_z=MatrixFunctions.MGetRotZ(rotate.GetZ());
 		
-		for(Point point:points) {
+		for(PD1Point point:points) {
 			Vector position=point.GetPosition();
 			
 			position=VectorFunctions.VTransform(position, rot_x);
@@ -109,7 +109,7 @@ public class PD1Manipulator {
 	 * @param scale Scaling vector
 	 */
 	public void Rescale(Vector scale) {
-		for(Point point:points) {
+		for(PD1Point point:points) {
 			Vector position=point.GetPosition();
 			
 			float x,y,z;
@@ -129,7 +129,7 @@ public class PD1Manipulator {
 	 * @param m Transformation matrix
 	 */
 	public void SetMatrix(Matrix m) {
-		for(Point point:points) {
+		for(PD1Point point:points) {
 			Vector position=point.GetPosition();
 			position=VectorFunctions.VTransform(position, m);
 			point.SetPosition(position);
@@ -140,7 +140,7 @@ public class PD1Manipulator {
 	 * @param rotate Rotation angle (radian)
 	 */
 	public void RotateDirection(float rotate) {
-		for(Point point:points) {
+		for(PD1Point point:points) {
 			float rotation=point.GetRotation();
 			rotation+=rotate;
 			point.SetRotation(rotation);
@@ -152,7 +152,7 @@ public class PD1Manipulator {
 	 * This method will be used to make a mission for a mirrored map.
 	 */
 	public void InvertZ() {
-		for(Point point:points) {
+		for(PD1Point point:points) {
 			Vector position=point.GetPosition();
 			position.SetZ(position.GetZ()*(-1.0f));
 			point.SetPosition(position);

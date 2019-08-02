@@ -19,7 +19,7 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 class PD1Parser {
-	private List<Point> points;
+	private List<PD1Point> points;
 	
 	public PD1Parser(String pd1_filename) throws FileNotFoundException{
 		points=new ArrayList<>();
@@ -80,7 +80,7 @@ class PD1Parser {
 		
 		//Points
 		for(int i=0;i<point_num;i++) {
-			Point point=new Point();
+			PD1Point point=new PD1Point();
 			
 			byte[] byte_buffer=new byte[4];
 			float ftemp;
@@ -126,7 +126,7 @@ class PD1Parser {
 		}
 	}
 	
-	public List<Point> GetPoints(){
+	public List<PD1Point> GetPoints(){
 		return new ArrayList<>(points);
 	}
 }

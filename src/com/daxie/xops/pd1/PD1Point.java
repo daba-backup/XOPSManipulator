@@ -7,12 +7,12 @@ import com.daxie.basis.vector.Vector;
  * @author Daba
  *
  */
-public class Point {
+public class PD1Point {
 	private Vector position;
 	private float rotation;
 	private int[] parameters;
 	
-	public Point() {
+	public PD1Point() {
 		position=new Vector();
 		rotation=0.0f;
 		parameters=new int[4];
