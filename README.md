@@ -19,10 +19,36 @@ You could download the game from the [official website](https://hp.vector.co.jp/
 - XML input and output for XOPS-related data
 - Parse and output of the source code of OpenXOPS (weapon data and character data)
 
+## Samples
+
+Samples are available in [XOPSManipulatorSamples](https://github.com/Dabasan/XOPSManipulatorSamples).
+
 ## Dependencies
 
 - [javagl/Obj](https://github.com/javagl/Obj)
   This library is used to output Wavefront OBJ files.
+
+## Install
+
+### Maven project
+
+Add the following lines to pom.xml in your project.
+
+```xml
+<dependency>
+	<groupId>com.github.dabasan</groupId>
+	<artifactId>xopsmanipulator</artifactId>
+	<version>3.0.0</version>
+</dependency>
+```
+
+### Java project
+
+Set the required JARs to the build path.  
+
+Below is an instance in Eclipse. Note that each path is subject to your environment.
+
+![Java Build Path](https://i.imgur.com/vEwcbWB.png)
 
 ## Licenses
 

@@ -19,10 +19,36 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 - XOPSに関するデータのXML入力および出力
 - OpenXOPSのソースコードに対する武器情報・キャラクター情報の解析と出力
 
+## サンプル
+
+サンプルは[XOPSManipulatorSamples](https://github.com/Dabasan/XOPSManipulatorSamples)を参照してください。
+
 ## 依存
 
 - [javagl/Obj](https://github.com/javagl/Obj)
   Wavefront OBJファイルを出力するために使用しています。
+
+## インストール
+
+### Mavenプロジェクト
+
+プロジェクトのpom.xmlに以下の行を追加してください。
+
+```xml
+<dependency>
+	<groupId>com.github.dabasan</groupId>
+	<artifactId>xopsmanipulator</artifactId>
+	<version>3.0.0</version>
+</dependency>
+```
+
+### Javaプロジェクト
+
+必要なJARファイルをビルドパスに設定してください。
+
+下はEclipseでの例です。それぞれのパスは各自の環境によることに注意してください。
+
+![Java Build Path](https://i.imgur.com/vEwcbWB.png)
 
 ## ライセンス
 
