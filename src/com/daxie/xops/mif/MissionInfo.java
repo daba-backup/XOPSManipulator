@@ -48,6 +48,40 @@ public class MissionInfo {
 		briefing_text=mi.GetBriefingText();
 	}
 	
+	@Override
+	public String toString() {
+		String ret="";
+		final String separator=System.getProperty("line.separator");
+		
+		ret+="[mission name]"+separator;
+		ret+=mission_name+separator;
+		ret+="[mission formal name]"+separator;
+		ret+=mission_formal_name+separator;
+		ret+="[bd1 filename]"+separator;
+		ret+=bd1_filename+separator;
+		ret+="[pd1 filename]"+separator;
+		ret+=pd1_filename+separator;
+		ret+="[sky type]"+separator;
+		ret+=sky_type+separator;
+		ret+="[extra hitcheck flag]"+separator;
+		ret+=extra_hitcheck_flag+separator;
+		ret+="[darken screen flag]"+separator;
+		ret+=darken_screen_flag+separator;
+		ret+="[article info filename]"+separator;
+		ret+=article_info_filename+separator;
+		ret+="[image 1 filename]"+separator;
+		ret+=image1_filename+separator;
+		ret+="[image 2 filename]"+separator;
+		ret+=image2_filename+separator;
+		
+		ret+="[briefing text]"+separator;
+		for(String line:briefing_text) {
+			ret+=line+separator;
+		}
+		
+		return ret;
+	}
+	
 	public void SetMissionName(String mission_name) {
 		this.mission_name=mission_name;
 	}
