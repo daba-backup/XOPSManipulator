@@ -46,10 +46,6 @@ Add the following lines to pom.xml in your project.
 
 Set the required JARs to the build path.  
 
-Below is an instance in Eclipse. Note that each path is subject to your environment.
-
-![Java Build Path](https://i.imgur.com/vEwcbWB.png)
-
 ## Licenses
 
 XOPSManipulator is released under the MIT license. See LICENSE for further information.

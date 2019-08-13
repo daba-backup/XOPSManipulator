@@ -46,10 +46,6 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 
 必要なJARファイルをビルドパスに設定してください。
 
-下はEclipseでの例です。それぞれのパスは各自の環境によることに注意してください。
-
-![Java Build Path](https://i.imgur.com/vEwcbWB.png)
-
 ## ライセンス
 
 XOPSManipulatorはMITライセンスの下に公開されています。
