@@ -35,6 +35,10 @@ public class BD1Manipulator {
 	public BD1Manipulator() {
 		blocks=new ArrayList<BD1Block>();
 		texture_filenames_map=new HashMap<>();
+		
+		for(int i=0;i<10;i++) {
+			texture_filenames_map.put(i, "");
+		}
 	}
 	
 	/**
@@ -70,20 +74,50 @@ public class BD1Manipulator {
 	 * @return Texture filename
 	 */
 	public String GetTextureFilename(int texture_id) {
-		if(texture_filenames_map.containsKey(texture_id)==false)return "";
+		if(texture_filenames_map.containsKey(texture_id)==false) {
+			LogFile.WriteError("[BD1Manipulator-GetTextureFilename] No such texture filename registered. texture_id:"+texture_id);
+			return "";
+		}
 		
 		String texture_filename=texture_filenames_map.get(texture_id);
 		return texture_filename;
 	}
 	/**
+	 * Returns the texture filenames.
+	 * @return Texture filenames
+	 */
+	public Map<Integer,String> GetTextureFilenamesMap(){
+		return new HashMap<>(texture_filenames_map);
+	}
+	/**
 	 * Sets the texture filename associated with the texture ID.
 	 * @param texture_id Texture ID
 	 * @param texture_filename Texture filename
+	 * @return -1 on error and 0 on success
 	 */
-	public void SetTextureFilename(int texture_id,String texture_filename) {
-		if(!(0<=texture_id&&texture_id<10))return;
+	public int SetTextureFilename(int texture_id,String texture_filename) {
+		if(!(0<=texture_id&&texture_id<10)) {
+			LogFile.WriteError("[BD1Manipulator-SetTextureFilename] Texture ID out of bounds. texture_id:"+texture_id);
+			return -1;
+		}
 		
 		texture_filenames_map.put(texture_id, texture_filename);
+		
+		return 0;
+	}
+	/**
+	 * Sets the texture filenames.
+	 * @param texture_filenames_map Texture filenames
+	 * @return -1 on error and 0 on success
+	 */
+	public int SetTextureFilenamesMap(Map<Integer, String> texture_filenames_map) {
+		if(texture_filenames_map==null) {
+			LogFile.WriteError("[BD1Manipulator-SetTextureFilenamesMap] Null argument where non-null required.");
+			return -1;
+		}
+		this.texture_filenames_map=texture_filenames_map;
+		
+		return 0;
 	}
 	
 	/**
