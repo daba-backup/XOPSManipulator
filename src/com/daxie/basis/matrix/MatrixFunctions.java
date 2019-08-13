@@ -102,7 +102,7 @@ public class MatrixFunctions {
 	}
 	/**
 	 * Returns a rotation matrix around x-axis.
-	 * @param th Rotation angle (radiant)
+	 * @param th Rotation angle (radian)
 	 * @return Rotation matrix
 	 */
 	public static Matrix MGetRotX(float th) {
@@ -129,7 +129,7 @@ public class MatrixFunctions {
 	}
 	/**
 	 * Returns a rotation matrix around y-axis.
-	 * @param th Rotation angle (radiant)
+	 * @param th Rotation angle (radian)
 	 * @return Rotation matrix
 	 */
 	public static Matrix MGetRotY(float th) {
@@ -156,7 +156,7 @@ public class MatrixFunctions {
 	}
 	/**
 	 * Returns a rotation matrix around z-axis.
-	 * @param th Rotation angle (radiant)
+	 * @param th Rotation angle (radian)
 	 * @return Rotation matrix
 	 */
 	public static Matrix MGetRotZ(float th) {
