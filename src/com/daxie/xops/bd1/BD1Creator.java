@@ -2,8 +2,10 @@ package com.daxie.xops.bd1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
@@ -40,6 +42,10 @@ public class BD1Creator {
 		return 0;
 	}
 	
+	public Set<Integer> GetBlockHandles(){
+		return new HashSet<>(blocks_map.keySet());
+	}
+	
 	/**
 	 * Creates a cube.
 	 * @param center Center position
@@ -57,13 +63,13 @@ public class BD1Creator {
 		float z=center.GetZ();
 		
 		vertex_positions[0]=VectorFunctions.VGet(x-edge_half_length, y+edge_half_length, z+edge_half_length);
-		vertex_positions[1]=VectorFunctions.VGet(x+edge_half_length, y+edge_half_length, z+edge_half_length);
+		vertex_positions[1]=VectorFunctions.VGet(x-edge_half_length, y+edge_half_length, z-edge_half_length);
 		vertex_positions[2]=VectorFunctions.VGet(x+edge_half_length, y+edge_half_length, z-edge_half_length);
-		vertex_positions[3]=VectorFunctions.VGet(x-edge_half_length, y+edge_half_length, z-edge_half_length);
-		vertex_positions[4]=VectorFunctions.VGet(x-edge_half_length, y+edge_half_length, z+edge_half_length);
-		vertex_positions[5]=VectorFunctions.VGet(x+edge_half_length, y+edge_half_length, z+edge_half_length);
-		vertex_positions[6]=VectorFunctions.VGet(x+edge_half_length, y+edge_half_length, z-edge_half_length);
-		vertex_positions[7]=VectorFunctions.VGet(x-edge_half_length, y+edge_half_length, z-edge_half_length);
+		vertex_positions[3]=VectorFunctions.VGet(x+edge_half_length, y+edge_half_length, z+edge_half_length);
+		vertex_positions[4]=VectorFunctions.VGet(x-edge_half_length, y-edge_half_length, z+edge_half_length);
+		vertex_positions[5]=VectorFunctions.VGet(x-edge_half_length, y-edge_half_length, z-edge_half_length);
+		vertex_positions[6]=VectorFunctions.VGet(x+edge_half_length, y-edge_half_length, z-edge_half_length);
+		vertex_positions[7]=VectorFunctions.VGet(x+edge_half_length, y-edge_half_length, z+edge_half_length);
 		
 		for(int i=0;i<8;i++) {
 			block.SetVertexPosition(i, vertex_positions[i]);
@@ -164,7 +170,7 @@ public class BD1Creator {
 			LogFile.WriteError("[BD1Creator-SetBlockTextureID] No such block. handle:"+block_handle);
 			return -1;
 		}
-		if(!(0<face_index&&face_index<6)) {
+		if(!(0<=face_index&&face_index<6)) {
 			LogFile.WriteError("[BD1Creator-SetBlockTextureID] Face index out of bounds. face_index:"+face_index);
 			return -1;
 		}
@@ -194,9 +200,10 @@ public class BD1Creator {
 	/**
 	 * Writes out blocks into a BD1 file.
 	 * @param bd1_filename BD1 filename
+	 * @param offset_y Y-direction offset
 	 * @return -1 on error and 0 on success
 	 */
-	public int WriteAsBD1(String bd1_filename) {
+	public int WriteAsBD1(String bd1_filename,float offset_y) {
 		BD1Manipulator bd1_manipulator=new BD1Manipulator();
 		
 		List<BD1Block> blocks=new ArrayList<>();
@@ -206,6 +213,8 @@ public class BD1Creator {
 		
 		bd1_manipulator.SetTextureFilenamesMap(texture_filenames_map);
 		bd1_manipulator.SetBlocks(blocks);
+		
+		bd1_manipulator.Translate(VectorFunctions.VGet(0.0f, offset_y, 0.0f));
 		
 		int ret=bd1_manipulator.WriteAsBD1(bd1_filename);
 		
