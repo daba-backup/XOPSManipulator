@@ -25,6 +25,7 @@ public class BD1NormalGenerator extends BD1Generator{
 			float y=(float)random.nextGaussian()*scale;
 			float z=(float)random.nextGaussian()*scale;
 			
+			/*
 			int sign_x=random.nextInt(2);
 			int sign_y=random.nextInt(2);
 			int sign_z=random.nextInt(2);
@@ -32,6 +33,7 @@ public class BD1NormalGenerator extends BD1Generator{
 			if(sign_x%2==1)x*=(-1.0f);
 			if(sign_y%2==1)y*=(-1.0f);
 			if(sign_z%2==1)z*=(-1.0f);
+			*/
 			
 			Vector center=VectorFunctions.VGet(x, y, z);
 			

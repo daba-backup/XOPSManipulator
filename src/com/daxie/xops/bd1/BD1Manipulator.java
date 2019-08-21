@@ -196,7 +196,7 @@ public class BD1Manipulator {
 	
 	/**
 	 * Inverts z-axis.<br>
-	 * This method will be used to make a mirrored map.
+	 * This method is used to make a mirrored map.
 	 */
 	public void InvertZ() {
 		//Invert z-coordinate of the vertices.

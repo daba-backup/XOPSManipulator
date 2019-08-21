@@ -40,7 +40,7 @@ class BD1Writer {
 						new FileOutputStream(bd1_filename)));
 		
 		try {
-			//Texture filenames.
+			//Texture filenames
 			Map<Integer, String> sorted_texture_filenames_map=new TreeMap<>(texture_filenames_map);
 			
 			int texture_count=0;
