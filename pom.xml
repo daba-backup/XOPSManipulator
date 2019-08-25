@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.dabasan</groupId>
   <artifactId>xopsmanipulator</artifactId>
-  <version>4.0.1</version>
+  <version>4.1.0</version>
 
   <name>XOPSManipulator</name>
   <description>XOPSManipulator is a Java library that offers several functions to manipulate matters relating to X operations.</description>

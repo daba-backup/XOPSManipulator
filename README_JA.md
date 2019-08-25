@@ -38,7 +38,7 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 <dependency>
 	<groupId>com.github.dabasan</groupId>
 	<artifactId>xopsmanipulator</artifactId>
-	<version>4.0.1</version>
+	<version>4.1.0</version>
 </dependency>
 ```
 
