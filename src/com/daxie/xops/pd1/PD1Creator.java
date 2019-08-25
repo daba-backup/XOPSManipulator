@@ -25,8 +25,53 @@ public class PD1Creator {
 		points_map=new HashMap<>();
 	}
 	
+	/**
+	 * Returns all point handles.
+	 * @return Point handles
+	 */
 	public Set<Integer> GetPointHandles(){
 		return new HashSet<>(points_map.keySet());
+	}
+	
+	/**
+	 * Adds a point to the map.
+	 * @param point Point
+	 * @return Point handle
+	 */
+	public int AddPoint(PD1Point point) {
+		if(point==null) {
+			LogFile.WriteError("[PD1Creator-AddPoint] Null argument where non-null required.");
+			return -1;
+		}
+		
+		int point_handle=point_count;
+		point_count++;
+		
+		points_map.put(point_handle, point);
+		
+		return point_handle;
+	}
+	
+	/**
+	 * Duplicates a point.
+	 * @param point_handle Handle of the point to be duplicated
+	 * @return Point handle
+	 */
+	public int DuplicatePoint(int point_handle) {
+		if(points_map.containsKey(point_handle)==false) {
+			LogFile.WriteError("[PD1Creator-DuplicatePoint] No such point. handle:"+point_handle);
+			return -1;
+		}
+		
+		PD1Point orig_point=points_map.get(point_handle);
+		PD1Point duplicated_point=new PD1Point(orig_point);
+		
+		int duplicated_point_handle=point_count;
+		point_count++;
+		
+		points_map.put(duplicated_point_handle, duplicated_point);
+		
+		return point_handle;
 	}
 	
 	/**

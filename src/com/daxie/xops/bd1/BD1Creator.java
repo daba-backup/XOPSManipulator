@@ -44,8 +44,53 @@ public class BD1Creator {
 		return 0;
 	}
 	
+	/**
+	 * Returns all block handles.
+	 * @return Block handles
+	 */
 	public Set<Integer> GetBlockHandles(){
 		return new HashSet<>(blocks_map.keySet());
+	}
+	
+	/**
+	 * Adds a block to the map.
+	 * @param block Block
+	 * @return Block handle
+	 */
+	public int AddBlock(BD1Block block) {
+		if(block==null) {
+			LogFile.WriteError("[BD1Creator-AddBlock] Null argument where non-null required.");
+			return -1;
+		}
+		
+		int block_handle=block_count;
+		block_count++;
+		
+		blocks_map.put(block_handle, block);
+		
+		return block_handle;
+	}
+	
+	/**
+	 * Duplicates a block.
+	 * @param block_handle Handle of the block to be duplicated
+	 * @return Duplicated block handle
+	 */
+	public int DuplicateBlock(int block_handle) {
+		if(blocks_map.containsKey(block_handle)==false) {
+			LogFile.WriteError("[BD1Creator-DuplicateBlock] No such block. handle:"+block_handle);
+			return -1;
+		}
+		
+		BD1Block orig_block=blocks_map.get(block_handle);
+		BD1Block duplicated_block=new BD1Block(orig_block);
+		
+		int duplicated_block_handle=block_count;
+		block_count++;
+		
+		blocks_map.put(duplicated_block_handle, duplicated_block);
+		
+		return duplicated_block_handle;
 	}
 	
 	/**

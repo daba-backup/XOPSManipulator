@@ -27,6 +27,13 @@ public class BD1Block {
 		for(int i=0;i<texture_ids.length;i++)texture_ids[i]=0;
 		enabled_flag=false;
 	}
+	public BD1Block(BD1Block block) {
+		vertex_positions=block.GetVertexPositions();
+		us=block.GetUs();
+		vs=block.GetVs();
+		texture_ids=block.GetTextureIDs();
+		enabled_flag=block.GetEnabledFlag();
+	}
 	
 	/**
 	 * @param index Index of array vertex_positions

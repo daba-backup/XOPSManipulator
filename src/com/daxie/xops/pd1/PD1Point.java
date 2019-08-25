@@ -18,6 +18,11 @@ public class PD1Point {
 		parameters=new int[4];
 		for(int i=0;i<4;i++)parameters[i]=0;
 	}
+	public PD1Point(PD1Point point) {
+		position=point.GetPosition();
+		rotation=point.GetRotation();
+		parameters=point.GetParameters();
+	}
 	
 	public void SetPositionX(float x) {
 		position.SetX(x);
