@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.daxie.basis.matrix.Matrix;
+import com.daxie.basis.matrix.MatrixFunctions;
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
 import com.daxie.log.LogFile;
@@ -133,6 +135,118 @@ public class BD1Creator {
 		blocks_map.put(block_handle, block);
 		
 		return block_handle;
+	}
+	
+	/**
+	 * Translates a block.
+	 * @param block_handle Block handle
+	 * @param translate Translation vector
+	 * @return -1 on error and 0 on success
+	 */
+	public int TranslateBlock(int block_handle,Vector translate) {
+		if(blocks_map.containsKey(block_handle)==false) {
+			LogFile.WriteError("[BD1Creator-TranslateBlock] No such block. handle:"+block_handle);
+			return -1;
+		}
+		
+		BD1Block block=blocks_map.get(block_handle);
+		
+		Vector[] vertex_positions=block.GetVertexPositions();
+		for(int i=0;i<8;i++) {
+			vertex_positions[i]=VectorFunctions.VAdd(vertex_positions[i], translate);
+		}
+		for(int i=0;i<8;i++) {
+			block.SetVertexPosition(i, vertex_positions[i]);
+		}
+		
+		return 0;
+	}
+	/**
+	 * Rotates a block.
+	 * @param block_handle Block handle
+	 * @param rotate Rotation angles (radian)
+	 * @return -1 on error and 0 on success
+	 */
+	public int RotateBlock(int block_handle,Vector rotate) {
+		if(blocks_map.containsKey(block_handle)==false) {
+			LogFile.WriteError("[BD1Creator-RotateBlock] No such block. handle:"+block_handle);
+			return -1;
+		}
+		
+		Matrix rot_x=MatrixFunctions.MGetRotX(rotate.GetX());
+		Matrix rot_y=MatrixFunctions.MGetRotY(rotate.GetY());
+		Matrix rot_z=MatrixFunctions.MGetRotZ(rotate.GetZ());
+		
+		BD1Block block=blocks_map.get(block_handle);
+		Vector[] vertex_positions=block.GetVertexPositions();
+		
+		Vector center=VectorFunctions.VGet(0.0f, 0.0f, 0.0f);
+		for(int i=0;i<8;i++) {
+			center=VectorFunctions.VAdd(center, vertex_positions[i]);
+		}
+		center=VectorFunctions.VScale(center, 1.0f/8.0f);
+		
+		//Move the block to the origin.
+		Vector to_orig_vec=VectorFunctions.VScale(center, -1.0f);
+		for(int i=0;i<8;i++) {
+			vertex_positions[i]=VectorFunctions.VAdd(vertex_positions[i], to_orig_vec);
+		}
+		
+		//Rotate the block.
+		for(int i=0;i<8;i++) {
+			vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_x);
+			vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_y);
+			vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_z);
+		}
+		
+		//Move the block to the original coordinates.
+		for(int i=0;i<8;i++) {
+			vertex_positions[i]=VectorFunctions.VAdd(vertex_positions[i], center);
+		}
+		
+		//Apply changes to the block.
+		for(int i=0;i<8;i++) {
+			block.SetVertexPosition(i, vertex_positions[i]);
+		}
+		
+		return 0;
+	}
+	/**
+	 * Rescales a block.
+	 * @param block_handle Block handle
+	 * @param scale Scale
+	 * @return -1 on error and 0 on success
+	 */
+	public int RescaleBlock(int block_handle,Vector scale) {
+		if(blocks_map.containsKey(block_handle)==false) {
+			LogFile.WriteError("[BD1Creator-RescaleBlock] No such block. handle:"+block_handle);
+			return -1;
+		}
+		
+		float scale_x=scale.GetX();
+		float scale_y=scale.GetY();
+		float scale_z=scale.GetZ();
+		
+		BD1Block block=blocks_map.get(block_handle);
+		Vector[] vertex_positions=block.GetVertexPositions();
+		
+		for(int i=0;i<8;i++) {
+			float pos_x=vertex_positions[i].GetX();
+			float pos_y=vertex_positions[i].GetY();
+			float pos_z=vertex_positions[i].GetZ();
+			
+			pos_x*=scale_x;
+			pos_y*=scale_y;
+			pos_z*=scale_z;
+			
+			vertex_positions[i].SetVector(pos_x, pos_y, pos_z);
+		}
+		
+		for(int i=0;i<8;i++) {
+			block.SetVertexPosition(i, vertex_positions[i]);
+		}
+		
+		return 0;
 	}
 	
 	/**
