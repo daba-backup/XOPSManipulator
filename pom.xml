@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.dabasan</groupId>
 	<artifactId>xopsmanipulator</artifactId>
-	<version>4.1.0</version>
+	<version>5.0.0</version>
 
 	<name>XOPSManipulator</name>
 	<description>XOPSManipulator is a Java library that offers several functions to manipulate matters relating to X operations.</description>
@@ -47,7 +47,7 @@
 			<resource>
 				<directory>src</directory>
 				<excludes>
-					<exclude>**/*.java</exclude>
+					<exclude>com/daxie/main/**</exclude>
 				</excludes>
 			</resource>
 		</resources>
