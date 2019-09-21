@@ -26,11 +26,11 @@ class XOPSExeCharacterDataWriter {
 	
 	public void Write(List<Byte> bin,int character_data_start_pos) {
 		if(character_data_array==null) {
-			LogFile.WriteInfo("[XOPSExeCharacterDataWriter-Write] Data is null. No operation for character data.");
+			LogFile.WriteWarn("[XOPSExeCharacterDataWriter-Write] Data is null.",true);
 			return;
 		}
 		if(character_data_array.length!=XOPSConstants.CHARACTER_NUM) {
-			LogFile.WriteError("[XOPSExeCharacterDataWriter-Write] Invalid number of data. data_num:"+character_data_array.length);
+			LogFile.WriteWarn("[XOPSExeCharacterDataWriter-Write] Invalid number of data. data_num:"+character_data_array.length,true);
 			return;
 		}
 		

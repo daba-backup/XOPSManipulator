@@ -8,10 +8,10 @@ import com.daxie.tool.ByteFunctions;
 import com.daxie.xops.XOPSConstants;
 import com.daxie.xops.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponModelFilenamesStock;
 import com.daxie.xops.weapon.WeaponModelType;
 import com.daxie.xops.weapon.WeaponScopeMode;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponTextureFilenamesStock;
 import com.daxie.xops.weapon.WeaponTextureType;
 
@@ -29,11 +29,11 @@ class XOPSExeWeaponDataWriter {
 	
 	public void Write(List<Byte> bin,int weapon_data_start_pos,int weapon_name_start_pos) {
 		if(weapon_data_array==null) {
-			LogFile.WriteInfo("[XOPSExeWeaponDataWriter-Write] Data is null. No operation for weapon data.");
+			LogFile.WriteWarn("[XOPSExeWeaponDataWriter-Write] Data is null.",true);
 			return;
 		}
 		if(weapon_data_array.length!=XOPSConstants.WEAPON_NUM) {
-			LogFile.WriteError("[XOPSExeWeaponDataWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length);
+			LogFile.WriteWarn("[XOPSExeWeaponDataWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length,true);
 			return;
 		}
 		

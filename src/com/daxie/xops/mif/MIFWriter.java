@@ -25,7 +25,7 @@ class MIFWriter {
 	
 	public void Write(String mif_filename,String encoding) throws FileNotFoundException,UnsupportedEncodingException{
 		if(mission_info==null) {
-			LogFile.WriteError("[MIFWriter-Write] Data is null.");
+			LogFile.WriteWarn("[MIFWriter-Write] Data is null.",true);
 			return;
 		}
 		
@@ -66,12 +66,11 @@ class MIFWriter {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[MIFWriter-Write] Below is the stack trace.");
-			LogFile.WriteLine(str);
 			
-			LogFile.CloseLogFile();
+			LogFile.WriteWarn("[MIFWriter-Write] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
-			System.exit(1);
+			return;
 		}
 		finally {
 			try {
@@ -79,12 +78,11 @@ class MIFWriter {
 			}
 			catch(IOException e) {
 				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteFatal("[MIFWriter-Write] Below is the stack trace.");
-				LogFile.WriteLine(str);
 				
-				LogFile.CloseLogFile();
+				LogFile.WriteWarn("[MIFWriter-Write] Below is the stack trace.",true);
+				LogFile.WriteWarn(str,false);
 				
-				System.exit(1);
+				return;
 			}
 		}
 	}

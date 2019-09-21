@@ -51,14 +51,14 @@ public class WeaponModelFilenamesStock {
 		WeaponModelType model_type=WeaponModelType.NONE;
 		
 		if(model_filenames_map.size()!=XOPSConstants.WEAPON_MODEL_NUM) {
-			LogFile.WriteError("[WeaponModelFilenamesStock-GetWeaponModelTypeFromFilename]");
-			LogFile.WriteLine("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.");
+			LogFile.WriteWarn("[WeaponModelFilenamesStock-GetWeaponModelTypeFromFilename]",true);
+			LogFile.WriteWarn("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.",false);
 			
 			return model_type;
 		}
 		if(model_filenames_map.containsValue(model_filename)==false) {
-			LogFile.WriteError("[WeaponModelFilenamesStock-GetWeaponModelTypeFromFilename]");
-			LogFile.WriteLine("No such filename in the map. filename:"+model_filename);
+			LogFile.WriteWarn("[WeaponModelFilenamesStock-GetWeaponModelTypeFromFilename]",true);
+			LogFile.WriteWarn("No such filename in the map. filename:"+model_filename,false);
 			
 			return model_type;
 		}

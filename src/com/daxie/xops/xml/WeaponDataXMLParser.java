@@ -18,8 +18,8 @@ import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.openxops.WeaponSpecifierConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponScopeMode;
+import com.daxie.xops.weapon.WeaponShootingStance;
 
 /**
  * Loads weapon data from a XML file created using this library.
@@ -54,8 +54,8 @@ public class WeaponDataXMLParser {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[WeaponDataXMLParser-LoadWeaponDataXML] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -67,8 +67,8 @@ public class WeaponDataXMLParser {
 		catch(Exception e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[WeaponDataXMLParser-LoadWeaponDataXML] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -96,7 +96,7 @@ public class WeaponDataXMLParser {
 					weapon_id=Integer.parseInt(strtemp);
 				}
 				catch(NumberFormatException e) {
-					LogFile.WriteError("[WeaponDataXMLParser-LoadWeaponDataXML] Invalid format of number. id:"+strtemp);
+					LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Invalid format of number. id:"+strtemp,true);
 					continue;
 				}
 				
@@ -287,7 +287,7 @@ public class WeaponDataXMLParser {
 						
 						WeaponScopeMode[] values=WeaponScopeMode.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.");
+							LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.",true);
 							
 							String str="";
 							str+="weapon_id:"+weapon_id+" ";
@@ -330,7 +330,7 @@ public class WeaponDataXMLParser {
 						
 						WeaponShootingStance[] values=WeaponShootingStance.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.");
+							LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.",true);
 							
 							String str="";
 							str+="weapon_id:"+weapon_id+" ";

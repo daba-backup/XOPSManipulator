@@ -12,10 +12,10 @@ import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponModelFilenamesStock;
 import com.daxie.xops.weapon.WeaponModelType;
 import com.daxie.xops.weapon.WeaponScopeMode;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponTextureFilenamesStock;
 import com.daxie.xops.weapon.WeaponTextureType;
 
@@ -33,7 +33,7 @@ class IDSWriter {
 	
 	public void Write(String ids_filename) throws FileNotFoundException{
 		if(weapon_data==null) {
-			LogFile.WriteError("[IDSWriter-Write] Data is null.");
+			LogFile.WriteWarn("[IDSWriter-Write] Data is null.",true);
 			return;
 		}
 		
@@ -230,12 +230,10 @@ class IDSWriter {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[IDSWriter-Write] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[IDSWriter-Write] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
+			return;
 		}
 		finally {
 			try {
@@ -243,12 +241,10 @@ class IDSWriter {
 			}
 			catch(IOException e) {
 				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteFatal("[IDSWriter-Write] Below is the stack trace.");
-				LogFile.WriteLine(str);
+				LogFile.WriteWarn("[IDSWriter-Write] Below is the stack trace.",true);
+				LogFile.WriteWarn(str,false);
 				
-				LogFile.CloseLogFile();
-				
-				System.exit(1);
+				return;
 			}
 		}
 	}

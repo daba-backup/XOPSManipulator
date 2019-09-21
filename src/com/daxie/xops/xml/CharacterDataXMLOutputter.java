@@ -46,7 +46,7 @@ public class CharacterDataXMLOutputter {
 	 */
 	public int WriteXML(String xml_filename) {
 		if(character_data_list==null) {
-			LogFile.WriteError("[CharacterDataXMLOutputter-WriteXML] Data is null.");
+			LogFile.WriteWarn("[CharacterDataXMLOutputter-WriteXML] Data is null.",true);
 			return -1;
 		}
 		
@@ -59,8 +59,8 @@ public class CharacterDataXMLOutputter {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[CharacterDataXMLOutputter-WriteXML] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[CharacterDataXMLOutputter-WriteXML] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}

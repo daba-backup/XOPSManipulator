@@ -35,11 +35,11 @@ public class AddonHashCalculator {
 			bd1_hash=HashFunctions.GetFileHash(bd1_filename, algorithm);
 		}
 		catch(FileNotFoundException e) {
-			LogFile.WriteError("[AddonHashCalculator-CalculateBD1Hash] File not found. filename:"+bd1_filename);
+			LogFile.WriteWarn("[AddonHashCalculator-CalculateBD1Hash] File not found. filename:"+bd1_filename,true);
 			return -1;
 		}
 		catch(NoSuchAlgorithmException e) {
-			LogFile.WriteError("[AddonHashCalculator-CalculateBD1Hash] No such algorithm. algorithm:"+algorithm);
+			LogFile.WriteWarn("[AddonHashCalculator-CalculateBD1Hash] No such algorithm. algorithm:"+algorithm,true);
 			return -1;
 		}
 		
@@ -50,11 +50,11 @@ public class AddonHashCalculator {
 			pd1_hash=HashFunctions.GetFileHash(pd1_filename, algorithm);
 		}
 		catch(FileNotFoundException e) {
-			LogFile.WriteError("[AddonHashCalculator-CalculatePD1Hash] File not found. filename:"+pd1_filename);
+			LogFile.WriteWarn("[AddonHashCalculator-CalculatePD1Hash] File not found. filename:"+pd1_filename,true);
 			return -1;
 		}
 		catch(NoSuchAlgorithmException e) {
-			LogFile.WriteError("[AddonHashCalculator-CalculatePD1Hash] No such algorithm. algorithm:"+algorithm);
+			LogFile.WriteWarn("[AddonHashCalculator-CalculatePD1Hash] No such algorithm. algorithm:"+algorithm,true);
 			return -1;
 		}
 		
@@ -65,11 +65,11 @@ public class AddonHashCalculator {
 			mif_hash=HashFunctions.GetFileHash(mif_filename, algorithm);
 		}
 		catch(FileNotFoundException e) {
-			LogFile.WriteError("[AddonHashCalculator-CalculateMIFHash] File not found. filename:"+mif_filename);
+			LogFile.WriteWarn("[AddonHashCalculator-CalculateMIFHash] File not found. filename:"+mif_filename,true);
 			return -1;
 		}
 		catch(NoSuchAlgorithmException e) {
-			LogFile.WriteError("[AddonHashCalculator-CalculateMIFHash] No such algorithm. algorithm:"+algorithm);
+			LogFile.WriteWarn("[AddonHashCalculator-CalculateMIFHash] No such algorithm. algorithm:"+algorithm,true);
 			return -1;
 		}
 		
@@ -79,15 +79,15 @@ public class AddonHashCalculator {
 	public int CalculateCombinedHash() {
 		boolean hash_not_calculated_flag=false;
 		if(bd1_hash.equals("")) {
-			LogFile.WriteError("[AddonHashCalculator-CalculateCombinedHash] BD1 hash not calculated yet.");
+			LogFile.WriteWarn("[AddonHashCalculator-CalculateCombinedHash] BD1 hash not calculated yet.",true);
 			hash_not_calculated_flag=true;
 		}
 		if(pd1_hash.equals("")) {
-			LogFile.WriteError("[AddonHashCalculator-CalculateCombinedHash] PD1 hash not calculated yet.");
+			LogFile.WriteWarn("[AddonHashCalculator-CalculateCombinedHash] PD1 hash not calculated yet.",true);
 			hash_not_calculated_flag=true;
 		}
 		if(mif_hash.equals("")) {
-			LogFile.WriteError("[AddonHashCalculator-CalculateCombinedHash] MIF hash not calculated yet.");
+			LogFile.WriteWarn("[AddonHashCalculator-CalculateCombinedHash] MIF hash not calculated yet.",true);
 			hash_not_calculated_flag=true;
 		}
 		

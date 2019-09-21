@@ -45,7 +45,7 @@ public class WeaponDataXMLOutputter {
 	 */
 	public int WriteXML(String xml_filename) {
 		if(weapon_data_list==null) {
-			LogFile.WriteError("[WeaponDataXMLOutputter-WriteXML] Data is null.");
+			LogFile.WriteWarn("[WeaponDataXMLOutputter-WriteXML] Data is null.",true);
 			return -1;
 		}
 		
@@ -58,8 +58,8 @@ public class WeaponDataXMLOutputter {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[WeaponDataXMLOutputter-WriteXML] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[WeaponDataXMLOutputter-WriteXML] Below is the stack trace.",true);
+			LogFile.WriteWarn(str, false);
 			
 			return -1;
 		}

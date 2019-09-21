@@ -23,7 +23,7 @@ public class WeaponDataCodeOutputter {
 		String ret="";
 		
 		if(weapon_data_list==null) {
-			LogFile.WriteError("[OutputWeaponDataSourceCode-GetWeaponDataSourceCode] Data is null.");
+			LogFile.WriteWarn("[OutputWeaponDataSourceCode-GetWeaponDataSourceCode] Data is null.",true);
 			return ret;
 		}
 		

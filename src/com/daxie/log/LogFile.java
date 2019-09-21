@@ -32,7 +32,7 @@ public class LogFile {
 	public static final int LOG_LEVEL_NONE=0b00000000;
 	public static final int LOG_LEVEL_ALL=0b00111111;
 	
-	private static int log_level_flags=LOG_LEVEL_FATAL|LOG_LEVEL_ERROR;
+	private static int log_level_flags=LOG_LEVEL_FATAL;
 	
 	private static boolean output_log_flag=true;
 	
@@ -139,14 +139,14 @@ public class LogFile {
 	}
 	/**
 	 * Writes a line.
-	 * @param str String
+	 * @param line Line
 	 */
-	public static void WriteLine(String str) {
+	public static void WriteLine(String line) {
 		if(output_log_flag==false)return;
 		
 		if(bw!=null) {
 			try {
-				bw.write(str);
+				bw.write(line);
 				bw.newLine();
 			}
 			catch(IOException e) {
@@ -154,24 +154,27 @@ public class LogFile {
 			}
 		}
 		else {
-			System.out.println(str);
+			System.out.println(line);
 		}
 	}
 	
 	/**
 	 * Writes a trace string.
 	 * @param str String
+	 * @param output_date_flag Specifies whether to output the date
 	 */
 	//TRACE
-	public static void WriteTrace(String str) {
+	public static void WriteTrace(String str,boolean output_date_flag) {
 		int op=log_level_flags&LOG_LEVEL_TRACE;
 		if(op==0)return;
 		
 		String message="";
 		
 		message+="TRACE ";
-		message+=DateFunctions.GetDateStringToMilliseconds();
-		message+=" ";
+		if(output_date_flag==true) {
+			message+=DateFunctions.GetDateStringToMilliseconds();
+			message+=" ";
+		}
 		message+=str;
 		
 		WriteLine(message);
@@ -179,17 +182,20 @@ public class LogFile {
 	/**
 	 * Writes a debug string.
 	 * @param str String
+	 * @param output_date_flag Specifies whether to output the date
 	 */
 	//DEBUG
-	public static void WriteDebug(String str) {
+	public static void WriteDebug(String str,boolean output_date_flag) {
 		int op=log_level_flags&LOG_LEVEL_DEBUG;
 		if(op==0)return;
 		
 		String message="";
 		
 		message+="DEBUG ";
-		message+=DateFunctions.GetDateStringToMilliseconds();
-		message+=" ";
+		if(output_date_flag==true) {
+			message+=DateFunctions.GetDateStringToMilliseconds();
+			message+=" ";
+		}
 		message+=str;
 		
 		WriteLine(message);
@@ -197,17 +203,20 @@ public class LogFile {
 	/**
 	 * Writes an info string.
 	 * @param str String
+	 * @param output_date_flag Specifies whether to output the date
 	 */
 	//INFO
-	public static void WriteInfo(String str) {
+	public static void WriteInfo(String str,boolean output_date_flag) {
 		int op=log_level_flags&LOG_LEVEL_INFO;
 		if(op==0)return;
 		
 		String message="";
 		
 		message+="INFO ";
-		message+=DateFunctions.GetDateStringToMilliseconds();
-		message+=" ";
+		if(output_date_flag==true) {
+			message+=DateFunctions.GetDateStringToMilliseconds();
+			message+=" ";
+		}
 		message+=str;
 		
 		WriteLine(message);
@@ -215,17 +224,20 @@ public class LogFile {
 	/**
 	 * Writes a warning string.
 	 * @param str String
+	 * @param output_date_flag Specifies whether to output the date
 	 */
 	//WARN
-	public static void WriteWarn(String str) {
+	public static void WriteWarn(String str,boolean output_date_flag) {
 		int op=log_level_flags&LOG_LEVEL_WARN;
 		if(op==0)return;
 		
 		String message="";
 		
 		message+="WARN ";
-		message+=DateFunctions.GetDateStringToMilliseconds();
-		message+=" ";
+		if(output_date_flag==true) {
+			message+=DateFunctions.GetDateStringToMilliseconds();
+			message+=" ";
+		}
 		message+=str;
 		
 		WriteLine(message);
@@ -233,17 +245,20 @@ public class LogFile {
 	/**
 	 * Writes an error string.
 	 * @param str String
+	 * @param output_date_flag Specifies whether to output the date
 	 */
 	//ERROR
-	public static void WriteError(String str) {
+	public static void WriteError(String str,boolean output_date_flag) {
 		int op=log_level_flags&LOG_LEVEL_ERROR;
 		if(op==0)return;
 		
 		String message="";
 		
 		message+="ERROR ";
-		message+=DateFunctions.GetDateStringToMilliseconds();
-		message+=" ";
+		if(output_date_flag==true) {
+			message+=DateFunctions.GetDateStringToMilliseconds();
+			message+=" ";
+		}
 		message+=str;
 		
 		WriteLine(message);
@@ -251,17 +266,20 @@ public class LogFile {
 	/**
 	 * Writes a fatal string.
 	 * @param str String
+	 * @param output_date_flag Specifies whether to output the date
 	 */
 	//FATAL
-	public static void WriteFatal(String str) {
+	public static void WriteFatal(String str,boolean output_date_flag) {
 		int op=log_level_flags&LOG_LEVEL_FATAL;
 		if(op==0)return;
 		
 		String message="";
 		
 		message+="FATAL ";
-		message+=DateFunctions.GetDateStringToMilliseconds();
-		message+=" ";
+		if(output_date_flag==true) {
+			message+=DateFunctions.GetDateStringToMilliseconds();
+			message+=" ";
+		}
 		message+=str;
 		
 		WriteLine(message);

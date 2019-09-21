@@ -101,7 +101,7 @@ public class MIFList {
 		
 		File dir=new File(directory_name);
 		if(dir.isDirectory()==false) {
-			LogFile.WriteError("[MIFList-<init>] Not a directory. directory_name:"+directory_name);
+			LogFile.WriteWarn("[MIFList-<init>] Not a directory. directory_name:"+directory_name,true);
 			return;
 		}
 		
@@ -115,7 +115,7 @@ public class MIFList {
 		
 		File[] files=dir.listFiles(filter);
 		if(files==null) {
-			LogFile.WriteError("[MIFList-<init>] listFiles() returned null.");
+			LogFile.WriteWarn("[MIFList-<init>] listFiles() returned null.",true);
 			return;
 		}
 		
@@ -125,12 +125,7 @@ public class MIFList {
 				mif_manipulator=new MIFManipulator(file.getPath(), encoding);
 			}
 			catch(FileNotFoundException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				
-				LogFile.WriteError("[MIFList-<init>] Failed to load a MIF file. filename:"+file.getPath());
-				LogFile.WriteLine("Below is the stack trace.");
-				LogFile.WriteLine(str);
-				
+				LogFile.WriteWarn("[MIFList-<init>] Failed to load a MIF file. filename:"+file.getPath(),true);		
 				return;
 			}
 			
@@ -217,8 +212,8 @@ public class MIFList {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[MIFList-WriteXML] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[MIFList-WriteXML] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -418,13 +413,14 @@ public class MIFList {
 		catch(FileNotFoundException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[MIFList-WriteCSV] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[MIFList-WriteCSV] Failed to write in a file.",true);
+			LogFile.WriteWarn("Below is the stack trace.", false);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}
 		catch(UnsupportedEncodingException e) {
-			LogFile.WriteError("[MIFList-WriteCSV] Internal error. Unsupported encoding specified.");
+			LogFile.WriteWarn("[MIFList-WriteCSV] Unsupported encoding specified.",true);
 			return -1;
 		}
 		

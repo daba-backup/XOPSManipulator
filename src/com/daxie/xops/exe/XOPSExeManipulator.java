@@ -31,7 +31,7 @@ public class XOPSExeManipulator {
 		XOPSVersion version=XOPSExeFunctions.GetXOPSVersion(bin);
 		
 		if(version==XOPSVersion.UNKNOWN_VERSION) {
-			LogFile.WriteError("[XOPSExeManipulator-<init>] Unknown version of X operations.");
+			LogFile.WriteWarn("[XOPSExeManipulator-<init>] Unknown version of X operations.",true);
 			
 			weapon_data_array=new WeaponData[XOPSConstants.WEAPON_NUM];
 			for(int i=0;i<weapon_data_array.length;i++) {
@@ -107,12 +107,10 @@ public class XOPSExeManipulator {
 		catch(IndexOutOfBoundsException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteFatal("[XOPSExeManipulator-<init>] Index out of bounds. Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[XOPSExeManipulator-<init>] Index out of bounds. Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
+			return;
 		}
 		
 		weapon_data_array=weapon_data_parser.GetWeaponDataArray();
@@ -156,7 +154,7 @@ public class XOPSExeManipulator {
 	 */
 	public void SetWeaponDataArray(WeaponData[] weapon_data_array) {
 		if(weapon_data_array==null) {
-			LogFile.WriteError("[XOPSExeManipulator-SetWeaponDataArray] Null argument where non-null required.");
+			LogFile.WriteWarn("[XOPSExeManipulator-SetWeaponDataArray] Null argument where non-null required.",true);
 			return;
 		}
 		this.weapon_data_array=weapon_data_array;
@@ -167,7 +165,7 @@ public class XOPSExeManipulator {
 	 */
 	public void SetCharacterDataArray(CharacterData[] character_data_array) {
 		if(character_data_array==null) {
-			LogFile.WriteError("[XOPSExeManipulator-SetCharacterDataArray] Null argument where non-null required.");
+			LogFile.WriteWarn("[XOPSExeManipulator-SetCharacterDataArray] Null argument where non-null required.",true);
 			return;
 		}
 		this.character_data_array=character_data_array;
@@ -278,12 +276,10 @@ public class XOPSExeManipulator {
 		catch(IndexOutOfBoundsException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteFatal("[XOPSExeManipulator-<init>] Index out of bounds. Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[XOPSExeManipulator-<init>] Index out of bounds. Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
+			return;
 		}
 		
 		FileFunctions.CreateBinFile(xops_filename, bin);

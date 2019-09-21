@@ -30,7 +30,7 @@ class BD1Writer {
 	
 	public void Write(String bd1_filename) throws FileNotFoundException{
 		if(blocks==null||texture_filenames_map==null) {
-			LogFile.WriteError("[BD1Writer-Write] Data is null.");
+			LogFile.WriteWarn("[BD1Writer-Write] Data is null.",true);
 			return;
 		}
 		
@@ -127,12 +127,10 @@ class BD1Writer {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[BD1Writer-Write] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[BD1Writer-Write] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
+			return;
 		}
 		finally {
 			try {
@@ -140,12 +138,10 @@ class BD1Writer {
 			}
 			catch(IOException e) {
 				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteFatal("[BD1Writer-Write] Below is the stack trace.");
-				LogFile.WriteLine(str);
+				LogFile.WriteWarn("[BD1Writer-Write] Below is the stack trace.",true);
+				LogFile.WriteWarn(str,false);
 				
-				LogFile.CloseLogFile();
-				
-				System.exit(1);
+				return;
 			}
 		}
 	}	

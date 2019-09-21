@@ -54,7 +54,7 @@ public class BD1Manipulator {
 	 */
 	public void SetBlocks(List<BD1Block> blocks) {
 		if(blocks==null) {
-			LogFile.WriteError("[BD1Manipulator-SetBlocks] Null argument where non-null required.");
+			LogFile.WriteWarn("[BD1Manipulator-SetBlocks] Null argument where non-null required.",true);
 			return;
 		}
 		this.blocks=blocks;
@@ -75,7 +75,7 @@ public class BD1Manipulator {
 	 */
 	public String GetTextureFilename(int texture_id) {
 		if(texture_filenames_map.containsKey(texture_id)==false) {
-			LogFile.WriteError("[BD1Manipulator-GetTextureFilename] No such texture filename registered. texture_id:"+texture_id);
+			LogFile.WriteWarn("[BD1Manipulator-GetTextureFilename] No such texture filename registered. texture_id:"+texture_id,true);
 			return "";
 		}
 		
@@ -97,7 +97,7 @@ public class BD1Manipulator {
 	 */
 	public int SetTextureFilename(int texture_id,String texture_filename) {
 		if(!(0<=texture_id&&texture_id<10)) {
-			LogFile.WriteError("[BD1Manipulator-SetTextureFilename] Texture ID out of bounds. texture_id:"+texture_id);
+			LogFile.WriteWarn("[BD1Manipulator-SetTextureFilename] Texture ID out of bounds. texture_id:"+texture_id,true);
 			return -1;
 		}
 		
@@ -112,7 +112,7 @@ public class BD1Manipulator {
 	 */
 	public int SetTextureFilenamesMap(Map<Integer, String> texture_filenames_map) {
 		if(texture_filenames_map==null) {
-			LogFile.WriteError("[BD1Manipulator-SetTextureFilenamesMap] Null argument where non-null required.");
+			LogFile.WriteWarn("[BD1Manipulator-SetTextureFilenamesMap] Null argument where non-null required.",true);
 			return -1;
 		}
 		this.texture_filenames_map=texture_filenames_map;
@@ -262,9 +262,9 @@ public class BD1Manipulator {
 		catch(FileNotFoundException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[BD1Manipulator-Write] Failed to write data.");
-			LogFile.WriteLine("Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[BD1Manipulator-Write] Failed to write data.",true);
+			LogFile.WriteWarn("Below is the stack trace.",false);
+			LogFile.WriteWarn(str, false);
 			
 			return -1;
 		}
@@ -282,7 +282,7 @@ public class BD1Manipulator {
 		
 		int ret=obj_writer.Write(obj_filename);
 		if(ret<0) {
-			LogFile.WriteError("[BD1Manipulator-WriteAsOBJ] Failed to write blocks in an OBJ file.");
+			LogFile.WriteWarn("[BD1Manipulator-WriteAsOBJ] Failed to write blocks in an OBJ file.",true);
 			return -1;
 		}
 		

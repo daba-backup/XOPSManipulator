@@ -24,7 +24,7 @@ public class CharacterDataCodeOutputter {
 		String ret="";
 		
 		if(character_data_list==null) {
-			LogFile.WriteError("[OutputCharacterDataSourceCode-GetCharacterDataSourceCode] Data is null.");
+			LogFile.WriteWarn("[OutputCharacterDataSourceCode-GetCharacterDataSourceCode] Data is null.",true);
 			return ret;
 		}
 		

@@ -48,7 +48,7 @@ public class XGSManipulator {
 	 */
 	public void SetWeaponDataArray(WeaponData[] weapon_data_array) {
 		if(weapon_data_array==null) {
-			LogFile.WriteError("[XGSManipulator-SetWeaponDataArray] Null argument where non-null required.");
+			LogFile.WriteWarn("[XGSManipulator-SetWeaponDataArray] Null argument where non-null required.",true);
 			return;
 		}
 		this.weapon_data_array=weapon_data_array;
@@ -67,10 +67,9 @@ public class XGSManipulator {
 		catch(FileNotFoundException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[XGSManipulator-Write] Failed to write data.");
-			
-			LogFile.WriteLine("Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[XGSManipulator-Write] Failed to write data.",true);
+			LogFile.WriteWarn("Below is the stack trace.",false);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}

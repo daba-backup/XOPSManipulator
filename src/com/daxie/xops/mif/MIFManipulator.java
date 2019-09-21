@@ -24,7 +24,7 @@ public class MIFManipulator {
 	
 	public void SetMissionInfo(MissionInfo mission_info) {
 		if(mission_info==null) {
-			LogFile.WriteError("[MIFManipulator-SetMissionInfo] Null argument where non-null required.");
+			LogFile.WriteWarn("[MIFManipulator-SetMissionInfo] Null argument where non-null required.",true);
 			return;
 		}
 		this.mission_info=mission_info;

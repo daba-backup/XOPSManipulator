@@ -35,7 +35,7 @@ public class BD1Creator {
 	
 	public int SetTextureFilename(int texture_id,String texture_filename) {
 		if(!(0<=texture_id&&texture_id<10)) {
-			LogFile.WriteError("[BD1Creator-SetTextureFilename] Texture ID out of bounds. texture_id:"+texture_id);
+			LogFile.WriteWarn("[BD1Creator-SetTextureFilename] Texture ID out of bounds. texture_id:"+texture_id,true);
 			return -1;
 		}
 		
@@ -59,7 +59,7 @@ public class BD1Creator {
 	 */
 	public int AddBlock(BD1Block block) {
 		if(block==null) {
-			LogFile.WriteError("[BD1Creator-AddBlock] Null argument where non-null required.");
+			LogFile.WriteWarn("[BD1Creator-AddBlock] Null argument where non-null required.",true);
 			return -1;
 		}
 		
@@ -78,7 +78,7 @@ public class BD1Creator {
 	 */
 	public int DuplicateBlock(int block_handle) {
 		if(blocks_map.containsKey(block_handle)==false) {
-			LogFile.WriteError("[BD1Creator-DuplicateBlock] No such block. handle:"+block_handle);
+			LogFile.WriteWarn("[BD1Creator-DuplicateBlock] No such block. handle:"+block_handle,true);
 			return -1;
 		}
 		
@@ -147,13 +147,12 @@ public class BD1Creator {
 	 */
 	public int CreateBlock(Vector[] vertex_positions) {
 		if(vertex_positions==null) {
-			LogFile.WriteError("[BD1Creator-CreateBlock] Null argument where non-null required.");
+			LogFile.WriteWarn("[BD1Creator-CreateBlock] Null argument where non-null required.",true);
 			return -1;
 		}
 		if(vertex_positions.length!=8) {
-			String str="[BD1Creator-CreateBlock] Invalid number of vertices in the argument array. vertex_num:"+vertex_positions.length;
-			LogFile.WriteError(str);
-			
+			LogFile.WriteWarn("[BD1Creator-CreateBlock] Invalid number of vertices in the argument array. ", true);
+			LogFile.WriteWarn("vertex_num:"+vertex_positions.length, false);
 			return -1;
 		}
 		
@@ -190,7 +189,7 @@ public class BD1Creator {
 	 */
 	public int TranslateBlock(int block_handle,Vector translate) {
 		if(blocks_map.containsKey(block_handle)==false) {
-			LogFile.WriteError("[BD1Creator-TranslateBlock] No such block. handle:"+block_handle);
+			LogFile.WriteWarn("[BD1Creator-TranslateBlock] No such block. handle:"+block_handle,true);
 			return -1;
 		}
 		
@@ -214,7 +213,7 @@ public class BD1Creator {
 	 */
 	public int RotateBlock(int block_handle,Vector rotate) {
 		if(blocks_map.containsKey(block_handle)==false) {
-			LogFile.WriteError("[BD1Creator-RotateBlock] No such block. handle:"+block_handle);
+			LogFile.WriteWarn("[BD1Creator-RotateBlock] No such block. handle:"+block_handle,true);
 			return -1;
 		}
 		
@@ -264,7 +263,7 @@ public class BD1Creator {
 	 */
 	public int RescaleBlock(int block_handle,Vector scale) {
 		if(blocks_map.containsKey(block_handle)==false) {
-			LogFile.WriteError("[BD1Creator-RescaleBlock] No such block. handle:"+block_handle);
+			LogFile.WriteWarn("[BD1Creator-RescaleBlock] No such block. handle:"+block_handle,true);
 			return -1;
 		}
 		
@@ -304,11 +303,11 @@ public class BD1Creator {
 	 */
 	public int SetBlockUVs(int block_handle,int face_index,float u,float v) {
 		if(blocks_map.containsKey(block_handle)==false) {
-			LogFile.WriteError("[BD1Creator-SetBlockUVs] No such block. handle:"+block_handle);
+			LogFile.WriteWarn("[BD1Creator-SetBlockUVs] No such block. handle:"+block_handle,true);
 			return -1;
 		}
 		if(!(0<face_index&&face_index<6)) {
-			LogFile.WriteError("[BD1Creator-SetBlockUVs] Face index out of bounds. face_index:"+face_index);
+			LogFile.WriteWarn("[BD1Creator-SetBlockUVs] Face index out of bounds. face_index:"+face_index,true);
 			return -1;
 		}
 		
@@ -326,11 +325,11 @@ public class BD1Creator {
 	 */
 	public int SetBlockTextureID(int block_handle,int face_index,int texture_id) {
 		if(blocks_map.containsKey(block_handle)==false) {
-			LogFile.WriteError("[BD1Creator-SetBlockTextureID] No such block. handle:"+block_handle);
+			LogFile.WriteWarn("[BD1Creator-SetBlockTextureID] No such block. handle:"+block_handle,true);
 			return -1;
 		}
 		if(!(0<=face_index&&face_index<6)) {
-			LogFile.WriteError("[BD1Creator-SetBlockTextureID] Face index out of bounds. face_index:"+face_index);
+			LogFile.WriteWarn("[BD1Creator-SetBlockTextureID] Face index out of bounds. face_index:"+face_index,true);
 			return -1;
 		}
 		
@@ -347,7 +346,7 @@ public class BD1Creator {
 	 */
 	public int RemoveBlock(int block_handle) {
 		if(blocks_map.containsKey(block_handle)==false) {
-			LogFile.WriteError("[BD1Creator-SetBlockTextureID] No such block. handle:"+block_handle);
+			LogFile.WriteWarn("[BD1Creator-SetBlockTextureID] No such block. handle:"+block_handle,true);
 			return -1;
 		}
 		

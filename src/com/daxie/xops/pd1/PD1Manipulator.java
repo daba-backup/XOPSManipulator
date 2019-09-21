@@ -45,7 +45,7 @@ public class PD1Manipulator {
 	 */
 	public void SetPoints(List<PD1Point> points) {
 		if(points==null) {
-			LogFile.WriteError("[PD1Manipulator-SetPoints] Null argument where non-null required.");
+			LogFile.WriteWarn("[PD1Manipulator-SetPoints] Null argument where non-null required.",true);
 			return;
 		}
 		this.points=points;
@@ -177,10 +177,9 @@ public class PD1Manipulator {
 		catch(FileNotFoundException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[PD1Manipulator-Write] Failed to write data.");
-			
-			LogFile.WriteLine("Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[PD1Manipulator-Write] Failed to write data.",true);
+			LogFile.WriteWarn("Below is the stack trace.",false);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}

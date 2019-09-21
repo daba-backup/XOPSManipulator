@@ -1,25 +1,19 @@
 package com.daxie.xops.xgs;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.EOFException;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogFile;
 import com.daxie.tool.ByteFunctions;
-import com.daxie.tool.ExceptionFunctions;
+import com.daxie.tool.FileFunctions;
 import com.daxie.xops.XOPSConstants;
 import com.daxie.xops.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponModelFilenamesStock;
 import com.daxie.xops.weapon.WeaponModelType;
 import com.daxie.xops.weapon.WeaponScopeMode;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponTextureFilenamesStock;
 import com.daxie.xops.weapon.WeaponTextureType;
 
@@ -32,56 +26,10 @@ class XGSParser {
 	private WeaponData[] weapon_data_array=null;
 	
 	public XGSParser(String xgs_filename) throws FileNotFoundException{
-		List<Byte> bin=new ArrayList<Byte>();
-		
-		DataInputStream dis;	
-		dis=new DataInputStream(
-				new BufferedInputStream(
-						new FileInputStream(xgs_filename)));
-		
-		weapon_data_array=new WeaponData[XOPSConstants.WEAPON_NUM];
-		for(int i=0;i<XOPSConstants.WEAPON_NUM;i++) {
-			weapon_data_array[i]=new WeaponData();
-		}
-		
-		try {
-			byte read_byte;
-			while(true) {
-				read_byte=dis.readByte();
-				bin.add(read_byte);
-			}
-		}
-		catch(EOFException e) {
-			//to the finally block.
-		}
-		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[XGSParser-<init>] Below is the stack trace.");
-			LogFile.WriteLine(str);
-			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
-		}
-		finally {
-			try {
-				if(dis!=null) {
-					dis.close();
-				}
-			}
-			catch(IOException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteFatal("[XGSParser-<init>] Below is the stack trace.");
-				LogFile.WriteLine(str);
-				
-				LogFile.CloseLogFile();
-				
-				System.exit(1);
-			}
-		}
+		List<Byte> bin=FileFunctions.GetFileAllBin(xgs_filename);
 		
 		if(bin.size()!=1732) {
-			LogFile.WriteError("[XGSParser-<init>] Invalid file size. filename:"+xgs_filename);
+			LogFile.WriteWarn("[XGSParser-<init>] Invalid file size. filename:"+xgs_filename,true);
 			return;
 		}
 		

@@ -47,7 +47,7 @@ public class XCSManipulator {
 	 */
 	public void SetCharacterDataArray(CharacterData[] character_data_array) {
 		if(character_data_array==null) {
-			LogFile.WriteError("[XCSManipulator-SetCharacterDataArray] Null argument where non-null required.");
+			LogFile.WriteWarn("[XCSManipulator-SetCharacterDataArray] Null argument where non-null required.",true);
 			return;
 		}
 		this.character_data_array=character_data_array;
@@ -66,10 +66,9 @@ public class XCSManipulator {
 		catch(FileNotFoundException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[XCSManipulator-Write] Failed to write data.");
-			
-			LogFile.WriteLine("Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[XCSManipulator-Write] Failed to write data.",true);
+			LogFile.WriteWarn("Below is the stack trace.",false);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}

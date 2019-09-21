@@ -1,24 +1,18 @@
 package com.daxie.xops.ids;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.EOFException;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogFile;
 import com.daxie.tool.ByteFunctions;
-import com.daxie.tool.ExceptionFunctions;
+import com.daxie.tool.FileFunctions;
 import com.daxie.xops.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponModelFilenamesStock;
 import com.daxie.xops.weapon.WeaponModelType;
 import com.daxie.xops.weapon.WeaponScopeMode;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponTextureFilenamesStock;
 import com.daxie.xops.weapon.WeaponTextureType;
 
@@ -31,53 +25,11 @@ class IDSParser {
 	private WeaponData weapon_data=null;
 	
 	public IDSParser(String ids_filename) throws FileNotFoundException{
-		List<Byte> bin=new ArrayList<Byte>();
-		
-		DataInputStream dis;	
-		dis=new DataInputStream(
-				new BufferedInputStream(
-						new FileInputStream(ids_filename)));
-		
+		List<Byte> bin=FileFunctions.GetFileAllBin(ids_filename);
 		weapon_data=new WeaponData();
 		
-		try {
-			byte read_byte;
-			while(true) {
-				read_byte=dis.readByte();
-				bin.add(read_byte);
-			}
-		}
-		catch(EOFException e) {
-			//to the finally block.
-		}
-		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[IDSParser-<init>] Below is the stack trace.");
-			LogFile.WriteLine(str);
-			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
-		}
-		finally {
-			try {
-				if(dis!=null) {
-					dis.close();
-				}
-			}
-			catch(IOException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteFatal("[IDSParser-<init>] Below is the stack trace.");
-				LogFile.WriteLine(str);
-				
-				LogFile.CloseLogFile();
-				
-				System.exit(1);
-			}
-		}
-		
 		if(bin.size()!=84) {
-			LogFile.WriteError("[IDSParser-<init>] Invalid file size. filename:"+ids_filename);
+			LogFile.WriteWarn("[IDSParser-<init>] Invalid file size. filename:"+ids_filename,true);
 			return;
 		}
 		

@@ -3,6 +3,7 @@ package com.daxie.xops.openxops;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
@@ -28,11 +29,11 @@ public class CharacterDataCodeParser {
 	 * In case you already have lines of the code.
 	 * @param lines Lines of the code
 	 */
-	public CharacterDataCodeParser(String[] lines) {
+	public CharacterDataCodeParser(List<String> lines) {
 		character_data_map=new HashMap<>();
 		
 		if(lines==null) {
-			LogFile.WriteError("[CharacterDataCodeParser-<init>] Null argument.");
+			LogFile.WriteWarn("[CharacterDataCodeParser-<init>] Null argument.",true);
 			return;
 		}
 		
@@ -49,19 +50,18 @@ public class CharacterDataCodeParser {
 			throws FileNotFoundException,UnsupportedEncodingException{
 		character_data_map=new HashMap<>();
 		
-		String[] lines=FileFunctions.GetFileAllLines(code_filename, encoding);
-		
+		List<String> lines=FileFunctions.GetFileAllLines(code_filename, encoding);
 		this.ParseLines(lines);
 	}
 	
-	private void ParseLines(String[] lines) {
-		for(int i=0;i<lines.length;i++) {
-			String line=lines[i];
+	private void ParseLines(List<String> lines) {
+		for(int i=0;i<lines.size();i++) {
+			String line=lines.get(i);
 			line=line.replace(";", "");
 			
 			String[] split_by_equal=line.split("=");
 			if(split_by_equal.length!=2) {
-				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Syntax error. line:"+i);
+				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Syntax error. line:"+i,true);
 				continue;
 			}
 			
@@ -69,7 +69,7 @@ public class CharacterDataCodeParser {
 			String[] split_by_dot=left.split(Pattern.quote("."));
 			
 			if(split_by_dot.length!=2) {
-				LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i);
+				LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
 				continue;
 			}
 			
@@ -84,11 +84,11 @@ public class CharacterDataCodeParser {
 				index=Integer.parseInt(index_str);
 			}
 			catch(NumberFormatException e) {
-				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid index. line:"+i);
+				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid index. line:"+i,true);
 				continue;
 			}
 			if(index<0) {
-				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Index must be a number of 0 or more.");
+				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Index must be a number of 0 or more.",true);
 				continue;
 			}
 			
@@ -116,7 +116,7 @@ public class CharacterDataCodeParser {
 					itemp=Integer.parseInt(value);
 					CharacterModelType[] model_types=CharacterModelType.values();
 					if(!(0<=itemp&&itemp<model_types.length)) {
-						LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i);
+						LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
 						continue;
 					}
 					character_data.SetModelType(model_types[itemp]);
@@ -147,18 +147,18 @@ public class CharacterDataCodeParser {
 					itemp=Integer.parseInt(value);
 					CharacterType[] types=CharacterType.values();
 					if(!(0<=itemp&&itemp<types.length)) {
-						LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i);
+						LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
 						continue;
 					}
 					character_data.SetType(types[itemp]);
 					break;
 				default:
-					LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Unknown field name. line:"+i);
+					LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Unknown field name. line:"+i,true);
 					continue;
 				}
 			}
 			catch(NumberFormatException e) {
-				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid number format. line:"+i);
+				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid number format. line:"+i,true);
 				continue;
 			}
 			

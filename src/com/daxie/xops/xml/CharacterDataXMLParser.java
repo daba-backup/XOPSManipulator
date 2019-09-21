@@ -55,8 +55,8 @@ public class CharacterDataXMLParser {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -68,8 +68,8 @@ public class CharacterDataXMLParser {
 		catch(Exception e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -96,7 +96,7 @@ public class CharacterDataXMLParser {
 					character_id=Integer.parseInt(strtemp);
 				}
 				catch(NumberFormatException e) {
-					LogFile.WriteError("[CharacterDataXMLParser] Invalid format of number. id:"+strtemp);
+					LogFile.WriteWarn("[CharacterDataXMLParser] Invalid format of number. id:"+strtemp,true);
 					continue;
 				}
 				
@@ -122,7 +122,7 @@ public class CharacterDataXMLParser {
 						else {
 							CharacterTextureType[] values=CharacterTextureType.values();
 							if(!(0<=itemp&&itemp<values.length)) {
-								LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.");
+								LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
 								
 								String str="";
 								str+="character_id"+character_id+" ";
@@ -143,7 +143,7 @@ public class CharacterDataXMLParser {
 						
 						CharacterModelType[] values=CharacterModelType.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.");
+							LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
 							
 							String str="";
 							str+="character_id:"+character_id+" ";
@@ -171,7 +171,7 @@ public class CharacterDataXMLParser {
 						else {
 							CharacterAILevel[] values=CharacterAILevel.values();
 							if(!(0<=itemp&&itemp<values.length)) {
-								LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.");
+								LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
 								
 								String str="";
 								str+="character_id:"+character_id+" ";
@@ -200,7 +200,7 @@ public class CharacterDataXMLParser {
 						
 						CharacterType[] values=CharacterType.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.");
+							LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
 							
 							String str="";
 							str+="character_id:"+character_id+" ";

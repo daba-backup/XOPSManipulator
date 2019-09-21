@@ -13,10 +13,10 @@ import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.XOPSConstants;
 import com.daxie.xops.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.weapon.WeaponData;
-import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponModelFilenamesStock;
 import com.daxie.xops.weapon.WeaponModelType;
 import com.daxie.xops.weapon.WeaponScopeMode;
+import com.daxie.xops.weapon.WeaponShootingStance;
 import com.daxie.xops.weapon.WeaponTextureFilenamesStock;
 import com.daxie.xops.weapon.WeaponTextureType;
 
@@ -34,11 +34,11 @@ class XGSWriter {
 	
 	public void Write(String xgs_filename) throws FileNotFoundException{
 		if(weapon_data_array==null) {
-			LogFile.WriteError("[XGSWriter-Write] Data is null.");
+			LogFile.WriteWarn("[XGSWriter-Write] Data is null.",true);
 			return;
 		}
 		if(weapon_data_array.length!=XOPSConstants.WEAPON_NUM) {
-			LogFile.WriteError("[XGSWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length);
+			LogFile.WriteWarn("[XGSWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length,true);
 			return;
 		}
 		
@@ -247,12 +247,10 @@ class XGSWriter {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[XGSWriter-Write] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[XGSWriter-Write] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
+			return;
 		}
 		finally {
 			try {
@@ -260,12 +258,10 @@ class XGSWriter {
 			}
 			catch(IOException e) {
 				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteFatal("[XGSWriter-Write] Below is the stack trace.");
-				LogFile.WriteLine(str);
+				LogFile.WriteWarn("[XGSWriter-Write] Below is the stack trace.",true);
+				LogFile.WriteWarn(str,false);
 				
-				LogFile.CloseLogFile();
-				
-				System.exit(1);
+				return;
 			}
 		}
 	}

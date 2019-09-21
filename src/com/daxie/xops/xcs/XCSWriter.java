@@ -31,11 +31,11 @@ class XCSWriter {
 	
 	public void Write(String xcs_filename) throws FileNotFoundException{
 		if(character_data_array==null) {
-			LogFile.WriteError("[XCSWriter-Write] Data is null.");
+			LogFile.WriteWarn("[XCSWriter-Write] Data is null.",true);
 			return;
 		}
 		if(character_data_array.length!=XOPSConstants.CHARACTER_NUM) {
-			LogFile.WriteError("[XCSWriter-Write] Invalid number of data. data_num:"+character_data_array.length);
+			LogFile.WriteWarn("[XCSWriter-Write] Invalid number of data. data_num:"+character_data_array.length,true);
 			return;
 		}
 		
@@ -105,12 +105,10 @@ class XCSWriter {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[XCSWriter-Write] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[XCSWriter-Write] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
+			return;
 		}
 		finally {
 			try {
@@ -118,12 +116,10 @@ class XCSWriter {
 			}
 			catch(IOException e) {
 				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteFatal("[XCSWriter-Write] Below is the stack trace.");
-				LogFile.WriteLine(str);
+				LogFile.WriteWarn("[XCSWriter-Write] Below is the stack trace.",true);
+				LogFile.WriteWarn(str,false);
 				
-				LogFile.CloseLogFile();
-				
-				System.exit(1);
+				return;
 			}
 		}
 	}

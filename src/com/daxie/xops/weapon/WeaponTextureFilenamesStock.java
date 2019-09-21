@@ -51,14 +51,14 @@ public class WeaponTextureFilenamesStock {
 		WeaponTextureType texture_type=WeaponTextureType.NONE;
 		
 		if(texture_filenames_map.size()!=XOPSConstants.WEAPON_TEXTURE_NUM) {
-			LogFile.WriteError("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]");
-			LogFile.WriteLine("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.");
+			LogFile.WriteWarn("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]",true);
+			LogFile.WriteWarn("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.",false);
 			
 			return texture_type;
 		}
 		if(texture_filenames_map.containsValue(texture_filename)==false) {
-			LogFile.WriteError("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]");
-			LogFile.WriteLine("No such filename in the map. filename:"+texture_filename);
+			LogFile.WriteWarn("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]",true);
+			LogFile.WriteWarn("No such filename in the map. filename:"+texture_filename,false);
 			
 			return texture_type;
 		}

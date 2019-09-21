@@ -41,7 +41,7 @@ public class IDSManipulator {
 	 */
 	public void SetWeaponData(WeaponData weapon_data) {
 		if(weapon_data==null) {
-			LogFile.WriteError("[IDSManipulator-SetWeaponData] Null argument where non-null required.");
+			LogFile.WriteWarn("[IDSManipulator-SetWeaponData] Null argument where non-null required.",true);
 			return;
 		}
 		this.weapon_data=weapon_data;
@@ -60,10 +60,9 @@ public class IDSManipulator {
 		catch(FileNotFoundException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteError("[IDSManipulator-Write] Failed to write data.");
-			
-			LogFile.WriteLine("Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[IDSManipulator-Write] Failed to write data.",true);
+			LogFile.WriteWarn("Below is the stack trace.",false);
+			LogFile.WriteWarn(str,false);
 			
 			return -1;
 		}

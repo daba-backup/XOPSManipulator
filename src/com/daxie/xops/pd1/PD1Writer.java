@@ -26,7 +26,7 @@ class PD1Writer {
 	
 	public void Write(String pd1_filename) throws FileNotFoundException{
 		if(points==null) {
-			LogFile.WriteError("[PD1Writer-Write] Data is null.");
+			LogFile.WriteWarn("[PD1Writer-Write] Data is null.",true);
 			return;
 		}
 		
@@ -76,12 +76,10 @@ class PD1Writer {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteFatal("[PD1Writer-Write] Below is the stack trace.");
-			LogFile.WriteLine(str);
+			LogFile.WriteWarn("[PD1Writer-Write] Below is the stack trace.",true);
+			LogFile.WriteWarn(str,false);
 			
-			LogFile.CloseLogFile();
-			
-			System.exit(1);
+			return;
 		}
 		finally {
 			try {
@@ -89,12 +87,10 @@ class PD1Writer {
 			}
 			catch(IOException e) {
 				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteFatal("[PD1Writer-Write] Below is the stack trace.");
-				LogFile.WriteLine(str);
+				LogFile.WriteWarn("[PD1Writer-Write] Below is the stack trace.",true);
+				LogFile.WriteWarn(str,false);
 				
-				LogFile.CloseLogFile();
-				
-				System.exit(1);
+				return;
 			}
 		}
 	}
