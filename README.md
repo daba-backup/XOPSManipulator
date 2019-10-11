@@ -38,9 +38,13 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 <dependency>
 	<groupId>com.github.dabasan</groupId>
 	<artifactId>xopsmanipulator</artifactId>
-	<version>4.1.0</version>
+	<version>5.0.0</version>
 </dependency>
 ```
+
+最近deployに失敗し続けているので、バージョン5.0.0はまだMaven Central Repositoryにアップロードできていません。
+
+しばらくしてからもう一度試してみます。
 
 ### Javaプロジェクト
 

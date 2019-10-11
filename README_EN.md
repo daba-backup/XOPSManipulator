@@ -38,9 +38,13 @@ Add the following lines to pom.xml in your project.
 <dependency>
 	<groupId>com.github.dabasan</groupId>
 	<artifactId>xopsmanipulator</artifactId>
-	<version>4.1.0</version>
+	<version>5.0.0</version>
 </dependency>
 ```
+
+Version 5.0.0 has not been promoted yet due to continual errors in Maven deploy.
+
+I'm going to try again some time later.
 
 ### Java project
 
