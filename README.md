@@ -42,10 +42,6 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 </dependency>
 ```
 
-最近deployに失敗し続けているので、バージョン5.0.0はまだMaven Central Repositoryにアップロードできていません。
-
-しばらくしてからもう一度試してみます。
-
 ### Javaプロジェクト
 
 必要なJARファイルをビルドパスに設定してください。

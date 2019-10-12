@@ -42,10 +42,6 @@ Add the following lines to pom.xml in your project.
 </dependency>
 ```
 
-Version 5.0.0 has not been promoted yet due to continual errors in Maven deploy.
-
-I'm going to try again some time later.
-
 ### Java project
 
 Set the required JARs to the build path.  
