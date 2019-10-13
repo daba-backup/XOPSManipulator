@@ -5,7 +5,7 @@
 
 	<groupId>com.github.dabasan</groupId>
 	<artifactId>xopsmanipulator</artifactId>
-	<version>5.0.0</version>
+	<version>5.0.1</version>
 
 	<name>XOPSManipulator</name>
 	<description>XOPSManipulator is a Java library that offers several functions to manipulate matters relating to X operations.</description>
@@ -127,7 +127,7 @@
 		<dependency>
 			<groupId>com.github.dabasan</groupId>
 			<artifactId>dhtool</artifactId>
-			<version>1.2.0</version>
+			<version>1.2.1</version>
 		</dependency>
 	</dependencies>
 </project>
