@@ -58,6 +58,6 @@ XOPSManipulatorはMITライセンスの下に公開されています。
   OpenXOPSの公式サイト
 - [XOPSアドオン倉庫](https://sites.google.com/site/xopsaddonwarehouse/home)
   作者(駄場)のウェブサイト
-- [Twitter](https://twitter.com/Daxie_tksm6)
-  作者のTwitterアカウント
+  
+  
 

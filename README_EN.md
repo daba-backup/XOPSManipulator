@@ -58,6 +58,6 @@ XOPSManipulator is released under the MIT license. See LICENSE for further infor
   Official website of OpenXOPS
 - [XOPSアドオン倉庫](https://sites.google.com/site/xopsaddonwarehouse/home)
   The author (Daba)'s website
-- [Twitter](https://twitter.com/Daxie_tksm6)
-  The author's Twitter account
+  
+  
 
