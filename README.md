@@ -46,9 +46,17 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 
 必要なJARファイルをビルドパスに設定してください。
 
+## 依存
+
+- [Obj](https://github.com/javagl/Obj)
+
 ## ライセンス
 
 XOPSManipulatorはMITライセンスの下に公開されています。
+
+### 依存
+
+- [Obj](https://github.com/javagl/Obj/blob/master/LICENSE.txt)
 
 # 外部リンク
 
