@@ -8,7 +8,7 @@
 	<version>5.1.0-SNAPSHOT</version>
 
 	<name>XOPSManipulator</name>
-	<description>XOPSManipulator is a Java library that offers several functions to manipulate matters relating to X operations.</description>
+	<description>XOPSManipulator is a Java library that provides several functions to manipulate X operations.</description>
 	<url>https://github.com/Dabasan/XOPSManipulator</url>
 
 	<licenses>
