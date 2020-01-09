@@ -38,10 +38,6 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 </dependency>
 ```
 
-### Javaプロジェクト
-
-必要なJARファイルをビルドパスに設定してください。
-
 ## サンプル
 
 サンプルは[XOPSManipulatorSamples](https://github.com/Dabasan/XOPSManipulatorSamples)を参照してください。
