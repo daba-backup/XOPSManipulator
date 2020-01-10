@@ -5,7 +5,7 @@ import com.daxie.xops.character.CharacterAILevel;
 import com.daxie.xops.character.CharacterTextureType;
 
 /**
- * Offers methods to convert values that depend on XOPS and OpenXOPS.
+ * Provides methods to convert values that depend on XOPS and OpenXOPS.
  * @author Daba
  *
  */

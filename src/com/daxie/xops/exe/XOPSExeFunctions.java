@@ -7,7 +7,7 @@ import com.daxie.tool.FileFunctions;
 import com.daxie.xops.XOPSConstants;
 
 /**
- * Offers methods to handle execution files (X operations).
+ * Provides methods to handle execution files (X operations).
  * @author Daba
  *
  */

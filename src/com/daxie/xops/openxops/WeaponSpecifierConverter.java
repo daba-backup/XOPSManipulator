@@ -1,7 +1,7 @@
 package com.daxie.xops.openxops;
 
 /**
- * Offers methods to convert values that depend on XOPS and OpenXOPS.
+ * Provides methods to convert values that depend on XOPS and OpenXOPS.
  * @author Daba
  *
  */
