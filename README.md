@@ -1,6 +1,6 @@
 # XOPSManipulator
 
-XOPSManipulatorはX operationsに関する事柄を操作するための機能を提供するJavaライブラリです。
+XOPSManipulatorはX operationsに関する事柄を操作するためのJavaライブラリです。
 
 # X operationsについて
 
