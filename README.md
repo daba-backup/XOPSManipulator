@@ -19,28 +19,58 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 - XOPSに関するデータのXML入力および出力
 - OpenXOPSのソースコードに対する武器情報・キャラクター情報の解析と出力
 
-## 依存
-
-- [Obj](https://github.com/javagl/Obj)
-  Wavefront OBJファイルを出力するために使用しています。
-
 ## インストール
 
 ### Mavenプロジェクト
 
-プロジェクトのpom.xmlに以下の行を追加してください。
+#### BD1モジュール
 
 ```xml
 <dependency>
 	<groupId>com.github.dabasan</groupId>
-	<artifactId>xopsmanipulator</artifactId>
-	<version>5.0.2</version>
+	<artifactId>xopsmanipulator-bd1</artifactId>
+	<version>6.0.0</version>
+</dependency>
+```
+
+#### PD1モジュール
+
+```xml
+<dependency>
+	<groupId>com.github.dabasan</groupId>
+	<artifactId>xopsmanipulator-pd1</artifactId>
+	<version>6.0.0</version>
+</dependency>
+```
+
+#### MIFモジュール
+
+```xml
+<dependency>
+	<groupId>com.github.dabasan</groupId>
+	<artifactId>xopsmanipulator-mif</artifactId>
+	<version>6.0.0</version>
+</dependency>
+```
+
+#### Propertiesモジュール(武器情報の操作など)
+
+```xml
+<dependency>
+	<groupId>com.github.dabasan</groupId>
+	<artifactId>xopsmanipulator-properties</artifactId>
+	<version>6.0.0</version>
 </dependency>
 ```
 
 ## サンプル
 
 サンプルは[XOPSManipulatorSamples](https://github.com/Dabasan/XOPSManipulatorSamples)を参照してください。
+
+## 依存
+
+- [Obj](https://github.com/javagl/Obj)
+  Wavefront OBJファイルを出力するために使用しています。
 
 ## ライセンス
 
@@ -58,6 +88,4 @@ XOPSManipulatorはMITライセンスの下に公開されています。
   OpenXOPSの公式サイト
 - [XOPSアドオン倉庫](https://sites.google.com/site/xopsaddonwarehouse/home)
   作者(駄場)のウェブサイト
-  
-  
 
