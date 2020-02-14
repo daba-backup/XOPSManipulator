@@ -1,6 +1,5 @@
 package com.daxie.xops.properties.xms.xcs;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.daxie.log.LogFile;
@@ -64,7 +63,7 @@ public class XCSManipulator {
 		try {
 			xcs_writer.Write(xcs_filename);
 		}
-		catch(FileNotFoundException e) {
+		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
 			LogFile.WriteWarn("[XCSManipulator-Write] Failed to write data.",true);

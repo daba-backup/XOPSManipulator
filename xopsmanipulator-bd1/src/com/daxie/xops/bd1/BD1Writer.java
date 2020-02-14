@@ -2,7 +2,6 @@ package com.daxie.xops.bd1;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +27,7 @@ class BD1Writer {
 		this.texture_filenames_map=texture_filenames_map;
 	}
 	
-	public void Write(String bd1_filename) throws FileNotFoundException{
+	public void Write(String bd1_filename) throws IOException{
 		if(blocks==null||texture_filenames_map==null) {
 			LogFile.WriteWarn("[BD1Writer-Write] Data is null.",true);
 			return;

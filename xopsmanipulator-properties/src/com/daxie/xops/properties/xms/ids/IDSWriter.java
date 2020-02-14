@@ -2,7 +2,6 @@ package com.daxie.xops.properties.xms.ids;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -31,7 +30,7 @@ class IDSWriter {
 		this.weapon_data=weapon_data;
 	}
 	
-	public void Write(String ids_filename) throws FileNotFoundException{
+	public void Write(String ids_filename) throws IOException{
 		if(weapon_data==null) {
 			LogFile.WriteWarn("[IDSWriter-Write] Data is null.",true);
 			return;

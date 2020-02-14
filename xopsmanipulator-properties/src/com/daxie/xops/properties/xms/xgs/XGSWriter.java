@@ -2,7 +2,6 @@ package com.daxie.xops.properties.xms.xgs;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -32,7 +31,7 @@ class XGSWriter {
 		this.weapon_data_array=weapon_data_array;
 	}
 	
-	public void Write(String xgs_filename) throws FileNotFoundException{
+	public void Write(String xgs_filename) throws IOException{
 		if(weapon_data_array==null) {
 			LogFile.WriteWarn("[XGSWriter-Write] Data is null.",true);
 			return;

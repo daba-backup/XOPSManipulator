@@ -1,6 +1,5 @@
 package com.daxie.xops.properties.xms.xgs;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.daxie.log.LogFile;
@@ -65,7 +64,7 @@ public class XGSManipulator {
 		try {
 			xgs_writer.Write(xgs_filename);
 		}
-		catch(FileNotFoundException e) {
+		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
 			LogFile.WriteWarn("[XGSManipulator-Write] Failed to write data.",true);

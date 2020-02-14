@@ -1,6 +1,5 @@
 package com.daxie.xops.mif;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -33,7 +32,7 @@ public class MIFManipulator {
 		return new MissionInfo(mission_info);
 	}
 	
-	public void Write(String mif_filename,String encoding) throws FileNotFoundException,UnsupportedEncodingException{
+	public void Write(String mif_filename,String encoding) throws IOException,UnsupportedEncodingException{
 		MIFWriter mif_writer=new MIFWriter(mission_info);
 		mif_writer.Write(mif_filename, encoding);
 	}

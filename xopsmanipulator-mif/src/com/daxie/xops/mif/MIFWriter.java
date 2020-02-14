@@ -1,7 +1,6 @@
 package com.daxie.xops.mif;
 
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -23,7 +22,7 @@ class MIFWriter {
 		this.mission_info=mission_info;
 	}
 	
-	public void Write(String mif_filename,String encoding) throws FileNotFoundException,UnsupportedEncodingException{
+	public void Write(String mif_filename,String encoding) throws IOException,UnsupportedEncodingException{
 		if(mission_info==null) {
 			LogFile.WriteWarn("[MIFWriter-Write] Data is null.",true);
 			return;

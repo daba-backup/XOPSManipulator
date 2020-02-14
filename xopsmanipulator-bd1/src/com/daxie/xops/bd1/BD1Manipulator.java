@@ -1,6 +1,5 @@
 package com.daxie.xops.bd1;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -260,7 +259,7 @@ public class BD1Manipulator {
 		try {
 			bd1_writer.Write(bd1_filename);
 		}
-		catch(FileNotFoundException e) {
+		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
 			LogFile.WriteWarn("[BD1Manipulator-Write] Failed to write data.",true);

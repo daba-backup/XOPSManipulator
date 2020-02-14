@@ -1,6 +1,5 @@
 package com.daxie.xops.pd1;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,7 +174,7 @@ public class PD1Manipulator {
 		try {
 			pd1_writer.Write(pd1_filename);
 		}
-		catch(FileNotFoundException e) {
+		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
 			LogFile.WriteWarn("[PD1Manipulator-Write] Failed to write data.",true);

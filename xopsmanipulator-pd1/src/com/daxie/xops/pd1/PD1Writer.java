@@ -2,7 +2,6 @@ package com.daxie.xops.pd1;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +23,7 @@ class PD1Writer {
 		this.points=points;
 	}
 	
-	public void Write(String pd1_filename) throws FileNotFoundException{
+	public void Write(String pd1_filename) throws IOException{
 		if(points==null) {
 			LogFile.WriteWarn("[PD1Writer-Write] Data is null.",true);
 			return;

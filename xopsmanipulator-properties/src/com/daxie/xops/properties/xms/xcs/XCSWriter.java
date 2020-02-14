@@ -2,7 +2,6 @@ package com.daxie.xops.properties.xms.xcs;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -29,7 +28,7 @@ class XCSWriter {
 		this.character_data_array=character_data_array;
 	}
 	
-	public void Write(String xcs_filename) throws FileNotFoundException{
+	public void Write(String xcs_filename) throws IOException{
 		if(character_data_array==null) {
 			LogFile.WriteWarn("[XCSWriter-Write] Data is null.",true);
 			return;
