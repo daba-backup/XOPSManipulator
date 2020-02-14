@@ -1,6 +1,6 @@
 package com.daxie.xops.properties.xms.ids;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
@@ -24,7 +24,7 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
 class IDSParser {
 	private WeaponData weapon_data=null;
 	
-	public IDSParser(String ids_filename) throws FileNotFoundException{
+	public IDSParser(String ids_filename) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(ids_filename);
 		weapon_data=new WeaponData();
 		

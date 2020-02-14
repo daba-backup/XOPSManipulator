@@ -1,6 +1,7 @@
 package com.daxie.xops.properties.xms.xcs;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
@@ -17,9 +18,9 @@ public class XCSManipulator {
 	/**
 	 * 
 	 * @param xcs_filename XCS filename to load
-	 * @throws FileNotFoundException XCS file not found
+	 * @throws IOException
 	 */
-	public XCSManipulator(String xcs_filename) throws FileNotFoundException{
+	public XCSManipulator(String xcs_filename) throws IOException{
 		XCSParser xcs_parser=new XCSParser(xcs_filename);
 		character_data_array=xcs_parser.GetCharacterDataArray();
 	}

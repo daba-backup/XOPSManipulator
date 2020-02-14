@@ -1,6 +1,7 @@
 package com.daxie.xops.properties.xms.ids;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
@@ -17,9 +18,9 @@ public class IDSManipulator {
 	/**
 	 * 
 	 * @param ids_filename IDS filename to load
-	 * @throws FileNotFoundException IDS file not found
+	 * @throws IOException
 	 */
-	public IDSManipulator(String ids_filename) throws FileNotFoundException{
+	public IDSManipulator(String ids_filename) throws IOException{
 		IDSParser ids_parser=new IDSParser(ids_filename);
 		weapon_data=ids_parser.GetWeaponData();
 	}

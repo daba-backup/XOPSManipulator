@@ -1,6 +1,6 @@
 package com.daxie.xops.properties.xms.xcs;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import com.daxie.log.LogFile;
@@ -22,7 +22,7 @@ import com.daxie.xops.properties.entity.character.CharacterType;
 class XCSParser {
 	private CharacterData[] character_data_array=null;
 	
-	public XCSParser(String xcs_filename) throws FileNotFoundException{
+	public XCSParser(String xcs_filename) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xcs_filename);
 		
 		if(bin.size()!=614) {

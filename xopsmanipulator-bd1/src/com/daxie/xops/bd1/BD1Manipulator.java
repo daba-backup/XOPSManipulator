@@ -1,6 +1,7 @@
 package com.daxie.xops.bd1;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +25,9 @@ public class BD1Manipulator {
 	
 	/**
 	 * @param bd1_filename BD1 filename to load
-	 * @throws FileNotFoundException BD1 file not found
+	 * @throws IOException
 	 */
-	public BD1Manipulator(String bd1_filename) throws FileNotFoundException{
+	public BD1Manipulator(String bd1_filename) throws IOException{
 		BD1Parser bd1_parser=new BD1Parser(bd1_filename);
 		
 		blocks=bd1_parser.GetBlocks();

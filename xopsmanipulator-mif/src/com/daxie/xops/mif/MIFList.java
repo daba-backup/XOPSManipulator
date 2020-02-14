@@ -1,8 +1,8 @@
 package com.daxie.xops.mif;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -124,7 +124,7 @@ public class MIFList {
 			try {
 				mif_manipulator=new MIFManipulator(file.getPath(), encoding);
 			}
-			catch(FileNotFoundException e) {
+			catch(IOException e) {
 				LogFile.WriteWarn("[MIFList-<init>] Failed to load a MIF file. filename:"+file.getPath(),true);		
 				return;
 			}
@@ -410,17 +410,13 @@ public class MIFList {
 		try {
 			FileFunctions.CreateTextFile(csv_filename, "UTF-8",lines);
 		}
-		catch(FileNotFoundException e) {
+		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
 			LogFile.WriteWarn("[MIFList-WriteCSV] Failed to write in a file.",true);
 			LogFile.WriteWarn("Below is the stack trace.", false);
 			LogFile.WriteWarn(str,false);
 			
-			return -1;
-		}
-		catch(UnsupportedEncodingException e) {
-			LogFile.WriteWarn("[MIFList-WriteCSV] Unsupported encoding specified.",true);
 			return -1;
 		}
 		

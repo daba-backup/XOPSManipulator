@@ -29,13 +29,9 @@ class MIFWriter {
 			return;
 		}
 		
-		BufferedWriter br=null;
-		br=new BufferedWriter(
-				new OutputStreamWriter(
-						new FileOutputStream(mif_filename),encoding));
-		
 		String windows_separator="\r\n";
-		try {
+		
+		try(BufferedWriter br=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mif_filename),encoding))){
 			br.write(mission_info.GetMissionName()+windows_separator);
 			br.write(mission_info.GetMissionFormalName()+windows_separator);
 			br.write(mission_info.GetBD1Filename()+windows_separator);
@@ -71,19 +67,6 @@ class MIFWriter {
 			LogFile.WriteWarn(str,false);
 			
 			return;
-		}
-		finally {
-			try {
-				br.close();
-			}
-			catch(IOException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				
-				LogFile.WriteWarn("[MIFWriter-Write] Below is the stack trace.",true);
-				LogFile.WriteWarn(str,false);
-				
-				return;
-			}
 		}
 	}
 }

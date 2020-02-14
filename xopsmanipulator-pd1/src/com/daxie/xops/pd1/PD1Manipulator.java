@@ -1,6 +1,7 @@
 package com.daxie.xops.pd1;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class PD1Manipulator {
 	/**
 	 * 
 	 * @param pd1_filename PD1 filename to load
-	 * @throws FileNotFoundException PD1 file not found
+	 * @throws IOException
 	 */
-	public PD1Manipulator(String pd1_filename) throws FileNotFoundException{
+	public PD1Manipulator(String pd1_filename) throws IOException{
 		PD1Parser pd1_parser=new PD1Parser(pd1_filename);
 		points=pd1_parser.GetPoints();
 	}

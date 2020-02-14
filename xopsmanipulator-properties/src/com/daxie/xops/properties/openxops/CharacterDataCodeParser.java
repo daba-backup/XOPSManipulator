@@ -1,7 +1,6 @@
 package com.daxie.xops.properties.openxops;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,11 +42,9 @@ public class CharacterDataCodeParser {
 	 * Parses the code after loading it from a file.
 	 * @param code_filename Filename of the code
 	 * @param encoding Encoding
-	 * @throws FileNotFoundException Specified file not found
-	 * @throws UnsupportedEncodingException Specified encoding not supported
+	 * @throws IOException
 	 */
-	public CharacterDataCodeParser(String code_filename,String encoding) 
-			throws FileNotFoundException,UnsupportedEncodingException{
+	public CharacterDataCodeParser(String code_filename,String encoding) throws IOException{
 		character_data_map=new HashMap<>();
 		
 		List<String> lines=FileFunctions.GetFileAllLines(code_filename, encoding);

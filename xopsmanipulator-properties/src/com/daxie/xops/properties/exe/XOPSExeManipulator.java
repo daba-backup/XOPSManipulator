@@ -1,6 +1,6 @@
 package com.daxie.xops.properties.exe;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import com.daxie.log.LogFile;
@@ -24,9 +24,9 @@ public class XOPSExeManipulator {
 	/**
 	 * 
 	 * @param xops_filename EXE filename to load
-	 * @throws FileNotFoundException EXE file not found
+	 * @throws IOException
 	 */
-	public XOPSExeManipulator(String xops_filename) throws FileNotFoundException{
+	public XOPSExeManipulator(String xops_filename) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
 		XOPSVersion version=XOPSExeFunctions.GetXOPSVersion(bin);
 		
@@ -94,7 +94,7 @@ public class XOPSExeManipulator {
 		character_data_array=character_data_parser.GetCharacterDataArray();
 	}
 	public XOPSExeManipulator(String xops_filename,
-			int weapon_data_start_pos,int weapon_name_start_pos,int character_data_start_pos) throws FileNotFoundException{
+			int weapon_data_start_pos,int weapon_name_start_pos,int character_data_start_pos) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
 		
 		XOPSExeWeaponDataParser weapon_data_parser=null;
@@ -175,9 +175,9 @@ public class XOPSExeManipulator {
 	 * Writes out data to an EXE file.
 	 * @param xops_filename Filename of the file where data will be overwritten
 	 * @param create_backup_flag Flag to set whether to create a backup file
-	 * @throws FileNotFoundException File to overwrite not found
+	 * @throws IOException
 	 */
-	public void Write(String xops_filename,boolean create_backup_flag) throws FileNotFoundException{
+	public void Write(String xops_filename,boolean create_backup_flag) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
 		
 		//Create a backup.
@@ -250,10 +250,10 @@ public class XOPSExeManipulator {
 	 * @param weapon_name_start_pos Start address of weapon name
 	 * @param character_data_start_pos Start address of character data
 	 * @param create_backup_flag Flag to set whether to create a backup file
-	 * @throws FileNotFoundException File to overwrite not found
+	 * @throws IOException
 	 */
 	public void Write(String xops_filename,int weapon_data_start_pos,int weapon_name_start_pos,
-			int character_data_start_pos,boolean create_backup_flag) throws FileNotFoundException{
+			int character_data_start_pos,boolean create_backup_flag) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
 		
 		//Create a backup.

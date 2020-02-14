@@ -1,6 +1,7 @@
 package com.daxie.xops.properties.xms.xgs;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import com.daxie.log.LogFile;
 import com.daxie.tool.ExceptionFunctions;
@@ -17,9 +18,9 @@ public class XGSManipulator {
 	/**
 	 * 
 	 * @param xgs_filename XGS filename to load
-	 * @throws FileNotFoundException XGS file not found
+	 * @throws IOException
 	 */
-	public XGSManipulator(String xgs_filename) throws FileNotFoundException {
+	public XGSManipulator(String xgs_filename) throws IOException {
 		XGSParser xgs_parser=new XGSParser(xgs_filename);
 		weapon_data_array=xgs_parser.GetWeaponDataArray();
 	}

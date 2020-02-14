@@ -1,6 +1,6 @@
 package com.daxie.xops.pd1;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +15,7 @@ import com.daxie.tool.FileFunctions;
 class PD1Parser {
 	private List<PD1Point> points;
 	
-	public PD1Parser(String pd1_filename) throws FileNotFoundException{
+	public PD1Parser(String pd1_filename) throws IOException{
 		points=new ArrayList<>();		
 		List<Byte> bin=FileFunctions.GetFileAllBin(pd1_filename);
 		

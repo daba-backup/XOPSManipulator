@@ -1,6 +1,7 @@
 package com.daxie.xops.mif;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import com.daxie.log.LogFile;
@@ -13,8 +14,7 @@ import com.daxie.log.LogFile;
 public class MIFManipulator {
 	private MissionInfo mission_info;
 	
-	public MIFManipulator(String mif_filename,String encoding) 
-			throws FileNotFoundException,UnsupportedEncodingException,NumberFormatException {
+	public MIFManipulator(String mif_filename,String encoding) throws IOException{
 		MIFParser mif_parser=new MIFParser(mif_filename, encoding);
 		mission_info=mif_parser.GetMissionInfo();
 	}

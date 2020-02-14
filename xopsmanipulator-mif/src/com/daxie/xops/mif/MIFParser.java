@@ -1,7 +1,6 @@
 package com.daxie.xops.mif;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.util.List;
 
 import com.daxie.log.LogFile;
@@ -15,8 +14,7 @@ import com.daxie.tool.FileFunctions;
 class MIFParser {
 	private MissionInfo mission_info;
 	
-	public MIFParser(String mif_filename,String encoding) 
-			throws FileNotFoundException,UnsupportedEncodingException,NumberFormatException{
+	public MIFParser(String mif_filename,String encoding) throws IOException{
 		mission_info=new MissionInfo();
 		
 		List<String> lines=FileFunctions.GetFileAllLines(mif_filename,encoding);

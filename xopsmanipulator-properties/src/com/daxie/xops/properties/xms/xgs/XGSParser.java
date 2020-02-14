@@ -1,6 +1,6 @@
 package com.daxie.xops.properties.xms.xgs;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
@@ -25,7 +25,7 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
 class XGSParser {
 	private WeaponData[] weapon_data_array=null;
 	
-	public XGSParser(String xgs_filename) throws FileNotFoundException{
+	public XGSParser(String xgs_filename) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xgs_filename);
 		
 		if(bin.size()!=1732) {

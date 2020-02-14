@@ -1,6 +1,6 @@
 package com.daxie.xops.properties.exe;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import com.daxie.tool.FileFunctions;
@@ -16,9 +16,9 @@ public class XOPSExeFunctions {
 	 * Returns the version of XOPS.
 	 * @param xops_filename Filename to load
 	 * @return Version of XOPS
-	 * @throws FileNotFoundException Specified file not found
+	 * @throws IOException
 	 */
-	public static XOPSVersion GetXOPSVersion(String xops_filename) throws FileNotFoundException{
+	public static XOPSVersion GetXOPSVersion(String xops_filename) throws IOException{
 		XOPSVersion version=XOPSVersion.UNKNOWN_VERSION;
 		
 		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
