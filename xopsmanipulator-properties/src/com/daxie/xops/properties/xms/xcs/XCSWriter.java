@@ -39,12 +39,7 @@ class XCSWriter {
 			return;
 		}
 		
-		DataOutputStream dos;
-		dos=new DataOutputStream(
-				new BufferedOutputStream(
-						new FileOutputStream(xcs_filename)));
-		
-		try {
+		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(xcs_filename)))){
 			dos.write(0x58);//X
 			dos.write(0x43);//C
 			dos.write(0x53);//S
@@ -109,18 +104,6 @@ class XCSWriter {
 			LogFile.WriteWarn(str,false);
 			
 			return;
-		}
-		finally {
-			try {
-				dos.close();
-			}
-			catch(IOException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteWarn("[XCSWriter-Write] Below is the stack trace.",true);
-				LogFile.WriteWarn(str,false);
-				
-				return;
-			}
 		}
 	}
 }

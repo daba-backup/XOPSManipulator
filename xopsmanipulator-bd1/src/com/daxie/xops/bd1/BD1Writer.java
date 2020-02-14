@@ -34,12 +34,7 @@ class BD1Writer {
 			return;
 		}
 		
-		DataOutputStream dos;
-		dos=new DataOutputStream(
-				new BufferedOutputStream(
-						new FileOutputStream(bd1_filename)));
-		
-		try {
+		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(bd1_filename)))) {
 			//Texture filenames
 			Map<Integer, String> sorted_texture_filenames_map=new TreeMap<>(texture_filenames_map);
 			
@@ -131,18 +126,6 @@ class BD1Writer {
 			LogFile.WriteWarn(str,false);
 			
 			return;
-		}
-		finally {
-			try {
-				dos.close();
-			}
-			catch(IOException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteWarn("[BD1Writer-Write] Below is the stack trace.",true);
-				LogFile.WriteWarn(str,false);
-				
-				return;
-			}
 		}
 	}	
 }

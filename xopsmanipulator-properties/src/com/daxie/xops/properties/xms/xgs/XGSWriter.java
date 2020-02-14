@@ -42,12 +42,7 @@ class XGSWriter {
 			return;
 		}
 		
-		DataOutputStream dos;
-		dos=new DataOutputStream(
-				new BufferedOutputStream(
-						new FileOutputStream(xgs_filename)));
-		
-		try {
+		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(xgs_filename)))){
 			dos.writeByte(0x58);//X
 			dos.writeByte(0x47);//G
 			dos.writeByte(0x53);//S
@@ -251,18 +246,6 @@ class XGSWriter {
 			LogFile.WriteWarn(str,false);
 			
 			return;
-		}
-		finally {
-			try {
-				dos.close();
-			}
-			catch(IOException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteWarn("[XGSWriter-Write] Below is the stack trace.",true);
-				LogFile.WriteWarn(str,false);
-				
-				return;
-			}
 		}
 	}
 }

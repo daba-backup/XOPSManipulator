@@ -30,12 +30,7 @@ class PD1Writer {
 			return;
 		}
 		
-		DataOutputStream dos;
-		dos=new DataOutputStream(
-				new BufferedOutputStream(
-						new FileOutputStream(pd1_filename)));
-		
-		try {
+		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(pd1_filename)))){
 			//Number of points
 			int point_num=points.size();
 			
@@ -80,18 +75,6 @@ class PD1Writer {
 			LogFile.WriteWarn(str,false);
 			
 			return;
-		}
-		finally {
-			try {
-				dos.close();
-			}
-			catch(IOException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteWarn("[PD1Writer-Write] Below is the stack trace.",true);
-				LogFile.WriteWarn(str,false);
-				
-				return;
-			}
 		}
 	}
 }

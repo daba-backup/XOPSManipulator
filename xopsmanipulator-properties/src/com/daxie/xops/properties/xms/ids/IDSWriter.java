@@ -37,12 +37,7 @@ class IDSWriter {
 			return;
 		}
 		
-		DataOutputStream dos;
-		dos=new DataOutputStream(
-				new BufferedOutputStream(
-						new FileOutputStream(ids_filename)));
-		
-		try {
+		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(ids_filename)))){
 			dos.writeByte(0x49);//I
 			dos.writeByte(0x44);//D
 			dos.writeByte(0x53);//S
@@ -234,18 +229,6 @@ class IDSWriter {
 			LogFile.WriteWarn(str,false);
 			
 			return;
-		}
-		finally {
-			try {
-				dos.close();
-			}
-			catch(IOException e) {
-				String str=ExceptionFunctions.GetPrintStackTraceString(e);
-				LogFile.WriteWarn("[IDSWriter-Write] Below is the stack trace.",true);
-				LogFile.WriteWarn(str,false);
-				
-				return;
-			}
 		}
 	}
 }
