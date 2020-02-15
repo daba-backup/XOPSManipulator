@@ -2,7 +2,7 @@ package com.daxie.xops.properties.xms.xgs;
 
 import java.io.IOException;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
 
@@ -48,7 +48,7 @@ public class XGSManipulator {
 	 */
 	public void SetWeaponDataArray(WeaponData[] weapon_data_array) {
 		if(weapon_data_array==null) {
-			LogFile.WriteWarn("[XGSManipulator-SetWeaponDataArray] Null argument where non-null required.",true);
+			LogWriter.WriteWarn("[XGSManipulator-SetWeaponDataArray] Null argument where non-null required.",true);
 			return;
 		}
 		this.weapon_data_array=weapon_data_array;
@@ -67,9 +67,9 @@ public class XGSManipulator {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[XGSManipulator-Write] Failed to write data.",true);
-			LogFile.WriteWarn("Below is the stack trace.",false);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[XGSManipulator-Write] Failed to write data.",true);
+			LogWriter.WriteWarn("Below is the stack trace.",false);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}

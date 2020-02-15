@@ -3,7 +3,7 @@ package com.daxie.xops.mif;
 import java.io.IOException;
 import java.util.List;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.FileFunctions;
 
 /**
@@ -19,7 +19,7 @@ class MIFParser {
 		
 		List<String> lines=FileFunctions.GetFileAllLines(mif_filename,encoding);
 		if(lines.size()<10) {
-			LogFile.WriteWarn("[MIFParser-<init>] Too few lines in the MIF file.",true);
+			LogWriter.WriteWarn("[MIFParser-<init>] Too few lines in the MIF file.",true);
 			return;
 		}
 		

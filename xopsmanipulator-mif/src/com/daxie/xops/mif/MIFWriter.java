@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
@@ -24,7 +24,7 @@ class MIFWriter {
 	
 	public void Write(String mif_filename,String encoding) throws IOException,UnsupportedEncodingException{
 		if(mission_info==null) {
-			LogFile.WriteWarn("[MIFWriter-Write] Data is null.",true);
+			LogWriter.WriteWarn("[MIFWriter-Write] Data is null.",true);
 			return;
 		}
 		
@@ -62,8 +62,8 @@ class MIFWriter {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[MIFWriter-Write] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[MIFWriter-Write] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return;
 		}

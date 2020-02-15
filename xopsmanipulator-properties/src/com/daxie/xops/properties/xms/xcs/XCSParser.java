@@ -3,7 +3,7 @@ package com.daxie.xops.properties.xms.xcs;
 import java.io.IOException;
 import java.util.List;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.FileFunctions;
 import com.daxie.xops.properties.XOPSConstants;
@@ -26,7 +26,7 @@ class XCSParser {
 		List<Byte> bin=FileFunctions.GetFileAllBin(xcs_filename);
 		
 		if(bin.size()!=614) {
-			LogFile.WriteWarn("[XCSParser-<init>] Invalid file size. filename:"+xcs_filename,true);
+			LogWriter.WriteWarn("[XCSParser-<init>] Invalid file size. filename:"+xcs_filename,true);
 			return;
 		}
 		

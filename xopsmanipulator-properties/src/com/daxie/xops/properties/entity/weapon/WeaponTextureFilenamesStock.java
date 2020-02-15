@@ -3,7 +3,7 @@ package com.daxie.xops.properties.entity.weapon;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.xops.properties.XOPSConstants;
 
 public class WeaponTextureFilenamesStock {
@@ -51,14 +51,14 @@ public class WeaponTextureFilenamesStock {
 		WeaponTextureType texture_type=WeaponTextureType.NONE;
 		
 		if(texture_filenames_map.size()!=XOPSConstants.WEAPON_TEXTURE_NUM) {
-			LogFile.WriteWarn("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]",true);
-			LogFile.WriteWarn("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.",false);
+			LogWriter.WriteWarn("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]",true);
+			LogWriter.WriteWarn("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.",false);
 			
 			return texture_type;
 		}
 		if(texture_filenames_map.containsValue(texture_filename)==false) {
-			LogFile.WriteWarn("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]",true);
-			LogFile.WriteWarn("No such filename in the map. filename:"+texture_filename,false);
+			LogWriter.WriteWarn("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]",true);
+			LogWriter.WriteWarn("No such filename in the map. filename:"+texture_filename,false);
 			
 			return texture_type;
 		}

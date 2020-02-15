@@ -14,7 +14,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
 import com.daxie.xops.properties.entity.weapon.WeaponScopeMode;
@@ -54,8 +54,8 @@ public class WeaponDataXMLParser {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -67,8 +67,8 @@ public class WeaponDataXMLParser {
 		catch(Exception e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -96,7 +96,7 @@ public class WeaponDataXMLParser {
 					weapon_id=Integer.parseInt(strtemp);
 				}
 				catch(NumberFormatException e) {
-					LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Invalid format of number. id:"+strtemp,true);
+					LogWriter.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Invalid format of number. id:"+strtemp,true);
 					continue;
 				}
 				
@@ -287,12 +287,12 @@ public class WeaponDataXMLParser {
 						
 						WeaponScopeMode[] values=WeaponScopeMode.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.",true);
+							LogWriter.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.",true);
 							
 							String str="";
 							str+="weapon_id:"+weapon_id+" ";
 							str+="scope_mode:"+itemp;
-							LogFile.WriteLine(str);
+							LogWriter.WriteLine(str);
 							
 							weapon_data.SetScopeMode(WeaponScopeMode.NONE);
 						}
@@ -330,12 +330,12 @@ public class WeaponDataXMLParser {
 						
 						WeaponShootingStance[] values=WeaponShootingStance.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogFile.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.",true);
+							LogWriter.WriteWarn("[WeaponDataXMLParser-LoadWeaponDataXML] Specifier out of bounds.",true);
 							
 							String str="";
 							str+="weapon_id:"+weapon_id+" ";
 							str+="shooting_stance:"+itemp;
-							LogFile.WriteLine(str);
+							LogWriter.WriteLine(str);
 							
 							weapon_data.SetShootingStance(WeaponShootingStance.RIFLE);
 						}

@@ -11,7 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.XMLFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
@@ -45,7 +45,7 @@ public class WeaponDataXMLOutputter {
 	 */
 	public int WriteXML(String xml_filename) {
 		if(weapon_data_list==null) {
-			LogFile.WriteWarn("[WeaponDataXMLOutputter-WriteXML] Data is null.",true);
+			LogWriter.WriteWarn("[WeaponDataXMLOutputter-WriteXML] Data is null.",true);
 			return -1;
 		}
 		
@@ -58,8 +58,8 @@ public class WeaponDataXMLOutputter {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[WeaponDataXMLOutputter-WriteXML] Below is the stack trace.",true);
-			LogFile.WriteWarn(str, false);
+			LogWriter.WriteWarn("[WeaponDataXMLOutputter-WriteXML] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str, false);
 			
 			return -1;
 		}

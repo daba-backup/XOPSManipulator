@@ -1,6 +1,6 @@
 package com.daxie.xops.properties.openxops;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterTextureType;
 
@@ -213,8 +213,8 @@ public class CharacterSpecifierConverter {
 			xops_texture_type=CharacterTextureType.ZOMBIE4;
 			break;
 		default:
-			LogFile.WriteWarn("[CharacterSpecifierConverter-GetXOPSTextureTypeFromOpenXOPSTextureID]",true);
-			LogFile.WriteWarn("Unknown texture ID. texture_id:"+openxops_texture_id,false);
+			LogWriter.WriteWarn("[CharacterSpecifierConverter-GetXOPSTextureTypeFromOpenXOPSTextureID]",true);
+			LogWriter.WriteWarn("Unknown texture ID. texture_id:"+openxops_texture_id,false);
 			
 			xops_texture_type=CharacterTextureType.CIV1;
 			break;

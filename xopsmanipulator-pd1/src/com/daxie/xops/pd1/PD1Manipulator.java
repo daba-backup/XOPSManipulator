@@ -8,7 +8,7 @@ import com.daxie.basis.matrix.Matrix;
 import com.daxie.basis.matrix.MatrixFunctions;
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
@@ -45,7 +45,7 @@ public class PD1Manipulator {
 	 */
 	public void SetPoints(List<PD1Point> points) {
 		if(points==null) {
-			LogFile.WriteWarn("[PD1Manipulator-SetPoints] Null argument where non-null required.",true);
+			LogWriter.WriteWarn("[PD1Manipulator-SetPoints] Null argument where non-null required.",true);
 			return;
 		}
 		this.points=points;
@@ -177,9 +177,9 @@ public class PD1Manipulator {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[PD1Manipulator-Write] Failed to write data.",true);
-			LogFile.WriteWarn("Below is the stack trace.",false);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[PD1Manipulator-Write] Failed to write data.",true);
+			LogWriter.WriteWarn("Below is the stack trace.",false);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}

@@ -10,7 +10,7 @@ import com.daxie.basis.matrix.Matrix;
 import com.daxie.basis.matrix.MatrixFunctions;
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 
 /**
@@ -54,7 +54,7 @@ public class BD1Manipulator {
 	 */
 	public void SetBlocks(List<BD1Block> blocks) {
 		if(blocks==null) {
-			LogFile.WriteWarn("[BD1Manipulator-SetBlocks] Null argument where non-null required.",true);
+			LogWriter.WriteWarn("[BD1Manipulator-SetBlocks] Null argument where non-null required.",true);
 			return;
 		}
 		this.blocks=blocks;
@@ -75,7 +75,7 @@ public class BD1Manipulator {
 	 */
 	public String GetTextureFilename(int texture_id) {
 		if(texture_filenames_map.containsKey(texture_id)==false) {
-			LogFile.WriteWarn("[BD1Manipulator-GetTextureFilename] No such texture filename registered. texture_id:"+texture_id,true);
+			LogWriter.WriteWarn("[BD1Manipulator-GetTextureFilename] No such texture filename registered. texture_id:"+texture_id,true);
 			return "";
 		}
 		
@@ -97,7 +97,7 @@ public class BD1Manipulator {
 	 */
 	public int SetTextureFilename(int texture_id,String texture_filename) {
 		if(!(0<=texture_id&&texture_id<10)) {
-			LogFile.WriteWarn("[BD1Manipulator-SetTextureFilename] Texture ID out of bounds. texture_id:"+texture_id,true);
+			LogWriter.WriteWarn("[BD1Manipulator-SetTextureFilename] Texture ID out of bounds. texture_id:"+texture_id,true);
 			return -1;
 		}
 		
@@ -112,7 +112,7 @@ public class BD1Manipulator {
 	 */
 	public int SetTextureFilenamesMap(Map<Integer, String> texture_filenames_map) {
 		if(texture_filenames_map==null) {
-			LogFile.WriteWarn("[BD1Manipulator-SetTextureFilenamesMap] Null argument where non-null required.",true);
+			LogWriter.WriteWarn("[BD1Manipulator-SetTextureFilenamesMap] Null argument where non-null required.",true);
 			return -1;
 		}
 		this.texture_filenames_map=texture_filenames_map;
@@ -262,9 +262,9 @@ public class BD1Manipulator {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[BD1Manipulator-Write] Failed to write data.",true);
-			LogFile.WriteWarn("Below is the stack trace.",false);
-			LogFile.WriteWarn(str, false);
+			LogWriter.WriteWarn("[BD1Manipulator-Write] Failed to write data.",true);
+			LogWriter.WriteWarn("Below is the stack trace.",false);
+			LogWriter.WriteWarn(str, false);
 			
 			return -1;
 		}
@@ -282,7 +282,7 @@ public class BD1Manipulator {
 		
 		int ret=obj_writer.Write(obj_filename);
 		if(ret<0) {
-			LogFile.WriteWarn("[BD1Manipulator-WriteAsOBJ] Failed to write blocks in an OBJ file.",true);
+			LogWriter.WriteWarn("[BD1Manipulator-WriteAsOBJ] Failed to write blocks in an OBJ file.",true);
 			return -1;
 		}
 		

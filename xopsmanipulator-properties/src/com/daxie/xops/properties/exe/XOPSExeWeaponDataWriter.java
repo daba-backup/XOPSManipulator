@@ -3,7 +3,7 @@ package com.daxie.xops.properties.exe;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.xops.properties.XOPSConstants;
 import com.daxie.xops.properties.entity.weapon.WeaponBinSpecifierAndEnumConverter;
@@ -29,11 +29,11 @@ class XOPSExeWeaponDataWriter {
 	
 	public void Write(List<Byte> bin,int weapon_data_start_pos,int weapon_name_start_pos) {
 		if(weapon_data_array==null) {
-			LogFile.WriteWarn("[XOPSExeWeaponDataWriter-Write] Data is null.",true);
+			LogWriter.WriteWarn("[XOPSExeWeaponDataWriter-Write] Data is null.",true);
 			return;
 		}
 		if(weapon_data_array.length!=XOPSConstants.WEAPON_NUM) {
-			LogFile.WriteWarn("[XOPSExeWeaponDataWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length,true);
+			LogWriter.WriteWarn("[XOPSExeWeaponDataWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length,true);
 			return;
 		}
 		

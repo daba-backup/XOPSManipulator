@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.XOPSConstants;
@@ -33,11 +33,11 @@ class XGSWriter {
 	
 	public void Write(String xgs_filename) throws IOException{
 		if(weapon_data_array==null) {
-			LogFile.WriteWarn("[XGSWriter-Write] Data is null.",true);
+			LogWriter.WriteWarn("[XGSWriter-Write] Data is null.",true);
 			return;
 		}
 		if(weapon_data_array.length!=XOPSConstants.WEAPON_NUM) {
-			LogFile.WriteWarn("[XGSWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length,true);
+			LogWriter.WriteWarn("[XGSWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length,true);
 			return;
 		}
 		
@@ -241,8 +241,8 @@ class XGSWriter {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteWarn("[XGSWriter-Write] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[XGSWriter-Write] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return;
 		}

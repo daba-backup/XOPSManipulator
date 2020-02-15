@@ -3,7 +3,7 @@ package com.daxie.xops.properties.entity.weapon;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.xops.properties.XOPSConstants;
 
 public class WeaponModelFilenamesStock {
@@ -51,14 +51,14 @@ public class WeaponModelFilenamesStock {
 		WeaponModelType model_type=WeaponModelType.NONE;
 		
 		if(model_filenames_map.size()!=XOPSConstants.WEAPON_MODEL_NUM) {
-			LogFile.WriteWarn("[WeaponModelFilenamesStock-GetWeaponModelTypeFromFilename]",true);
-			LogFile.WriteWarn("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.",false);
+			LogWriter.WriteWarn("[WeaponModelFilenamesStock-GetWeaponModelTypeFromFilename]",true);
+			LogWriter.WriteWarn("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.",false);
 			
 			return model_type;
 		}
 		if(model_filenames_map.containsValue(model_filename)==false) {
-			LogFile.WriteWarn("[WeaponModelFilenamesStock-GetWeaponModelTypeFromFilename]",true);
-			LogFile.WriteWarn("No such filename in the map. filename:"+model_filename,false);
+			LogWriter.WriteWarn("[WeaponModelFilenamesStock-GetWeaponModelTypeFromFilename]",true);
+			LogWriter.WriteWarn("No such filename in the map. filename:"+model_filename,false);
 			
 			return model_type;
 		}

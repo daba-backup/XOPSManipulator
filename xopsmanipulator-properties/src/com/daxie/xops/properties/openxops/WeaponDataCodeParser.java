@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.FileFunctions;
 import com.daxie.tool.StringFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
@@ -31,7 +31,7 @@ public class WeaponDataCodeParser {
 		weapon_data_map=new HashMap<>();
 		
 		if(lines==null) {
-			LogFile.WriteWarn("[WeaponDataCodeParser-<init>] Null argument.",true);
+			LogWriter.WriteWarn("[WeaponDataCodeParser-<init>] Null argument.",true);
 			return;
 		}
 		
@@ -57,7 +57,7 @@ public class WeaponDataCodeParser {
 			
 			String[] split_by_equal=line.split("=");
 			if(split_by_equal.length!=2) {
-				LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
+				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
 				continue;
 			}
 			
@@ -65,7 +65,7 @@ public class WeaponDataCodeParser {
 			String[] split_by_dot=left.split(Pattern.quote("."));
 			
 			if(split_by_dot.length!=2) {
-				LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
+				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
 				continue;
 			}
 			
@@ -80,11 +80,11 @@ public class WeaponDataCodeParser {
 				index=Integer.parseInt(index_str);
 			}
 			catch(NumberFormatException e) {
-				LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Invalid index. line:"+i,true);
+				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Invalid index. line:"+i,true);
 				continue;
 			}
 			if(index<0) {
-				LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Index must be a number of 0 or more.",true);
+				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Index must be a number of 0 or more.",true);
 				continue;
 			}
 			
@@ -242,7 +242,7 @@ public class WeaponDataCodeParser {
 					if(value.equals("false"))weapon_data.SetRapidFireEnabledFlag(false);
 					else if(value.equals("true"))weapon_data.SetRapidFireEnabledFlag(true);
 					else {
-						LogFile.WriteWarn("[WeaponDaraCodeParser-ParseLines] Invalid value. line:"+i,true);
+						LogWriter.WriteWarn("[WeaponDaraCodeParser-ParseLines] Invalid value. line:"+i,true);
 						continue;
 					}
 					break;
@@ -251,7 +251,7 @@ public class WeaponDataCodeParser {
 					itemp=Integer.parseInt(value);
 					WeaponScopeMode[] scope_modes=WeaponScopeMode.values();
 					if(!(0<=itemp&&itemp<scope_modes.length)) {
-						LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
+						LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
 						continue;
 					}
 					weapon_data.SetScopeMode(scope_modes[itemp]);
@@ -277,7 +277,7 @@ public class WeaponDataCodeParser {
 					if(value.equals("false"))weapon_data.SetSuppressorEnabledFlag(false);
 					else if(value.equals("true"))weapon_data.SetSuppressorEnabledFlag(true);
 					else {
-						LogFile.WriteWarn("[WeaponDaraCodeParser-ParseLines] Invalid value. line:"+i,true);
+						LogWriter.WriteWarn("[WeaponDaraCodeParser-ParseLines] Invalid value. line:"+i,true);
 						continue;
 					}
 					break;
@@ -286,7 +286,7 @@ public class WeaponDataCodeParser {
 					itemp=Integer.parseInt(value);
 					WeaponShootingStance[] shooting_stances=WeaponShootingStance.values();
 					if(!(0<=itemp&&itemp<shooting_stances.length)) {
-						LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
+						LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
 						continue;
 					}
 					weapon_data.SetShootingStance(shooting_stances[itemp]);
@@ -302,12 +302,12 @@ public class WeaponDataCodeParser {
 					weapon_data.SetNumberOfProjectiles(itemp);
 					break;
 				default:
-					LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Unknown field name. line:"+i,true);
+					LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Unknown field name. line:"+i,true);
 					continue;
 				}
 			}
 			catch(NumberFormatException e) {
-				LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Invalid number format. line:"+i,true);
+				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Invalid number format. line:"+i,true);
 				continue;
 			}
 			

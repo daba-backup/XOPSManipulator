@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.XOPSConstants;
@@ -30,11 +30,11 @@ class XCSWriter {
 	
 	public void Write(String xcs_filename) throws IOException{
 		if(character_data_array==null) {
-			LogFile.WriteWarn("[XCSWriter-Write] Data is null.",true);
+			LogWriter.WriteWarn("[XCSWriter-Write] Data is null.",true);
 			return;
 		}
 		if(character_data_array.length!=XOPSConstants.CHARACTER_NUM) {
-			LogFile.WriteWarn("[XCSWriter-Write] Invalid number of data. data_num:"+character_data_array.length,true);
+			LogWriter.WriteWarn("[XCSWriter-Write] Invalid number of data. data_num:"+character_data_array.length,true);
 			return;
 		}
 		
@@ -99,8 +99,8 @@ class XCSWriter {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteWarn("[XCSWriter-Write] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[XCSWriter-Write] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return;
 		}

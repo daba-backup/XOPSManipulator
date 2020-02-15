@@ -16,7 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.FileFunctions;
 import com.daxie.tool.XMLFunctions;
@@ -101,7 +101,7 @@ public class MIFList {
 		
 		File dir=new File(directory_name);
 		if(dir.isDirectory()==false) {
-			LogFile.WriteWarn("[MIFList-<init>] Not a directory. directory_name:"+directory_name,true);
+			LogWriter.WriteWarn("[MIFList-<init>] Not a directory. directory_name:"+directory_name,true);
 			return;
 		}
 		
@@ -115,7 +115,7 @@ public class MIFList {
 		
 		File[] files=dir.listFiles(filter);
 		if(files==null) {
-			LogFile.WriteWarn("[MIFList-<init>] listFiles() returned null.",true);
+			LogWriter.WriteWarn("[MIFList-<init>] listFiles() returned null.",true);
 			return;
 		}
 		
@@ -125,7 +125,7 @@ public class MIFList {
 				mif_manipulator=new MIFManipulator(file.getPath(), encoding);
 			}
 			catch(IOException e) {
-				LogFile.WriteWarn("[MIFList-<init>] Failed to load a MIF file. filename:"+file.getPath(),true);		
+				LogWriter.WriteWarn("[MIFList-<init>] Failed to load a MIF file. filename:"+file.getPath(),true);		
 				return;
 			}
 			
@@ -212,8 +212,8 @@ public class MIFList {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[MIFList-WriteXML] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[MIFList-WriteXML] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -413,9 +413,9 @@ public class MIFList {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[MIFList-WriteCSV] Failed to write in a file.",true);
-			LogFile.WriteWarn("Below is the stack trace.", false);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[MIFList-WriteCSV] Failed to write in a file.",true);
+			LogWriter.WriteWarn("Below is the stack trace.", false);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}

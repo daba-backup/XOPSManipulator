@@ -2,7 +2,7 @@ package com.daxie.xops.properties.openxops;
 
 import java.util.List;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.StringFunctions;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterData;
@@ -24,7 +24,7 @@ public class CharacterDataCodeOutputter {
 		String ret="";
 		
 		if(character_data_list==null) {
-			LogFile.WriteWarn("[OutputCharacterDataSourceCode-GetCharacterDataSourceCode] Data is null.",true);
+			LogWriter.WriteWarn("[OutputCharacterDataSourceCode-GetCharacterDataSourceCode] Data is null.",true);
 			return ret;
 		}
 		

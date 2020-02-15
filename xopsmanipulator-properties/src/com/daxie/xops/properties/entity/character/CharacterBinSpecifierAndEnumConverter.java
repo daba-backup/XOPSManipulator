@@ -1,6 +1,6 @@
 package com.daxie.xops.properties.entity.character;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 
 public class CharacterBinSpecifierAndEnumConverter {
 	public static CharacterTextureType GetCharacterTextureTypeFromBinSpecifier(int spc) {
@@ -98,8 +98,8 @@ public class CharacterBinSpecifierAndEnumConverter {
 			texture_type=CharacterTextureType.GATES;
 			break;
 		default:
-			LogFile.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterTextureTypeFromBinSpecifier]",true);
-			LogFile.WriteWarn("Unknown texture type specifier. specifier:"+spc,false);
+			LogWriter.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterTextureTypeFromBinSpecifier]",true);
+			LogWriter.WriteWarn("Unknown texture type specifier. specifier:"+spc,false);
 			
 			texture_type=CharacterTextureType.SOLDIER_BLACK;
 			break;
@@ -134,8 +134,8 @@ public class CharacterBinSpecifierAndEnumConverter {
 			model_type=CharacterModelType.HELMET;
 			break;
 		default:
-			LogFile.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterModelTypeFromBinSpecifier]",true);
-			LogFile.WriteWarn("Unknown model type specifier. specifier:"+spc,false);
+			LogWriter.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterModelTypeFromBinSpecifier]",true);
+			LogWriter.WriteWarn("Unknown model type specifier. specifier:"+spc,false);
 			
 			model_type=CharacterModelType.MALE;
 			break;
@@ -198,8 +198,8 @@ public class CharacterBinSpecifierAndEnumConverter {
 			ai_level=CharacterAILevel.NO_WEAPON;
 			break;
 		default:
-			LogFile.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterAILevelFromBinSpecifier]",true);
-			LogFile.WriteWarn("Unknown AI level specifier. specifier:"+spc,false);
+			LogWriter.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterAILevelFromBinSpecifier]",true);
+			LogWriter.WriteWarn("Unknown AI level specifier. specifier:"+spc,false);
 			
 			ai_level=CharacterAILevel.D;
 			break;
@@ -225,8 +225,8 @@ public class CharacterBinSpecifierAndEnumConverter {
 			type=CharacterType.ZOMBIE;
 			break;
 		default:
-			LogFile.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterTypeFromBinSpecifier]",true);
-			LogFile.WriteWarn("Unknown type specifier. specifier:"+spc,false);
+			LogWriter.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterTypeFromBinSpecifier]",true);
+			LogWriter.WriteWarn("Unknown type specifier. specifier:"+spc,false);
 			
 			type=CharacterType.HUMAN;
 			break;

@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 
@@ -29,7 +29,7 @@ class BD1Writer {
 	
 	public void Write(String bd1_filename) throws IOException{
 		if(blocks==null||texture_filenames_map==null) {
-			LogFile.WriteWarn("[BD1Writer-Write] Data is null.",true);
+			LogWriter.WriteWarn("[BD1Writer-Write] Data is null.",true);
 			return;
 		}
 		
@@ -121,8 +121,8 @@ class BD1Writer {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteWarn("[BD1Writer-Write] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[BD1Writer-Write] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return;
 		}

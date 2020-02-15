@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 
@@ -25,7 +25,7 @@ class PD1Writer {
 	
 	public void Write(String pd1_filename) throws IOException{
 		if(points==null) {
-			LogFile.WriteWarn("[PD1Writer-Write] Data is null.",true);
+			LogWriter.WriteWarn("[PD1Writer-Write] Data is null.",true);
 			return;
 		}
 		
@@ -70,8 +70,8 @@ class PD1Writer {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteWarn("[PD1Writer-Write] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[PD1Writer-Write] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return;
 		}

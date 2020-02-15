@@ -11,7 +11,7 @@ import java.util.Map;
 
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.FilenameFunctions;
 
@@ -36,7 +36,7 @@ class BD1OBJWriter {
 	public BD1OBJWriter(Map<Integer, String> texture_filenames_map,List<BD1Block> blocks) {
 		data_prepared_flag=false;
 		if(texture_filenames_map==null||blocks==null) {
-			LogFile.WriteWarn("[BD1OBJWriter-<init>] Null argument(s) where non-null required.",true);
+			LogWriter.WriteWarn("[BD1OBJWriter-<init>] Null argument(s) where non-null required.",true);
 			return;
 		}
 		
@@ -99,7 +99,7 @@ class BD1OBJWriter {
 	 */
 	public int Write(String obj_filename) {
 		if(data_prepared_flag==false) {
-			LogFile.WriteWarn("[BD1OBJWriter-Write] Data not prepared.",true);
+			LogWriter.WriteWarn("[BD1OBJWriter-Write] Data not prepared.",true);
 			return -1;
 		}
 		
@@ -121,7 +121,7 @@ class BD1OBJWriter {
 			int texture_id=entry.getKey();
 			String texture_filename=texture_filenames_map.get(texture_id);
 			if(texture_filename==null) {
-				LogFile.WriteWarn("[BD1OBJWriter-Write] Detected a discrepancy between two maps. texture_id:"+texture_id,true);
+				LogWriter.WriteWarn("[BD1OBJWriter-Write] Detected a discrepancy between two maps. texture_id:"+texture_id,true);
 				texture_filename="unknown_"+texture_id;
 			}
 			
@@ -172,8 +172,8 @@ class BD1OBJWriter {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[BD1OBJWriter-Write] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[BD1OBJWriter-Write] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -185,8 +185,8 @@ class BD1OBJWriter {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[BD1OBJWriter-Write] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[BD1OBJWriter-Write] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}

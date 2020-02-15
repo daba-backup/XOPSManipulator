@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.FileFunctions;
 import com.daxie.tool.StringFunctions;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
@@ -32,7 +32,7 @@ public class CharacterDataCodeParser {
 		character_data_map=new HashMap<>();
 		
 		if(lines==null) {
-			LogFile.WriteWarn("[CharacterDataCodeParser-<init>] Null argument.",true);
+			LogWriter.WriteWarn("[CharacterDataCodeParser-<init>] Null argument.",true);
 			return;
 		}
 		
@@ -58,7 +58,7 @@ public class CharacterDataCodeParser {
 			
 			String[] split_by_equal=line.split("=");
 			if(split_by_equal.length!=2) {
-				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Syntax error. line:"+i,true);
+				LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Syntax error. line:"+i,true);
 				continue;
 			}
 			
@@ -66,7 +66,7 @@ public class CharacterDataCodeParser {
 			String[] split_by_dot=left.split(Pattern.quote("."));
 			
 			if(split_by_dot.length!=2) {
-				LogFile.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
+				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
 				continue;
 			}
 			
@@ -81,11 +81,11 @@ public class CharacterDataCodeParser {
 				index=Integer.parseInt(index_str);
 			}
 			catch(NumberFormatException e) {
-				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid index. line:"+i,true);
+				LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid index. line:"+i,true);
 				continue;
 			}
 			if(index<0) {
-				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Index must be a number of 0 or more.",true);
+				LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Index must be a number of 0 or more.",true);
 				continue;
 			}
 			
@@ -113,7 +113,7 @@ public class CharacterDataCodeParser {
 					itemp=Integer.parseInt(value);
 					CharacterModelType[] model_types=CharacterModelType.values();
 					if(!(0<=itemp&&itemp<model_types.length)) {
-						LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
+						LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
 						continue;
 					}
 					character_data.SetModelType(model_types[itemp]);
@@ -144,18 +144,18 @@ public class CharacterDataCodeParser {
 					itemp=Integer.parseInt(value);
 					CharacterType[] types=CharacterType.values();
 					if(!(0<=itemp&&itemp<types.length)) {
-						LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
+						LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
 						continue;
 					}
 					character_data.SetType(types[itemp]);
 					break;
 				default:
-					LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Unknown field name. line:"+i,true);
+					LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Unknown field name. line:"+i,true);
 					continue;
 				}
 			}
 			catch(NumberFormatException e) {
-				LogFile.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid number format. line:"+i,true);
+				LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid number format. line:"+i,true);
 				continue;
 			}
 			

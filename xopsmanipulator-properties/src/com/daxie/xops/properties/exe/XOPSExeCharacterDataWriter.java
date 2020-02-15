@@ -2,7 +2,7 @@ package com.daxie.xops.properties.exe;
 
 import java.util.List;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.xops.properties.XOPSConstants;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
@@ -26,11 +26,11 @@ class XOPSExeCharacterDataWriter {
 	
 	public void Write(List<Byte> bin,int character_data_start_pos) {
 		if(character_data_array==null) {
-			LogFile.WriteWarn("[XOPSExeCharacterDataWriter-Write] Data is null.",true);
+			LogWriter.WriteWarn("[XOPSExeCharacterDataWriter-Write] Data is null.",true);
 			return;
 		}
 		if(character_data_array.length!=XOPSConstants.CHARACTER_NUM) {
-			LogFile.WriteWarn("[XOPSExeCharacterDataWriter-Write] Invalid number of data. data_num:"+character_data_array.length,true);
+			LogWriter.WriteWarn("[XOPSExeCharacterDataWriter-Write] Invalid number of data. data_num:"+character_data_array.length,true);
 			return;
 		}
 		

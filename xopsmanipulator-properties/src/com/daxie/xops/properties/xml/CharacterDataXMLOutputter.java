@@ -10,7 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.XMLFunctions;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
@@ -46,7 +46,7 @@ public class CharacterDataXMLOutputter {
 	 */
 	public int WriteXML(String xml_filename) {
 		if(character_data_list==null) {
-			LogFile.WriteWarn("[CharacterDataXMLOutputter-WriteXML] Data is null.",true);
+			LogWriter.WriteWarn("[CharacterDataXMLOutputter-WriteXML] Data is null.",true);
 			return -1;
 		}
 		
@@ -59,8 +59,8 @@ public class CharacterDataXMLOutputter {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[CharacterDataXMLOutputter-WriteXML] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[CharacterDataXMLOutputter-WriteXML] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}

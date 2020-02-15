@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponBinSpecifierAndEnumConverter;
@@ -32,7 +32,7 @@ class IDSWriter {
 	
 	public void Write(String ids_filename) throws IOException{
 		if(weapon_data==null) {
-			LogFile.WriteWarn("[IDSWriter-Write] Data is null.",true);
+			LogWriter.WriteWarn("[IDSWriter-Write] Data is null.",true);
 			return;
 		}
 		
@@ -224,8 +224,8 @@ class IDSWriter {
 		}
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogFile.WriteWarn("[IDSWriter-Write] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[IDSWriter-Write] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return;
 		}

@@ -1,6 +1,6 @@
 package com.daxie.xops.properties.entity.weapon;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 
 public class WeaponBinSpecifierAndEnumConverter {
 	public static WeaponModelType GetWeaponModelTypeFromBinSpecifier(int spc) {
@@ -71,8 +71,8 @@ public class WeaponBinSpecifierAndEnumConverter {
 			model_type=WeaponModelType.MK23SD;
 			break;
 		default:
-			LogFile.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponModelTypeFromBinSpecifier]",true);
-			LogFile.WriteWarn("Unknown model type specifier. specifier:"+spc,false);
+			LogWriter.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponModelTypeFromBinSpecifier]",true);
+			LogWriter.WriteWarn("Unknown model type specifier. specifier:"+spc,false);
 			
 			model_type=WeaponModelType.NONE;
 			break;
@@ -219,8 +219,8 @@ public class WeaponBinSpecifierAndEnumConverter {
 			texture_type=WeaponTextureType.MK23;
 			break;
 		default:
-			LogFile.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponTextureTypeFromBinSpecifier]",true);
-			LogFile.WriteWarn("Unknown texture type specifier. specifier:"+spc,false);
+			LogWriter.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponTextureTypeFromBinSpecifier]",true);
+			LogWriter.WriteWarn("Unknown texture type specifier. specifier:"+spc,false);
 			
 			texture_type=WeaponTextureType.NONE;
 			break;
@@ -313,8 +313,8 @@ public class WeaponBinSpecifierAndEnumConverter {
 			shooting_stance=WeaponShootingStance.CARRY;
 			break;
 		default:
-			LogFile.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponShootingStanceFromBinSpecifier]",true);
-			LogFile.WriteWarn("Unknown equipment method specifier. specifier:"+spc,false);
+			LogWriter.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponShootingStanceFromBinSpecifier]",true);
+			LogWriter.WriteWarn("Unknown equipment method specifier. specifier:"+spc,false);
 			
 			shooting_stance=WeaponShootingStance.RIFLE;
 			break;
@@ -356,8 +356,8 @@ public class WeaponBinSpecifierAndEnumConverter {
 			scope_mode=WeaponScopeMode.EQUAL;
 			break;
 		default:
-			LogFile.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponScopeModeFromBinSpecifier]",true);
-			LogFile.WriteWarn("Unknown scope mode specifier. specifier:"+spc,false);
+			LogWriter.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponScopeModeFromBinSpecifier]",true);
+			LogWriter.WriteWarn("Unknown scope mode specifier. specifier:"+spc,false);
 			
 			scope_mode=WeaponScopeMode.NONE;
 			break;

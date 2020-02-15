@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.FileFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponBinSpecifierAndEnumConverter;
@@ -29,7 +29,7 @@ class IDSParser {
 		weapon_data=new WeaponData();
 		
 		if(bin.size()!=84) {
-			LogFile.WriteWarn("[IDSParser-<init>] Invalid file size. filename:"+ids_filename,true);
+			LogWriter.WriteWarn("[IDSParser-<init>] Invalid file size. filename:"+ids_filename,true);
 			return;
 		}
 		

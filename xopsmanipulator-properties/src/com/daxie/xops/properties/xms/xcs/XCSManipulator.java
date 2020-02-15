@@ -2,7 +2,7 @@ package com.daxie.xops.properties.xms.xcs;
 
 import java.io.IOException;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.character.CharacterData;
 
@@ -47,7 +47,7 @@ public class XCSManipulator {
 	 */
 	public void SetCharacterDataArray(CharacterData[] character_data_array) {
 		if(character_data_array==null) {
-			LogFile.WriteWarn("[XCSManipulator-SetCharacterDataArray] Null argument where non-null required.",true);
+			LogWriter.WriteWarn("[XCSManipulator-SetCharacterDataArray] Null argument where non-null required.",true);
 			return;
 		}
 		this.character_data_array=character_data_array;
@@ -66,9 +66,9 @@ public class XCSManipulator {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[XCSManipulator-Write] Failed to write data.",true);
-			LogFile.WriteWarn("Below is the stack trace.",false);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[XCSManipulator-Write] Failed to write data.",true);
+			LogWriter.WriteWarn("Below is the stack trace.",false);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}

@@ -13,7 +13,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterData;
@@ -55,8 +55,8 @@ public class CharacterDataXMLParser {
 		catch(ParserConfigurationException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -68,8 +68,8 @@ public class CharacterDataXMLParser {
 		catch(Exception e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.",true);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.",true);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}
@@ -96,7 +96,7 @@ public class CharacterDataXMLParser {
 					character_id=Integer.parseInt(strtemp);
 				}
 				catch(NumberFormatException e) {
-					LogFile.WriteWarn("[CharacterDataXMLParser] Invalid format of number. id:"+strtemp,true);
+					LogWriter.WriteWarn("[CharacterDataXMLParser] Invalid format of number. id:"+strtemp,true);
 					continue;
 				}
 				
@@ -122,13 +122,13 @@ public class CharacterDataXMLParser {
 						else {
 							CharacterTextureType[] values=CharacterTextureType.values();
 							if(!(0<=itemp&&itemp<values.length)) {
-								LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
+								LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
 								
 								String str="";
 								str+="character_id"+character_id+" ";
 								str+="texture:"+itemp;
 								
-								LogFile.WriteLine(str);
+								LogWriter.WriteLine(str);
 								
 								character_data.SetTextureType(CharacterTextureType.SOLDIER_BLACK);
 							}
@@ -143,13 +143,13 @@ public class CharacterDataXMLParser {
 						
 						CharacterModelType[] values=CharacterModelType.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
+							LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
 							
 							String str="";
 							str+="character_id:"+character_id+" ";
 							str+="model:"+itemp;
 							
-							LogFile.WriteLine(str);
+							LogWriter.WriteLine(str);
 							
 							character_data.SetModelType(CharacterModelType.MALE);
 						}
@@ -171,13 +171,13 @@ public class CharacterDataXMLParser {
 						else {
 							CharacterAILevel[] values=CharacterAILevel.values();
 							if(!(0<=itemp&&itemp<values.length)) {
-								LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
+								LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
 								
 								String str="";
 								str+="character_id:"+character_id+" ";
 								str+="ai_level:"+itemp;
 								
-								LogFile.WriteLine(str);
+								LogWriter.WriteLine(str);
 								
 								character_data.SetAILevel(CharacterAILevel.C);
 							}
@@ -200,13 +200,13 @@ public class CharacterDataXMLParser {
 						
 						CharacterType[] values=CharacterType.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogFile.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
+							LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
 							
 							String str="";
 							str+="character_id:"+character_id+" ";
 							str+="type:"+itemp;
 							
-							LogFile.WriteLine(str);
+							LogWriter.WriteLine(str);
 							
 							character_data.SetType(CharacterType.HUMAN);
 						}

@@ -2,7 +2,7 @@ package com.daxie.xops.properties.xms.ids;
 
 import java.io.IOException;
 
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
 
@@ -41,7 +41,7 @@ public class IDSManipulator {
 	 */
 	public void SetWeaponData(WeaponData weapon_data) {
 		if(weapon_data==null) {
-			LogFile.WriteWarn("[IDSManipulator-SetWeaponData] Null argument where non-null required.",true);
+			LogWriter.WriteWarn("[IDSManipulator-SetWeaponData] Null argument where non-null required.",true);
 			return;
 		}
 		this.weapon_data=weapon_data;
@@ -60,9 +60,9 @@ public class IDSManipulator {
 		catch(IOException e) {
 			String str=ExceptionFunctions.GetPrintStackTraceString(e);
 			
-			LogFile.WriteWarn("[IDSManipulator-Write] Failed to write data.",true);
-			LogFile.WriteWarn("Below is the stack trace.",false);
-			LogFile.WriteWarn(str,false);
+			LogWriter.WriteWarn("[IDSManipulator-Write] Failed to write data.",true);
+			LogWriter.WriteWarn("Below is the stack trace.",false);
+			LogWriter.WriteWarn(str,false);
 			
 			return -1;
 		}

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.FileFunctions;
 import com.daxie.xops.properties.XOPSConstants;
@@ -29,7 +29,7 @@ class XGSParser {
 		List<Byte> bin=FileFunctions.GetFileAllBin(xgs_filename);
 		
 		if(bin.size()!=1732) {
-			LogFile.WriteWarn("[XGSParser-<init>] Invalid file size. filename:"+xgs_filename,true);
+			LogWriter.WriteWarn("[XGSParser-<init>] Invalid file size. filename:"+xgs_filename,true);
 			return;
 		}
 		

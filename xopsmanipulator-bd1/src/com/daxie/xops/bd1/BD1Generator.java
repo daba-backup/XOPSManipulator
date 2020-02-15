@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * Base class for BD1 generators.
+ * Base class for BD1 generators
  * @author Daba
  *
  */

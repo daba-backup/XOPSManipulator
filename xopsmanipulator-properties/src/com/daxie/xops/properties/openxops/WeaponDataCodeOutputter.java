@@ -3,7 +3,7 @@ package com.daxie.xops.properties.openxops;
 import java.util.List;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogFile;
+import com.daxie.log.LogWriter;
 import com.daxie.tool.StringFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
 
@@ -23,7 +23,7 @@ public class WeaponDataCodeOutputter {
 		String ret="";
 		
 		if(weapon_data_list==null) {
-			LogFile.WriteWarn("[OutputWeaponDataSourceCode-GetWeaponDataSourceCode] Data is null.",true);
+			LogWriter.WriteWarn("[OutputWeaponDataSourceCode-GetWeaponDataSourceCode] Data is null.",true);
 			return ret;
 		}
 		
