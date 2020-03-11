@@ -149,7 +149,6 @@ public class PD1Manipulator {
 	
 	/**
 	 * Inverts z-axis.
-	 * This method will be used to make a mission for a mirrored map.
 	 */
 	public void InvertZ() {
 		for(PD1Point point:points) {
