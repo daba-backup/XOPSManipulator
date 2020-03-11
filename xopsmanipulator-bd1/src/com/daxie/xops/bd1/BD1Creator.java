@@ -358,7 +358,7 @@ public class BD1Creator {
 	/**
 	 * Writes out blocks into a BD1 file.
 	 * @param bd1_filename BD1 filename
-	 * @param offset_y Y-direction offset
+	 * @param offset_y Y-axis offset
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteAsBD1(String bd1_filename,float offset_y) {
@@ -374,6 +374,28 @@ public class BD1Creator {
 		bd1_manipulator.Translate(VectorFunctions.VGet(0.0f, offset_y, 0.0f));
 		
 		int ret=bd1_manipulator.WriteAsBD1(bd1_filename);
+		
+		return ret;
+	}
+	/**
+	 * Writes out blocks into an OBJ file.
+	 * @param obj_filename OBJ filename
+	 * @param offset_y Y-axis offset
+	 * @return -1 on error and 0 on success
+	 */
+	public int WriteAsOBJ(String obj_filename,float offset_y) {
+		BD1Manipulator bd1_manipulator=new BD1Manipulator();
+		
+		List<BD1Block> blocks=new ArrayList<>();
+		for(BD1Block block:blocks_map.values()) {
+			blocks.add(block);
+		}
+		
+		bd1_manipulator.SetTextureFilenamesMap(texture_filenames_map);
+		bd1_manipulator.SetBlocks(blocks);
+		bd1_manipulator.Translate(VectorFunctions.VGet(0.0f, offset_y, 0.0f));
+		
+		int ret=bd1_manipulator.WriteAsOBJ(obj_filename);
 		
 		return ret;
 	}

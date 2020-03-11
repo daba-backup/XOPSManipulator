@@ -66,10 +66,19 @@ public abstract class BD1Generator {
 	/**
 	 * Writes out blocks into a BD1 file.
 	 * @param bd1_filename Filename
-	 * @param offset_y Y-direction offset
+	 * @param offset_y Y-axis offset
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteAsBD1(String bd1_filename,float offset_y) {
 		return bd1_creator.WriteAsBD1(bd1_filename,offset_y);
+	}
+	/**
+	 * Writes out blocks into an OBJ file.
+	 * @param obj_filename Filename
+	 * @param offset_y Y-axis offset
+	 * @return -1 on error and 0 on success
+	 */
+	public int WriteAsOBJ(String obj_filename,float offset_y) {
+		return bd1_creator.WriteAsOBJ(obj_filename, offset_y);
 	}
 }
