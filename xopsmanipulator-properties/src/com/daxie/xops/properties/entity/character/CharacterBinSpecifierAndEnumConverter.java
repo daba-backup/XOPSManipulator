@@ -1,10 +1,7 @@
 package com.daxie.xops.properties.entity.character;
 
-import org.slf4j.LoggerFactory;
-
 import org.slf4j.Logger;
-
-import com.daxie.log.LogWriter;
+import org.slf4j.LoggerFactory;
 
 public class CharacterBinSpecifierAndEnumConverter {
 	private static Logger logger=LoggerFactory.getLogger(CharacterBinSpecifierAndEnumConverter.class);

@@ -3,7 +3,6 @@ package com.daxie.xops.properties.openxops;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.log.LogWriter;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterTextureType;
 

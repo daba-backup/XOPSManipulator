@@ -8,9 +8,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
-import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.XOPSConstants;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterBinSpecifierAndEnumConverter;

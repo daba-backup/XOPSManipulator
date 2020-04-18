@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.log.LogWriter;
 import com.daxie.tool.FileFunctions;
 import com.daxie.tool.StringFunctions;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
@@ -118,7 +117,7 @@ public class CharacterDataCodeParser {
 					itemp=Integer.parseInt(value);
 					CharacterModelType[] model_types=CharacterModelType.values();
 					if(!(0<=itemp&&itemp<model_types.length)) {
-						LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
+						logger.warn("Value out of bounds. line:{}",i);
 						continue;
 					}
 					character_data.SetModelType(model_types[itemp]);

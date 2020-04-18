@@ -15,8 +15,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.daxie.log.LogWriter;
-import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterData;
 import com.daxie.xops.properties.entity.character.CharacterModelType;

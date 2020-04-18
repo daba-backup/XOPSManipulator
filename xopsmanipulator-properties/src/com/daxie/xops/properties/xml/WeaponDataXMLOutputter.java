@@ -13,8 +13,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogWriter;
-import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.XMLFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
 import com.daxie.xops.properties.openxops.WeaponSpecifierConverter;

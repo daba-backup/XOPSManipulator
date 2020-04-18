@@ -16,8 +16,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogWriter;
-import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
 import com.daxie.xops.properties.entity.weapon.WeaponScopeMode;
 import com.daxie.xops.properties.entity.weapon.WeaponShootingStance;

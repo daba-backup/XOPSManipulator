@@ -10,9 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
-import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Writes data to a PD1 file.

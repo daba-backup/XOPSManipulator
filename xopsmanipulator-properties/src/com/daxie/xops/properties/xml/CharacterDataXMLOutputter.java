@@ -12,8 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.daxie.log.LogWriter;
-import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.XMLFunctions;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterData;
