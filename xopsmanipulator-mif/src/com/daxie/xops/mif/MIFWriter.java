@@ -7,6 +7,9 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 
@@ -16,6 +19,8 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 class MIFWriter {
+	private Logger logger=LoggerFactory.getLogger(MIFWriter.class);
+	
 	private MissionInfo mission_info;
 	
 	public MIFWriter(MissionInfo mission_info) {
@@ -24,7 +29,7 @@ class MIFWriter {
 	
 	public void Write(String mif_filename,String encoding) throws IOException,UnsupportedEncodingException{
 		if(mission_info==null) {
-			LogWriter.WriteWarn("[MIFWriter-Write] Data is null.",true);
+			logger.warn("Data not prepared.");
 			return;
 		}
 		
@@ -60,11 +65,7 @@ class MIFWriter {
 			br.flush();
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[MIFWriter-Write] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Error while writing.",e);
 			return;
 		}
 	}

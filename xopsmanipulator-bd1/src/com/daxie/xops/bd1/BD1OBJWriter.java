@@ -9,10 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
-import com.daxie.log.LogWriter;
-import com.daxie.tool.ExceptionFunctions;
 import com.daxie.tool.FilenameFunctions;
 
 import de.javagl.obj.Mtl;
@@ -28,6 +29,8 @@ import de.javagl.obj.Objs;
  *
  */
 class BD1OBJWriter {
+	private Logger logger=LoggerFactory.getLogger(BD1OBJWriter.class);
+	
 	private boolean data_prepared_flag;
 	
 	private Map<Integer, String> texture_filenames_map;
@@ -36,7 +39,7 @@ class BD1OBJWriter {
 	public BD1OBJWriter(Map<Integer, String> texture_filenames_map,List<BD1Block> blocks) {
 		data_prepared_flag=false;
 		if(texture_filenames_map==null||blocks==null) {
-			LogWriter.WriteWarn("[BD1OBJWriter-<init>] Null argument(s) where non-null required.",true);
+			logger.warn("Null argument(s) where non-null required.");
 			return;
 		}
 		
@@ -99,7 +102,7 @@ class BD1OBJWriter {
 	 */
 	public int Write(String obj_filename) {
 		if(data_prepared_flag==false) {
-			LogWriter.WriteWarn("[BD1OBJWriter-Write] Data not prepared.",true);
+			logger.warn("Data not prepared.");
 			return -1;
 		}
 		
@@ -121,7 +124,6 @@ class BD1OBJWriter {
 			int texture_id=entry.getKey();
 			String texture_filename=texture_filenames_map.get(texture_id);
 			if(texture_filename==null) {
-				LogWriter.WriteWarn("[BD1OBJWriter-Write] Detected a discrepancy between two maps. texture_id:"+texture_id,true);
 				texture_filename="unknown_"+texture_id;
 			}
 			
@@ -170,11 +172,7 @@ class BD1OBJWriter {
 			os_mtl=new FileOutputStream(mtl_filename);
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[BD1OBJWriter-Write] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Failed to create a stream.",e);
 			return -1;
 		}
 		
@@ -183,11 +181,7 @@ class BD1OBJWriter {
 			MtlWriter.write(mtls, os_mtl);
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[BD1OBJWriter-Write] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Failed to write data.",e);
 			return -1;
 		}
 		

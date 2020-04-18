@@ -1,8 +1,13 @@
 package com.daxie.xops.properties.entity.weapon;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 
 public class WeaponBinSpecifierAndEnumConverter {
+	private static Logger logger=LoggerFactory.getLogger(WeaponBinSpecifierAndEnumConverter.class);
+	
 	public static WeaponModelType GetWeaponModelTypeFromBinSpecifier(int spc) {
 		WeaponModelType model_type;
 		
@@ -71,8 +76,7 @@ public class WeaponBinSpecifierAndEnumConverter {
 			model_type=WeaponModelType.MK23SD;
 			break;
 		default:
-			LogWriter.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponModelTypeFromBinSpecifier]",true);
-			LogWriter.WriteWarn("Unknown model type specifier. specifier:"+spc,false);
+			logger.warn("Unknown model type specifier. specifier={}",spc);
 			
 			model_type=WeaponModelType.NONE;
 			break;
@@ -219,8 +223,7 @@ public class WeaponBinSpecifierAndEnumConverter {
 			texture_type=WeaponTextureType.MK23;
 			break;
 		default:
-			LogWriter.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponTextureTypeFromBinSpecifier]",true);
-			LogWriter.WriteWarn("Unknown texture type specifier. specifier:"+spc,false);
+			logger.warn("Unknown texture type specifier. specifier={}",spc);
 			
 			texture_type=WeaponTextureType.NONE;
 			break;
@@ -313,8 +316,7 @@ public class WeaponBinSpecifierAndEnumConverter {
 			shooting_stance=WeaponShootingStance.CARRY;
 			break;
 		default:
-			LogWriter.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponShootingStanceFromBinSpecifier]",true);
-			LogWriter.WriteWarn("Unknown equipment method specifier. specifier:"+spc,false);
+			logger.warn("Unknown equipment method specifier. specifier={}",spc);
 			
 			shooting_stance=WeaponShootingStance.RIFLE;
 			break;
@@ -356,8 +358,7 @@ public class WeaponBinSpecifierAndEnumConverter {
 			scope_mode=WeaponScopeMode.EQUAL;
 			break;
 		default:
-			LogWriter.WriteWarn("[WeaponBinSpecifierAndEnumConverter-GetWeaponScopeModeFromBinSpecifier]",true);
-			LogWriter.WriteWarn("Unknown scope mode specifier. specifier:"+spc,false);
+			logger.warn("Unknown scope mode specifier. specifier={}",spc);
 			
 			scope_mode=WeaponScopeMode.NONE;
 			break;

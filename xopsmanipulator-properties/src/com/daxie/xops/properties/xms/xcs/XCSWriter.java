@@ -5,6 +5,9 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.ExceptionFunctions;
@@ -22,20 +25,22 @@ import com.daxie.xops.properties.entity.character.CharacterType;
  *
  */
 class XCSWriter {
+	private Logger logger=LoggerFactory.getLogger(XCSWriter.class);
+	
 	private CharacterData[] character_data_array=null;
 	
 	public XCSWriter(CharacterData[] character_data_array) {
 		this.character_data_array=character_data_array;
 	}
 	
-	public void Write(String xcs_filename) throws IOException{
+	public int Write(String xcs_filename){
 		if(character_data_array==null) {
-			LogWriter.WriteWarn("[XCSWriter-Write] Data is null.",true);
-			return;
+			logger.warn("Data not prepared.");
+			return -1;
 		}
 		if(character_data_array.length!=XOPSConstants.CHARACTER_NUM) {
-			LogWriter.WriteWarn("[XCSWriter-Write] Invalid number of data. data_num:"+character_data_array.length,true);
-			return;
+			logger.warn("Invalid number of data. data_num={}",character_data_array.length);
+			return -1;
 		}
 		
 		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(xcs_filename)))){
@@ -98,11 +103,10 @@ class XCSWriter {
 			}
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogWriter.WriteWarn("[XCSWriter-Write] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
-			return;
+			logger.error("Error while writing.",e);
+			return -1;
 		}
+		
+		return 0;
 	}
 }

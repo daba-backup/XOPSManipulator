@@ -2,8 +2,9 @@ package com.daxie.xops.properties.xms.ids;
 
 import java.io.IOException;
 
-import com.daxie.log.LogWriter;
-import com.daxie.tool.ExceptionFunctions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.xops.properties.entity.weapon.WeaponData;
 
 /**
@@ -12,6 +13,8 @@ import com.daxie.xops.properties.entity.weapon.WeaponData;
  *
  */
 public class IDSManipulator {
+	private Logger logger=LoggerFactory.getLogger(IDSManipulator.class);
+	
 	private WeaponData weapon_data=null;
 	
 	/**
@@ -41,7 +44,7 @@ public class IDSManipulator {
 	 */
 	public void SetWeaponData(WeaponData weapon_data) {
 		if(weapon_data==null) {
-			LogWriter.WriteWarn("[IDSManipulator-SetWeaponData] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		this.weapon_data=weapon_data;
@@ -54,16 +57,10 @@ public class IDSManipulator {
 	 */
 	public int Write(String ids_filename) {
 		IDSWriter ids_writer=new IDSWriter(weapon_data);
-		try {
-			ids_writer.Write(ids_filename);
-		}
-		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[IDSManipulator-Write] Failed to write data.",true);
-			LogWriter.WriteWarn("Below is the stack trace.",false);
-			LogWriter.WriteWarn(str,false);
-			
+		int ret=ids_writer.Write(ids_filename);
+		
+		if(ret==-1) {
+			logger.error("Failed to write data in an IDS file. ids_filename={}",ids_filename);
 			return -1;
 		}
 		

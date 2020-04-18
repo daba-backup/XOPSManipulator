@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.FileFunctions;
 import com.daxie.tool.StringFunctions;
@@ -22,6 +25,8 @@ import com.daxie.xops.properties.entity.character.CharacterType;
  *
  */
 public class CharacterDataCodeParser {
+	private Logger logger=LoggerFactory.getLogger(CharacterDataCodeParser.class);
+	
 	private Map<Integer, CharacterData> character_data_map;
 	
 	/**
@@ -32,7 +37,7 @@ public class CharacterDataCodeParser {
 		character_data_map=new HashMap<>();
 		
 		if(lines==null) {
-			LogWriter.WriteWarn("[CharacterDataCodeParser-<init>] Null argument.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		
@@ -58,7 +63,7 @@ public class CharacterDataCodeParser {
 			
 			String[] split_by_equal=line.split("=");
 			if(split_by_equal.length!=2) {
-				LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Syntax error. line:"+i,true);
+				logger.warn("Syntax error. line:{}",i);
 				continue;
 			}
 			
@@ -66,7 +71,7 @@ public class CharacterDataCodeParser {
 			String[] split_by_dot=left.split(Pattern.quote("."));
 			
 			if(split_by_dot.length!=2) {
-				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
+				logger.warn("Syntax error. line:{}",i);
 				continue;
 			}
 			
@@ -81,11 +86,11 @@ public class CharacterDataCodeParser {
 				index=Integer.parseInt(index_str);
 			}
 			catch(NumberFormatException e) {
-				LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid index. line:"+i,true);
+				logger.warn("Invalid index. line:{}",i);
 				continue;
 			}
 			if(index<0) {
-				LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Index must be a number of 0 or more.",true);
+				logger.warn("Index must be a number greater than or equal to zero.");
 				continue;
 			}
 			
@@ -144,18 +149,18 @@ public class CharacterDataCodeParser {
 					itemp=Integer.parseInt(value);
 					CharacterType[] types=CharacterType.values();
 					if(!(0<=itemp&&itemp<types.length)) {
-						LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
+						logger.warn("Value out of bounds. line:{}",i);
 						continue;
 					}
 					character_data.SetType(types[itemp]);
 					break;
 				default:
-					LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Unknown field name. line:"+i,true);
+					logger.warn("Unknown field name. line:{}",i);
 					continue;
 				}
 			}
 			catch(NumberFormatException e) {
-				LogWriter.WriteWarn("[CharacterDataCodeParser-ParseLines] Invalid number format. line:"+i,true);
+				logger.warn("Invalid number format. line:{}",i);
 				continue;
 			}
 			

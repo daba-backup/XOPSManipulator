@@ -1,5 +1,8 @@
 package com.daxie.xops.properties.openxops;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterTextureType;
@@ -10,6 +13,8 @@ import com.daxie.xops.properties.entity.character.CharacterTextureType;
  *
  */
 public class CharacterSpecifierConverter {
+	private static Logger logger=LoggerFactory.getLogger(CharacterSpecifierConverter.class);
+	
 	/**
 	 * Converts XOPS texture type to OpenXOPS texture ID.
 	 * @param xops_texture_type XOPS texture type
@@ -213,8 +218,7 @@ public class CharacterSpecifierConverter {
 			xops_texture_type=CharacterTextureType.ZOMBIE4;
 			break;
 		default:
-			LogWriter.WriteWarn("[CharacterSpecifierConverter-GetXOPSTextureTypeFromOpenXOPSTextureID]",true);
-			LogWriter.WriteWarn("Unknown texture ID. texture_id:"+openxops_texture_id,false);
+			logger.warn("Unknown texture ID. texture_id={}",openxops_texture_id);
 			
 			xops_texture_type=CharacterTextureType.CIV1;
 			break;

@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogWriter;
 import com.daxie.tool.FileFunctions;
@@ -21,6 +24,8 @@ import com.daxie.xops.properties.entity.weapon.WeaponShootingStance;
  *
  */
 public class WeaponDataCodeParser {
+	private Logger logger=LoggerFactory.getLogger(WeaponDataCodeParser.class);
+	
 	private Map<Integer, WeaponData> weapon_data_map;
 	
 	/**
@@ -31,7 +36,7 @@ public class WeaponDataCodeParser {
 		weapon_data_map=new HashMap<>();
 		
 		if(lines==null) {
-			LogWriter.WriteWarn("[WeaponDataCodeParser-<init>] Null argument.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		
@@ -57,7 +62,7 @@ public class WeaponDataCodeParser {
 			
 			String[] split_by_equal=line.split("=");
 			if(split_by_equal.length!=2) {
-				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
+				logger.warn("Syntax error. line:{}",i);
 				continue;
 			}
 			
@@ -65,7 +70,7 @@ public class WeaponDataCodeParser {
 			String[] split_by_dot=left.split(Pattern.quote("."));
 			
 			if(split_by_dot.length!=2) {
-				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Syntax error. line:"+i,true);
+				logger.warn("Syntax error. line:{}",i);
 				continue;
 			}
 			
@@ -80,11 +85,11 @@ public class WeaponDataCodeParser {
 				index=Integer.parseInt(index_str);
 			}
 			catch(NumberFormatException e) {
-				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Invalid index. line:"+i,true);
+				logger.warn("Invalid index. line:{}",i);
 				continue;
 			}
 			if(index<0) {
-				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Index must be a number of 0 or more.",true);
+				logger.warn("Index must be a number greater than or equal to zero.");
 				continue;
 			}
 			
@@ -242,7 +247,7 @@ public class WeaponDataCodeParser {
 					if(value.equals("false"))weapon_data.SetRapidFireEnabledFlag(false);
 					else if(value.equals("true"))weapon_data.SetRapidFireEnabledFlag(true);
 					else {
-						LogWriter.WriteWarn("[WeaponDaraCodeParser-ParseLines] Invalid value. line:"+i,true);
+						logger.warn("Invalid value. line:{}",i);
 						continue;
 					}
 					break;
@@ -251,7 +256,7 @@ public class WeaponDataCodeParser {
 					itemp=Integer.parseInt(value);
 					WeaponScopeMode[] scope_modes=WeaponScopeMode.values();
 					if(!(0<=itemp&&itemp<scope_modes.length)) {
-						LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
+						logger.warn("Value out of bounds. line:{}",i);
 						continue;
 					}
 					weapon_data.SetScopeMode(scope_modes[itemp]);
@@ -277,7 +282,7 @@ public class WeaponDataCodeParser {
 					if(value.equals("false"))weapon_data.SetSuppressorEnabledFlag(false);
 					else if(value.equals("true"))weapon_data.SetSuppressorEnabledFlag(true);
 					else {
-						LogWriter.WriteWarn("[WeaponDaraCodeParser-ParseLines] Invalid value. line:"+i,true);
+						logger.warn("Invalid value. line:{}",i);
 						continue;
 					}
 					break;
@@ -286,7 +291,7 @@ public class WeaponDataCodeParser {
 					itemp=Integer.parseInt(value);
 					WeaponShootingStance[] shooting_stances=WeaponShootingStance.values();
 					if(!(0<=itemp&&itemp<shooting_stances.length)) {
-						LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Value out of bounds. line:"+i,true);
+						logger.warn("Value out of bounds. line:{}",i);
 						continue;
 					}
 					weapon_data.SetShootingStance(shooting_stances[itemp]);
@@ -302,12 +307,12 @@ public class WeaponDataCodeParser {
 					weapon_data.SetNumberOfProjectiles(itemp);
 					break;
 				default:
-					LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Unknown field name. line:"+i,true);
+					logger.warn("Unknown field name. line:{}",i);
 					continue;
 				}
 			}
 			catch(NumberFormatException e) {
-				LogWriter.WriteWarn("[WeaponDataCodeParser-ParseLines] Invalid number format. line:"+i,true);
+				logger.warn("Invalid number format. line:{}",i);
 				continue;
 			}
 			

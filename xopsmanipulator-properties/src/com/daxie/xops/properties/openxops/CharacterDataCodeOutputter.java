@@ -2,6 +2,9 @@ package com.daxie.xops.properties.openxops;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.StringFunctions;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
@@ -14,6 +17,8 @@ import com.daxie.xops.properties.entity.character.CharacterTextureType;
  *
  */
 public class CharacterDataCodeOutputter {
+	private Logger logger=LoggerFactory.getLogger(CharacterDataCodeOutputter.class);
+	
 	private List<CharacterData> character_data_list;
 	
 	public CharacterDataCodeOutputter(List<CharacterData> character_data_list) {
@@ -24,7 +29,7 @@ public class CharacterDataCodeOutputter {
 		String ret="";
 		
 		if(character_data_list==null) {
-			LogWriter.WriteWarn("[OutputCharacterDataSourceCode-GetCharacterDataSourceCode] Data is null.",true);
+			logger.warn("Data not prepared.");
 			return ret;
 		}
 		

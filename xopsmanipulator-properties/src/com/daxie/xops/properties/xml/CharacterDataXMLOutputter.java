@@ -7,6 +7,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -24,6 +26,8 @@ import com.daxie.xops.properties.openxops.CharacterSpecifierConverter;
  *
  */
 public class CharacterDataXMLOutputter {
+	private Logger logger=LoggerFactory.getLogger(CharacterDataXMLOutputter.class);
+	
 	private List<CharacterData> character_data_list;
 	private boolean openxops_compatible_flag;
 	
@@ -46,7 +50,7 @@ public class CharacterDataXMLOutputter {
 	 */
 	public int WriteXML(String xml_filename) {
 		if(character_data_list==null) {
-			LogWriter.WriteWarn("[CharacterDataXMLOutputter-WriteXML] Data is null.",true);
+			logger.warn("Data not prepared.");
 			return -1;
 		}
 		
@@ -57,11 +61,7 @@ public class CharacterDataXMLOutputter {
 			builder=factory.newDocumentBuilder();
 		}
 		catch(ParserConfigurationException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[CharacterDataXMLOutputter-WriteXML] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Error during configuration for XML output.",e);
 			return -1;
 		}
 		Document document=builder.newDocument();

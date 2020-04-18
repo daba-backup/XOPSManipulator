@@ -2,6 +2,9 @@ package com.daxie.xops.properties.openxops;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogWriter;
 import com.daxie.tool.StringFunctions;
@@ -13,6 +16,8 @@ import com.daxie.xops.properties.entity.weapon.WeaponData;
  *
  */
 public class WeaponDataCodeOutputter {
+	private Logger logger=LoggerFactory.getLogger(WeaponDataCodeOutputter.class);
+	
 	private List<WeaponData> weapon_data_list;
 	
 	public WeaponDataCodeOutputter(List<WeaponData> weapon_data_list) {
@@ -23,7 +28,7 @@ public class WeaponDataCodeOutputter {
 		String ret="";
 		
 		if(weapon_data_list==null) {
-			LogWriter.WriteWarn("[OutputWeaponDataSourceCode-GetWeaponDataSourceCode] Data is null.",true);
+			logger.warn("Data not prepared.");
 			return ret;
 		}
 		

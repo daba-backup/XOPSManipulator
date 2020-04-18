@@ -8,6 +8,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,6 +30,8 @@ import com.daxie.xops.properties.openxops.CharacterSpecifierConverter;
  *
  */
 public class CharacterDataXMLParser {
+	private Logger logger=LoggerFactory.getLogger(CharacterDataXMLParser.class);
+	
 	private Map<Integer, CharacterData> character_data_map;
 	private boolean openxops_compatible_flag;
 	
@@ -53,11 +57,7 @@ public class CharacterDataXMLParser {
 			builder=factory.newDocumentBuilder();
 		}
 		catch(ParserConfigurationException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Error during configuration for XML input.",e);
 			return -1;
 		}
 		
@@ -66,11 +66,7 @@ public class CharacterDataXMLParser {
 			document=builder.parse(Paths.get(xml_filename).toFile());
 		}
 		catch(Exception e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Error while reading.",e);
 			return -1;
 		}
 		
@@ -96,7 +92,7 @@ public class CharacterDataXMLParser {
 					character_id=Integer.parseInt(strtemp);
 				}
 				catch(NumberFormatException e) {
-					LogWriter.WriteWarn("[CharacterDataXMLParser] Invalid format of number. id:"+strtemp,true);
+					logger.warn("Invalid format of number. index={} character.<id>",i);
 					continue;
 				}
 				
@@ -122,14 +118,7 @@ public class CharacterDataXMLParser {
 						else {
 							CharacterTextureType[] values=CharacterTextureType.values();
 							if(!(0<=itemp&&itemp<values.length)) {
-								LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
-								
-								String str="";
-								str+="character_id"+character_id+" ";
-								str+="texture:"+itemp;
-								
-								LogWriter.WriteLine(str);
-								
+								logger.warn("Specifier out of bounds. index={} character.texture",i);
 								character_data.SetTextureType(CharacterTextureType.SOLDIER_BLACK);
 							}
 							else {
@@ -143,14 +132,7 @@ public class CharacterDataXMLParser {
 						
 						CharacterModelType[] values=CharacterModelType.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
-							
-							String str="";
-							str+="character_id:"+character_id+" ";
-							str+="model:"+itemp;
-							
-							LogWriter.WriteLine(str);
-							
+							logger.warn("Specifier out of bounds. index={} character.model",i);
 							character_data.SetModelType(CharacterModelType.MALE);
 						}
 						else character_data.SetModelType(values[itemp]);
@@ -171,14 +153,7 @@ public class CharacterDataXMLParser {
 						else {
 							CharacterAILevel[] values=CharacterAILevel.values();
 							if(!(0<=itemp&&itemp<values.length)) {
-								LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
-								
-								String str="";
-								str+="character_id:"+character_id+" ";
-								str+="ai_level:"+itemp;
-								
-								LogWriter.WriteLine(str);
-								
+								logger.warn("Specifier out of bounds. index={} character.AIlevel",i);
 								character_data.SetAILevel(CharacterAILevel.C);
 							}
 							else character_data.SetAILevel(values[itemp]);
@@ -200,14 +175,7 @@ public class CharacterDataXMLParser {
 						
 						CharacterType[] values=CharacterType.values();
 						if(!(0<=itemp&&itemp<values.length)) {
-							LogWriter.WriteWarn("[CharacterDataXMLParser-LoadCharacterDataXML] Specifier out of bounds.",true);
-							
-							String str="";
-							str+="character_id:"+character_id+" ";
-							str+="type:"+itemp;
-							
-							LogWriter.WriteLine(str);
-							
+							logger.warn("Specifier out of bounds. index={} character.type",i);
 							character_data.SetType(CharacterType.HUMAN);
 						}
 						else character_data.SetType(values[itemp]);

@@ -6,6 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
@@ -17,16 +20,18 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 class PD1Writer {
+	private Logger logger=LoggerFactory.getLogger(PD1Writer.class);
+	
 	private List<PD1Point> points;
 	
 	public PD1Writer(List<PD1Point> points) {
 		this.points=points;
 	}
 	
-	public void Write(String pd1_filename) throws IOException{
+	public int Write(String pd1_filename){
 		if(points==null) {
-			LogWriter.WriteWarn("[PD1Writer-Write] Data is null.",true);
-			return;
+			logger.warn("Data not prepared.");
+			return -1;
 		}
 		
 		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(pd1_filename)))){
@@ -69,11 +74,10 @@ class PD1Writer {
 			dos.flush();
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogWriter.WriteWarn("[PD1Writer-Write] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
-			return;
+			logger.error("Error while writing.",e);
+			return -1;
 		}
+		
+		return 0;
 	}
 }

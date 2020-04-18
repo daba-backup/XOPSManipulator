@@ -3,6 +3,9 @@ package com.daxie.xops.properties.xms.xgs;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
@@ -23,13 +26,15 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class XGSParser {
+	private Logger logger=LoggerFactory.getLogger(XGSParser.class);
+	
 	private WeaponData[] weapon_data_array=null;
 	
 	public XGSParser(String xgs_filename) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xgs_filename);
 		
 		if(bin.size()!=1732) {
-			LogWriter.WriteWarn("[XGSParser-<init>] Invalid file size. filename:"+xgs_filename,true);
+			logger.warn("Invalid file size. xgs_filename={}",xgs_filename);
 			return;
 		}
 		

@@ -2,6 +2,9 @@ package com.daxie.xops.properties.xms.xcs;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.character.CharacterData;
@@ -12,6 +15,8 @@ import com.daxie.xops.properties.entity.character.CharacterData;
  *
  */
 public class XCSManipulator {
+	private Logger logger=LoggerFactory.getLogger(XCSManipulator.class);
+	
 	private CharacterData[] character_data_array=null;
 	
 	/**
@@ -47,7 +52,7 @@ public class XCSManipulator {
 	 */
 	public void SetCharacterDataArray(CharacterData[] character_data_array) {
 		if(character_data_array==null) {
-			LogWriter.WriteWarn("[XCSManipulator-SetCharacterDataArray] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		this.character_data_array=character_data_array;
@@ -60,16 +65,10 @@ public class XCSManipulator {
 	 */
 	public int Write(String xcs_filename) {
 		XCSWriter xcs_writer=new XCSWriter(character_data_array);
-		try {
-			xcs_writer.Write(xcs_filename);
-		}
-		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[XCSManipulator-Write] Failed to write data.",true);
-			LogWriter.WriteWarn("Below is the stack trace.",false);
-			LogWriter.WriteWarn(str,false);
-			
+		int ret=xcs_writer.Write(xcs_filename);
+		
+		if(ret<0) {
+			logger.error("Failed to write data in a XCS file.");
 			return -1;
 		}
 		

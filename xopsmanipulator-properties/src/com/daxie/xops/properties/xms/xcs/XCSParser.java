@@ -3,6 +3,9 @@ package com.daxie.xops.properties.xms.xcs;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.tool.FileFunctions;
@@ -20,13 +23,15 @@ import com.daxie.xops.properties.entity.character.CharacterType;
  *
  */
 class XCSParser {
+	private Logger logger=LoggerFactory.getLogger(XCSParser.class);
+	
 	private CharacterData[] character_data_array=null;
 	
 	public XCSParser(String xcs_filename) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(xcs_filename);
 		
 		if(bin.size()!=614) {
-			LogWriter.WriteWarn("[XCSParser-<init>] Invalid file size. filename:"+xcs_filename,true);
+			logger.warn("Invalid file size. xcs_filename={}",xcs_filename);
 			return;
 		}
 		

@@ -1,8 +1,14 @@
 package com.daxie.xops.properties.entity.character;
 
+import org.slf4j.LoggerFactory;
+
+import org.slf4j.Logger;
+
 import com.daxie.log.LogWriter;
 
 public class CharacterBinSpecifierAndEnumConverter {
+	private static Logger logger=LoggerFactory.getLogger(CharacterBinSpecifierAndEnumConverter.class);
+	
 	public static CharacterTextureType GetCharacterTextureTypeFromBinSpecifier(int spc) {
 		CharacterTextureType texture_type;
 		
@@ -98,8 +104,7 @@ public class CharacterBinSpecifierAndEnumConverter {
 			texture_type=CharacterTextureType.GATES;
 			break;
 		default:
-			LogWriter.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterTextureTypeFromBinSpecifier]",true);
-			LogWriter.WriteWarn("Unknown texture type specifier. specifier:"+spc,false);
+			logger.warn("Unknown texture type specifier. specifier={}",spc);
 			
 			texture_type=CharacterTextureType.SOLDIER_BLACK;
 			break;
@@ -134,8 +139,7 @@ public class CharacterBinSpecifierAndEnumConverter {
 			model_type=CharacterModelType.HELMET;
 			break;
 		default:
-			LogWriter.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterModelTypeFromBinSpecifier]",true);
-			LogWriter.WriteWarn("Unknown model type specifier. specifier:"+spc,false);
+			logger.warn("Unknown model type specifier. specifier={}",spc);
 			
 			model_type=CharacterModelType.MALE;
 			break;
@@ -198,8 +202,7 @@ public class CharacterBinSpecifierAndEnumConverter {
 			ai_level=CharacterAILevel.NO_WEAPON;
 			break;
 		default:
-			LogWriter.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterAILevelFromBinSpecifier]",true);
-			LogWriter.WriteWarn("Unknown AI level specifier. specifier:"+spc,false);
+			logger.warn("Unknown AI level specifier. specifier={}",spc);
 			
 			ai_level=CharacterAILevel.D;
 			break;
@@ -225,8 +228,7 @@ public class CharacterBinSpecifierAndEnumConverter {
 			type=CharacterType.ZOMBIE;
 			break;
 		default:
-			LogWriter.WriteWarn("[CharacterBinSpecifierAndEnumConverter-GetCharacterTypeFromBinSpecifier]",true);
-			LogWriter.WriteWarn("Unknown type specifier. specifier:"+spc,false);
+			logger.warn("Unknown type specifier. specifier={}",spc);
 			
 			type=CharacterType.HUMAN;
 			break;

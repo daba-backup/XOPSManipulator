@@ -3,6 +3,9 @@ package com.daxie.xops.mif;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 
 /**
@@ -11,6 +14,8 @@ import com.daxie.log.LogWriter;
  *
  */
 public class MIFManipulator {
+	private Logger logger=LoggerFactory.getLogger(MIFManipulator.class);
+	
 	private MissionInfo mission_info;
 	
 	public MIFManipulator(String mif_filename,String encoding) throws IOException{
@@ -23,7 +28,7 @@ public class MIFManipulator {
 	
 	public void SetMissionInfo(MissionInfo mission_info) {
 		if(mission_info==null) {
-			LogWriter.WriteWarn("[MIFManipulator-SetMissionInfo] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		this.mission_info=mission_info;

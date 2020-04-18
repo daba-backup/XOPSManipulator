@@ -5,6 +5,9 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
@@ -25,20 +28,22 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class XGSWriter {
+	private Logger logger=LoggerFactory.getLogger(XGSWriter.class);
+	
 	private WeaponData[] weapon_data_array=null;
 	
 	public XGSWriter(WeaponData[] weapon_data_array) {
 		this.weapon_data_array=weapon_data_array;
 	}
 	
-	public void Write(String xgs_filename) throws IOException{
+	public int Write(String xgs_filename){
 		if(weapon_data_array==null) {
-			LogWriter.WriteWarn("[XGSWriter-Write] Data is null.",true);
-			return;
+			logger.warn("Data not prepared.");
+			return -1;
 		}
 		if(weapon_data_array.length!=XOPSConstants.WEAPON_NUM) {
-			LogWriter.WriteWarn("[XGSWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length,true);
-			return;
+			logger.warn("Invalid number of data. data_num={}",weapon_data_array.length);
+			return -1;
 		}
 		
 		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(xgs_filename)))){
@@ -240,11 +245,10 @@ class XGSWriter {
 			}
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogWriter.WriteWarn("[XGSWriter-Write] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
-			return;
+			logger.error("Error while writing.",e);
+			return -1;
 		}
+		
+		return 0;
 	}
 }

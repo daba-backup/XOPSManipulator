@@ -2,6 +2,9 @@ package com.daxie.xops.properties.exe;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
@@ -21,6 +24,8 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class XOPSExeWeaponDataWriter {
+	private Logger logger=LoggerFactory.getLogger(XOPSExeWeaponDataWriter.class);
+	
 	private WeaponData[] weapon_data_array;
 	
 	public XOPSExeWeaponDataWriter(WeaponData[] weapon_data_array) {
@@ -29,11 +34,11 @@ class XOPSExeWeaponDataWriter {
 	
 	public void Write(List<Byte> bin,int weapon_data_start_pos,int weapon_name_start_pos) {
 		if(weapon_data_array==null) {
-			LogWriter.WriteWarn("[XOPSExeWeaponDataWriter-Write] Data is null.",true);
+			logger.warn("Data not prepared.");
 			return;
 		}
 		if(weapon_data_array.length!=XOPSConstants.WEAPON_NUM) {
-			LogWriter.WriteWarn("[XOPSExeWeaponDataWriter-Write] Invalid number of data. data_num:"+weapon_data_array.length,true);
+			logger.warn("Invalid number of data. data_num={}",weapon_data_array.length);
 			return;
 		}
 		

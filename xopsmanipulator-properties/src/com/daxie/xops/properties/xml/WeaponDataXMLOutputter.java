@@ -7,6 +7,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -23,6 +25,8 @@ import com.daxie.xops.properties.openxops.WeaponSpecifierConverter;
  *
  */
 public class WeaponDataXMLOutputter {
+	private Logger logger=LoggerFactory.getLogger(WeaponDataXMLOutputter.class);
+	
 	private List<WeaponData> weapon_data_list;
 	private boolean openxops_compatible_flag;
 	
@@ -45,7 +49,7 @@ public class WeaponDataXMLOutputter {
 	 */
 	public int WriteXML(String xml_filename) {
 		if(weapon_data_list==null) {
-			LogWriter.WriteWarn("[WeaponDataXMLOutputter-WriteXML] Data is null.",true);
+			logger.warn("Data not prepared.");
 			return -1;
 		}
 		
@@ -56,11 +60,7 @@ public class WeaponDataXMLOutputter {
 			builder=factory.newDocumentBuilder();
 		}
 		catch(ParserConfigurationException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[WeaponDataXMLOutputter-WriteXML] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str, false);
-			
+			logger.error("Error during configuration for XML output.",e);
 			return -1;
 		}
 		Document document=builder.newDocument();

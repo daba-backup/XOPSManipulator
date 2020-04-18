@@ -6,12 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.matrix.Matrix;
 import com.daxie.basis.matrix.MatrixFunctions;
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
-import com.daxie.log.LogWriter;
-import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Manipulates a BD1 file.
@@ -19,6 +20,8 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 public class BD1Manipulator {
+	private Logger logger=LoggerFactory.getLogger(BD1Manipulator.class);
+	
 	private List<BD1Block> blocks;
 	private Map<Integer, String> texture_filenames_map;
 	
@@ -54,7 +57,7 @@ public class BD1Manipulator {
 	 */
 	public void SetBlocks(List<BD1Block> blocks) {
 		if(blocks==null) {
-			LogWriter.WriteWarn("[BD1Manipulator-SetBlocks] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		this.blocks=blocks;
@@ -75,7 +78,7 @@ public class BD1Manipulator {
 	 */
 	public String GetTextureFilename(int texture_id) {
 		if(texture_filenames_map.containsKey(texture_id)==false) {
-			LogWriter.WriteWarn("[BD1Manipulator-GetTextureFilename] No such texture filename registered. texture_id:"+texture_id,true);
+			logger.warn("No such texture. texture_id={}",texture_id);
 			return "";
 		}
 		
@@ -97,7 +100,7 @@ public class BD1Manipulator {
 	 */
 	public int SetTextureFilename(int texture_id,String texture_filename) {
 		if(!(0<=texture_id&&texture_id<10)) {
-			LogWriter.WriteWarn("[BD1Manipulator-SetTextureFilename] Texture ID out of bounds. texture_id:"+texture_id,true);
+			logger.warn("Texture ID out of bounds. texture_id={}",texture_id);
 			return -1;
 		}
 		
@@ -112,7 +115,7 @@ public class BD1Manipulator {
 	 */
 	public int SetTextureFilenamesMap(Map<Integer, String> texture_filenames_map) {
 		if(texture_filenames_map==null) {
-			LogWriter.WriteWarn("[BD1Manipulator-SetTextureFilenamesMap] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return -1;
 		}
 		this.texture_filenames_map=texture_filenames_map;
@@ -256,16 +259,10 @@ public class BD1Manipulator {
 	 */
 	public int WriteAsBD1(String bd1_filename) {
 		BD1Writer bd1_writer=new BD1Writer(blocks, texture_filenames_map);
-		try {
-			bd1_writer.Write(bd1_filename);
-		}
-		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[BD1Manipulator-Write] Failed to write data.",true);
-			LogWriter.WriteWarn("Below is the stack trace.",false);
-			LogWriter.WriteWarn(str, false);
-			
+		int ret=bd1_writer.Write(bd1_filename);
+		
+		if(ret<0) {
+			logger.error("Failed to write blocks in a BD1 file. bd1_filename={}",bd1_filename);
 			return -1;
 		}
 		
@@ -282,7 +279,7 @@ public class BD1Manipulator {
 		
 		int ret=obj_writer.Write(obj_filename);
 		if(ret<0) {
-			LogWriter.WriteWarn("[BD1Manipulator-WriteAsOBJ] Failed to write blocks in an OBJ file.",true);
+			logger.error("Failed to write blocks in an OBJ file. obj_filename={}",obj_filename);
 			return -1;
 		}
 		

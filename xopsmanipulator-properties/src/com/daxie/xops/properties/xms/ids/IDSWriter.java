@@ -5,6 +5,9 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
@@ -24,16 +27,18 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class IDSWriter {
+	private Logger logger=LoggerFactory.getLogger(IDSWriter.class);
+	
 	private WeaponData weapon_data=null;
 	
 	public IDSWriter(WeaponData weapon_data) {
 		this.weapon_data=weapon_data;
 	}
 	
-	public void Write(String ids_filename) throws IOException{
+	public int Write(String ids_filename){
 		if(weapon_data==null) {
-			LogWriter.WriteWarn("[IDSWriter-Write] Data is null.",true);
-			return;
+			logger.warn("Data not prepared.");
+			return -1;
 		}
 		
 		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(ids_filename)))){
@@ -223,11 +228,10 @@ class IDSWriter {
 			dos.write(name_buffer);
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogWriter.WriteWarn("[IDSWriter-Write] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
-			return;
+			logger.error("Error while writing.",e);
+			return -1;
 		}
+		
+		return 0;
 	}
 }

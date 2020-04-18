@@ -2,6 +2,9 @@ package com.daxie.xops.properties.xms.xgs;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ExceptionFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
@@ -12,6 +15,8 @@ import com.daxie.xops.properties.entity.weapon.WeaponData;
  *
  */
 public class XGSManipulator {
+	private Logger logger=LoggerFactory.getLogger(XGSManipulator.class);
+	
 	private WeaponData[] weapon_data_array=null;
 	
 	/**
@@ -48,7 +53,7 @@ public class XGSManipulator {
 	 */
 	public void SetWeaponDataArray(WeaponData[] weapon_data_array) {
 		if(weapon_data_array==null) {
-			LogWriter.WriteWarn("[XGSManipulator-SetWeaponDataArray] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		this.weapon_data_array=weapon_data_array;
@@ -61,16 +66,10 @@ public class XGSManipulator {
 	 */
 	public int Write(String xgs_filename) {
 		XGSWriter xgs_writer=new XGSWriter(weapon_data_array);
-		try {
-			xgs_writer.Write(xgs_filename);
-		}
-		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[XGSManipulator-Write] Failed to write data.",true);
-			LogWriter.WriteWarn("Below is the stack trace.",false);
-			LogWriter.WriteWarn(str,false);
-			
+		int ret=xgs_writer.Write(xgs_filename);
+		
+		if(ret<0) {
+			logger.error("Failed to write data in a XGS file. xgs_filename={}",xgs_filename);
 			return -1;
 		}
 		

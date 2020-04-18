@@ -2,6 +2,9 @@ package com.daxie.xops.properties.exe;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
 import com.daxie.xops.properties.XOPSConstants;
@@ -18,6 +21,8 @@ import com.daxie.xops.properties.entity.character.CharacterType;
  *
  */
 class XOPSExeCharacterDataWriter {
+	private Logger logger=LoggerFactory.getLogger(XOPSExeCharacterDataWriter.class);
+	
 	private CharacterData[] character_data_array;
 	
 	public XOPSExeCharacterDataWriter(CharacterData[] character_data_array) {
@@ -26,11 +31,11 @@ class XOPSExeCharacterDataWriter {
 	
 	public void Write(List<Byte> bin,int character_data_start_pos) {
 		if(character_data_array==null) {
-			LogWriter.WriteWarn("[XOPSExeCharacterDataWriter-Write] Data is null.",true);
+			logger.warn("Data not prepared.");
 			return;
 		}
 		if(character_data_array.length!=XOPSConstants.CHARACTER_NUM) {
-			LogWriter.WriteWarn("[XOPSExeCharacterDataWriter-Write] Invalid number of data. data_num:"+character_data_array.length,true);
+			logger.warn("Invalid number of data. data_num={}",character_data_array.length);
 			return;
 		}
 		

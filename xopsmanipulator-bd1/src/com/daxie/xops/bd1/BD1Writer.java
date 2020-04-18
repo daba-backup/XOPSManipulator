@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
-import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
-import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Writes data to a BD1 file.
@@ -19,6 +20,8 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 class BD1Writer {
+	private Logger logger=LoggerFactory.getLogger(BD1Writer.class);
+	
 	private List<BD1Block> blocks;
 	private Map<Integer, String> texture_filenames_map;
 	
@@ -27,10 +30,10 @@ class BD1Writer {
 		this.texture_filenames_map=texture_filenames_map;
 	}
 	
-	public void Write(String bd1_filename) throws IOException{
+	public int Write(String bd1_filename){
 		if(blocks==null||texture_filenames_map==null) {
-			LogWriter.WriteWarn("[BD1Writer-Write] Data is null.",true);
-			return;
+			logger.warn("Data not prepared.");
+			return -1;
 		}
 		
 		try(DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(bd1_filename)))) {
@@ -120,11 +123,10 @@ class BD1Writer {
 			dos.flush();
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			LogWriter.WriteWarn("[BD1Writer-Write] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
-			return;
+			logger.error("Error while writing.",e);
+			return -1;
 		}
+		
+		return 0;
 	}	
 }

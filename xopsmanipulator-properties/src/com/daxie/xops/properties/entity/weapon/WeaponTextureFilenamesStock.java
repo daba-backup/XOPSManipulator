@@ -3,10 +3,15 @@ package com.daxie.xops.properties.entity.weapon;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.xops.properties.XOPSConstants;
 
 public class WeaponTextureFilenamesStock {
+	private static Logger logger=LoggerFactory.getLogger(WeaponTextureFilenamesStock.class);
+	
 	private static Map<Integer, String> texture_filenames_map;
 	
 	static{
@@ -51,15 +56,11 @@ public class WeaponTextureFilenamesStock {
 		WeaponTextureType texture_type=WeaponTextureType.NONE;
 		
 		if(texture_filenames_map.size()!=XOPSConstants.WEAPON_TEXTURE_NUM) {
-			LogWriter.WriteWarn("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]",true);
-			LogWriter.WriteWarn("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.",false);
-			
+			logger.error("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.");
 			return texture_type;
 		}
 		if(texture_filenames_map.containsValue(texture_filename)==false) {
-			LogWriter.WriteWarn("[WeaponTextureFilenamesStock-GetWeaponTextureTypeFromFilename]",true);
-			LogWriter.WriteWarn("No such filename in the map. filename:"+texture_filename,false);
-			
+			logger.warn("No such filename in the map. texture_filename={}",texture_filename);
 			return texture_type;
 		}
 		

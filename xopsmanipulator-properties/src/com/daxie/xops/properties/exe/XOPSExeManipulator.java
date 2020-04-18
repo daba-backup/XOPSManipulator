@@ -3,6 +3,9 @@ package com.daxie.xops.properties.exe;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.DateFunctions;
 import com.daxie.tool.ExceptionFunctions;
@@ -18,6 +21,8 @@ import com.daxie.xops.properties.entity.weapon.WeaponData;
  *
  */
 public class XOPSExeManipulator {
+	private Logger logger=LoggerFactory.getLogger(XOPSExeManipulator.class);
+	
 	private WeaponData[] weapon_data_array=null;
 	private CharacterData[] character_data_array=null;
 	
@@ -31,7 +36,7 @@ public class XOPSExeManipulator {
 		XOPSVersion version=XOPSExeFunctions.GetXOPSVersion(bin);
 		
 		if(version==XOPSVersion.UNKNOWN_VERSION) {
-			LogWriter.WriteWarn("[XOPSExeManipulator-<init>] Unknown version of X operations.",true);
+			logger.warn("Unknown version of X operations.");
 			
 			weapon_data_array=new WeaponData[XOPSConstants.WEAPON_NUM];
 			for(int i=0;i<weapon_data_array.length;i++) {
@@ -105,11 +110,7 @@ public class XOPSExeManipulator {
 			character_data_parser=new XOPSExeCharacterDataParser(bin,character_data_start_pos);
 		}
 		catch(IndexOutOfBoundsException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[XOPSExeManipulator-<init>] Index out of bounds. Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Error while reading.",e);
 			return;
 		}
 		
@@ -154,7 +155,7 @@ public class XOPSExeManipulator {
 	 */
 	public void SetWeaponDataArray(WeaponData[] weapon_data_array) {
 		if(weapon_data_array==null) {
-			LogWriter.WriteWarn("[XOPSExeManipulator-SetWeaponDataArray] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		this.weapon_data_array=weapon_data_array;
@@ -165,7 +166,7 @@ public class XOPSExeManipulator {
 	 */
 	public void SetCharacterDataArray(CharacterData[] character_data_array) {
 		if(character_data_array==null) {
-			LogWriter.WriteWarn("[XOPSExeManipulator-SetCharacterDataArray] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		this.character_data_array=character_data_array;
@@ -274,11 +275,7 @@ public class XOPSExeManipulator {
 			character_data_writer.Write(bin,character_data_start_pos);
 		}
 		catch(IndexOutOfBoundsException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[XOPSExeManipulator-<init>] Index out of bounds. Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Error while writing.",e);
 			return;
 		}
 		

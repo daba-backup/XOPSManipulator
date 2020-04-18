@@ -3,6 +3,9 @@ package com.daxie.xops.mif;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.log.LogWriter;
 import com.daxie.tool.FileFunctions;
 
@@ -12,6 +15,8 @@ import com.daxie.tool.FileFunctions;
  *
  */
 class MIFParser {
+	private Logger logger=LoggerFactory.getLogger(MIFParser.class);
+	
 	private MissionInfo mission_info;
 	
 	public MIFParser(String mif_filename,String encoding) throws IOException{
@@ -19,7 +24,7 @@ class MIFParser {
 		
 		List<String> lines=FileFunctions.GetFileAllLines(mif_filename,encoding);
 		if(lines.size()<10) {
-			LogWriter.WriteWarn("[MIFParser-<init>] Too few lines in the MIF file.",true);
+			logger.warn("Invalid number of lines in the MIF file specified. mif_filename={}",mif_filename);
 			return;
 		}
 		

@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.matrix.Matrix;
 import com.daxie.basis.matrix.MatrixFunctions;
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
-import com.daxie.log.LogWriter;
-import com.daxie.tool.ExceptionFunctions;
 
 /**
  * Manipulates a PD1 file.
@@ -17,6 +18,8 @@ import com.daxie.tool.ExceptionFunctions;
  *
  */
 public class PD1Manipulator {
+	private Logger logger=LoggerFactory.getLogger(PD1Manipulator.class);
+	
 	private List<PD1Point>points;
 	
 	/**
@@ -45,7 +48,7 @@ public class PD1Manipulator {
 	 */
 	public void SetPoints(List<PD1Point> points) {
 		if(points==null) {
-			LogWriter.WriteWarn("[PD1Manipulator-SetPoints] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return;
 		}
 		this.points=points;
@@ -170,16 +173,10 @@ public class PD1Manipulator {
 	 */
 	public int Write(String pd1_filename) {
 		PD1Writer pd1_writer=new PD1Writer(points);
-		try {
-			pd1_writer.Write(pd1_filename);
-		}
-		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[PD1Manipulator-Write] Failed to write data.",true);
-			LogWriter.WriteWarn("Below is the stack trace.",false);
-			LogWriter.WriteWarn(str,false);
-			
+		int ret=pd1_writer.Write(pd1_filename);
+		
+		if(ret<0) {
+			logger.error("Failed to write points in a PD1 file. pd1_filename={}",pd1_filename);
 			return -1;
 		}
 		

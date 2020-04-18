@@ -13,6 +13,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -27,6 +29,8 @@ import com.daxie.tool.XMLFunctions;
  *
  */
 public class MIFList {
+	private Logger logger=LoggerFactory.getLogger(MIFList.class);
+	
 	public static final int MISSION_NAME=0x0001;
 	public static final int MISSION_FORMAL_NAME=0x0002;
 	public static final int BD1_FILENAME=0x0004;
@@ -101,7 +105,7 @@ public class MIFList {
 		
 		File dir=new File(directory_name);
 		if(dir.isDirectory()==false) {
-			LogWriter.WriteWarn("[MIFList-<init>] Not a directory. directory_name:"+directory_name,true);
+			logger.warn("{} is not a directory.",directory_name);
 			return;
 		}
 		
@@ -115,7 +119,7 @@ public class MIFList {
 		
 		File[] files=dir.listFiles(filter);
 		if(files==null) {
-			LogWriter.WriteWarn("[MIFList-<init>] listFiles() returned null.",true);
+			logger.error("listFiles() returned null.");
 			return;
 		}
 		
@@ -125,7 +129,7 @@ public class MIFList {
 				mif_manipulator=new MIFManipulator(file.getPath(), encoding);
 			}
 			catch(IOException e) {
-				LogWriter.WriteWarn("[MIFList-<init>] Failed to load a MIF file. filename:"+file.getPath(),true);		
+				logger.error("Failed to load a MIF file. filepath={}",file.getPath());
 				return;
 			}
 			
@@ -210,11 +214,7 @@ public class MIFList {
 			builder=factory.newDocumentBuilder();
 		}
 		catch(ParserConfigurationException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[MIFList-WriteXML] Below is the stack trace.",true);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Error during configuration for XML output.",e);
 			return -1;
 		}
 		Document document=builder.newDocument();
@@ -408,15 +408,10 @@ public class MIFList {
 		}
 		
 		try {
-			FileFunctions.CreateTextFile(csv_filename, "UTF-8",lines);
+			FileFunctions.CreateTextFile(csv_filename, "UTF-8", lines);
 		}
 		catch(IOException e) {
-			String str=ExceptionFunctions.GetPrintStackTraceString(e);
-			
-			LogWriter.WriteWarn("[MIFList-WriteCSV] Failed to write in a file.",true);
-			LogWriter.WriteWarn("Below is the stack trace.", false);
-			LogWriter.WriteWarn(str,false);
-			
+			logger.error("Error while writing.",e);
 			return -1;
 		}
 		

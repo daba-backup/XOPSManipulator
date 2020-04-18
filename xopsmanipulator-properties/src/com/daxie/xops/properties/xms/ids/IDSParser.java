@@ -3,6 +3,10 @@ package com.daxie.xops.properties.xms.ids;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
+
+import org.slf4j.Logger;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.log.LogWriter;
 import com.daxie.tool.ByteFunctions;
@@ -22,6 +26,8 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class IDSParser {
+	private Logger logger=LoggerFactory.getLogger(IDSParser.class);
+	
 	private WeaponData weapon_data=null;
 	
 	public IDSParser(String ids_filename) throws IOException{
@@ -29,7 +35,7 @@ class IDSParser {
 		weapon_data=new WeaponData();
 		
 		if(bin.size()!=84) {
-			LogWriter.WriteWarn("[IDSParser-<init>] Invalid file size. filename:"+ids_filename,true);
+			logger.warn("Invalid file size. ids_filename={}",ids_filename);
 			return;
 		}
 		

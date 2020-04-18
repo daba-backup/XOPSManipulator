@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daxie.basis.vector.Vector;
 import com.daxie.basis.vector.VectorFunctions;
 import com.daxie.log.LogWriter;
@@ -17,6 +20,8 @@ import com.daxie.log.LogWriter;
  *
  */
 public class PD1Creator {
+	private Logger logger=LoggerFactory.getLogger(PD1Creator.class);
+	
 	private int point_count;
 	private Map<Integer, PD1Point> points_map;
 	
@@ -40,7 +45,7 @@ public class PD1Creator {
 	 */
 	public int AddPoint(PD1Point point) {
 		if(point==null) {
-			LogWriter.WriteWarn("[PD1Creator-AddPoint] Null argument where non-null required.",true);
+			logger.warn("Null argument where non-null required.");
 			return -1;
 		}
 		
@@ -59,7 +64,7 @@ public class PD1Creator {
 	 */
 	public int DuplicatePoint(int point_handle) {
 		if(points_map.containsKey(point_handle)==false) {
-			LogWriter.WriteWarn("[PD1Creator-DuplicatePoint] No such point. handle:"+point_handle,true);
+			logger.warn("No such point. point_handle={}",point_handle);
 			return -1;
 		}
 		
@@ -110,7 +115,7 @@ public class PD1Creator {
 	 */
 	public int SetPointPosition(int point_handle,Vector position) {
 		if(points_map.containsKey(point_handle)==false) {
-			LogWriter.WriteWarn("[PD1Creator-SetPointPosition] No such point. handle:"+point_handle,true);
+			logger.warn("No such point. point_handle={}",point_handle);
 			return -1;
 		}
 		
@@ -127,7 +132,7 @@ public class PD1Creator {
 	 */
 	public int SetPointRotation(int point_handle,float rotation) {
 		if(points_map.containsKey(point_handle)==false) {
-			LogWriter.WriteWarn("[PD1Creator-SetPointRotation] No such point. handle:"+point_handle,true);
+			logger.warn("No such point. point_handle={}",point_handle);
 			return -1;
 		}
 		
@@ -147,7 +152,7 @@ public class PD1Creator {
 	 */
 	public int SetPointParameters(int point_handle,int parameter_1,int parameter_2,int parameter_3,int parameter_4) {
 		if(points_map.containsKey(point_handle)==false) {
-			LogWriter.WriteWarn("[PD1Creator-SetPointParameters] No such point. handle:"+point_handle,true);
+			logger.warn("No such point. point_handle={}",point_handle);
 			return -1;
 		}
 		
@@ -167,7 +172,7 @@ public class PD1Creator {
 	 */
 	public int RemovePoint(int point_handle) {
 		if(points_map.containsKey(point_handle)==false) {
-			LogWriter.WriteWarn("[PD1Creator-RemovePoint] No such point. handle:"+point_handle,true);
+			logger.warn("No such point. point_handle={}",point_handle);
 			return -1;
 		}
 		
