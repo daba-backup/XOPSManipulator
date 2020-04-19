@@ -38,6 +38,36 @@ public class Config {
 	public Config() {
 		this.SetDefault();
 	}
+	public Config(Config c) {
+		turn_up=c.GetTurnUp();
+		turn_down=c.GetTurnDown();
+		turn_left=c.GetTurnLeft();
+		turn_right=c.GetTurnRight();
+		move_forward=c.GetMoveForward();
+		move_backward=c.GetMoveBackward();
+		move_left=c.GetMoveLeft();
+		move_right=c.GetMoveRight();
+		walk=c.GetWalk();
+		jump=c.GetJump();
+		reload=c.GetReload();
+		drop_weapon=c.GetDropWeapon();
+		zoom=c.GetZoom();
+		fire_mode=c.GetFireMode();
+		switch_weapon=c.GetSwitchWeapon();
+		weapon1=c.GetWeapon1();
+		weapon2=c.GetWeapon2();
+		fire=c.GetFire();
+		
+		mouse_sensitivity=c.GetMouseSensitivity();
+		brightness=c.GetBrightness();
+		window_mode=c.GetWindowMode();
+		enable_sound=c.GetEnableSound();
+		enable_blood=c.GetEnableBlood();
+		invert_mouse=c.GetInvertMouse();
+		frame_skip=c.GetFrameSkip();
+		another_gunsight=c.GetAnotherGunsight();
+		name=c.GetName();
+	}
 	public void SetDefault() {
 		turn_up=KeyCode.KEY_UP;
 		turn_down=KeyCode.KEY_DOWN;
