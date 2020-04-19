@@ -42,60 +42,57 @@ class XOPSExeCharacterDataWriter {
 		
 		for(int i=0;i<XOPSConstants.CHARACTER_NUM;i++) {
 			int itemp;
-			byte[] b;
 			
 			//Texture
 			CharacterTextureType texture_type=character_data_array[i].GetTextureType();
 			itemp=CharacterBinSpecifierAndEnumConverter.GetBinSpecifierFromCharacterTextureType(texture_type);
-			b=ByteFunctions.short_to_byte_le((short)itemp);
-			bin.set(pos, b[0]);
-			bin.set(pos+1, b[1]);
+			this.SetShortToBin(bin, pos, (short)itemp);
 			pos+=2;
 			
 			//Model
 			CharacterModelType model_type=character_data_array[i].GetModelType();
 			itemp=CharacterBinSpecifierAndEnumConverter.GetBinSpecifierFromCharacterModelType(model_type);
-			b=ByteFunctions.short_to_byte_le((short)itemp);
-			bin.set(pos, b[0]);
-			bin.set(pos+1, b[1]);
+			this.SetShortToBin(bin, pos, (short)itemp);
 			pos+=2;
 			
 			//HP
 			itemp=character_data_array[i].GetHP();
-			b=ByteFunctions.ushort_to_byte_le((short)itemp);
-			bin.set(pos, b[0]);
-			bin.set(pos+1, b[1]);
+			this.SetUShortToBin(bin, pos, itemp);
 			pos+=2;
 			
 			//AI level
 			CharacterAILevel ai_level=character_data_array[i].GetAILevel();
 			itemp=CharacterBinSpecifierAndEnumConverter.GetBinSpecifierFromCharacterAILevel(ai_level);
-			b=ByteFunctions.short_to_byte_le((short)itemp);
-			bin.set(pos, b[0]);
-			bin.set(pos+1, b[1]);
+			this.SetShortToBin(bin, pos, (short)itemp);
 			pos+=2;
 			
 			//Weapon A
 			itemp=character_data_array[i].GetWeaponID(0);
-			b=ByteFunctions.short_to_byte_le((short)itemp);
-			bin.set(pos, b[0]);
-			bin.set(pos+1, b[1]);
+			this.SetShortToBin(bin, pos, (short)itemp);
 			pos+=2;
 			
 			//Weapon B
 			itemp=character_data_array[i].GetWeaponID(1);
-			b=ByteFunctions.short_to_byte_le((short)itemp);
-			bin.set(pos, b[0]);
-			bin.set(pos+1, b[1]);
+			this.SetShortToBin(bin, pos, (short)itemp);
 			pos+=2;
 			
 			//Type
 			CharacterType type=character_data_array[i].GetType();
 			itemp=CharacterBinSpecifierAndEnumConverter.GetBinSpecifierFromCharacterType(type);
-			b=ByteFunctions.short_to_byte_le((short)itemp);
-			bin.set(pos, b[0]);
-			bin.set(pos+1, b[1]);
+			this.SetShortToBin(bin, pos, (short)itemp);
 			pos+=2;
+		}
+	}
+	private void SetShortToBin(List<Byte> bin,int pos,short s) {
+		byte[] buffer=ByteFunctions.short_to_byte_le(s);
+		for(int i=0;i<2;i++) {
+			bin.set(pos,buffer[i]);
+		}
+	}
+	private void SetUShortToBin(List<Byte> bin,int pos,int s) {
+		byte[] buffer=ByteFunctions.ushort_to_byte_le(s);
+		for(int i=0;i<2;i++) {
+			bin.set(pos,buffer[i]);
 		}
 	}
 }
