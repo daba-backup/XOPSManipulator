@@ -31,169 +31,129 @@ class XOPSExeWeaponDataParser {
 		int pos=weapon_data_start_pos;
 		
 		for(int i=0;i<XOPSConstants.WEAPON_NUM;i++) {
-			byte[] b=new byte[2];
 			int itemp;
 			Vector vtemp;
 			
 			//Attack power
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetAttackPower(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetAttackPower(itemp);
 			
 			//Penetration
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetPenetration(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetPenetration(itemp);
 			
 			//Firing interval
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetFiringInterval(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetFiringInterval(itemp);
 			
 			//Velocity
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetBulletSpeed(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetBulletSpeed(itemp);
 			
 			//Number of bullets
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetNumberOfBullets(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetNumberOfBullets(itemp);
 			
 			//Reloading time
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetReloadingTime(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetReloadingTime(itemp);
 			
 			//Recoil
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetRecoil(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetRecoil(itemp);
 			
 			//Minimum range of error
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetErrorRangeMin(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetErrorRangeMin(itemp);
 			
 			//Maximum range of error
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetErrorRangeMax(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetErrorRangeMax(itemp);
 			
 			//Position 
 			vtemp=new Vector();
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
+			pos+=2;
 			vtemp.SetX((float)itemp);
-			pos+=2;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
+			pos+=2;
 			vtemp.SetY((float)itemp);
-			pos+=2;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			vtemp.SetZ((float)itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			vtemp.SetZ((float)itemp);
 			
 			weapon_data_array[i].SetPosition(vtemp);
 			
 			//Flash position
 			vtemp=new Vector();
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
+			pos+=2;
 			vtemp.SetX((float)itemp);
-			pos+=2;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
+			pos+=2;
 			vtemp.SetY((float)itemp);
-			pos+=2;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			vtemp.SetZ((float)itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			vtemp.SetZ((float)itemp);
 			
 			weapon_data_array[i].SetFlashPosition(vtemp);
 			
 			//Cartridge position
 			vtemp=new Vector();
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
+			pos+=2;
 			vtemp.SetX((float)itemp);
-			pos+=2;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
+			pos+=2;
 			vtemp.SetY((float)itemp);
-			pos+=2;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			vtemp.SetZ((float)itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			vtemp.SetZ((float)itemp);
 			
 			weapon_data_array[i].SetCartridgePosition(vtemp);
 			
 			//Shooting stance
 			WeaponShootingStance shooting_stance;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
 			
 			shooting_stance=WeaponBinSpecifierAndEnumConverter.GetWeaponShootingStanceFromBinSpecifier(itemp);
 			weapon_data_array[i].SetShootingStance(shooting_stance);
 			
 			//Rapid fire
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			if(itemp==0)weapon_data_array[i].SetRapidFireEnabledFlag(true);
-			else weapon_data_array[i].SetRapidFireEnabledFlag(false);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			if(itemp==0) {
+				weapon_data_array[i].SetRapidFireEnabledFlag(true);
+			}
+			else {
+				weapon_data_array[i].SetRapidFireEnabledFlag(false);
+			}
 			
 			//Scope mode
 			WeaponScopeMode scope_mode;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
-			
 			scope_mode=WeaponBinSpecifierAndEnumConverter.GetWeaponScopeModeFromBinSpecifier(itemp);
 			weapon_data_array[i].SetScopeMode(scope_mode);
 			
@@ -201,11 +161,8 @@ class XOPSExeWeaponDataParser {
 			WeaponTextureType texture_type;
 			String texture_filename;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
-			
 			texture_type=WeaponBinSpecifierAndEnumConverter.GetWeaponTextureTypeFromBinSpecifier(itemp);
 			texture_filename=WeaponTextureFilenamesStock.GetTextureFilename(texture_type);
 			weapon_data_array[i].SetTextureFilename(texture_filename);
@@ -214,69 +171,64 @@ class XOPSExeWeaponDataParser {
 			WeaponModelType model_type;
 			String model_filename;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
-			
 			model_type=WeaponBinSpecifierAndEnumConverter.GetWeaponModelTypeFromBinSpecifier(itemp);
 			model_filename=WeaponModelFilenamesStock.GetModelFilename(model_type);
 			weapon_data_array[i].SetModelFilename(model_filename);
 			
 			//Scale
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetScale(itemp*0.1f);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetScale(itemp*0.1f);
 			
 			//Cartridge velocity
 			vtemp=new Vector();
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
+			itemp=this.GetShortFromBin(bin, pos);
+			pos+=2;
 			vtemp.SetX((float)itemp);
-			pos+=2;
 			
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			vtemp.SetY((float)itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			vtemp.SetY((float)itemp);
 			
 			vtemp.SetZ(0.0f);
 			
 			weapon_data_array[i].SetCartridgeVelocity(vtemp);
 			
 			//Sound ID
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetSoundID(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetSoundID(itemp);
 			
 			//Sound volume
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			weapon_data_array[i].SetSoundVolume(itemp);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			weapon_data_array[i].SetSoundVolume(itemp);
 			
 			//Suppressor
-			b[0]=bin.get(pos);
-			b[1]=bin.get(pos+1);
-			itemp=ByteFunctions.byte_to_short_le(b);
-			if(itemp==0)weapon_data_array[i].SetSuppressorEnabledFlag(false);
-			else weapon_data_array[i].SetSuppressorEnabledFlag(true);
+			itemp=this.GetShortFromBin(bin, pos);
 			pos+=2;
+			if(itemp==0) {
+				weapon_data_array[i].SetSuppressorEnabledFlag(false);
+			}
+			else {
+				weapon_data_array[i].SetSuppressorEnabledFlag(true);
+			}
 			
 			//Changeable weapon
-			if(i==4)weapon_data_array[i].SetChangeableWeapon(16);
-			else if(i==16)weapon_data_array[i].SetChangeableWeapon(4);
+			if(i==4) {
+				weapon_data_array[i].SetChangeableWeapon(16);
+			}
+			else if(i==16) {
+				weapon_data_array[i].SetChangeableWeapon(4);
+			}
 			
 			//Number of projectiles
-			if(i==19)weapon_data_array[i].SetNumberOfProjectiles(6);
+			if(i==19) {
+				weapon_data_array[i].SetNumberOfProjectiles(6);
+			}
 		}
 		
 		//Name
@@ -307,6 +259,14 @@ class XOPSExeWeaponDataParser {
 			
 			weapon_data_array[XOPSConstants.WEAPON_NUM-1-i].SetName(strtemp);
 		}
+	}
+	private int GetShortFromBin(List<Byte> bin,int pos) {
+		byte[] buffer=new byte[2];
+		buffer[0]=bin.get(pos);
+		buffer[1]=bin.get(pos+1);
+		
+		int ret=ByteFunctions.byte_to_short_le(buffer);
+		return ret;
 	}
 	
 	public WeaponData[] GetWeaponDataArray() {
