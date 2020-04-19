@@ -34,11 +34,11 @@ class XCSParser {
 			return;
 		}
 		
+		int itemp;
+		
 		int pos=0x0000000C;
 		
 		for(int i=0;i<XOPSConstants.CHARACTER_NUM;i++) {
-			int itemp;
-			
 			//Texture
 			CharacterTextureType texture_type;
 			
