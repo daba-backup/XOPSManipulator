@@ -19,63 +19,64 @@ class PD1Parser {
 		points=new ArrayList<>();		
 		List<Byte> bin=FileFunctions.GetFileAllBin(pd1_filename);
 		
-		int count=0;
+		int pos=0;
 		
 		//Number of points
-		byte[] point_num_buffer=new byte[2];
-		point_num_buffer[0]=bin.get(count);
-		point_num_buffer[1]=bin.get(count+1);
-		
-		int point_num=ByteFunctions.byte_to_ushort_le(point_num_buffer);
-		
-		count+=2;
+		int point_num=this.GetUShortFromBin(bin, pos);
+		pos+=2;
 		
 		//Points
 		for(int i=0;i<point_num;i++) {
 			PD1Point point=new PD1Point();
-			
-			byte[] byte_buffer=new byte[4];
 			float ftemp;
 			
 			//Point position
-			for(int j=0;j<4;j++) {
-				byte_buffer[j]=bin.get(count);
-				count++;
-			}
-			ftemp=ByteFunctions.byte_to_float_le(byte_buffer);
+			ftemp=this.GetFloatFromBin(bin, pos);
+			pos+=4;
 			point.SetPositionX(ftemp);
-			for(int j=0;j<4;j++) {
-				byte_buffer[j]=bin.get(count);
-				count++;
-			}
-			ftemp=ByteFunctions.byte_to_float_le(byte_buffer);
+			
+			ftemp=this.GetFloatFromBin(bin, pos);
+			pos+=4;
 			point.SetPositionY(ftemp);
-			for(int j=0;j<4;j++) {
-				byte_buffer[j]=bin.get(count);
-				count++;
-			}
-			ftemp=ByteFunctions.byte_to_float_le(byte_buffer);
+			
+			ftemp=this.GetFloatFromBin(bin, pos);
+			pos+=4;
 			point.SetPositionZ(ftemp);
 			
 			//Rotation
-			for(int j=0;j<4;j++) {
-				byte_buffer[j]=bin.get(count);
-				count++;
-			}
-			ftemp=ByteFunctions.byte_to_float_le(byte_buffer);
+			ftemp=this.GetFloatFromBin(bin, pos);
+			pos+=4;
 			point.SetRotation(ftemp);
 			
 			//Parameters
 			int itemp;
 			for(int j=0;j<4;j++) {
-				itemp=Byte.toUnsignedInt(bin.get(count));
-				count++;
+				itemp=(int)bin.get(pos);
+				pos++;
 				
 				point.SetParameter(j, itemp);
 			}
 			
 			points.add(point);
 		}
+	}
+	private int GetUShortFromBin(List<Byte> bin,int pos) {
+		byte[] buffer=new byte[2];
+		buffer[0]=bin.get(pos);
+		buffer[1]=bin.get(pos+1);
+		
+		int ret=ByteFunctions.byte_to_ushort_le(buffer);
+		return ret;
+	}
+	private float GetFloatFromBin(List<Byte> bin,int pos) {
+		byte[] buffer=new byte[4];
+		buffer[0]=bin.get(pos);
+		buffer[1]=bin.get(pos+1);
+		buffer[2]=bin.get(pos+2);
+		buffer[3]=bin.get(pos+3);
+		
+		float ret=ByteFunctions.byte_to_float_le(buffer);
+		return ret;
 	}
 	
 	public List<PD1Point> GetPoints(){
