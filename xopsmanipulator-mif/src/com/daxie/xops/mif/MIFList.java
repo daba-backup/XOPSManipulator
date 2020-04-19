@@ -396,7 +396,7 @@ public class MIFList {
 				line+="\"";
 				List<String> briefing_text=mif.GetBriefingText();
 				for(String btline:briefing_text) {
-					line+=btline+"<br>";
+					line+=btline+"&#x0A;";
 				}
 				line+="\",";
 			}
