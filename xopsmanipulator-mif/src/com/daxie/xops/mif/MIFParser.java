@@ -31,15 +31,31 @@ class MIFParser {
 		mission_info.SetMissionFormalName(lines.get(1));
 		mission_info.SetBD1Filename(lines.get(2));
 		mission_info.SetPD1Filename(lines.get(3));
-		mission_info.SetSkyType(Integer.parseInt(lines.get(4)));
+		
+		int sky_type=0;
+		try {
+			sky_type=Integer.parseInt(lines.get(4));
+		}
+		catch(NumberFormatException e) {
+			logger.warn("Invalid format of number. sky_type");
+		}
+		mission_info.SetSkyType(sky_type);
 		
 		int flags;
 		flags=Integer.parseInt(lines.get(5));
 		
-		if((flags&0b00000010)!=0)mission_info.SetDarkenScreenFlag(true);
-		else mission_info.SetDarkenScreenFlag(false);
-		if((flags&0b00000001)!=0)mission_info.SetExtraHitcheckFlag(true);
-		else mission_info.SetExtraHitcheckFlag(false);
+		if((flags&0b00000010)!=0) {
+			mission_info.SetDarkenScreenFlag(true);
+		}
+		else {
+			mission_info.SetDarkenScreenFlag(false);
+		}
+		if((flags&0b00000001)!=0) {
+			mission_info.SetExtraHitcheckFlag(true);
+		}
+		else {
+			mission_info.SetExtraHitcheckFlag(false);
+		}
 		
 		mission_info.SetArticleInfoFilename(lines.get(6));
 		mission_info.SetImage1Filename(lines.get(7));
