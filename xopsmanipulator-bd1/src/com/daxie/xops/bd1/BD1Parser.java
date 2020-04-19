@@ -25,7 +25,7 @@ class BD1Parser {
 		
 		List<Byte> bin=FileFunctions.GetFileAllBin(bd1_filename);
 		
-		int count=0;
+		int pos=0;
 		
 		//Texture filenames
 		byte[] texture_filename_buffer=new byte[31];
@@ -33,8 +33,8 @@ class BD1Parser {
 		int first_null_pos;
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<31;j++) {
-				texture_filename_buffer[j]=bin.get(count);
-				count++;
+				texture_filename_buffer[j]=bin.get(pos);
+				pos++;
 			}
 			texture_filename_temp=new String(texture_filename_buffer);
 			
@@ -53,84 +53,83 @@ class BD1Parser {
 		}
 		
 		//Number of blocks
-		byte[] block_num_buffer=new byte[2];
-		block_num_buffer[0]=bin.get(count);
-		block_num_buffer[1]=bin.get(count+1);
-		
-		int block_num=ByteFunctions.byte_to_ushort_le(block_num_buffer);
-		
-		count+=2;
+		int block_num=this.GetUShortFromBin(bin, pos);
+		pos+=2;
 		
 		//Blocks
 		for(int i=0;i<block_num;i++) {
 			BD1Block block=new BD1Block();
-			
-			byte[] byte_buffer=new byte[4];
 			float coordinate_temp;
 			
 			//Vertex positions
 			for(int j=0;j<8;j++) {
-				for(int k=0;k<4;k++) {
-					byte_buffer[k]=bin.get(count);
-					count++;
-				}
-				coordinate_temp=ByteFunctions.byte_to_float_le(byte_buffer);
+				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				pos+=4;
+				
 				block.SetVertexPositionX(j, coordinate_temp);
 			}
 			for(int j=0;j<8;j++) {
-				for(int k=0;k<4;k++) {
-					byte_buffer[k]=bin.get(count);
-					count++;
-				}
-				coordinate_temp=ByteFunctions.byte_to_float_le(byte_buffer);
+				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				pos+=4;
+				
 				block.SetVertexPositionY(j, coordinate_temp);
 			}
 			for(int j=0;j<8;j++) {
-				for(int k=0;k<4;k++) {
-					byte_buffer[k]=bin.get(count);
-					count++;
-				}
-				coordinate_temp=ByteFunctions.byte_to_float_le(byte_buffer);
+				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				pos+=4;
+				
 				block.SetVertexPositionZ(j, coordinate_temp);
 			}
 			
 			//UV coordinates
 			for(int j=0;j<24;j++) {
-				for(int k=0;k<4;k++) {
-					byte_buffer[k]=bin.get(count);
-					count++;
-				}
-				coordinate_temp=ByteFunctions.byte_to_float_le(byte_buffer);
+				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				pos+=4;
+				
 				block.SetU(j, coordinate_temp);
 			}
 			for(int j=0;j<24;j++) {
-				for(int k=0;k<4;k++) {
-					byte_buffer[k]=bin.get(count);
-					count++;
-				}
-				coordinate_temp=ByteFunctions.byte_to_float_le(byte_buffer);
+				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				pos+=4;
+				
 				block.SetV(j, coordinate_temp);
 			}
 			
 			//Texture IDs
 			for(int j=0;j<6;j++) {
-				for(int k=0;k<4;k++) {
-					byte_buffer[k]=bin.get(count);
-					count++;
-				}
-				block.SetTextureID(j, (char)byte_buffer[0]);
+				int texture_id=Byte.toUnsignedInt(bin.get(pos));
+				pos+=4;
+				
+				block.SetTextureID(j, texture_id);
 			}
 			
 			//Enabled flag
-			for(int j=0;j<4;j++) {
-				byte_buffer[j]=bin.get(count);
-				count++;
-			}
-			if(byte_buffer[0]!=0)block.SetEnabledFlag(true);
+			int enabled_flag=Byte.toUnsignedInt(bin.get(pos));
+			pos+=4;
+			
+			if(enabled_flag!=0)block.SetEnabledFlag(true);
 			else block.SetEnabledFlag(false);
 			
 			blocks.add(block);
 		}
+	}
+	private int GetUShortFromBin(List<Byte> bin,int pos) {
+		byte[] buffer=new byte[2];
+		buffer[0]=bin.get(pos);
+		buffer[1]=bin.get(pos+1);
+		
+		int ret=ByteFunctions.byte_to_ushort_le(buffer);
+		return ret;
+	}
+	private float GetFloatFromBin(List<Byte> bin,int pos) {
+		byte[] buffer=new byte[4];
+		buffer[0]=bin.get(pos);
+		buffer[1]=bin.get(pos+1);
+		buffer[2]=bin.get(pos+2);
+		buffer[3]=bin.get(pos+3);
+		
+		float ret=ByteFunctions.byte_to_float_le(buffer);
+		return ret;
 	}
 	
 	public List<BD1Block> GetBlocks(){
