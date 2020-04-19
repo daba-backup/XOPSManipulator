@@ -1,14 +1,13 @@
 package com.daxie.xops.mif;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.daxie.tool.FileFunctions;
 
 /**
  * Writes data to a MIF file.
@@ -24,46 +23,48 @@ class MIFWriter {
 		this.mission_info=mission_info;
 	}
 	
-	public void Write(String mif_filename,String encoding) throws IOException,UnsupportedEncodingException{
+	public int Write(String mif_filename,String encoding){
 		if(mission_info==null) {
 			logger.warn("Data not prepared.");
-			return;
+			return -1;
 		}
 		
-		String windows_separator="\r\n";
+		List<String> lines=new ArrayList<>();
 		
-		try(BufferedWriter br=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mif_filename),encoding))){
-			br.write(mission_info.GetMissionName()+windows_separator);
-			br.write(mission_info.GetMissionFormalName()+windows_separator);
-			br.write(mission_info.GetBD1Filename()+windows_separator);
-			br.write(mission_info.GetPD1Filename()+windows_separator);
-			
-			String sky_type=""+mission_info.GetSkyType();
-			br.write(sky_type+windows_separator);
-	
-			int flags=0;
-			boolean extra_hitcheck_flag=mission_info.GetExtraHitcheckFlag();
-			boolean darken_screen_flag=mission_info.GetDarkenScreenFlag();
-			if(extra_hitcheck_flag==true)flags=flags|0b00000001;
-			if(darken_screen_flag==true)flags=flags|0b00000010;
-			
-			String str_flags=""+flags;
-			br.write(str_flags+windows_separator);
-			
-			br.write(mission_info.GetArticleInfoFilename()+windows_separator);
-			br.write(mission_info.GetImage1Filename()+windows_separator);
-			br.write(mission_info.GetImage2Filename()+windows_separator);
-			
-			List<String> briefing_text=mission_info.GetBriefingText();
-			for(String line:briefing_text) {
-				br.write(line+windows_separator);
-			}
-			
-			br.flush();
+		lines.add(mission_info.GetMissionName());
+		lines.add(mission_info.GetMissionFormalName());
+		lines.add(mission_info.GetBD1Filename());
+		lines.add(mission_info.GetPD1Filename());
+		lines.add(""+mission_info.GetSkyType());
+		
+		int flags=0;
+		boolean extra_hitcheck_flag=mission_info.GetExtraHitcheckFlag();
+		boolean darken_screen_flag=mission_info.GetDarkenScreenFlag();
+		if(extra_hitcheck_flag==true) {
+			flags=flags|0b00000001;
+		}
+		if(darken_screen_flag==true) {
+			flags=flags|0b00000010;
+		}
+		lines.add(""+flags);
+		
+		lines.add(mission_info.GetArticleInfoFilename());
+		lines.add(mission_info.GetImage1Filename());
+		lines.add(mission_info.GetImage2Filename());
+		
+		List<String> briefing_text=mission_info.GetBriefingText();
+		for(String line:briefing_text) {
+			lines.add(line);
+		}
+		
+		try {
+			FileFunctions.CreateTextFile(mif_filename, encoding, lines);
 		}
 		catch(IOException e) {
 			logger.error("Error while writing.",e);
-			return;
+			return -1;
 		}
+		
+		return 0;
 	}
 }

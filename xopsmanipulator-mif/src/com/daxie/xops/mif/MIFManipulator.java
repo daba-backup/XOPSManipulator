@@ -1,7 +1,6 @@
 package com.daxie.xops.mif;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +34,15 @@ public class MIFManipulator {
 		return new MissionInfo(mission_info);
 	}
 	
-	public void Write(String mif_filename,String encoding) throws IOException,UnsupportedEncodingException{
+	public int Write(String mif_filename,String encoding){
 		MIFWriter mif_writer=new MIFWriter(mission_info);
-		mif_writer.Write(mif_filename, encoding);
+		int ret=mif_writer.Write(mif_filename, encoding);
+		
+		if(ret<0) {
+			logger.error("Failed to write in a MIF file. mif_filename={}",mif_filename);
+			return -1;
+		}
+		
+		return 0;
 	}
 }
