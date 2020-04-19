@@ -83,8 +83,6 @@ public class CharacterDataXMLParser {
 				CharacterData character_data=new CharacterData();
 				
 				String strtemp;
-				int itemp;
-				
 				strtemp=element.getAttribute("id");
 				try {
 					character_id=Integer.parseInt(strtemp);
@@ -94,6 +92,7 @@ public class CharacterDataXMLParser {
 					continue;
 				}
 				
+				int itemp;
 				NodeList node_list_sub=element.getChildNodes();
 				for(int j=0;j<node_list_sub.getLength();j++) {
 					Node node_sub=node_list_sub.item(j);
@@ -103,11 +102,16 @@ public class CharacterDataXMLParser {
 					String element_sub_name=element_sub.getNodeName();
 					
 					strtemp=element_sub.getTextContent();
+					try {
+						itemp=Integer.parseInt(strtemp);
+					}
+					catch(NumberFormatException e) {
+						logger.warn("Invalid format of number. index={} character.{}",i,element_sub_name);
+						continue;
+					}
 					
 					//Texture
 					if(element_sub_name.equals("texture")) {
-						itemp=Integer.parseInt(strtemp);
-						
 						if(openxops_compatible_flag==true) {
 							CharacterTextureType texture_type;
 							texture_type=CharacterSpecifierConverter.GetXOPSTextureTypeFromOpenXOPSTextureID(itemp);
@@ -126,8 +130,6 @@ public class CharacterDataXMLParser {
 					}
 					//Model
 					else if(element_sub_name.equals("model")) {
-						itemp=Integer.parseInt(strtemp);
-						
 						CharacterModelType[] values=CharacterModelType.values();
 						if(!(0<=itemp&&itemp<values.length)) {
 							logger.warn("Specifier out of bounds. index={} character.model",i);
@@ -137,13 +139,10 @@ public class CharacterDataXMLParser {
 					}
 					//HP
 					else if(element_sub_name.equals("hp")) {
-						itemp=Integer.parseInt(strtemp);
 						character_data.SetHP(itemp);
 					}
 					//AI level
 					else if(element_sub_name.equals("AIlevel")) {
-						itemp=Integer.parseInt(strtemp);
-						
 						if(openxops_compatible_flag==true) {
 							CharacterAILevel ai_level=CharacterSpecifierConverter.GetXOPSAILevelFromOpenXOPSAILevel(itemp);
 							character_data.SetAILevel(ai_level);
@@ -159,18 +158,14 @@ public class CharacterDataXMLParser {
 					}
 					//Weapon A
 					else if(element_sub_name.equals("WeaponA")) {
-						itemp=Integer.parseInt(strtemp);
 						character_data.SetWeaponID(0, itemp);
 					}
 					//Weapon B
 					else if(element_sub_name.equals("WeaponB")) {
-						itemp=Integer.parseInt(strtemp);
 						character_data.SetWeaponID(1, itemp);
 					}
 					//Type
 					else if(element_sub_name.equals("type")) {
-						itemp=Integer.parseInt(strtemp);
-						
 						CharacterType[] values=CharacterType.values();
 						if(!(0<=itemp&&itemp<values.length)) {
 							logger.warn("Specifier out of bounds. index={} character.type",i);
