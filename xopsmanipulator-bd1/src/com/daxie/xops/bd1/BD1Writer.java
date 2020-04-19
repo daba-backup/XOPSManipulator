@@ -52,8 +52,6 @@ class BD1Writer {
 			float[] vs=block.GetVs();
 			int[] texture_ids=block.GetTextureIDs();
 			
-			byte[] b;
-			
 			//Vertex positions
 			for(int j=0;j<8;j++) {
 				this.AddFloatToBin(bin, vertex_positions[j].GetX());
