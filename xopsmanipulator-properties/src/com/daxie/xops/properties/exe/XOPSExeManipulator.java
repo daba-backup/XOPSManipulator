@@ -249,11 +249,20 @@ public class XOPSExeManipulator {
 	 * @param weapon_name_start_pos Start address of weapon name
 	 * @param character_data_start_pos Start address of character data
 	 * @param create_backup_flag Flag to set whether to create a backup file
-	 * @throws IOException
+	 * @return -1 on error and 0 on success
 	 */
-	public void Write(String xops_filename,int weapon_data_start_pos,int weapon_name_start_pos,
-			int character_data_start_pos,boolean create_backup_flag) throws IOException{
-		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
+	public int Write(
+			String xops_filename,int weapon_data_start_pos,int weapon_name_start_pos,
+			int character_data_start_pos,boolean create_backup_flag){
+		List<Byte> bin;
+		try{
+			bin=FileFunctions.GetFileAllBin(xops_filename);
+		}
+		catch(IOException e) {
+			logger.error("Failed to write in an EXE file. exe_filename={}",xops_filename);
+			logger.error("",e);
+			return -1;
+		}
 		
 		//Create a backup.
 		if(create_backup_flag==true) {
@@ -261,7 +270,13 @@ public class XOPSExeManipulator {
 			String filename_without_extension=FilenameFunctions.GetFilenameWithoutExtension(xops_filename);
 			String backup_filename=filename_without_extension+"_"+date+".exe";
 			
-			FileFunctions.CreateBinFile(backup_filename, bin);
+			try {
+				FileFunctions.CreateBinFile(backup_filename, bin);
+			}
+			catch(IOException e) {
+				logger.error("Failed to create a backup file.",e);
+				return -1;
+			}
 		}
 		
 		//Create a modified file (overwrite).
@@ -274,9 +289,17 @@ public class XOPSExeManipulator {
 		}
 		catch(IndexOutOfBoundsException e) {
 			logger.error("Error while writing.",e);
-			return;
+			return -1;
 		}
 		
-		FileFunctions.CreateBinFile(xops_filename, bin);
+		try {
+			FileFunctions.CreateBinFile(xops_filename, bin);	
+		}
+		catch(IOException e) {
+			logger.error("Failed to write in an EXE file. exe_filename={}",xops_filename);
+			return -1;
+		}
+		
+		return 0;
 	}
 }

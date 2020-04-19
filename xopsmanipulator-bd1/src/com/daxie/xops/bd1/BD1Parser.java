@@ -53,7 +53,7 @@ class BD1Parser {
 		}
 		
 		//Number of blocks
-		int block_num=this.GetUShortFromBin(bin, pos);
+		int block_num=ByteFunctions.GetUShortValueFromBin_LE(bin, pos);
 		pos+=2;
 		
 		//Blocks
@@ -63,19 +63,19 @@ class BD1Parser {
 			
 			//Vertex positions
 			for(int j=0;j<8;j++) {
-				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 				pos+=4;
 				
 				block.SetVertexPositionX(j, coordinate_temp);
 			}
 			for(int j=0;j<8;j++) {
-				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 				pos+=4;
 				
 				block.SetVertexPositionY(j, coordinate_temp);
 			}
 			for(int j=0;j<8;j++) {
-				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 				pos+=4;
 				
 				block.SetVertexPositionZ(j, coordinate_temp);
@@ -83,13 +83,13 @@ class BD1Parser {
 			
 			//UV coordinates
 			for(int j=0;j<24;j++) {
-				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 				pos+=4;
 				
 				block.SetU(j, coordinate_temp);
 			}
 			for(int j=0;j<24;j++) {
-				coordinate_temp=this.GetFloatFromBin(bin, pos);
+				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 				pos+=4;
 				
 				block.SetV(j, coordinate_temp);
@@ -112,24 +112,6 @@ class BD1Parser {
 			
 			blocks.add(block);
 		}
-	}
-	private int GetUShortFromBin(List<Byte> bin,int pos) {
-		byte[] buffer=new byte[2];
-		buffer[0]=bin.get(pos);
-		buffer[1]=bin.get(pos+1);
-		
-		int ret=ByteFunctions.byte_to_ushort_le(buffer);
-		return ret;
-	}
-	private float GetFloatFromBin(List<Byte> bin,int pos) {
-		byte[] buffer=new byte[4];
-		buffer[0]=bin.get(pos);
-		buffer[1]=bin.get(pos+1);
-		buffer[2]=bin.get(pos+2);
-		buffer[3]=bin.get(pos+3);
-		
-		float ret=ByteFunctions.byte_to_float_le(buffer);
-		return ret;
 	}
 	
 	public List<BD1Block> GetBlocks(){

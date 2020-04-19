@@ -37,171 +37,132 @@ class IDSParser {
 			return;
 		}
 		
-		byte[] b=new byte[2];
 		int itemp;
 		Vector vtemp;
 		String strtemp;
 		
-		int count=0x0000000A;
+		int pos=0x0000000A;
 		
 		//Attack power
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetAttackPower(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Penetration
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetPenetration(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Firing interval
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetFiringInterval(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Velocity
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetBulletSpeed(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Number of bullets
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetNumberOfBullets(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Reloading time
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetReloadingTime(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Recoil
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetRecoil(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Minimum range of error
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetErrorRangeMin(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Maximum range of error
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetErrorRangeMax(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Position 
 		vtemp=new Vector();
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetX((float)itemp);
-		count+=2;
+		pos+=2;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetY((float)itemp);
-		count+=2;
+		pos+=2;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetZ((float)itemp);
-		count+=2;
+		pos+=2;
 		
 		weapon_data.SetPosition(vtemp);
 		
 		//Flash position
 		vtemp=new Vector();
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetX((float)itemp);
-		count+=2;
+		pos+=2;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetY((float)itemp);
-		count+=2;
+		pos+=2;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetZ((float)itemp);
-		count+=2;
+		pos+=2;
 		
 		weapon_data.SetFlashPosition(vtemp);
 		
 		//Cartridge position
 		vtemp=new Vector();
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetX((float)itemp);
-		count+=2;
+		pos+=2;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetY((float)itemp);
-		count+=2;
+		pos+=2;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetZ((float)itemp);
-		count+=2;
+		pos+=2;
 		
 		weapon_data.SetCartridgePosition(vtemp);
 		
 		//Shooting stance
 		WeaponShootingStance shooting_stance;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
-		count+=2;
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
+		pos+=2;
 		
 		shooting_stance=WeaponBinSpecifierAndEnumConverter.GetWeaponShootingStanceFromBinSpecifier(itemp);
 		weapon_data.SetShootingStance(shooting_stance);
 		
 		//Rapid fire
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
-		if(itemp==0)weapon_data.SetRapidFireEnabledFlag(true);
-		else weapon_data.SetRapidFireEnabledFlag(false);
-		count+=2;
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
+		if(itemp==0) {
+			weapon_data.SetRapidFireEnabledFlag(true);
+		}
+		else {
+			weapon_data.SetRapidFireEnabledFlag(false);
+		}
+		pos+=2;
 		
 		//Scope mode
 		WeaponScopeMode scope_mode;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
-		count+=2;
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
+		pos+=2;
 		
 		scope_mode=WeaponBinSpecifierAndEnumConverter.GetWeaponScopeModeFromBinSpecifier(itemp);
 		weapon_data.SetScopeMode(scope_mode);
@@ -210,10 +171,8 @@ class IDSParser {
 		WeaponTextureType texture_type;
 		String texture_filename;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
-		count+=2;
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
+		pos+=2;
 		
 		texture_type=WeaponBinSpecifierAndEnumConverter.GetWeaponTextureTypeFromBinSpecifier(itemp);
 		texture_filename=WeaponTextureFilenamesStock.GetTextureFilename(texture_type);
@@ -223,67 +182,57 @@ class IDSParser {
 		WeaponModelType model_type;
 		String model_filename;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
-		count+=2;
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
+		pos+=2;
 		
 		model_type=WeaponBinSpecifierAndEnumConverter.GetWeaponModelTypeFromBinSpecifier(itemp);
 		model_filename=WeaponModelFilenamesStock.GetModelFilename(model_type);
 		weapon_data.SetModelFilename(model_filename);
 		
 		//Scale
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetScale(itemp*0.1f);
-		count+=2;
+		pos+=2;
 		
 		//Cartridge velocity
 		vtemp=new Vector();
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetX((float)itemp);
-		count+=2;
+		pos+=2;
 		
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		vtemp.SetY((float)itemp);
-		count+=2;
+		pos+=2;
 		
 		vtemp.SetZ(0.0f);
 		
 		weapon_data.SetCartridgeVelocity(vtemp);
 		
 		//Sound ID
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetSoundID(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Sound volume
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 		weapon_data.SetSoundVolume(itemp);
-		count+=2;
+		pos+=2;
 		
 		//Suppressor
-		b[0]=bin.get(count);
-		b[1]=bin.get(count+1);
-		itemp=ByteFunctions.byte_to_short_le(b);
-		if(itemp==0)weapon_data.SetSuppressorEnabledFlag(false);
-		else weapon_data.SetSuppressorEnabledFlag(true);
-		count+=2;
+		itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
+		if(itemp==0) {
+			weapon_data.SetSuppressorEnabledFlag(false);
+		}
+		else {
+			weapon_data.SetSuppressorEnabledFlag(true);
+		}
+		pos+=2;
 		
 		//Name
 		byte[] name_buffer=new byte[15+1];
 		for(int i=0;i<15;i++) {
-			name_buffer[i]=bin.get(count+i);
+			name_buffer[i]=bin.get(pos+i);
 		}
 		name_buffer[15]=0;
 		

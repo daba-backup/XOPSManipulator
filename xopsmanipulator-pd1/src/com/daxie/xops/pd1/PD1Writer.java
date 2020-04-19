@@ -35,7 +35,7 @@ class PD1Writer {
 		
 		//Number of points
 		int point_num=points.size();
-		this.AddUShortToBin(bin, point_num);
+		ByteFunctions.AddUShortValueToBin_LE(bin, point_num);
 		
 		//Point data
 		for(int i=0;i<points.size();i++) {
@@ -46,12 +46,12 @@ class PD1Writer {
 			int[] parameters=point.GetParameters();
 			
 			//Position
-			this.AddFloatToBin(bin, position.GetX());
-			this.AddFloatToBin(bin, position.GetY());
-			this.AddFloatToBin(bin, position.GetZ());
+			ByteFunctions.AddFloatValueToBin_LE(bin, position.GetX());
+			ByteFunctions.AddFloatValueToBin_LE(bin, position.GetY());
+			ByteFunctions.AddFloatValueToBin_LE(bin, position.GetZ());
 			
 			//Rotation
-			this.AddFloatToBin(bin, rotation);
+			ByteFunctions.AddFloatValueToBin_LE(bin, rotation);
 			
 			//Parameters
 			for(int j=0;j<4;j++) {
@@ -68,17 +68,5 @@ class PD1Writer {
 		}
 		
 		return 0;
-	}
-	private void AddUShortToBin(List<Byte> bin,int s) {
-		byte[] buffer=ByteFunctions.ushort_to_byte_le(s);
-		for(int i=0;i<2;i++) {
-			bin.add(buffer[i]);
-		}
-	}
-	private void AddFloatToBin(List<Byte> bin,float f) {
-		byte[] buffer=ByteFunctions.float_to_byte_le(f);
-		for(int i=0;i<4;i++) {
-			bin.add(buffer[i]);
-		}
 	}
 }

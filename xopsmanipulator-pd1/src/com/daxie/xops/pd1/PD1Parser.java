@@ -22,7 +22,7 @@ class PD1Parser {
 		int pos=0;
 		
 		//Number of points
-		int point_num=this.GetUShortFromBin(bin, pos);
+		int point_num=ByteFunctions.GetUShortValueFromBin_LE(bin, pos);
 		pos+=2;
 		
 		//Points
@@ -31,20 +31,20 @@ class PD1Parser {
 			float ftemp;
 			
 			//Point position
-			ftemp=this.GetFloatFromBin(bin, pos);
+			ftemp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 			pos+=4;
 			point.SetPositionX(ftemp);
 			
-			ftemp=this.GetFloatFromBin(bin, pos);
+			ftemp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 			pos+=4;
 			point.SetPositionY(ftemp);
 			
-			ftemp=this.GetFloatFromBin(bin, pos);
+			ftemp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 			pos+=4;
 			point.SetPositionZ(ftemp);
 			
 			//Rotation
-			ftemp=this.GetFloatFromBin(bin, pos);
+			ftemp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
 			pos+=4;
 			point.SetRotation(ftemp);
 			
@@ -59,24 +59,6 @@ class PD1Parser {
 			
 			points.add(point);
 		}
-	}
-	private int GetUShortFromBin(List<Byte> bin,int pos) {
-		byte[] buffer=new byte[2];
-		buffer[0]=bin.get(pos);
-		buffer[1]=bin.get(pos+1);
-		
-		int ret=ByteFunctions.byte_to_ushort_le(buffer);
-		return ret;
-	}
-	private float GetFloatFromBin(List<Byte> bin,int pos) {
-		byte[] buffer=new byte[4];
-		buffer[0]=bin.get(pos);
-		buffer[1]=bin.get(pos+1);
-		buffer[2]=bin.get(pos+2);
-		buffer[3]=bin.get(pos+3);
-		
-		float ret=ByteFunctions.byte_to_float_le(buffer);
-		return ret;
 	}
 	
 	public List<PD1Point> GetPoints(){

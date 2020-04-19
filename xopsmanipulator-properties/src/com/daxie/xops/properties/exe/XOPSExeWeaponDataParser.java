@@ -35,62 +35,62 @@ class XOPSExeWeaponDataParser {
 			Vector vtemp;
 			
 			//Attack power
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetAttackPower(itemp);
 			
 			//Penetration
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetPenetration(itemp);
 			
 			//Firing interval
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetFiringInterval(itemp);
 			
 			//Velocity
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetBulletSpeed(itemp);
 			
 			//Number of bullets
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetNumberOfBullets(itemp);
 			
 			//Reloading time
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetReloadingTime(itemp);
 			
 			//Recoil
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetRecoil(itemp);
 			
 			//Minimum range of error
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetErrorRangeMin(itemp);
 			
 			//Maximum range of error
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetErrorRangeMax(itemp);
 			
 			//Position 
 			vtemp=new Vector();
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetX((float)itemp);
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetY((float)itemp);
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetZ((float)itemp);
 			
@@ -99,15 +99,15 @@ class XOPSExeWeaponDataParser {
 			//Flash position
 			vtemp=new Vector();
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetX((float)itemp);
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetY((float)itemp);
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetZ((float)itemp);
 			
@@ -116,15 +116,15 @@ class XOPSExeWeaponDataParser {
 			//Cartridge position
 			vtemp=new Vector();
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetX((float)itemp);
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetY((float)itemp);
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetZ((float)itemp);
 			
@@ -133,14 +133,14 @@ class XOPSExeWeaponDataParser {
 			//Shooting stance
 			WeaponShootingStance shooting_stance;
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			
 			shooting_stance=WeaponBinSpecifierAndEnumConverter.GetWeaponShootingStanceFromBinSpecifier(itemp);
 			weapon_data_array[i].SetShootingStance(shooting_stance);
 			
 			//Rapid fire
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			if(itemp==0) {
 				weapon_data_array[i].SetRapidFireEnabledFlag(true);
@@ -152,7 +152,7 @@ class XOPSExeWeaponDataParser {
 			//Scope mode
 			WeaponScopeMode scope_mode;
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			scope_mode=WeaponBinSpecifierAndEnumConverter.GetWeaponScopeModeFromBinSpecifier(itemp);
 			weapon_data_array[i].SetScopeMode(scope_mode);
@@ -161,7 +161,7 @@ class XOPSExeWeaponDataParser {
 			WeaponTextureType texture_type;
 			String texture_filename;
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			texture_type=WeaponBinSpecifierAndEnumConverter.GetWeaponTextureTypeFromBinSpecifier(itemp);
 			texture_filename=WeaponTextureFilenamesStock.GetTextureFilename(texture_type);
@@ -171,25 +171,25 @@ class XOPSExeWeaponDataParser {
 			WeaponModelType model_type;
 			String model_filename;
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			model_type=WeaponBinSpecifierAndEnumConverter.GetWeaponModelTypeFromBinSpecifier(itemp);
 			model_filename=WeaponModelFilenamesStock.GetModelFilename(model_type);
 			weapon_data_array[i].SetModelFilename(model_filename);
 			
 			//Scale
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetScale(itemp*0.1f);
 			
 			//Cartridge velocity
 			vtemp=new Vector();
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetX((float)itemp);
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			vtemp.SetY((float)itemp);
 			
@@ -198,17 +198,17 @@ class XOPSExeWeaponDataParser {
 			weapon_data_array[i].SetCartridgeVelocity(vtemp);
 			
 			//Sound ID
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetSoundID(itemp);
 			
 			//Sound volume
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			weapon_data_array[i].SetSoundVolume(itemp);
 			
 			//Suppressor
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			if(itemp==0) {
 				weapon_data_array[i].SetSuppressorEnabledFlag(false);
@@ -259,14 +259,6 @@ class XOPSExeWeaponDataParser {
 			
 			weapon_data_array[XOPSConstants.WEAPON_NUM-1-i].SetName(strtemp);
 		}
-	}
-	private int GetShortFromBin(List<Byte> bin,int pos) {
-		byte[] buffer=new byte[2];
-		buffer[0]=bin.get(pos);
-		buffer[1]=bin.get(pos+1);
-		
-		int ret=ByteFunctions.byte_to_short_le(buffer);
-		return ret;
 	}
 	
 	public WeaponData[] GetWeaponDataArray() {

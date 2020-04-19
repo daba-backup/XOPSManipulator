@@ -41,7 +41,7 @@ class BD1Writer {
 		
 		//Number of blocks
 		int block_num=blocks.size();
-		this.AddUShortToBin(bin, block_num);
+		ByteFunctions.AddUShortValueToBin_LE(bin, block_num);
 		
 		//Block data
 		for(int i=0;i<blocks.size();i++) {
@@ -54,21 +54,21 @@ class BD1Writer {
 			
 			//Vertex positions
 			for(int j=0;j<8;j++) {
-				this.AddFloatToBin(bin, vertex_positions[j].GetX());
+				ByteFunctions.AddFloatValueToBin_LE(bin, vertex_positions[j].GetX());
 			}
 			for(int j=0;j<8;j++) {
-				this.AddFloatToBin(bin, vertex_positions[j].GetY());
+				ByteFunctions.AddFloatValueToBin_LE(bin, vertex_positions[j].GetY());
 			}
 			for(int j=0;j<8;j++) {
-				this.AddFloatToBin(bin, vertex_positions[j].GetZ());
+				ByteFunctions.AddFloatValueToBin_LE(bin, vertex_positions[j].GetZ());
 			}
 			
 			//UV coordinates
 			for(int j=0;j<24;j++) {
-				this.AddFloatToBin(bin, us[j]);
+				ByteFunctions.AddFloatValueToBin_LE(bin, us[j]);
 			}
 			for(int j=0;j<24;j++) {
-				this.AddFloatToBin(bin, vs[j]);
+				ByteFunctions.AddFloatValueToBin_LE(bin, vs[j]);
 			}
 			
 			//Texture IDs
@@ -132,18 +132,6 @@ class BD1Writer {
 			for(int j=0;j<31;j++) {
 				bin.add((byte)0);
 			}
-		}
-	}
-	private void AddUShortToBin(List<Byte> bin,int s) {
-		byte[] buffer=ByteFunctions.ushort_to_byte_le(s);
-		for(int i=0;i<2;i++) {
-			bin.add(buffer[i]);
-		}
-	}
-	private void AddFloatToBin(List<Byte> bin,float f) {
-		byte[] buffer=ByteFunctions.float_to_byte_le(f);
-		for(int i=0;i<4;i++) {
-			bin.add(buffer[i]);
 		}
 	}
 }

@@ -33,7 +33,7 @@ class XOPSExeCharacterDataParser {
 			//Texture
 			CharacterTextureType texture_type;
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			texture_type=CharacterBinSpecifierAndEnumConverter.GetCharacterTextureTypeFromBinSpecifier(itemp);
 			character_data_array[i].SetTextureType(texture_type);
@@ -41,58 +41,42 @@ class XOPSExeCharacterDataParser {
 			//Model
 			CharacterModelType model_type;
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			model_type=CharacterBinSpecifierAndEnumConverter.GetCharacterModelTypeFromBinSpecifier(itemp);
 			character_data_array[i].SetModelType(model_type);
 			
 			//HP
-			itemp=this.GetUShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetUShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			character_data_array[i].SetHP(itemp);
 			
 			//AI level
 			CharacterAILevel ai_level;
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			ai_level=CharacterBinSpecifierAndEnumConverter.GetCharacterAILevelFromBinSpecifier(itemp);
 			character_data_array[i].SetAILevel(ai_level);
 			
 			//Weapon A
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			character_data_array[i].SetWeaponID(0, itemp);
 			
 			//Weapon B
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			character_data_array[i].SetWeaponID(1, itemp);
 			
 			//Type
 			CharacterType type;
 			
-			itemp=this.GetShortFromBin(bin, pos);
+			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
 			pos+=2;
 			type=CharacterBinSpecifierAndEnumConverter.GetCharacterTypeFromBinSpecifier(itemp);
 			character_data_array[i].SetType(type);
 		}
-	}
-	private int GetShortFromBin(List<Byte> bin,int pos) {
-		byte[] buffer=new byte[2];
-		buffer[0]=bin.get(pos);
-		buffer[1]=bin.get(pos+1);
-		
-		int ret=ByteFunctions.byte_to_short_le(buffer);
-		return ret;
-	}
-	private int GetUShortFromBin(List<Byte> bin,int pos) {
-		byte[] buffer=new byte[2];
-		buffer[0]=bin.get(pos);
-		buffer[1]=bin.get(pos+1);
-		
-		int ret=ByteFunctions.byte_to_ushort_le(buffer);
-		return ret;
 	}
 	
 	public CharacterData[] GetCharacterDataArray() {
