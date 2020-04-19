@@ -26,4 +26,6 @@ public class XOPSConstants {
 	public static final int XOPS0975T_FILE_SIZE=552960;
 	public static final int XOPSOLT18F2_FILE_SIZE=495616;
 	public static final int XOPSOLT19F2_FILE_SIZE=598016;
+	
+	public static final int CONFIG_FILE_SIZE=47;
 }
