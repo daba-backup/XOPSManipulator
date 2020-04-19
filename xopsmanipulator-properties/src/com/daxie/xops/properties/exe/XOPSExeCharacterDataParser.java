@@ -34,48 +34,48 @@ class XOPSExeCharacterDataParser {
 			CharacterTextureType texture_type;
 			
 			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
-			pos+=2;
 			texture_type=CharacterBinSpecifierAndEnumConverter.GetCharacterTextureTypeFromBinSpecifier(itemp);
 			character_data_array[i].SetTextureType(texture_type);
+			pos+=2;
 			
 			//Model
 			CharacterModelType model_type;
 			
 			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
-			pos+=2;
 			model_type=CharacterBinSpecifierAndEnumConverter.GetCharacterModelTypeFromBinSpecifier(itemp);
 			character_data_array[i].SetModelType(model_type);
+			pos+=2;
 			
 			//HP
 			itemp=ByteFunctions.GetUShortValueFromBin_LE(bin, pos);
-			pos+=2;
 			character_data_array[i].SetHP(itemp);
+			pos+=2;
 			
 			//AI level
 			CharacterAILevel ai_level;
 			
 			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
-			pos+=2;
 			ai_level=CharacterBinSpecifierAndEnumConverter.GetCharacterAILevelFromBinSpecifier(itemp);
 			character_data_array[i].SetAILevel(ai_level);
+			pos+=2;
 			
 			//Weapon A
 			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
-			pos+=2;
 			character_data_array[i].SetWeaponID(0, itemp);
+			pos+=2;
 			
 			//Weapon B
 			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
-			pos+=2;
 			character_data_array[i].SetWeaponID(1, itemp);
+			pos+=2;
 			
 			//Type
 			CharacterType type;
 			
 			itemp=ByteFunctions.GetShortValueFromBin_LE(bin, pos);
-			pos+=2;
 			type=CharacterBinSpecifierAndEnumConverter.GetCharacterTypeFromBinSpecifier(itemp);
 			character_data_array[i].SetType(type);
+			pos+=2;
 		}
 	}
 	

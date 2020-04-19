@@ -64,51 +64,48 @@ class BD1Parser {
 			//Vertex positions
 			for(int j=0;j<8;j++) {
 				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-				pos+=4;
-				
 				block.SetVertexPositionX(j, coordinate_temp);
+				pos+=4;
 			}
 			for(int j=0;j<8;j++) {
 				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-				pos+=4;
-				
 				block.SetVertexPositionY(j, coordinate_temp);
+				pos+=4;
 			}
 			for(int j=0;j<8;j++) {
 				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-				pos+=4;
-				
 				block.SetVertexPositionZ(j, coordinate_temp);
+				pos+=4;
 			}
 			
 			//UV coordinates
 			for(int j=0;j<24;j++) {
 				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-				pos+=4;
-				
 				block.SetU(j, coordinate_temp);
+				pos+=4;
 			}
 			for(int j=0;j<24;j++) {
 				coordinate_temp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-				pos+=4;
-				
 				block.SetV(j, coordinate_temp);
+				pos+=4;
 			}
 			
 			//Texture IDs
 			for(int j=0;j<6;j++) {
 				int texture_id=Byte.toUnsignedInt(bin.get(pos));
-				pos+=4;
-				
 				block.SetTextureID(j, texture_id);
+				pos+=4;
 			}
 			
 			//Enabled flag
 			int enabled_flag=Byte.toUnsignedInt(bin.get(pos));
+			if(enabled_flag!=0) {
+				block.SetEnabledFlag(true);
+			}
+			else {
+				block.SetEnabledFlag(false);
+			}
 			pos+=4;
-			
-			if(enabled_flag!=0)block.SetEnabledFlag(true);
-			else block.SetEnabledFlag(false);
 			
 			blocks.add(block);
 		}

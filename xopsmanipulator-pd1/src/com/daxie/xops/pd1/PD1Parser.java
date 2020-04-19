@@ -32,29 +32,28 @@ class PD1Parser {
 			
 			//Point position
 			ftemp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-			pos+=4;
 			point.SetPositionX(ftemp);
+			pos+=4;
 			
 			ftemp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-			pos+=4;
 			point.SetPositionY(ftemp);
+			pos+=4;
 			
 			ftemp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-			pos+=4;
 			point.SetPositionZ(ftemp);
+			pos+=4;
 			
 			//Rotation
 			ftemp=ByteFunctions.GetFloatValueFromBin_LE(bin, pos);
-			pos+=4;
 			point.SetRotation(ftemp);
+			pos+=4;
 			
 			//Parameters
 			int itemp;
 			for(int j=0;j<4;j++) {
 				itemp=(int)bin.get(pos);
-				pos++;
-				
 				point.SetParameter(j, itemp);
+				pos++;
 			}
 			
 			points.add(point);
