@@ -276,18 +276,17 @@ public class MIFList {
 				el_mission.appendChild(el_image2_filename);
 			}
 			if((flags&BRIEFING_TEXT)!=0) {
+				String concat="";
 				List<String> briefing_text_lines=mif.GetBriefingText();
-				int line_count=0;
+				
+				for(String line:briefing_text_lines) {
+					concat+=line;
+					concat+="&#x0A;";
+				}
 				
 				Element el_briefing_text=document.createElement("briefing_text");
+				el_briefing_text.appendChild(document.createTextNode(concat));
 				el_mission.appendChild(el_briefing_text);
-				for(String line:briefing_text_lines) {
-					Element el_briefing_line=document.createElement("line"+line_count);
-					el_briefing_line.appendChild(document.createTextNode(line));
-					el_briefing_text.appendChild(el_briefing_line);
-					
-					line_count++;
-				}
 			}
 			
 			el_addon_list.appendChild(el_mission);
