@@ -1,5 +1,6 @@
 package com.daxie.xops.properties.xms.xgs;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.daxie.basis.vector.Vector;
 import com.daxie.tool.ByteFunctions;
+import com.daxie.tool.FileFunctions;
 import com.daxie.xops.properties.XOPSConstants;
 import com.daxie.xops.properties.entity.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
@@ -220,7 +222,15 @@ class XGSWriter {
 		for(int i=0;i<16;i++) {
 			bin.add((byte)0);
 		}
-			
+		
+		try {
+			FileFunctions.CreateBinFile(xgs_filename, bin);
+		}
+		catch(IOException e) {
+			logger.error("Error while writing.",e);
+			return -1;
+		}
+		
 		return 0;
 	}
 }

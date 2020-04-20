@@ -26,7 +26,7 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
 class IDSParser {
 	private Logger logger=LoggerFactory.getLogger(IDSParser.class);
 	
-	private WeaponData weapon_data=null;
+	private WeaponData weapon_data;
 	
 	public IDSParser(String ids_filename) throws IOException{
 		List<Byte> bin=FileFunctions.GetFileAllBin(ids_filename);

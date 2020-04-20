@@ -1,5 +1,6 @@
 package com.daxie.xops.properties.xms.xcs;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.daxie.tool.ByteFunctions;
+import com.daxie.tool.FileFunctions;
 import com.daxie.xops.properties.XOPSConstants;
 import com.daxie.xops.properties.entity.character.CharacterAILevel;
 import com.daxie.xops.properties.entity.character.CharacterBinSpecifierAndEnumConverter;
@@ -89,6 +91,14 @@ class XCSWriter {
 			CharacterType type=character_data_array[i].GetType();
 			itemp=CharacterBinSpecifierAndEnumConverter.GetBinSpecifierFromCharacterType(type);
 			ByteFunctions.AddShortValueToBin_LE(bin, (short)itemp);
+		}
+		
+		try {
+			FileFunctions.CreateBinFile(xcs_filename, bin);
+		}
+		catch(IOException e) {
+			logger.error("Error while writing.",e);
+			return -1;
 		}
 		
 		return 0;

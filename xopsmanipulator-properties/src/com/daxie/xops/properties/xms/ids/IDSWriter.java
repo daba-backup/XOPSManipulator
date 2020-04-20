@@ -1,5 +1,6 @@
 package com.daxie.xops.properties.xms.ids;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.daxie.basis.vector.Vector;
 import com.daxie.tool.ByteFunctions;
+import com.daxie.tool.FileFunctions;
 import com.daxie.xops.properties.entity.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.daxie.xops.properties.entity.weapon.WeaponData;
 import com.daxie.xops.properties.entity.weapon.WeaponModelFilenamesStock;
@@ -202,6 +204,14 @@ class IDSWriter {
 		
 		for(int i=0;i<16;i++) {
 			bin.add(name_buffer[i]);
+		}
+		
+		try {
+			FileFunctions.CreateBinFile(ids_filename, bin);
+		}
+		catch(IOException e) {
+			logger.error("Error while writing.",e);
+			return -1;
 		}
 		
 		return 0;
