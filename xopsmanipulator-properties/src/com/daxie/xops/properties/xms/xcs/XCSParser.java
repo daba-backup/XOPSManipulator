@@ -24,9 +24,14 @@ import com.daxie.xops.properties.entity.character.CharacterType;
 class XCSParser {
 	private Logger logger=LoggerFactory.getLogger(XCSParser.class);
 	
-	private CharacterData[] character_data_array=null;
+	private CharacterData[] character_data_array;
 	
 	public XCSParser(String xcs_filename) throws IOException{
+		character_data_array=new CharacterData[XOPSConstants.CHARACTER_NUM];
+		for(int i=0;i<XOPSConstants.CHARACTER_NUM;i++) {
+			character_data_array[i]=new CharacterData();
+		}
+		
 		List<Byte> bin=FileFunctions.GetFileAllBin(xcs_filename);
 		
 		if(bin.size()!=614) {

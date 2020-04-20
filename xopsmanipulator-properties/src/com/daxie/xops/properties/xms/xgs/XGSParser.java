@@ -27,9 +27,14 @@ import com.daxie.xops.properties.entity.weapon.WeaponTextureType;
 class XGSParser {
 	private Logger logger=LoggerFactory.getLogger(XGSParser.class);
 	
-	private WeaponData[] weapon_data_array=null;
+	private WeaponData[] weapon_data_array;
 	
 	public XGSParser(String xgs_filename) throws IOException{
+		weapon_data_array=new WeaponData[XOPSConstants.WEAPON_NUM];
+		for(int i=0;i<XOPSConstants.WEAPON_NUM;i++) {
+			weapon_data_array[i]=new WeaponData();
+		}
+		
 		List<Byte> bin=FileFunctions.GetFileAllBin(xgs_filename);
 		
 		if(bin.size()!=1732) {
