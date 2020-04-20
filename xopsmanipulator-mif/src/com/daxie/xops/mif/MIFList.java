@@ -3,7 +3,6 @@ package com.daxie.xops.mif;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,61 +43,14 @@ public class MIFList {
 	public static final int NONE=0x0000;
 	public static final int ALL=0x07FF;
 	
-	//Text
-	private static String str_mission_name="Mission name";
-	private static String str_mission_formal_name="Mission formal name";
-	private static String str_bd1_filename="BD1 filename";
-	private static String str_pd1_filename="PD1 filename";
-	private static String str_sky_type="Sky type";
-	private static String str_extra_hitcheck_flag="Extra hitcheck flag";
-	private static String str_darken_screen_flag="Darken screen flag";
-	private static String str_article_info_filename="Article info filename";
-	private static String str_image1_filename="Image 1 filename";
-	private static String str_image2_filename="Image 2 filename";
-	private static String str_briefing_text="Briefing text";
-	
 	private Map<String, MissionInfo> mission_info_map;
-	
-	public static void SetStrMissionName(String a_str_mission_name) {
-		str_mission_name=a_str_mission_name;
-	}
-	public static void SetStrMissionFormalName(String a_str_mission_formal_name) {
-		str_mission_formal_name=a_str_mission_formal_name;
-	}
-	public static void SetStrBD1Filename(String a_str_bd1_filename) {
-		str_bd1_filename=a_str_bd1_filename;
-	}
-	public static void SetStrPD1Filename(String a_str_pd1_filename) {
-		str_pd1_filename=a_str_pd1_filename;
-	}
-	public static void SetStrSkyType(String a_str_sky_type) {
-		str_sky_type=a_str_sky_type;
-	}
-	public static void SetStrExtraHitcheckFlag(String a_str_extra_hitcheck_flag) {
-		str_extra_hitcheck_flag=a_str_extra_hitcheck_flag;
-	}
-	public static void SetStrDarkenScreenFlag(String a_darken_screen_flag) {
-		str_darken_screen_flag=a_darken_screen_flag;
-	}
-	public static void SetStrArticleInfoFilename(String a_article_info_filename) {
-		str_article_info_filename=a_article_info_filename;
-	}
-	public static void SetStrImage1Filename(String a_str_image1_filename) {
-		str_image1_filename=a_str_image1_filename;
-	}
-	public static void SetStrImage2Filename(String a_str_image2_filename) {
-		str_image2_filename=a_str_image2_filename;
-	}
-	public static void SetStrBriefingText(String a_str_briefing_text) {
-		str_briefing_text=a_str_briefing_text;
-	}
 	
 	/**
 	 * @param directory_name Name of the directory
 	 * @param encoding Encoding
-	 * @throws UnsupportedEncodingException Unsupported encoding specified
+	 * @throws IOException
 	 */
-	public MIFList(String directory_name,String encoding) throws UnsupportedEncodingException{
+	public MIFList(String directory_name,String encoding) throws IOException{
 		mission_info_map=new HashMap<>();
 		
 		File dir=new File(directory_name);
@@ -313,37 +265,37 @@ public class MIFList {
 		//Add columns.
 		String columns="";
 		if((flags&MISSION_NAME)!=0) {
-			columns+="\""+str_mission_name+"\",";
+			columns+="\""+"Mission name"+"\",";
 		}
 		if((flags&MISSION_FORMAL_NAME)!=0) {
-			columns+="\""+str_mission_formal_name+"\",";
+			columns+="\""+"Mission formal name"+"\",";
 		}
 		if((flags&BD1_FILENAME)!=0) {
-			columns+="\""+str_bd1_filename+"\",";
+			columns+="\""+"BD1 filename"+"\",";
 		}
 		if((flags&PD1_FILENAME)!=0) {
-			columns+="\""+str_pd1_filename+"\",";
+			columns+="\""+"PD1 filename"+"\",";
 		}
 		if((flags&SKY_TYPE)!=0) {
-			columns+="\""+str_sky_type+"\",";
+			columns+="\""+"Sky type"+"\",";
 		}
 		if((flags&EXTRA_HITCHECK_FLAG)!=0) {
-			columns+="\""+str_extra_hitcheck_flag+"\",";
+			columns+="\""+"Extra hitcheck flag"+"\",";
 		}
 		if((flags&DARKEN_SCREEN_FLAG)!=0) {
-			columns+="\""+str_darken_screen_flag+"\",";
+			columns+="\""+"Darken screen flag"+"\",";
 		}
 		if((flags&ARTICLE_INFO_FILENAME)!=0) {
-			columns+="\""+str_article_info_filename+"\",";
+			columns+="\""+"Article info filename"+"\",";
 		}
 		if((flags&IMAGE1_FILENAME)!=0) {
-			columns+="\""+str_image1_filename+"\",";
+			columns+="\""+"Image 1 filename"+"\",";
 		}
 		if((flags&IMAGE2_FILENAME)!=0) {
-			columns+="\""+str_image2_filename+"\",";
+			columns+="\""+"Image 2 filename"+"\",";
 		}
 		if((flags&BRIEFING_TEXT)!=0) {
-			columns+="\""+str_briefing_text+"\",";
+			columns+="\""+"Briefing text"+"\",";
 		}
 		
 		if(columns.charAt(columns.length()-1)==',') {
