@@ -309,16 +309,16 @@ public class MIFList {
 			
 			String line="";
 			if((flags&MISSION_NAME)!=0) {
-				line+=mif.GetMissionName()+",";
+				line+="\""+mif.GetMissionName()+"\",";
 			}
 			if((flags&MISSION_FORMAL_NAME)!=0) {
-				line+=mif.GetMissionFormalName()+",";
+				line+="\""+mif.GetMissionFormalName()+"\",";
 			}
 			if((flags&BD1_FILENAME)!=0) {
-				line+=mif.GetBD1Filename()+",";
+				line+="\""+mif.GetBD1Filename()+"\",";
 			}
 			if((flags&PD1_FILENAME)!=0) {
-				line+=mif.GetPD1Filename()+",";
+				line+="\""+mif.GetPD1Filename()+"\",";
 			}
 			if((flags&SKY_TYPE)!=0) {
 				line+=mif.GetSkyType()+",";
@@ -338,13 +338,13 @@ public class MIFList {
 				line+=",";
 			}
 			if((flags&ARTICLE_INFO_FILENAME)!=0) {
-				line+=mif.GetArticleInfoFilename()+",";
+				line+="\""+mif.GetArticleInfoFilename()+"\",";
 			}
 			if((flags&IMAGE1_FILENAME)!=0) {
-				line+=mif.GetImage1Filename()+",";
+				line+="\""+mif.GetImage1Filename()+"\",";
 			}
 			if((flags&IMAGE2_FILENAME)!=0) {
-				line+=mif.GetImage2Filename()+",";
+				line+="\""+mif.GetImage2Filename()+"\",";
 			}
 			if((flags&BRIEFING_TEXT)!=0) {
 				line+="\"";
