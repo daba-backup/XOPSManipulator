@@ -137,8 +137,8 @@ public class MIFList {
 	}
 	
 	/**
-	 * Shows a list of addons on the standard output.
-	 * @param flags Flags to determine what information will be shown
+	 * Shows a list of addons.
+	 * @param flags Flags to set what information will be shown
 	 */
 	public void ShowList(int flags) {
 		for(Map.Entry<String, MissionInfo> entry:mission_info_map.entrySet()) {
@@ -201,7 +201,7 @@ public class MIFList {
 	/**
 	 * Outputs a list of addons in a XML file.
 	 * @param xml_filename XML filename
-	 * @param flags Flags to determine what information will be written
+	 * @param flags Flags to set what information will be written
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteXML(String xml_filename,int flags) {
@@ -304,7 +304,7 @@ public class MIFList {
 	/**
 	 * Outputs a list of addons in a CSV file.
 	 * @param csv_filename CSV filename
-	 * @param flags Flags to determine what information will be written
+	 * @param flags Flags to set what information will be written
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteCSV(String csv_filename,int flags) {
