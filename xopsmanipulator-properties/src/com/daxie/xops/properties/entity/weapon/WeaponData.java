@@ -87,7 +87,7 @@ public class WeaponData {
 	@Override
 	public String toString() {
 		String ret="";
-		String separator=System.getProperty("line.separator");
+		final String separator=System.getProperty("line.separator");
 		
 		ret+="name:"+name+separator;
 		ret+="model_filename:"+model_filename+separator;
@@ -106,20 +106,12 @@ public class WeaponData {
 		ret+="cartridge_position:"+cartridge_position+separator;
 		ret+="cartridge_velocity:"+cartridge_velocity+separator;
 		ret+="rapid_fire_enabled_flag:"+rapid_fire_enabled_flag+separator;
-		
-		ret+="scope_mode:";
-		ret+=scope_mode.toString().toLowerCase();
-		ret+=separator;
-		
+		ret+="scope_mode:"+scope_mode.toString()+separator;
 		ret+="scale:"+scale+separator;
 		ret+="sound_id:"+sound_id+separator;
 		ret+="sound_volume:"+sound_volume+separator;
 		ret+="suppressor_enabled_flag:"+suppressor_enabled_flag+separator;
-		
-		ret+="shooting_stance:";
-		ret+=shooting_stance.toString().toLowerCase();
-		ret+=separator;
-	
+		ret+="shooting_stance:"+shooting_stance.toString()+separator;
 		ret+="changeable_weapon:"+changeable_weapon+separator;
 		ret+="number_of_projectiles:"+number_of_projectiles;
 		

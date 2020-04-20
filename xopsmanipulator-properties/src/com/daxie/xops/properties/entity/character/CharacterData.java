@@ -35,32 +35,27 @@ public class CharacterData {
 	@Override
 	public String toString() {
 		String ret="";
-		String separator=System.getProperty("line.separator");
+		final String separator=System.getProperty("line.separator");
 		
-		ret+="model_type:";
-		ret+=model_type.toString().toLowerCase();
-		ret+=separator;
-		
-		ret+="texture_type:";
-		ret+=texture_type.toString().toLowerCase();
-		ret+=separator;
-		
+		ret+="model_type:"+model_type.toString()+separator;
+		ret+="texture_type:"+texture_type.toString()+separator;
 		ret+="hp:"+hp+separator;
+		ret+="ai_level:"+ai_level.toString();
 		
-		ret+="ai_level:";
-		ret+=ai_level.toString().toLowerCase();
+		ret+="weapon_ids:";
+		for(int i=0;i<weapon_ids_map.size();i++) {
+			if(weapon_ids_map.containsKey(i)==false) {
+				continue;
+			}
+			
+			ret+=weapon_ids_map.get(i);
+			if(i!=weapon_ids_map.size()-1) {
+				ret+=",";
+			}
+		}
 		ret+=separator;
 		
-		ret+="weapon_ids:"+separator;
-		for(int i=0;i<weapon_ids_map.size();i++) {
-			if(weapon_ids_map.containsKey(i)==false)continue;
-			
-			int weapon_id=weapon_ids_map.get(i);
-			ret+=weapon_id+separator;
-		}
-		
-		ret+="type:";
-		ret+=type.toString().toLowerCase();
+		ret+="type:"+type.toString();
 		
 		return ret;
 	}
