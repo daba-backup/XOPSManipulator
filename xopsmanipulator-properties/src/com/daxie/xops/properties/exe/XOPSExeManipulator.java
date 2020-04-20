@@ -21,8 +21,8 @@ import com.daxie.xops.properties.entity.weapon.WeaponData;
 public class XOPSExeManipulator {
 	private Logger logger=LoggerFactory.getLogger(XOPSExeManipulator.class);
 	
-	private WeaponData[] weapon_data_array=null;
-	private CharacterData[] character_data_array=null;
+	private WeaponData[] weapon_data_array;
+	private CharacterData[] character_data_array;
 	
 	/**
 	 * 
@@ -174,10 +174,18 @@ public class XOPSExeManipulator {
 	 * Writes out data to an EXE file.
 	 * @param xops_filename Filename of the file where data will be overwritten
 	 * @param create_backup_flag Flag to set whether to create a backup file
-	 * @throws IOException
+	 * @return -1 on error and 0 on success
 	 */
-	public void Write(String xops_filename,boolean create_backup_flag) throws IOException{
-		List<Byte> bin=FileFunctions.GetFileAllBin(xops_filename);
+	public int Write(String xops_filename,boolean create_backup_flag){
+		List<Byte> bin;
+		try{
+			bin=FileFunctions.GetFileAllBin(xops_filename);
+		}
+		catch(IOException e) {
+			logger.error("Failed to write in an EXE file. exe_filename={}",xops_filename);
+			logger.error("",e);
+			return -1;
+		}
 		
 		//Create a backup.
 		if(create_backup_flag==true) {
@@ -185,7 +193,13 @@ public class XOPSExeManipulator {
 			String filename_without_extension=FilenameFunctions.GetFilenameWithoutExtension(xops_filename);
 			String backup_filename=filename_without_extension+"_"+date+".exe";
 			
-			FileFunctions.CreateBinFile(backup_filename, bin);
+			try {
+				FileFunctions.CreateBinFile(backup_filename, bin);
+			}
+			catch(IOException e) {
+				logger.error("Failed to create a backup file.",e);
+				return -1;
+			}
 		}
 		
 		//Create a modified file (overwrite).
@@ -239,11 +253,19 @@ public class XOPSExeManipulator {
 		weapon_data_writer.Write(bin,weapon_data_start_pos,weapon_name_start_pos);
 		character_data_writer.Write(bin,character_data_start_pos);
 		
-		FileFunctions.CreateBinFile(xops_filename, bin);
+		try {
+			FileFunctions.CreateBinFile(xops_filename, bin);	
+		}
+		catch(IOException e) {
+			logger.error("Failed to write in an EXE file. exe_filename={}",xops_filename);
+			return -1;
+		}
+		
+		return 0;
 	}
 	/**
 	 * Writes out data to an EXE file.<br>
-	 * Start addresses of each data must be set by the user.
+	 * Start addresses of each data must be known beforehand.
 	 * @param xops_filename Filename
 	 * @param weapon_data_start_pos Start address of weapon data
 	 * @param weapon_name_start_pos Start address of weapon name
