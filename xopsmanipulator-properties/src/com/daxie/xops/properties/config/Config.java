@@ -130,7 +130,7 @@ public class Config {
 		ret+="invert_mouse:"+invert_mouse+separator;
 		ret+="frame_skip:"+frame_skip+separator;
 		ret+="another_gunsight:"+another_gunsight+separator;
-		ret+="name:"+name+separator;
+		ret+="name:"+name;
 		
 		return ret;
 	}
