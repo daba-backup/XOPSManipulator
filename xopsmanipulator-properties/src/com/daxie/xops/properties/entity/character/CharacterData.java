@@ -40,7 +40,7 @@ public class CharacterData {
 		ret+="model_type:"+model_type.toString()+separator;
 		ret+="texture_type:"+texture_type.toString()+separator;
 		ret+="hp:"+hp+separator;
-		ret+="ai_level:"+ai_level.toString();
+		ret+="ai_level:"+ai_level.toString()+separator;
 		
 		ret+="weapon_ids:";
 		for(int i=0;i<weapon_ids_map.size();i++) {
