@@ -13,7 +13,7 @@ public class MissionInfo {
 	private String mission_formal_name;
 	private String bd1_filename;
 	private String pd1_filename;
-	private int sky_type;
+	private SkyType sky_type;
 	private boolean extra_hitcheck_flag;
 	private boolean darken_screen_flag;
 	private String article_info_filename;
@@ -26,7 +26,7 @@ public class MissionInfo {
 		mission_formal_name="";
 		bd1_filename="./";
 		pd1_filename="./addon/";
-		sky_type=0;
+		sky_type=SkyType.NONE;
 		extra_hitcheck_flag=false;
 		darken_screen_flag=false;
 		article_info_filename="!";
@@ -62,7 +62,7 @@ public class MissionInfo {
 		ret+="[pd1 filename]"+separator;
 		ret+=pd1_filename+separator;
 		ret+="[sky type]"+separator;
-		ret+=sky_type+separator;
+		ret+=sky_type.toString()+separator;
 		ret+="[extra hitcheck flag]"+separator;
 		ret+=extra_hitcheck_flag+separator;
 		ret+="[darken screen flag]"+separator;
@@ -75,8 +75,12 @@ public class MissionInfo {
 		ret+=image2_filename+separator;
 		
 		ret+="[briefing text]"+separator;
-		for(String line:briefing_text) {
-			ret+=line+separator;
+		int line_num=briefing_text.size();
+		for(int i=0;i<line_num;i++) {
+			ret+=briefing_text.get(i);
+			if(i!=line_num-1) {
+				ret+=separator;
+			}
 		}
 		
 		return ret;
@@ -94,7 +98,7 @@ public class MissionInfo {
 	public void SetPD1Filename(String pd1_filename) {
 		this.pd1_filename=pd1_filename;
 	}
-	public void SetSkyType(int sky_type) {
+	public void SetSkyType(SkyType sky_type) {
 		this.sky_type=sky_type;
 	}
 	public void SetExtraHitcheckFlag(boolean extra_hitcheck_flag) {
@@ -128,7 +132,7 @@ public class MissionInfo {
 	public String GetPD1Filename() {
 		return pd1_filename;
 	}
-	public int GetSkyType() {
+	public SkyType GetSkyType() {
 		return sky_type;
 	}
 	public boolean GetExtraHitcheckFlag() {

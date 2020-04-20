@@ -32,12 +32,21 @@ class MIFParser {
 		mission_info.SetBD1Filename(lines.get(2));
 		mission_info.SetPD1Filename(lines.get(3));
 		
-		int sky_type=0;
+		int sky_type_index=0;
 		try {
-			sky_type=Integer.parseInt(lines.get(4));
+			sky_type_index=Integer.parseInt(lines.get(4));
 		}
 		catch(NumberFormatException e) {
 			logger.warn("Invalid format of number. sky_type");
+		}
+		
+		SkyType sky_type=SkyType.NONE;
+		SkyType[] sky_types=SkyType.values();
+		if(0<=sky_type_index&&sky_type_index<sky_types.length) {
+			sky_type=sky_types[sky_type_index];
+		}
+		else {
+			logger.warn("Index out of bouds. sky_type");
 		}
 		mission_info.SetSkyType(sky_type);
 		
