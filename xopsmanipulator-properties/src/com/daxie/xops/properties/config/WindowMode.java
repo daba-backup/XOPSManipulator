@@ -6,6 +6,6 @@ package com.daxie.xops.properties.config;
  *
  */
 public enum WindowMode {
-	FULL_SCREEN,
-	WINDOW
+	WINDOW,
+	FULL_SCREEN
 }
