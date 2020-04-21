@@ -86,6 +86,8 @@ X operations(略してXOPS)は2003年に初リリースされたFPSゲームで�
 
 - [Obj](https://github.com/javagl/Obj)
   Wavefront OBJファイルを出力するために使用しています。
+- [logback](https://github.com/qos-ch/logback)
+  ログ出力に使用しています。
 
 ## ライセンス
 
@@ -94,6 +96,7 @@ XOPSManipulatorはMITライセンスの下に公開されています。
 ### 依存
 
 - [Obj](https://github.com/javagl/Obj/blob/master/LICENSE.txt)
+- [logback](https://github.com/qos-ch/logback/blob/master/LICENSE.txt)
 
 # 外部リンク
 
