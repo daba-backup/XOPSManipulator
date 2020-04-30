@@ -110,6 +110,6 @@ class ConfigParser {
 	}
 	
 	public Config GetConfig() {
-		return new Config(config);
+		return config;
 	}
 }

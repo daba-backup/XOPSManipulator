@@ -254,6 +254,6 @@ class IDSParser {
 	}
 	
 	public WeaponData GetWeaponData() {
-		return new WeaponData(weapon_data);
+		return weapon_data;
 	}
 }

@@ -80,11 +80,6 @@ class XOPSExeCharacterDataParser {
 	}
 	
 	public CharacterData[] GetCharacterDataArray() {
-		CharacterData[] ret=new CharacterData[character_data_array.length];
-		for(int i=0;i<ret.length;i++) {
-			ret[i]=new CharacterData(character_data_array[i]);
-		}
-		
-		return ret;
+		return character_data_array;
 	}
 }

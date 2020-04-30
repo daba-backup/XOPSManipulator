@@ -274,12 +274,6 @@ class XGSParser {
 	}
 	
 	public WeaponData[] GetWeaponDataArray() {
-		WeaponData[] ret=new WeaponData[weapon_data_array.length];
-		
-		for(int i=0;i<ret.length;i++) {
-			ret[i]=new WeaponData(weapon_data_array[i]);
-		}
-		
-		return ret;
+		return weapon_data_array;
 	}
 }
