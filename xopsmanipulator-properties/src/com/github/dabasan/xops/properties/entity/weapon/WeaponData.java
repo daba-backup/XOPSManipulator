@@ -1,6 +1,6 @@
 package com.github.dabasan.xops.properties.entity.weapon;
 
-import com.daxie.basis.vector.Vector;
+import com.github.dabasan.basis.vector.Vector;
 
 public class WeaponData {
 	private String name;

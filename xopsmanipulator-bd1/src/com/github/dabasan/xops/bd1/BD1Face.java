@@ -1,7 +1,7 @@
 package com.github.dabasan.xops.bd1;
 
-import com.daxie.basis.vector.Vector;
-import com.daxie.basis.vector.VectorFunctions;
+import com.github.dabasan.basis.vector.Vector;
+import com.github.dabasan.basis.vector.VectorFunctions;
 
 /**
  * Face of a block contained in BD1 files.

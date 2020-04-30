@@ -10,8 +10,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.basis.vector.Vector;
-import com.daxie.basis.vector.VectorFunctions;
+import com.github.dabasan.basis.vector.Vector;
+import com.github.dabasan.basis.vector.VectorFunctions;
 
 /**
  * Creates PD1 points.

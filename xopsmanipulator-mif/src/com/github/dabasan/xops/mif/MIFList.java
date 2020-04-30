@@ -17,8 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.daxie.tool.FileFunctions;
-import com.daxie.tool.XMLFunctions;
+import com.github.dabasan.tool.FileFunctions;
+import com.github.dabasan.tool.XMLFunctions;
 
 /**
  * Loads multiple MIF files and makes a list.

@@ -3,7 +3,7 @@ package com.github.dabasan.xops.properties.exe;
 import java.io.IOException;
 import java.util.List;
 
-import com.daxie.tool.FileFunctions;
+import com.github.dabasan.tool.FileFunctions;
 import com.github.dabasan.xops.properties.XOPSConstants;
 
 /**

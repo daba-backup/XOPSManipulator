@@ -2,7 +2,7 @@ package com.github.dabasan.xops.properties.exe;
 
 import java.util.List;
 
-import com.daxie.tool.ByteFunctions;
+import com.github.dabasan.tool.ByteFunctions;
 import com.github.dabasan.xops.properties.XOPSConstants;
 import com.github.dabasan.xops.properties.entity.character.CharacterAILevel;
 import com.github.dabasan.xops.properties.entity.character.CharacterBinSpecifierAndEnumConverter;

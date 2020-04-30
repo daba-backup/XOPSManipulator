@@ -7,9 +7,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.basis.vector.Vector;
-import com.daxie.tool.ByteFunctions;
-import com.daxie.tool.FileFunctions;
+import com.github.dabasan.basis.vector.Vector;
+import com.github.dabasan.tool.ByteFunctions;
+import com.github.dabasan.tool.FileFunctions;
 
 /**
  * Writes data to a PD1 file.

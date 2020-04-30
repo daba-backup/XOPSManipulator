@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.daxie.tool.ByteFunctions;
-import com.daxie.tool.FileFunctions;
+import com.github.dabasan.tool.ByteFunctions;
+import com.github.dabasan.tool.FileFunctions;
 
 /**
  * Reads data from a PD1 file.

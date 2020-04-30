@@ -1,6 +1,6 @@
 package com.github.dabasan.xops.pd1;
 
-import com.daxie.basis.vector.Vector;
+import com.github.dabasan.basis.vector.Vector;
 
 /**
  * A point contained in the PD1 format.

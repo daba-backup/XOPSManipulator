@@ -2,8 +2,8 @@ package com.github.dabasan.xops.properties.exe;
 
 import java.util.List;
 
-import com.daxie.basis.vector.Vector;
-import com.daxie.tool.ByteFunctions;
+import com.github.dabasan.basis.vector.Vector;
+import com.github.dabasan.tool.ByteFunctions;
 import com.github.dabasan.xops.properties.XOPSConstants;
 import com.github.dabasan.xops.properties.entity.weapon.WeaponBinSpecifierAndEnumConverter;
 import com.github.dabasan.xops.properties.entity.weapon.WeaponData;

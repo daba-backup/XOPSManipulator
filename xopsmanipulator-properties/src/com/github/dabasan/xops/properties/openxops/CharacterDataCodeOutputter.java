@@ -5,7 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.tool.StringFunctions;
+import com.github.dabasan.tool.StringFunctions;
 import com.github.dabasan.xops.properties.entity.character.CharacterAILevel;
 import com.github.dabasan.xops.properties.entity.character.CharacterData;
 import com.github.dabasan.xops.properties.entity.character.CharacterTextureType;

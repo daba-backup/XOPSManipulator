@@ -2,8 +2,8 @@ package com.github.dabasan.xops.bd1;
 
 import java.util.Random;
 
-import com.daxie.basis.vector.Vector;
-import com.daxie.basis.vector.VectorFunctions;
+import com.github.dabasan.basis.vector.Vector;
+import com.github.dabasan.basis.vector.VectorFunctions;
 
 /**
  * Generates blocks according to the uniform distribution.

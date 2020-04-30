@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.tool.FileFunctions;
-import com.daxie.tool.StringFunctions;
+import com.github.dabasan.tool.FileFunctions;
+import com.github.dabasan.tool.StringFunctions;
 import com.github.dabasan.xops.properties.entity.character.CharacterAILevel;
 import com.github.dabasan.xops.properties.entity.character.CharacterData;
 import com.github.dabasan.xops.properties.entity.character.CharacterModelType;

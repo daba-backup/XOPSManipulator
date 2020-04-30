@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.basis.vector.Vector;
-import com.daxie.tool.FileFunctions;
-import com.daxie.tool.StringFunctions;
+import com.github.dabasan.basis.vector.Vector;
+import com.github.dabasan.tool.FileFunctions;
+import com.github.dabasan.tool.StringFunctions;
 import com.github.dabasan.xops.properties.entity.weapon.WeaponData;
 import com.github.dabasan.xops.properties.entity.weapon.WeaponScopeMode;
 import com.github.dabasan.xops.properties.entity.weapon.WeaponShootingStance;

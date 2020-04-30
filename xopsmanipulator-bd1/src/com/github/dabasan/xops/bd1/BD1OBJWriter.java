@@ -12,9 +12,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.daxie.basis.vector.Vector;
-import com.daxie.basis.vector.VectorFunctions;
-import com.daxie.tool.FilenameFunctions;
+import com.github.dabasan.basis.vector.Vector;
+import com.github.dabasan.basis.vector.VectorFunctions;
+import com.github.dabasan.tool.FilenameFunctions;
 
 import de.javagl.obj.Mtl;
 import de.javagl.obj.MtlWriter;
