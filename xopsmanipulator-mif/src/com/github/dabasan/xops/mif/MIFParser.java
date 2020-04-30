@@ -76,6 +76,6 @@ class MIFParser {
 	}
 	
 	public MissionInfo GetMissionInfo() {
-		return new MissionInfo(mission_info);
+		return mission_info;
 	}
 }
