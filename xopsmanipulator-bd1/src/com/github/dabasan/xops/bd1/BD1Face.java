@@ -39,21 +39,15 @@ public class BD1Face {
 	}
 	
 	public Vector[] GetVertexPositions() {
-		Vector[] ret=new Vector[4];
-		
-		for(int i=0;i<4;i++) {
-			ret[i]=new Vector(vertex_positions[i]);
-		}
-		
-		return ret;
+		return vertex_positions;
 	}
 	public Vector GetNormal() {
-		return new Vector(normal);
+		return normal;
 	}
 	public float[] GetUs() {
-		return us.clone();
+		return us;
 	}
 	public float[] GetVs() {
-		return vs.clone();
+		return vs;
 	}
 }
