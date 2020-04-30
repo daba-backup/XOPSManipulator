@@ -61,6 +61,6 @@ class PD1Parser {
 	}
 	
 	public List<PD1Point> GetPoints(){
-		return new ArrayList<>(points);
+		return points;
 	}
 }

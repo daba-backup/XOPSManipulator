@@ -44,7 +44,7 @@ public class PD1Point {
 	}
 	
 	public Vector GetPosition() {
-		return new Vector(position);
+		return position;
 	}
 	public float GetRotation() {
 		return rotation;
@@ -53,6 +53,6 @@ public class PD1Point {
 		return parameters[index];
 	}
 	public int[] GetParameters() {
-		return parameters.clone();
+		return parameters;
 	}
 }
