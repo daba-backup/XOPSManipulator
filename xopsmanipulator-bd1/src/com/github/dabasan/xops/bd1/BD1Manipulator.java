@@ -150,9 +150,9 @@ public class BD1Manipulator {
 		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			for(int i=0;i<vertex_positions.length;i++) {
-				vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_x);
-				vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_y);
-				vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_z);
+				vertex_positions[i]=MatrixFunctions.VTransform(vertex_positions[i], rot_x);
+				vertex_positions[i]=MatrixFunctions.VTransform(vertex_positions[i], rot_y);
+				vertex_positions[i]=MatrixFunctions.VTransform(vertex_positions[i], rot_z);
 			}
 			for(int i=0;i<vertex_positions.length;i++) {
 				block.SetVertexPosition(i, vertex_positions[i]);
@@ -189,7 +189,7 @@ public class BD1Manipulator {
 		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			for(int i=0;i<vertex_positions.length;i++) {
-				vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], m);
+				vertex_positions[i]=MatrixFunctions.VTransform(vertex_positions[i], m);
 			}
 			for(int i=0;i<vertex_positions.length;i++) {
 				block.SetVertexPosition(i, vertex_positions[i]);

@@ -100,9 +100,9 @@ public class PD1Manipulator {
 		for(PD1Point point:points) {
 			Vector position=point.GetPosition();
 			
-			position=VectorFunctions.VTransform(position, rot_x);
-			position=VectorFunctions.VTransform(position, rot_y);
-			position=VectorFunctions.VTransform(position, rot_z);
+			position=MatrixFunctions.VTransform(position, rot_x);
+			position=MatrixFunctions.VTransform(position, rot_y);
+			position=MatrixFunctions.VTransform(position, rot_z);
 			
 			point.SetPosition(position);
 		}
@@ -134,7 +134,7 @@ public class PD1Manipulator {
 	public void SetMatrix(Matrix m) {
 		for(PD1Point point:points) {
 			Vector position=point.GetPosition();
-			position=VectorFunctions.VTransform(position, m);
+			position=MatrixFunctions.VTransform(position, m);
 			point.SetPosition(position);
 		}
 	}

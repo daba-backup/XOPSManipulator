@@ -241,9 +241,9 @@ public class BD1Creator {
 		
 		//Rotate the block.
 		for(int i=0;i<8;i++) {
-			vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_x);
-			vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_y);
-			vertex_positions[i]=VectorFunctions.VTransform(vertex_positions[i], rot_z);
+			vertex_positions[i]=MatrixFunctions.VTransform(vertex_positions[i], rot_x);
+			vertex_positions[i]=MatrixFunctions.VTransform(vertex_positions[i], rot_y);
+			vertex_positions[i]=MatrixFunctions.VTransform(vertex_positions[i], rot_z);
 		}
 		
 		//Move the block to the original coordinates.
