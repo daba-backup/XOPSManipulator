@@ -96,7 +96,7 @@ public class BD1Block {
 	 * @param u U-coordinate
 	 * @param v V-coordinate
 	 */
-	public void SetUVs(int index,float u,float v) {
+	public void SetUV(int index,float u,float v) {
 		us[index]=u;
 		vs[index]=v;
 	}

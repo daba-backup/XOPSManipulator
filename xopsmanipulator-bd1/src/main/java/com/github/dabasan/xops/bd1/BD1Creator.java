@@ -127,10 +127,10 @@ public class BD1Creator {
 		}
 		
 		for(int i=0;i<24;i++) {
-			if(i%4==0)block.SetUVs(i, 0.0f, 0.0f);
-			else if(i%4==1)block.SetUVs(i, 1.0f, 0.0f);
-			else if(i%4==2)block.SetUVs(i, 1.0f, 1.0f);
-			else block.SetUVs(i, 0.0f, 1.0f);
+			if(i%4==0)block.SetUV(i, 0.0f, 0.0f);
+			else if(i%4==1)block.SetUV(i, 1.0f, 0.0f);
+			else if(i%4==2)block.SetUV(i, 1.0f, 1.0f);
+			else block.SetUV(i, 0.0f, 1.0f);
 		}
 		
 		for(int i=0;i<6;i++) {
@@ -166,10 +166,10 @@ public class BD1Creator {
 		}
 		
 		for(int i=0;i<24;i++) {
-			if(i%4==0)block.SetUVs(i, 0.0f, 0.0f);
-			else if(i%4==1)block.SetUVs(i, 1.0f, 0.0f);
-			else if(i%4==2)block.SetUVs(i, 1.0f, 1.0f);
-			else block.SetUVs(i, 0.0f, 1.0f);
+			if(i%4==0)block.SetUV(i, 0.0f, 0.0f);
+			else if(i%4==1)block.SetUV(i, 1.0f, 0.0f);
+			else if(i%4==2)block.SetUV(i, 1.0f, 1.0f);
+			else block.SetUV(i, 0.0f, 1.0f);
 		}
 		
 		for(int i=0;i<6;i++) {
@@ -297,14 +297,14 @@ public class BD1Creator {
 	}
 	
 	/**
-	 * Sets the UVs.
+	 * Sets the UV.
 	 * @param block_handle Block handle
 	 * @param face_index Face index
 	 * @param u U-coordinate
 	 * @param v V-coordinate
 	 * @return -1 on error and 0 on success
 	 */
-	public int SetBlockUVs(int block_handle,int face_index,float u,float v) {
+	public int SetBlockUV(int block_handle,int face_index,float u,float v) {
 		if(blocks_map.containsKey(block_handle)==false) {
 			logger.warn("No such block. block_handle={}",block_handle);
 			return -1;
@@ -315,7 +315,7 @@ public class BD1Creator {
 		}
 		
 		BD1Block block=blocks_map.get(block_handle);
-		block.SetUVs(face_index, u, v);
+		block.SetUV(face_index, u, v);
 		
 		return 0;
 	}

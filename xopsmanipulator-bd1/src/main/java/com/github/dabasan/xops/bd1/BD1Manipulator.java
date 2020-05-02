@@ -202,7 +202,6 @@ public class BD1Manipulator {
 	 * This method is used to make a mirrored map.
 	 */
 	public void InvertZ() {
-		//Invert z-coordinate of the vertices.
 		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			for(int i=0;i<8;i++) {
@@ -212,23 +211,28 @@ public class BD1Manipulator {
 				block.SetVertexPosition(i, vertex_positions[i]);
 			}
 		}
-		//Resolve inconsistencies in the vertices.
+		
 		for(BD1Block block:blocks) {
 			Vector[] vertex_positions=block.GetVertexPositions();
 			float[] us=block.GetUs();
 			float[] vs=block.GetVs();
 			int[] texture_ids=block.GetTextureIDs();
 			
+			Vector[] vertex_positions_orig=new Vector[8];
+			for(int i=0;i<8;i++) {
+				vertex_positions_orig[i]=new Vector(vertex_positions[i]);
+			}
+			
 			for(int i=0;i<4;i++) {
-				block.SetVertexPosition(i, vertex_positions[3-i]);
+				block.SetVertexPosition(i, vertex_positions_orig[3-i]);
 			}
 			for(int i=0;i<4;i++) {
-				block.SetVertexPosition(i+4, vertex_positions[7-i]);
+				block.SetVertexPosition(i+4, vertex_positions_orig[7-i]);
 			}
 			
 			float[] us_orig=us.clone();
 			float[] vs_orig=vs.clone();
-			
+
 			for(int i=0;i<6;i++) {
 				int[] uv_indices;
 				
@@ -244,11 +248,12 @@ public class BD1Manipulator {
 				}
 			}
 			for(int i=0;i<24;i++) {
-				block.SetUVs(i, us[i], vs[i]);
+				block.SetUV(i, us[i], vs[i]);
 			}
 			
-			block.SetTextureID(2, texture_ids[4]);
-			block.SetTextureID(4, texture_ids[2]);
+			int[] texture_ids_orig=texture_ids.clone();
+			block.SetTextureID(2, texture_ids_orig[4]);
+			block.SetTextureID(4, texture_ids_orig[2]);
 		}
 	}
 	
