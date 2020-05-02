@@ -89,6 +89,14 @@ public class MIFList {
 	}
 	
 	/**
+	 * Returns a map of mission info.
+	 * @return Mission info map
+	 */
+	public Map<String, MissionInfo> GetMissionInfoMap(){
+		return new HashMap<>(mission_info_map);
+	}
+	
+	/**
 	 * Shows a list of addons.
 	 * @param flags Flags to set what information will be shown
 	 */
