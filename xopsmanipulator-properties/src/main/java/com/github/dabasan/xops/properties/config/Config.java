@@ -37,7 +37,7 @@ public class Config {
 	private String name;
 
 	public Config() {
-		this.SetDefault();
+		this.Default();
 	}
 	public Config(Config c) {
 		turn_up = c.GetTurnUp();
@@ -69,7 +69,7 @@ public class Config {
 		another_gunsight = c.GetAnotherGunsight();
 		name = c.GetName();
 	}
-	public void SetDefault() {
+	public void Default() {
 		turn_up = KeyCode.KEY_UP;
 		turn_down = KeyCode.KEY_DOWN;
 		turn_left = KeyCode.KEY_LEFT;
