@@ -1,5 +1,6 @@
 package com.github.dabasan.xops.properties.openxops;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,6 +25,17 @@ public class CharacterDataCodeOutputter {
 
 	public CharacterDataCodeOutputter(List<CharacterData> character_data_list) {
 		this.character_data_list = character_data_list;
+	}
+	public CharacterDataCodeOutputter(CharacterData[] character_data) {
+		if (character_data == null) {
+			logger.warn("Null argument where non-null required.");
+			return;
+		}
+
+		character_data_list = new ArrayList<>();
+		for (int i = 0; i < character_data.length; i++) {
+			character_data_list.add(character_data[i]);
+		}
 	}
 
 	public String GetCharacterDataSourceCode() {

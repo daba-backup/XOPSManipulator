@@ -1,5 +1,6 @@
 package com.github.dabasan.xops.properties.openxops;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -23,6 +24,17 @@ public class WeaponDataCodeOutputter {
 
 	public WeaponDataCodeOutputter(List<WeaponData> weapon_data_list) {
 		this.weapon_data_list = weapon_data_list;
+	}
+	public WeaponDataCodeOutputter(WeaponData[] weapon_data) {
+		if (weapon_data == null) {
+			logger.warn("Null argument where non-null required.");
+			return;
+		}
+
+		weapon_data_list = new ArrayList<>();
+		for (int i = 0; i < weapon_data.length; i++) {
+			weapon_data_list.add(weapon_data[i]);
+		}
 	}
 
 	public String GetWeaponDataSourceCode() {
