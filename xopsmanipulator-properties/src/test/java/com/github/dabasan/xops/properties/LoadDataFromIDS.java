@@ -9,14 +9,13 @@ public class LoadDataFromIDS {
 	public static void main(String[] args) {
 		IDSManipulator manipulator;
 		try {
-			manipulator=new IDSManipulator("./TestData/mp5.ids");
-		}
-		catch(IOException e) {
+			manipulator = new IDSManipulator("./TestData/mp5.ids");
+		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
-		
-		WeaponData weapon_data=manipulator.GetWeaponData();
+
+		WeaponData weapon_data = manipulator.GetWeaponData();
 		System.out.println(weapon_data);
 	}
 }

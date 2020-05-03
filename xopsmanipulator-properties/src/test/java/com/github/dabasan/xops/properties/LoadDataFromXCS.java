@@ -9,15 +9,14 @@ public class LoadDataFromXCS {
 	public static void main(String[] args) {
 		XCSManipulator manipulator;
 		try {
-			manipulator=new XCSManipulator("./TestData/characters.xcs");
-		}
-		catch(IOException e) {
+			manipulator = new XCSManipulator("./TestData/characters.xcs");
+		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
-		
-		CharacterData[] character_data=manipulator.GetCharacterDataArray();
-		for(int i=0;i<character_data.length;i++) {
+
+		CharacterData[] character_data = manipulator.GetCharacterDataArray();
+		for (int i = 0; i < character_data.length; i++) {
 			System.out.printf("[%d]\n", i);
 			System.out.println(character_data[i]);
 		}

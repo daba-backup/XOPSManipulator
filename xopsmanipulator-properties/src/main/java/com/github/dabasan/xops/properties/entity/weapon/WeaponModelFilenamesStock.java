@@ -9,13 +9,14 @@ import org.slf4j.LoggerFactory;
 import com.github.dabasan.xops.properties.XOPSConstants;
 
 public class WeaponModelFilenamesStock {
-	private static Logger logger=LoggerFactory.getLogger(WeaponModelFilenamesStock.class);
-	
+	private static Logger logger = LoggerFactory
+			.getLogger(WeaponModelFilenamesStock.class);
+
 	private static Map<Integer, String> model_filenames_map;
-	
-	static{
-		model_filenames_map=new HashMap<>();
-		
+
+	static {
+		model_filenames_map = new HashMap<>();
+
 		model_filenames_map.put(0, "");
 		model_filenames_map.put(1, "./data/model/weapon/mp5.x");
 		model_filenames_map.put(2, "./data/model/weapon/psg1.x");
@@ -38,42 +39,45 @@ public class WeaponModelFilenamesStock {
 		model_filenames_map.put(19, "./data/model/weapon/mk23.x");
 		model_filenames_map.put(20, "./data/model/weapon/mk23sd.x");
 	}
-	
-	public static void SetModelFilename(int index,String model_filename) {
+
+	public static void SetModelFilename(int index, String model_filename) {
 		model_filenames_map.put(index, model_filename);
 	}
 	public static String GetModelFilename(WeaponModelType model_type) {
-		int ordinal=model_type.ordinal();
+		int ordinal = model_type.ordinal();
 		return model_filenames_map.get(ordinal);
 	}
-	
+
 	public static boolean KeyExists(int index) {
 		return model_filenames_map.containsKey(index);
 	}
-	
-	public static WeaponModelType GetWeaponModelTypeFromFilename(String model_filename) {
-		WeaponModelType model_type=WeaponModelType.NONE;
-		
-		if(model_filenames_map.size()!=XOPSConstants.WEAPON_MODEL_NUM) {
-			logger.error("The number of data stocked in the map is invalid and cannot convert the filename to an enum item.");
+
+	public static WeaponModelType GetWeaponModelTypeFromFilename(
+			String model_filename) {
+		WeaponModelType model_type = WeaponModelType.NONE;
+
+		if (model_filenames_map.size() != XOPSConstants.WEAPON_MODEL_NUM) {
+			logger.error(
+					"The number of data stocked in the map is invalid and cannot convert the filename to an enum item.");
 			return model_type;
 		}
-		if(model_filenames_map.containsValue(model_filename)==false) {
-			logger.warn("No such filename in the map. model_filename={}",model_filename);
+		if (model_filenames_map.containsValue(model_filename) == false) {
+			logger.warn("No such filename in the map. model_filename={}",
+					model_filename);
 			return model_type;
 		}
-		
-		for(int i=0;i<model_filenames_map.size();i++) {
-			String filename=model_filenames_map.get(i);
-			
-			if(model_filename.equals(filename)==true) {
-				WeaponModelType[] model_types=WeaponModelType.values();
-				model_type=model_types[i];
-				
+
+		for (int i = 0; i < model_filenames_map.size(); i++) {
+			String filename = model_filenames_map.get(i);
+
+			if (model_filename.equals(filename) == true) {
+				WeaponModelType[] model_types = WeaponModelType.values();
+				model_type = model_types[i];
+
 				break;
 			}
 		}
-		
+
 		return model_type;
 	}
 }

@@ -10,20 +10,20 @@ public class PortDataToXGS {
 	public static void main(String[] args) {
 		XOPSExeManipulator exe_manipulator;
 		XGSManipulator xgs_manipulator;
-		
+
 		try {
-			exe_manipulator=new XOPSExeManipulator("./TestData/xops0975t.exe");
-		}
-		catch(IOException e) {
+			exe_manipulator = new XOPSExeManipulator(
+					"./TestData/xops0975t.exe");
+		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
-		
-		xgs_manipulator=new XGSManipulator();
-		
-		WeaponData[] weapon_data=exe_manipulator.GetWeaponDataArray();
+
+		xgs_manipulator = new XGSManipulator();
+
+		WeaponData[] weapon_data = exe_manipulator.GetWeaponDataArray();
 		xgs_manipulator.SetWeaponDataArray(weapon_data);
-		
+
 		xgs_manipulator.Write("./TestData/ported_data.xgs");
 	}
 }

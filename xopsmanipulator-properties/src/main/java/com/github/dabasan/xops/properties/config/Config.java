@@ -2,6 +2,7 @@ package com.github.dabasan.xops.properties.config;
 
 /**
  * Config
+ * 
  * @author Daba
  *
  */
@@ -24,7 +25,7 @@ public class Config {
 	private KeyCode weapon1;
 	private KeyCode weapon2;
 	private KeyCode fire;
-	
+
 	private int mouse_sensitivity;
 	private int brightness;
 	private WindowMode window_mode;
@@ -34,107 +35,107 @@ public class Config {
 	private boolean frame_skip;
 	private boolean another_gunsight;
 	private String name;
-	
+
 	public Config() {
 		this.SetDefault();
 	}
 	public Config(Config c) {
-		turn_up=c.GetTurnUp();
-		turn_down=c.GetTurnDown();
-		turn_left=c.GetTurnLeft();
-		turn_right=c.GetTurnRight();
-		move_forward=c.GetMoveForward();
-		move_backward=c.GetMoveBackward();
-		move_left=c.GetMoveLeft();
-		move_right=c.GetMoveRight();
-		walk=c.GetWalk();
-		jump=c.GetJump();
-		reload=c.GetReload();
-		drop_weapon=c.GetDropWeapon();
-		zoom=c.GetZoom();
-		fire_mode=c.GetFireMode();
-		switch_weapon=c.GetSwitchWeapon();
-		weapon1=c.GetWeapon1();
-		weapon2=c.GetWeapon2();
-		fire=c.GetFire();
-		
-		mouse_sensitivity=c.GetMouseSensitivity();
-		brightness=c.GetBrightness();
-		window_mode=c.GetWindowMode();
-		enable_sound=c.GetEnableSound();
-		enable_blood=c.GetEnableBlood();
-		invert_mouse=c.GetInvertMouse();
-		frame_skip=c.GetFrameSkip();
-		another_gunsight=c.GetAnotherGunsight();
-		name=c.GetName();
+		turn_up = c.GetTurnUp();
+		turn_down = c.GetTurnDown();
+		turn_left = c.GetTurnLeft();
+		turn_right = c.GetTurnRight();
+		move_forward = c.GetMoveForward();
+		move_backward = c.GetMoveBackward();
+		move_left = c.GetMoveLeft();
+		move_right = c.GetMoveRight();
+		walk = c.GetWalk();
+		jump = c.GetJump();
+		reload = c.GetReload();
+		drop_weapon = c.GetDropWeapon();
+		zoom = c.GetZoom();
+		fire_mode = c.GetFireMode();
+		switch_weapon = c.GetSwitchWeapon();
+		weapon1 = c.GetWeapon1();
+		weapon2 = c.GetWeapon2();
+		fire = c.GetFire();
+
+		mouse_sensitivity = c.GetMouseSensitivity();
+		brightness = c.GetBrightness();
+		window_mode = c.GetWindowMode();
+		enable_sound = c.GetEnableSound();
+		enable_blood = c.GetEnableBlood();
+		invert_mouse = c.GetInvertMouse();
+		frame_skip = c.GetFrameSkip();
+		another_gunsight = c.GetAnotherGunsight();
+		name = c.GetName();
 	}
 	public void SetDefault() {
-		turn_up=KeyCode.KEY_UP;
-		turn_down=KeyCode.KEY_DOWN;
-		turn_left=KeyCode.KEY_LEFT;
-		turn_right=KeyCode.KEY_RIGHT;
-		move_forward=KeyCode.KEY_W;
-		move_backward=KeyCode.KEY_S;
-		move_left=KeyCode.KEY_A;
-		move_right=KeyCode.KEY_D;
-		walk=KeyCode.KEY_TAB;
-		jump=KeyCode.KEY_SPACE;
-		reload=KeyCode.KEY_R;
-		drop_weapon=KeyCode.KEY_G;
-		zoom=KeyCode.KEY_SHIFT;
-		fire_mode=KeyCode.KEY_X;
-		switch_weapon=KeyCode.KEY_Z;
-		weapon1=KeyCode.KEY_1;
-		weapon2=KeyCode.KEY_2;
-		fire=KeyCode.KEY_MOUSE_L;
-		
-		mouse_sensitivity=25;
-		brightness=4;
-		window_mode=WindowMode.FULL_SCREEN;
-		enable_sound=true;
-		enable_blood=true;
-		invert_mouse=false;
-		frame_skip=false;
-		another_gunsight=false;
-		name="xopsplayer";
+		turn_up = KeyCode.KEY_UP;
+		turn_down = KeyCode.KEY_DOWN;
+		turn_left = KeyCode.KEY_LEFT;
+		turn_right = KeyCode.KEY_RIGHT;
+		move_forward = KeyCode.KEY_W;
+		move_backward = KeyCode.KEY_S;
+		move_left = KeyCode.KEY_A;
+		move_right = KeyCode.KEY_D;
+		walk = KeyCode.KEY_TAB;
+		jump = KeyCode.KEY_SPACE;
+		reload = KeyCode.KEY_R;
+		drop_weapon = KeyCode.KEY_G;
+		zoom = KeyCode.KEY_SHIFT;
+		fire_mode = KeyCode.KEY_X;
+		switch_weapon = KeyCode.KEY_Z;
+		weapon1 = KeyCode.KEY_1;
+		weapon2 = KeyCode.KEY_2;
+		fire = KeyCode.KEY_MOUSE_L;
+
+		mouse_sensitivity = 25;
+		brightness = 4;
+		window_mode = WindowMode.FULL_SCREEN;
+		enable_sound = true;
+		enable_blood = true;
+		invert_mouse = false;
+		frame_skip = false;
+		another_gunsight = false;
+		name = "xopsplayer";
 	}
-	
+
 	@Override
 	public String toString() {
-		String ret="";
-		final String separator=System.getProperty("line.separator");
-		
-		ret+="turn_up:"+turn_up+separator;
-		ret+="turn_down:"+turn_down+separator;
-		ret+="turn_left:"+turn_left+separator;
-		ret+="turn_right:"+turn_right+separator;
-		ret+="move_forward:"+move_forward+separator;
-		ret+="move_backward:"+move_backward+separator;
-		ret+="move_left:"+move_left+separator;
-		ret+="move_right:"+move_right+separator;
-		ret+="walk:"+walk+separator;
-		ret+="jump:"+jump+separator;
-		ret+="reload:"+reload+separator;
-		ret+="drop_weapon:"+drop_weapon+separator;
-		ret+="zoom:"+zoom+separator;
-		ret+="fire_mode:"+fire_mode+separator;
-		ret+="switch_weapon:"+switch_weapon+separator;
-		ret+="weapon1:"+weapon1+separator;
-		ret+="weapon2:"+weapon2+separator;
-		ret+="fire:"+fire+separator;
-		ret+="mouse_sensitivity:"+mouse_sensitivity+separator;
-		ret+="brightness:"+brightness+separator;
-		ret+="window_mode:"+window_mode+separator;
-		ret+="enable_sound:"+enable_sound+separator;
-		ret+="enable_blood:"+enable_blood+separator;
-		ret+="invert_mouse:"+invert_mouse+separator;
-		ret+="frame_skip:"+frame_skip+separator;
-		ret+="another_gunsight:"+another_gunsight+separator;
-		ret+="name:"+name;
-		
+		String ret = "";
+		final String separator = System.getProperty("line.separator");
+
+		ret += "turn_up:" + turn_up + separator;
+		ret += "turn_down:" + turn_down + separator;
+		ret += "turn_left:" + turn_left + separator;
+		ret += "turn_right:" + turn_right + separator;
+		ret += "move_forward:" + move_forward + separator;
+		ret += "move_backward:" + move_backward + separator;
+		ret += "move_left:" + move_left + separator;
+		ret += "move_right:" + move_right + separator;
+		ret += "walk:" + walk + separator;
+		ret += "jump:" + jump + separator;
+		ret += "reload:" + reload + separator;
+		ret += "drop_weapon:" + drop_weapon + separator;
+		ret += "zoom:" + zoom + separator;
+		ret += "fire_mode:" + fire_mode + separator;
+		ret += "switch_weapon:" + switch_weapon + separator;
+		ret += "weapon1:" + weapon1 + separator;
+		ret += "weapon2:" + weapon2 + separator;
+		ret += "fire:" + fire + separator;
+		ret += "mouse_sensitivity:" + mouse_sensitivity + separator;
+		ret += "brightness:" + brightness + separator;
+		ret += "window_mode:" + window_mode + separator;
+		ret += "enable_sound:" + enable_sound + separator;
+		ret += "enable_blood:" + enable_blood + separator;
+		ret += "invert_mouse:" + invert_mouse + separator;
+		ret += "frame_skip:" + frame_skip + separator;
+		ret += "another_gunsight:" + another_gunsight + separator;
+		ret += "name:" + name;
+
 		return ret;
 	}
-	
+
 	public KeyCode GetTurnUp() {
 		return turn_up;
 	}
@@ -216,7 +217,7 @@ public class Config {
 	public String GetName() {
 		return name;
 	}
-	
+
 	public void SetTurnUp(KeyCode turn_up) {
 		this.turn_up = turn_up;
 	}
