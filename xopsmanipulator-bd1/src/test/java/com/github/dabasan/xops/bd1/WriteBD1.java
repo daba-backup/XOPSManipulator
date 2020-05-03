@@ -6,13 +6,12 @@ public class WriteBD1 {
 	public static void main(String[] args) {
 		BD1Manipulator manipulator;
 		try {
-			manipulator=new BD1Manipulator("./TestData/temp.bd1");
-		}
-		catch(IOException e) {
+			manipulator = new BD1Manipulator("./TestData/temp.bd1");
+		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
-		
+
 		manipulator.WriteAsBD1("./TestData/temp2.bd1");
 	}
 }
