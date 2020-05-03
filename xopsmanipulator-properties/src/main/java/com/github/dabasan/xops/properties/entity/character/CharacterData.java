@@ -28,7 +28,7 @@ public class CharacterData {
 		texture_type = c.GetTextureType();
 		hp = c.GetHP();
 		ai_level = c.GetAILevel();
-		weapon_ids_map = c.GetWeaponIDsMap();
+		weapon_ids_map = c.GetWeaponIDs();
 		type = c.GetType();
 	}
 
@@ -97,7 +97,7 @@ public class CharacterData {
 		}
 		return weapon_ids_map.get(index);
 	}
-	public Map<Integer, Integer> GetWeaponIDsMap() {
+	public Map<Integer, Integer> GetWeaponIDs() {
 		return new HashMap<>(weapon_ids_map);
 	}
 	public CharacterType GetType() {

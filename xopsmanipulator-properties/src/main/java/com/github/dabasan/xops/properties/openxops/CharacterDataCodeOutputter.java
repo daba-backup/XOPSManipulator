@@ -39,7 +39,7 @@ public class CharacterDataCodeOutputter {
 		}
 	}
 
-	public String GetCharacterDataSourceCode_Concat() {
+	public String GetConcatCode() {
 		String ret = "";
 
 		if (character_data_list == null) {
@@ -80,10 +80,9 @@ public class CharacterDataCodeOutputter {
 
 		return ret;
 	}
-
-	public List<String> GetCharacterDataSourceCode() {
+	public List<String> GetCode() {
 		final String separator = System.getProperty("line.separator");
-		final String code = this.GetCharacterDataSourceCode_Concat();
+		final String code = this.GetConcatCode();
 		final String[] split = code.split(separator);
 
 		final List<String> ret = Arrays.asList(split);

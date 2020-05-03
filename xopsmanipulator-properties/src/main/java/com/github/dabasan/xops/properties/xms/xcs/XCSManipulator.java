@@ -26,7 +26,7 @@ public class XCSManipulator {
 	 */
 	public XCSManipulator(String xcs_filename) throws IOException {
 		XCSParser xcs_parser = new XCSParser(xcs_filename);
-		character_data_array = xcs_parser.GetCharacterDataArray();
+		character_data_array = xcs_parser.GetCharacterData();
 	}
 	public XCSManipulator() {
 
@@ -37,7 +37,7 @@ public class XCSManipulator {
 	 * 
 	 * @return A character data array
 	 */
-	public CharacterData[] GetCharacterDataArray() {
+	public CharacterData[] GetCharacterData() {
 		if (character_data_array == null) {
 			return null;
 		}
@@ -55,7 +55,7 @@ public class XCSManipulator {
 	 * @param character_data_array
 	 *            A character data array
 	 */
-	public void SetCharacterDataArray(CharacterData[] character_data_array) {
+	public void SetCharacterData(CharacterData[] character_data_array) {
 		if (character_data_array == null) {
 			logger.warn("Null argument where non-null required.");
 			return;

@@ -38,7 +38,7 @@ public class WeaponDataCodeOutputter {
 		}
 	}
 
-	public String GetWeaponDataSourceCode_Concat() {
+	public String GetConcatCode() {
 		String ret = "";
 
 		if (weapon_data_list == null) {
@@ -141,10 +141,9 @@ public class WeaponDataCodeOutputter {
 
 		return ret;
 	}
-
-	public List<String> GetWeaponDataSourceCode() {
+	public List<String> GetCode() {
 		final String separator = System.getProperty("line.separator");
-		final String code = this.GetWeaponDataSourceCode_Concat();
+		final String code = this.GetConcatCode();
 		final String[] split = code.split(separator);
 
 		final List<String> ret = Arrays.asList(split);

@@ -16,8 +16,8 @@ public class LoadDataFromEXE {
 			return;
 		}
 
-		WeaponData[] weapon_data = manipulator.GetWeaponDataArray();
-		CharacterData[] character_data = manipulator.GetCharacterDataArray();
+		WeaponData[] weapon_data = manipulator.GetWeaponData();
+		CharacterData[] character_data = manipulator.GetCharacterData();
 
 		for (int i = 0; i < weapon_data.length; i++) {
 			System.out.printf("[%d]\n", i);

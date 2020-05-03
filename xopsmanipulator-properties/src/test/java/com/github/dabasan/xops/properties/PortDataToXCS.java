@@ -22,8 +22,8 @@ public class PortDataToXCS {
 		xcs_manipulator = new XCSManipulator();
 
 		CharacterData[] character_data = exe_manipulator
-				.GetCharacterDataArray();
-		xcs_manipulator.SetCharacterDataArray(character_data);
+				.GetCharacterData();
+		xcs_manipulator.SetCharacterData(character_data);
 
 		xcs_manipulator.Write("./TestData/ported_data.xcs");
 	}

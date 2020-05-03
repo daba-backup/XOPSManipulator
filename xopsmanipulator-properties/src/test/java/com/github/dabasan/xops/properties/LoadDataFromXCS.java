@@ -15,7 +15,7 @@ public class LoadDataFromXCS {
 			return;
 		}
 
-		CharacterData[] character_data = manipulator.GetCharacterDataArray();
+		CharacterData[] character_data = manipulator.GetCharacterData();
 		for (int i = 0; i < character_data.length; i++) {
 			System.out.printf("[%d]\n", i);
 			System.out.println(character_data[i]);

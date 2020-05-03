@@ -102,7 +102,7 @@ class XCSParser {
 		}
 	}
 
-	public CharacterData[] GetCharacterDataArray() {
+	public CharacterData[] GetCharacterData() {
 		return character_data_array;
 	}
 }

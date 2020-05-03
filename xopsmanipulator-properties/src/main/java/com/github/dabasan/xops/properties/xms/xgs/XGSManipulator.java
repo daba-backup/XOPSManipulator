@@ -26,7 +26,7 @@ public class XGSManipulator {
 	 */
 	public XGSManipulator(String xgs_filename) throws IOException {
 		XGSParser xgs_parser = new XGSParser(xgs_filename);
-		weapon_data_array = xgs_parser.GetWeaponDataArray();
+		weapon_data_array = xgs_parser.GetWeaponData();
 	}
 	public XGSManipulator() {
 
@@ -38,7 +38,7 @@ public class XGSManipulator {
 	 * 
 	 * @return A weapon data array
 	 */
-	public WeaponData[] GetWeaponDataArray() {
+	public WeaponData[] GetWeaponData() {
 		if (weapon_data_array == null) {
 			return null;
 		}
@@ -56,7 +56,7 @@ public class XGSManipulator {
 	 * @param weapon_data_array
 	 *            A weapon data array
 	 */
-	public void SetWeaponDataArray(WeaponData[] weapon_data_array) {
+	public void SetWeaponData(WeaponData[] weapon_data_array) {
 		if (weapon_data_array == null) {
 			logger.warn("Null argument where non-null required.");
 			return;

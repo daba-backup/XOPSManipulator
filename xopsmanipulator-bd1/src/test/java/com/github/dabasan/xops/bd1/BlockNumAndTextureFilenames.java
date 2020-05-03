@@ -17,7 +17,7 @@ public class BlockNumAndTextureFilenames {
 		System.out.println(block_num);
 
 		Map<Integer, String> texture_filenames_map = manipulator
-				.GetTextureFilenamesMap();
+				.GetTextureFilenames();
 		for (Map.Entry<Integer, String> entry : texture_filenames_map
 				.entrySet()) {
 			System.out.printf("(%d,%s)\n", entry.getKey(), entry.getValue());

@@ -98,7 +98,7 @@ public class MIFList {
 	 * 
 	 * @return Mission info map
 	 */
-	public Map<String, MissionInfo> GetMissionInfoMap() {
+	public Map<String, MissionInfo> GetMissionInfo() {
 		return new HashMap<>(mission_info_map);
 	}
 

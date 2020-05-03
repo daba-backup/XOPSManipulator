@@ -123,7 +123,7 @@ class BD1Parser {
 	public List<BD1Block> GetBlocks() {
 		return blocks;
 	}
-	public Map<Integer, String> GetTextureFilenamesMap() {
+	public Map<Integer, String> GetTextureFilenames() {
 		return texture_filenames_map;
 	}
 }

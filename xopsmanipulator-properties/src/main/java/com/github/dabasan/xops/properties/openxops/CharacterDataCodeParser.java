@@ -179,10 +179,10 @@ public class CharacterDataCodeParser {
 		}
 	}
 
-	public HashMap<Integer, CharacterData> GetCharacterDataMap() {
+	public HashMap<Integer, CharacterData> GetData() {
 		return new HashMap<>(character_data_map);
 	}
-	public TreeMap<Integer, CharacterData> GetCharacterDataOrderedMap() {
+	public TreeMap<Integer, CharacterData> GetOrderedData() {
 		return new TreeMap<>(character_data_map);
 	}
 }

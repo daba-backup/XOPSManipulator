@@ -433,7 +433,7 @@ public class BD1Creator {
 			blocks.add(block);
 		}
 
-		bd1_manipulator.SetTextureFilenamesMap(texture_filenames_map);
+		bd1_manipulator.SetTextureFilenames(texture_filenames_map);
 		bd1_manipulator.SetBlocks(blocks);
 		bd1_manipulator.Translate(VectorFunctions.VGet(0.0f, offset_y, 0.0f));
 
@@ -458,7 +458,7 @@ public class BD1Creator {
 			blocks.add(block);
 		}
 
-		bd1_manipulator.SetTextureFilenamesMap(texture_filenames_map);
+		bd1_manipulator.SetTextureFilenames(texture_filenames_map);
 		bd1_manipulator.SetBlocks(blocks);
 		bd1_manipulator.Translate(VectorFunctions.VGet(0.0f, offset_y, 0.0f));
 

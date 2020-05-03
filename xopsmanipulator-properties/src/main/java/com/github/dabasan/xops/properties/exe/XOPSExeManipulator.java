@@ -97,8 +97,8 @@ public class XOPSExeManipulator {
 		XOPSExeCharacterDataParser character_data_parser = new XOPSExeCharacterDataParser(
 				bin, character_data_start_pos);
 
-		weapon_data_array = weapon_data_parser.GetWeaponDataArray();
-		character_data_array = character_data_parser.GetCharacterDataArray();
+		weapon_data_array = weapon_data_parser.GetWeaponData();
+		character_data_array = character_data_parser.GetCharacterData();
 	}
 	public XOPSExeManipulator(String xops_filename, int weapon_data_start_pos,
 			int weapon_name_start_pos, int character_data_start_pos)
@@ -118,8 +118,8 @@ public class XOPSExeManipulator {
 			return;
 		}
 
-		weapon_data_array = weapon_data_parser.GetWeaponDataArray();
-		character_data_array = character_data_parser.GetCharacterDataArray();
+		weapon_data_array = weapon_data_parser.GetWeaponData();
+		character_data_array = character_data_parser.GetCharacterData();
 	}
 	public XOPSExeManipulator() {
 
@@ -130,7 +130,7 @@ public class XOPSExeManipulator {
 	 * 
 	 * @return A weapon data array
 	 */
-	public WeaponData[] GetWeaponDataArray() {
+	public WeaponData[] GetWeaponData() {
 		if (weapon_data_array == null) {
 			return null;
 		}
@@ -147,7 +147,7 @@ public class XOPSExeManipulator {
 	 * 
 	 * @return A character data array
 	 */
-	public CharacterData[] GetCharacterDataArray() {
+	public CharacterData[] GetCharacterData() {
 		if (character_data_array == null) {
 			return null;
 		}
@@ -165,7 +165,7 @@ public class XOPSExeManipulator {
 	 * @param weapon_data_array
 	 *            A weapon data array
 	 */
-	public void SetWeaponDataArray(WeaponData[] weapon_data_array) {
+	public void SetWeaponData(WeaponData[] weapon_data_array) {
 		if (weapon_data_array == null) {
 			logger.warn("Null argument where non-null required.");
 			return;
@@ -178,7 +178,7 @@ public class XOPSExeManipulator {
 	 * @param character_data_array
 	 *            A character data array
 	 */
-	public void SetCharacterDataArray(CharacterData[] character_data_array) {
+	public void SetCharacterData(CharacterData[] character_data_array) {
 		if (character_data_array == null) {
 			logger.warn("Null argument where non-null required.");
 			return;

@@ -266,7 +266,7 @@ class XOPSExeWeaponDataParser {
 		}
 	}
 
-	public WeaponData[] GetWeaponDataArray() {
+	public WeaponData[] GetWeaponData() {
 		return weapon_data_array;
 	}
 }

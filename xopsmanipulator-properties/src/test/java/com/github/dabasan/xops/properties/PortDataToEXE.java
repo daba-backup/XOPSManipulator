@@ -24,12 +24,12 @@ public class PortDataToEXE {
 
 		exe_manipulator = new XOPSExeManipulator();
 
-		WeaponData[] weapon_data = xgs_manipulator.GetWeaponDataArray();
+		WeaponData[] weapon_data = xgs_manipulator.GetWeaponData();
 		CharacterData[] character_data = xcs_manipulator
-				.GetCharacterDataArray();
+				.GetCharacterData();
 
-		exe_manipulator.SetWeaponDataArray(weapon_data);
-		exe_manipulator.SetCharacterDataArray(character_data);
+		exe_manipulator.SetWeaponData(weapon_data);
+		exe_manipulator.SetCharacterData(character_data);
 
 		exe_manipulator.Write("./TestData/xops0975t.exe", true);
 	}

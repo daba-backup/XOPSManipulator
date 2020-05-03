@@ -15,7 +15,7 @@ public class LoadDataFromXGS {
 			return;
 		}
 
-		WeaponData[] weapon_data = manipulator.GetWeaponDataArray();
+		WeaponData[] weapon_data = manipulator.GetWeaponData();
 		for (int i = 0; i < weapon_data.length; i++) {
 			System.out.printf("[%d]\n", i);
 			System.out.println(weapon_data[i]);

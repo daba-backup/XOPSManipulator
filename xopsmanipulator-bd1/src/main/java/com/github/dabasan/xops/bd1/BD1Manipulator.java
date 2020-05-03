@@ -35,7 +35,7 @@ public class BD1Manipulator {
 		BD1Parser bd1_parser = new BD1Parser(bd1_filename);
 
 		blocks = bd1_parser.GetBlocks();
-		texture_filenames_map = bd1_parser.GetTextureFilenamesMap();
+		texture_filenames_map = bd1_parser.GetTextureFilenames();
 	}
 	public BD1Manipulator() {
 		blocks = new ArrayList<BD1Block>();
@@ -98,7 +98,7 @@ public class BD1Manipulator {
 	 * 
 	 * @return Texture filenames
 	 */
-	public Map<Integer, String> GetTextureFilenamesMap() {
+	public Map<Integer, String> GetTextureFilenames() {
 		return new HashMap<>(texture_filenames_map);
 	}
 	/**
@@ -127,7 +127,7 @@ public class BD1Manipulator {
 	 *            Texture filenames
 	 * @return -1 on error and 0 on success
 	 */
-	public int SetTextureFilenamesMap(
+	public int SetTextureFilenames(
 			Map<Integer, String> texture_filenames_map) {
 		if (texture_filenames_map == null) {
 			logger.warn("Null argument where non-null required.");

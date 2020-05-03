@@ -21,8 +21,8 @@ public class PortDataToXGS {
 
 		xgs_manipulator = new XGSManipulator();
 
-		WeaponData[] weapon_data = exe_manipulator.GetWeaponDataArray();
-		xgs_manipulator.SetWeaponDataArray(weapon_data);
+		WeaponData[] weapon_data = exe_manipulator.GetWeaponData();
+		xgs_manipulator.SetWeaponData(weapon_data);
 
 		xgs_manipulator.Write("./TestData/ported_data.xgs");
 	}
