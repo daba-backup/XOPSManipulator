@@ -10,10 +10,10 @@ import com.github.dabasan.basis.vector.VectorFunctions;
  *
  */
 public class BD1Face {
-	private Vector[] vertex_positions;
+	private final Vector[] vertex_positions;
 	private Vector normal;
-	private float[] us;
-	private float[] vs;
+	private final float[] us;
+	private final float[] vs;
 
 	public BD1Face() {
 		vertex_positions = new Vector[4];

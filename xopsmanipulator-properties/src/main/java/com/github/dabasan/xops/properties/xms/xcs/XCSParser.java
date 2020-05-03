@@ -23,7 +23,7 @@ import com.github.dabasan.xops.properties.entity.character.CharacterType;
  *
  */
 class XCSParser {
-	private Logger logger = LoggerFactory.getLogger(XCSParser.class);
+	private final Logger logger = LoggerFactory.getLogger(XCSParser.class);
 
 	private CharacterData[] character_data_array;
 
@@ -33,7 +33,7 @@ class XCSParser {
 			character_data_array[i] = new CharacterData();
 		}
 
-		List<Byte> bin = FileFunctions.GetFileAllBin(xcs_filename);
+		final List<Byte> bin = FileFunctions.GetFileAllBin(xcs_filename);
 
 		if (bin.size() != 614) {
 			logger.warn("Invalid file size. xcs_filename={}", xcs_filename);

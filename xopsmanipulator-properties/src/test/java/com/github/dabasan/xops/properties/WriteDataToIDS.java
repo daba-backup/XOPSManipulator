@@ -6,8 +6,8 @@ import com.github.dabasan.xops.properties.xms.ids.IDSManipulator;
 
 public class WriteDataToIDS {
 	public static void main(String[] args) {
-		IDSManipulator manipulator = new IDSManipulator();
-		WeaponData weapon_data = new WeaponData();
+		final IDSManipulator manipulator = new IDSManipulator();
+		final WeaponData weapon_data = new WeaponData();
 
 		weapon_data.SetName("TestWeapon");
 		weapon_data.SetAttackPower(100);

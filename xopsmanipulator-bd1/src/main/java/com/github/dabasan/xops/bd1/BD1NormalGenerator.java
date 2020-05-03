@@ -18,13 +18,13 @@ public class BD1NormalGenerator extends BD1Generator {
 
 	@Override
 	public void GenerateCubes(int block_num, float edge_length, float scale) {
-		Random random = new Random();
-		BD1Creator bd1_creator = this.GetBD1Creator();
+		final Random random = new Random();
+		final BD1Creator bd1_creator = this.GetBD1Creator();
 
 		for (int i = 0; i < block_num; i++) {
-			float x = (float) random.nextGaussian() * scale;
-			float y = (float) random.nextGaussian() * scale;
-			float z = (float) random.nextGaussian() * scale;
+			final float x = (float) random.nextGaussian() * scale;
+			final float y = (float) random.nextGaussian() * scale;
+			final float z = (float) random.nextGaussian() * scale;
 
 			/*
 			 * int sign_x=random.nextInt(2); int sign_y=random.nextInt(2); int
@@ -34,7 +34,7 @@ public class BD1NormalGenerator extends BD1Generator {
 			 * if(sign_z%2==1)z*=(-1.0f);
 			 */
 
-			Vector center = VectorFunctions.VGet(x, y, z);
+			final Vector center = VectorFunctions.VGet(x, y, z);
 
 			bd1_creator.CreateCube(center, edge_length);
 		}

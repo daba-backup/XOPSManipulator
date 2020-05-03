@@ -14,14 +14,14 @@ public class PortDataToXCS {
 		try {
 			exe_manipulator = new XOPSExeManipulator(
 					"./TestData/xops0975t.exe");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
 		xcs_manipulator = new XCSManipulator();
 
-		CharacterData[] character_data = exe_manipulator
+		final CharacterData[] character_data = exe_manipulator
 				.GetCharacterData();
 		xcs_manipulator.SetCharacterData(character_data);
 

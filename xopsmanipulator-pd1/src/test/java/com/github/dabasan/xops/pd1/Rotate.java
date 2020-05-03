@@ -10,12 +10,12 @@ public class Rotate {
 		PD1Manipulator manipulator;
 		try {
 			manipulator = new PD1Manipulator("./TestData/tr.pd1");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		float rad = MathFunctions.DegToRad(45.0f);
+		final float rad = MathFunctions.DegToRad(45.0f);
 		manipulator.Rotate(VectorFunctions.VGet(rad, rad, rad));
 
 		manipulator.Write("./TestData/tr_rotate.pd1");

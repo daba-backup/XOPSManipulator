@@ -19,7 +19,7 @@ import com.github.dabasan.xops.properties.entity.character.CharacterTextureType;
  *
  */
 public class CharacterDataCodeOutputter {
-	private Logger logger = LoggerFactory
+	private final Logger logger = LoggerFactory
 			.getLogger(CharacterDataCodeOutputter.class);
 
 	private List<CharacterData> character_data_list;
@@ -51,14 +51,14 @@ public class CharacterDataCodeOutputter {
 		final String separator = System.getProperty("line.separator");
 
 		for (int i = 0; i < character_data_list.size(); i++) {
-			CharacterData character_data = character_data_list.get(i);
+			final CharacterData character_data = character_data_list.get(i);
 
-			CharacterTextureType xops_texture_type = character_data
+			final CharacterTextureType xops_texture_type = character_data
 					.GetTextureType();
-			CharacterAILevel xops_ai_level = character_data.GetAILevel();
-			int openxops_texture_id = CharacterSpecifierConverter
+			final CharacterAILevel xops_ai_level = character_data.GetAILevel();
+			final int openxops_texture_id = CharacterSpecifierConverter
 					.GetOpenXOPSTextureIDFromXOPSTextureType(xops_texture_type);
-			int openxops_ai_level = CharacterSpecifierConverter
+			final int openxops_ai_level = CharacterSpecifierConverter
 					.GetOpenXOPSAILevelFromXOPSAILevel(xops_ai_level);
 
 			ret += StringFunctions.GetCPPArrayFormatString(array_name, i,

@@ -14,21 +14,21 @@ import com.github.dabasan.tool.FileFunctions;
  *
  */
 class PD1Parser {
-	private List<PD1Point> points;
+	private final List<PD1Point> points;
 
 	public PD1Parser(String pd1_filename) throws IOException {
 		points = new ArrayList<>();
-		List<Byte> bin = FileFunctions.GetFileAllBin(pd1_filename);
+		final List<Byte> bin = FileFunctions.GetFileAllBin(pd1_filename);
 
 		int pos = 0;
 
 		// Number of points
-		int point_num = ByteFunctions.GetUShortValueFromBin_LE(bin, pos);
+		final int point_num = ByteFunctions.GetUShortValueFromBin_LE(bin, pos);
 		pos += 2;
 
 		// Points
 		for (int i = 0; i < point_num; i++) {
-			PD1Point point = new PD1Point();
+			final PD1Point point = new PD1Point();
 			float ftemp;
 
 			// Point position

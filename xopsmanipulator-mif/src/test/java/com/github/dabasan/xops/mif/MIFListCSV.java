@@ -7,7 +7,7 @@ public class MIFListCSV {
 		MIFList list;
 		try {
 			list = new MIFList("./TestData/addon", "Shift-JIS");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}

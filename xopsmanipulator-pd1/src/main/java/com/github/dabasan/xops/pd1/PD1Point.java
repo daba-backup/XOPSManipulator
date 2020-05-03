@@ -11,7 +11,7 @@ import com.github.dabasan.basis.vector.Vector;
 public class PD1Point {
 	private Vector position;
 	private float rotation;
-	private int[] parameters;
+	private final int[] parameters;
 
 	public PD1Point() {
 		position = new Vector();

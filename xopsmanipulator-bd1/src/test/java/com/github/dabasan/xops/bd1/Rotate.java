@@ -10,12 +10,12 @@ public class Rotate {
 		BD1Manipulator manipulator;
 		try {
 			manipulator = new BD1Manipulator("./TestData/temp.bd1");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		float rad = MathFunctions.DegToRad(45.0f);
+		final float rad = MathFunctions.DegToRad(45.0f);
 		manipulator.Rotate(VectorFunctions.VGet(rad, rad, rad));
 		manipulator.WriteAsBD1("./TestData/temp_rotate.bd1");
 	}

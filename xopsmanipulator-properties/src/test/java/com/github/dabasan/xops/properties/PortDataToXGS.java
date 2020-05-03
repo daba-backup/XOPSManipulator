@@ -14,14 +14,14 @@ public class PortDataToXGS {
 		try {
 			exe_manipulator = new XOPSExeManipulator(
 					"./TestData/xops0975t.exe");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
 		xgs_manipulator = new XGSManipulator();
 
-		WeaponData[] weapon_data = exe_manipulator.GetWeaponData();
+		final WeaponData[] weapon_data = exe_manipulator.GetWeaponData();
 		xgs_manipulator.SetWeaponData(weapon_data);
 
 		xgs_manipulator.Write("./TestData/ported_data.xgs");

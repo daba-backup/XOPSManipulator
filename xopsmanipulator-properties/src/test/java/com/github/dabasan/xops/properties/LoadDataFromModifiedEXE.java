@@ -13,13 +13,13 @@ public class LoadDataFromModifiedEXE {
 			manipulator = new XOPSExeManipulator(
 					"./TestData/GhillieInTheMist.exe", 0x0005E32C, 0x000671E4,
 					0x0005E864);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		WeaponData[] weapon_data = manipulator.GetWeaponData();
-		CharacterData[] character_data = manipulator.GetCharacterData();
+		final WeaponData[] weapon_data = manipulator.GetWeaponData();
+		final CharacterData[] character_data = manipulator.GetCharacterData();
 
 		for (int i = 0; i < weapon_data.length; i++) {
 			System.out.printf("[%d]\n", i);

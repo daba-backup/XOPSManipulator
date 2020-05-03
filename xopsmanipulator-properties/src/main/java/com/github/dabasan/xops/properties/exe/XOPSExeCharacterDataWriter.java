@@ -21,10 +21,10 @@ import com.github.dabasan.xops.properties.entity.character.CharacterType;
  *
  */
 class XOPSExeCharacterDataWriter {
-	private Logger logger = LoggerFactory
+	private final Logger logger = LoggerFactory
 			.getLogger(XOPSExeCharacterDataWriter.class);
 
-	private CharacterData[] character_data_array;
+	private final CharacterData[] character_data_array;
 
 	public XOPSExeCharacterDataWriter(CharacterData[] character_data_array) {
 		this.character_data_array = character_data_array;
@@ -47,7 +47,7 @@ class XOPSExeCharacterDataWriter {
 			int itemp;
 
 			// Texture
-			CharacterTextureType texture_type = character_data_array[i]
+			final CharacterTextureType texture_type = character_data_array[i]
 					.GetTextureType();
 			itemp = CharacterBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromCharacterTextureType(texture_type);
@@ -55,7 +55,7 @@ class XOPSExeCharacterDataWriter {
 			pos += 2;
 
 			// Model
-			CharacterModelType model_type = character_data_array[i]
+			final CharacterModelType model_type = character_data_array[i]
 					.GetModelType();
 			itemp = CharacterBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromCharacterModelType(model_type);
@@ -68,7 +68,8 @@ class XOPSExeCharacterDataWriter {
 			pos += 2;
 
 			// AI level
-			CharacterAILevel ai_level = character_data_array[i].GetAILevel();
+			final CharacterAILevel ai_level = character_data_array[i]
+					.GetAILevel();
 			itemp = CharacterBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromCharacterAILevel(ai_level);
 			ByteFunctions.SetShortValueToBin_LE(bin, pos, (short) itemp);
@@ -85,7 +86,7 @@ class XOPSExeCharacterDataWriter {
 			pos += 2;
 
 			// Type
-			CharacterType type = character_data_array[i].GetType();
+			final CharacterType type = character_data_array[i].GetType();
 			itemp = CharacterBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromCharacterType(type);
 			ByteFunctions.SetShortValueToBin_LE(bin, pos, (short) itemp);

@@ -25,11 +25,11 @@ public class XOPSExeFunctions {
 			throws IOException {
 		XOPSVersion version = XOPSVersion.UNKNOWN_VERSION;
 
-		List<Byte> bin = FileFunctions.GetFileAllBin(xops_filename);
-		int file_size = bin.size();
+		final List<Byte> bin = FileFunctions.GetFileAllBin(xops_filename);
+		final int file_size = bin.size();
 
 		if (file_size == XOPSConstants.XOPS_096_OR_096T_FILE_SIZE) {
-			byte[] b = new byte[3];
+			final byte[] b = new byte[3];
 
 			b[0] = bin.get(0x00000100);
 			b[1] = bin.get(0x00000101);
@@ -64,11 +64,11 @@ public class XOPSExeFunctions {
 	public static XOPSVersion GetXOPSVersion(List<Byte> bin) {
 		XOPSVersion version = XOPSVersion.UNKNOWN_VERSION;
 
-		int file_size = bin.size();
+		final int file_size = bin.size();
 
 		if (file_size == XOPSConstants.XOPS_096_OR_096T_FILE_SIZE) {
-			byte[] b = new byte[3];
-			int[] ub = new int[3];
+			final byte[] b = new byte[3];
+			final int[] ub = new int[3];
 
 			b[0] = bin.get(0x00000100);
 			b[1] = bin.get(0x00000101);

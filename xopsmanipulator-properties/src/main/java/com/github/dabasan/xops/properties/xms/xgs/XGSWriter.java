@@ -27,9 +27,9 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class XGSWriter {
-	private Logger logger = LoggerFactory.getLogger(XGSWriter.class);
+	private final Logger logger = LoggerFactory.getLogger(XGSWriter.class);
 
-	private WeaponData[] weapon_data_array;
+	private final WeaponData[] weapon_data_array;
 
 	public XGSWriter(WeaponData[] weapon_data_array) {
 		this.weapon_data_array = weapon_data_array;
@@ -46,7 +46,7 @@ class XGSWriter {
 			return -1;
 		}
 
-		List<Byte> bin = new ArrayList<>();
+		final List<Byte> bin = new ArrayList<>();
 
 		bin.add((byte) 0x58);// X
 		bin.add((byte) 0x47);// G
@@ -141,7 +141,7 @@ class XGSWriter {
 			ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 			// Shooting stance
-			WeaponShootingStance shooting_stance = weapon_data_array[i]
+			final WeaponShootingStance shooting_stance = weapon_data_array[i]
 					.GetShootingStance();
 			itemp = WeaponBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromWeaponShootingStance(shooting_stance);
@@ -156,22 +156,25 @@ class XGSWriter {
 			ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 			// Scope mode
-			WeaponScopeMode scope_mode = weapon_data_array[i].GetScopeMode();
+			final WeaponScopeMode scope_mode = weapon_data_array[i]
+					.GetScopeMode();
 			itemp = WeaponBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromWeaponScopeMode(scope_mode);
 			ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 			// Texture
-			String texture_filename = weapon_data_array[i].GetTextureFilename();
-			WeaponTextureType texture_type = WeaponTextureFilenamesStock
+			final String texture_filename = weapon_data_array[i]
+					.GetTextureFilename();
+			final WeaponTextureType texture_type = WeaponTextureFilenamesStock
 					.GetWeaponTextureTypeFromFilename(texture_filename);
 			itemp = WeaponBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromWeaponTextureType(texture_type);
 			ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 			// Model
-			String model_filename = weapon_data_array[i].GetModelFilename();
-			WeaponModelType model_type = WeaponModelFilenamesStock
+			final String model_filename = weapon_data_array[i]
+					.GetModelFilename();
+			final WeaponModelType model_type = WeaponModelFilenamesStock
 					.GetWeaponModelTypeFromFilename(model_filename);
 			itemp = WeaponBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromWeaponModelType(model_type);
@@ -209,10 +212,10 @@ class XGSWriter {
 
 		// Name
 		for (int i = 0; i < XOPSConstants.WEAPON_NUM; i++) {
-			String name = weapon_data_array[XOPSConstants.WEAPON_NUM - 1 - i]
-					.GetName();
+			final String name = weapon_data_array[XOPSConstants.WEAPON_NUM - 1
+					- i].GetName();
 
-			byte[] name_buffer = new byte[15 + 1];
+			final byte[] name_buffer = new byte[15 + 1];
 			for (int j = 0; j < 16; j++) {
 				name_buffer[j] = 0;
 			}
@@ -235,7 +238,7 @@ class XGSWriter {
 
 		try {
 			FileFunctions.CreateBinFile(xgs_filename, bin);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Error while writing.", e);
 			return -1;
 		}

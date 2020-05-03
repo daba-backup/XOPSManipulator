@@ -19,7 +19,7 @@ import com.github.dabasan.basis.vector.VectorFunctions;
  *
  */
 public class PD1Manipulator {
-	private Logger logger = LoggerFactory.getLogger(PD1Manipulator.class);
+	private final Logger logger = LoggerFactory.getLogger(PD1Manipulator.class);
 
 	private List<PD1Point> points;
 
@@ -30,7 +30,7 @@ public class PD1Manipulator {
 	 * @throws IOException
 	 */
 	public PD1Manipulator(String pd1_filename) throws IOException {
-		PD1Parser pd1_parser = new PD1Parser(pd1_filename);
+		final PD1Parser pd1_parser = new PD1Parser(pd1_filename);
 		points = pd1_parser.GetPoints();
 	}
 	public PD1Manipulator() {
@@ -78,8 +78,8 @@ public class PD1Manipulator {
 	public int GetPointNum(int param_1) {
 		int point_num = 0;
 
-		for (PD1Point point : points) {
-			int p = point.GetParameter(0);
+		for (final PD1Point point : points) {
+			final int p = point.GetParameter(0);
 			if (p == param_1) {
 				point_num++;
 			}
@@ -95,7 +95,7 @@ public class PD1Manipulator {
 	 *            Translation vector
 	 */
 	public void Translate(Vector translate) {
-		for (PD1Point point : points) {
+		for (final PD1Point point : points) {
 			Vector position = point.GetPosition();
 			position = VectorFunctions.VAdd(position, translate);
 			point.SetPosition(position);
@@ -108,11 +108,11 @@ public class PD1Manipulator {
 	 *            Rotation vector
 	 */
 	public void Rotate(Vector rotate) {
-		Matrix rot_x = MatrixFunctions.MGetRotX(rotate.GetX());
-		Matrix rot_y = MatrixFunctions.MGetRotY(rotate.GetY());
-		Matrix rot_z = MatrixFunctions.MGetRotZ(rotate.GetZ());
+		final Matrix rot_x = MatrixFunctions.MGetRotX(rotate.GetX());
+		final Matrix rot_y = MatrixFunctions.MGetRotY(rotate.GetY());
+		final Matrix rot_z = MatrixFunctions.MGetRotZ(rotate.GetZ());
 
-		for (PD1Point point : points) {
+		for (final PD1Point point : points) {
 			Vector position = point.GetPosition();
 
 			position = MatrixFunctions.VTransform(position, rot_x);
@@ -129,8 +129,8 @@ public class PD1Manipulator {
 	 *            Scaling vector
 	 */
 	public void Rescale(Vector scale) {
-		for (PD1Point point : points) {
-			Vector position = point.GetPosition();
+		for (final PD1Point point : points) {
+			final Vector position = point.GetPosition();
 
 			float x, y, z;
 			x = position.GetX();
@@ -151,7 +151,7 @@ public class PD1Manipulator {
 	 *            Transformation matrix
 	 */
 	public void SetMatrix(Matrix m) {
-		for (PD1Point point : points) {
+		for (final PD1Point point : points) {
 			Vector position = point.GetPosition();
 			position = MatrixFunctions.VTransform(position, m);
 			point.SetPosition(position);
@@ -164,7 +164,7 @@ public class PD1Manipulator {
 	 *            Rotation angle (radian)
 	 */
 	public void RotateDirection(float rotate) {
-		for (PD1Point point : points) {
+		for (final PD1Point point : points) {
 			float rotation = point.GetRotation();
 			rotation += rotate;
 			point.SetRotation(rotation);
@@ -175,8 +175,8 @@ public class PD1Manipulator {
 	 * Inverts z-axis.
 	 */
 	public void InvertZ() {
-		for (PD1Point point : points) {
-			Vector position = point.GetPosition();
+		for (final PD1Point point : points) {
+			final Vector position = point.GetPosition();
 			position.SetZ(position.GetZ() * (-1.0f));
 			point.SetPosition(position);
 
@@ -195,8 +195,8 @@ public class PD1Manipulator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int Write(String pd1_filename) {
-		PD1Writer pd1_writer = new PD1Writer(points);
-		int ret = pd1_writer.Write(pd1_filename);
+		final PD1Writer pd1_writer = new PD1Writer(points);
+		final int ret = pd1_writer.Write(pd1_filename);
 
 		if (ret < 0) {
 			logger.error(

@@ -14,7 +14,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponData;
  *
  */
 public class IDSManipulator {
-	private Logger logger = LoggerFactory.getLogger(IDSManipulator.class);
+	private final Logger logger = LoggerFactory.getLogger(IDSManipulator.class);
 
 	private WeaponData weapon_data;
 
@@ -25,7 +25,7 @@ public class IDSManipulator {
 	 * @throws IOException
 	 */
 	public IDSManipulator(String ids_filename) throws IOException {
-		IDSParser ids_parser = new IDSParser(ids_filename);
+		final IDSParser ids_parser = new IDSParser(ids_filename);
 		weapon_data = ids_parser.GetWeaponData();
 	}
 	public IDSManipulator() {
@@ -65,8 +65,8 @@ public class IDSManipulator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int Write(String ids_filename) {
-		IDSWriter ids_writer = new IDSWriter(weapon_data);
-		int ret = ids_writer.Write(ids_filename);
+		final IDSWriter ids_writer = new IDSWriter(weapon_data);
+		final int ret = ids_writer.Write(ids_filename);
 
 		if (ret == -1) {
 			logger.error("Failed to write data in an IDS file. ids_filename={}",

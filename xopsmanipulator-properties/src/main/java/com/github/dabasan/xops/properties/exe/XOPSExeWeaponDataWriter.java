@@ -24,10 +24,10 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class XOPSExeWeaponDataWriter {
-	private Logger logger = LoggerFactory
+	private final Logger logger = LoggerFactory
 			.getLogger(XOPSExeWeaponDataWriter.class);
 
-	private WeaponData[] weapon_data_array;
+	private final WeaponData[] weapon_data_array;
 
 	public XOPSExeWeaponDataWriter(WeaponData[] weapon_data_array) {
 		this.weapon_data_array = weapon_data_array;
@@ -142,7 +142,7 @@ class XOPSExeWeaponDataWriter {
 			pos += 2;
 
 			// Shooting stance
-			WeaponShootingStance shooting_stance = weapon_data_array[i]
+			final WeaponShootingStance shooting_stance = weapon_data_array[i]
 					.GetShootingStance();
 			itemp = WeaponBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromWeaponShootingStance(shooting_stance);
@@ -159,15 +159,17 @@ class XOPSExeWeaponDataWriter {
 			pos += 2;
 
 			// Scope mode
-			WeaponScopeMode scope_mode = weapon_data_array[i].GetScopeMode();
+			final WeaponScopeMode scope_mode = weapon_data_array[i]
+					.GetScopeMode();
 			itemp = WeaponBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromWeaponScopeMode(scope_mode);
 			ByteFunctions.SetShortValueToBin_LE(bin, pos, (short) itemp);
 			pos += 2;
 
 			// Texture
-			String texture_filename = weapon_data_array[i].GetTextureFilename();
-			WeaponTextureType texture_type = WeaponTextureFilenamesStock
+			final String texture_filename = weapon_data_array[i]
+					.GetTextureFilename();
+			final WeaponTextureType texture_type = WeaponTextureFilenamesStock
 					.GetWeaponTextureTypeFromFilename(texture_filename);
 			itemp = WeaponBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromWeaponTextureType(texture_type);
@@ -175,8 +177,9 @@ class XOPSExeWeaponDataWriter {
 			pos += 2;
 
 			// Model
-			String model_filename = weapon_data_array[i].GetModelFilename();
-			WeaponModelType model_type = WeaponModelFilenamesStock
+			final String model_filename = weapon_data_array[i]
+					.GetModelFilename();
+			final WeaponModelType model_type = WeaponModelFilenamesStock
 					.GetWeaponModelTypeFromFilename(model_filename);
 			itemp = WeaponBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromWeaponModelType(model_type);
@@ -223,10 +226,10 @@ class XOPSExeWeaponDataWriter {
 		pos = weapon_name_start_pos;
 
 		for (int i = 0; i < XOPSConstants.WEAPON_NUM; i++) {
-			String name = weapon_data_array[XOPSConstants.WEAPON_NUM - 1 - i]
-					.GetName();
+			final String name = weapon_data_array[XOPSConstants.WEAPON_NUM - 1
+					- i].GetName();
 
-			byte[] name_buffer = new byte[15 + 1];
+			final byte[] name_buffer = new byte[15 + 1];
 			for (int j = 0; j < 16; j++) {
 				name_buffer[j] = 0;
 			}

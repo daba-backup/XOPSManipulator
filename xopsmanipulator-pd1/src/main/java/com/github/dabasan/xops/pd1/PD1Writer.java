@@ -18,9 +18,9 @@ import com.github.dabasan.tool.FileFunctions;
  *
  */
 class PD1Writer {
-	private Logger logger = LoggerFactory.getLogger(PD1Writer.class);
+	private final Logger logger = LoggerFactory.getLogger(PD1Writer.class);
 
-	private List<PD1Point> points;
+	private final List<PD1Point> points;
 
 	public PD1Writer(List<PD1Point> points) {
 		this.points = points;
@@ -32,19 +32,19 @@ class PD1Writer {
 			return -1;
 		}
 
-		List<Byte> bin = new ArrayList<>();
+		final List<Byte> bin = new ArrayList<>();
 
 		// Number of points
-		int point_num = points.size();
+		final int point_num = points.size();
 		ByteFunctions.AddUShortValueToBin_LE(bin, point_num);
 
 		// Point data
 		for (int i = 0; i < points.size(); i++) {
-			PD1Point point = points.get(i);
+			final PD1Point point = points.get(i);
 
-			Vector position = point.GetPosition();
-			float rotation = point.GetRotation();
-			int[] parameters = point.GetParameters();
+			final Vector position = point.GetPosition();
+			final float rotation = point.GetRotation();
+			final int[] parameters = point.GetParameters();
 
 			// Position
 			ByteFunctions.AddFloatValueToBin_LE(bin, position.GetX());
@@ -62,7 +62,7 @@ class PD1Writer {
 
 		try {
 			FileFunctions.CreateBinFile(pd1_filename, bin);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Error while writing.", e);
 			return -1;
 		}

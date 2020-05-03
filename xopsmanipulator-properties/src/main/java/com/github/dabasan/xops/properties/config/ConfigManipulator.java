@@ -12,12 +12,13 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class ConfigManipulator {
-	private Logger logger = LoggerFactory.getLogger(ConfigManipulator.class);
+	private final Logger logger = LoggerFactory
+			.getLogger(ConfigManipulator.class);
 
 	private Config config;
 
 	public ConfigManipulator(String config_filename) throws IOException {
-		ConfigParser config_parser = new ConfigParser(config_filename);
+		final ConfigParser config_parser = new ConfigParser(config_filename);
 		config = config_parser.GetConfig();
 	}
 	public ConfigManipulator() {
@@ -36,8 +37,8 @@ public class ConfigManipulator {
 	}
 
 	public int Write(String config_filename) {
-		ConfigWriter config_writer = new ConfigWriter(config);
-		int ret = config_writer.Write(config_filename);
+		final ConfigWriter config_writer = new ConfigWriter(config);
+		final int ret = config_writer.Write(config_filename);
 
 		if (ret < 0) {
 			logger.error("Failed to write in a config file. config_filename={}",

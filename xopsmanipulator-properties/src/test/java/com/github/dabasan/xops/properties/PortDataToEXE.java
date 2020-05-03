@@ -17,15 +17,15 @@ public class PortDataToEXE {
 		try {
 			xgs_manipulator = new XGSManipulator("./TestData/weapons.xgs");
 			xcs_manipulator = new XCSManipulator("./TestData/characters.xcs");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
 		exe_manipulator = new XOPSExeManipulator();
 
-		WeaponData[] weapon_data = xgs_manipulator.GetWeaponData();
-		CharacterData[] character_data = xcs_manipulator
+		final WeaponData[] weapon_data = xgs_manipulator.GetWeaponData();
+		final CharacterData[] character_data = xcs_manipulator
 				.GetCharacterData();
 
 		exe_manipulator.SetWeaponData(weapon_data);

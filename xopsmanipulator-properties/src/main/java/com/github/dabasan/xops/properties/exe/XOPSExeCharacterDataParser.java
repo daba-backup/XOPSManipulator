@@ -18,7 +18,7 @@ import com.github.dabasan.xops.properties.entity.character.CharacterType;
  *
  */
 class XOPSExeCharacterDataParser {
-	private CharacterData[] character_data_array;
+	private final CharacterData[] character_data_array;
 
 	public XOPSExeCharacterDataParser(List<Byte> bin,
 			int character_data_start_pos) {

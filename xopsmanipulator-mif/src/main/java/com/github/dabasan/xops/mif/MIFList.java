@@ -27,7 +27,7 @@ import com.github.dabasan.tool.XMLFunctions;
  *
  */
 public class MIFList {
-	private Logger logger = LoggerFactory.getLogger(MIFList.class);
+	private final Logger logger = LoggerFactory.getLogger(MIFList.class);
 
 	public static final int MISSION_NAME = 0x0001;
 	public static final int MISSION_FORMAL_NAME = 0x0002;
@@ -56,13 +56,13 @@ public class MIFList {
 	public MIFList(String directory_name, String encoding) throws IOException {
 		mission_info_map = new HashMap<>();
 
-		File dir = new File(directory_name);
+		final File dir = new File(directory_name);
 		if (dir.isDirectory() == false) {
 			logger.warn("{} is not a directory.", directory_name);
 			return;
 		}
 
-		FilenameFilter filter = new FilenameFilter() {
+		final FilenameFilter filter = new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String name) {
 				if (name.endsWith("mif") || name.endsWith("MIF")) {
@@ -72,23 +72,23 @@ public class MIFList {
 			}
 		};
 
-		File[] files = dir.listFiles(filter);
+		final File[] files = dir.listFiles(filter);
 		if (files == null) {
 			logger.error("listFiles() returned null.");
 			return;
 		}
 
-		for (File file : files) {
+		for (final File file : files) {
 			MIFManipulator mif_manipulator = null;
 			try {
 				mif_manipulator = new MIFManipulator(file.getPath(), encoding);
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				logger.error("Failed to load a MIF file. filepath={}",
 						file.getPath());
 				return;
 			}
 
-			MissionInfo mif = mif_manipulator.GetMissionInfo();
+			final MissionInfo mif = mif_manipulator.GetMissionInfo();
 			mission_info_map.put(file.getName(), mif);
 		}
 	}
@@ -109,11 +109,11 @@ public class MIFList {
 	 *            Flags to set what information will be shown
 	 */
 	public void ShowList(int flags) {
-		for (Map.Entry<String, MissionInfo> entry : mission_info_map
+		for (final Map.Entry<String, MissionInfo> entry : mission_info_map
 				.entrySet()) {
 			System.out.println("[" + entry.getKey() + "]");
 
-			MissionInfo mif = entry.getValue();
+			final MissionInfo mif = entry.getValue();
 
 			if ((flags & MISSION_NAME) != 0) {
 				System.out.print("mission_name:");
@@ -158,8 +158,8 @@ public class MIFList {
 			if ((flags & BRIEFING_TEXT) != 0) {
 				System.out.println("briefing_text:");
 
-				List<String> briefing_text = mif.GetBriefingText();
-				for (String line : briefing_text) {
+				final List<String> briefing_text = mif.GetBriefingText();
+				for (final String line : briefing_text) {
 					System.out.println(line);
 				}
 			}
@@ -177,105 +177,106 @@ public class MIFList {
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteXML(String xml_filename, int flags) {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		final DocumentBuilderFactory factory = DocumentBuilderFactory
+				.newInstance();
 
 		DocumentBuilder builder = null;
 		try {
 			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
+		} catch (final ParserConfigurationException e) {
 			logger.error("Error during configuration for XML output.", e);
 			return -1;
 		}
-		Document document = builder.newDocument();
+		final Document document = builder.newDocument();
 
-		Element el_addon_list = document.createElement("addon_list");
+		final Element el_addon_list = document.createElement("addon_list");
 		document.appendChild(el_addon_list);
 
-		for (Map.Entry<String, MissionInfo> entry : mission_info_map
+		for (final Map.Entry<String, MissionInfo> entry : mission_info_map
 				.entrySet()) {
-			Element el_mission = document.createElement(entry.getKey());
+			final Element el_mission = document.createElement(entry.getKey());
 
-			MissionInfo mif = entry.getValue();
+			final MissionInfo mif = entry.getValue();
 
 			if ((flags & MISSION_NAME) != 0) {
-				Element el_mission_name = document
+				final Element el_mission_name = document
 						.createElement("mission_name");
 				el_mission_name.appendChild(
 						document.createTextNode(mif.GetMissionName()));
 				el_mission.appendChild(el_mission_name);
 			}
 			if ((flags & MISSION_FORMAL_NAME) != 0) {
-				Element el_mission_formal_name = document
+				final Element el_mission_formal_name = document
 						.createElement("mission_formal_name");
 				el_mission_formal_name.appendChild(
 						document.createTextNode(mif.GetMissionFormalName()));
 				el_mission.appendChild(el_mission_formal_name);
 			}
 			if ((flags & BD1_FILENAME) != 0) {
-				Element el_bd1_filename = document
+				final Element el_bd1_filename = document
 						.createElement("bd1_filename");
 				el_bd1_filename.appendChild(
 						document.createTextNode(mif.GetBD1Filename()));
 				el_mission.appendChild(el_bd1_filename);
 			}
 			if ((flags & PD1_FILENAME) != 0) {
-				Element el_pd1_filename = document
+				final Element el_pd1_filename = document
 						.createElement("pd1_filename");
 				el_pd1_filename.appendChild(
 						document.createTextNode(mif.GetPD1Filename()));
 				el_mission.appendChild(el_pd1_filename);
 			}
 			if ((flags & SKY_TYPE) != 0) {
-				Element el_sky_type = document.createElement("sky_type");
+				final Element el_sky_type = document.createElement("sky_type");
 				el_sky_type.appendChild(
 						document.createTextNode("" + mif.GetSkyType()));
 				el_mission.appendChild(el_sky_type);
 			}
 			if ((flags & EXTRA_HITCHECK_FLAG) != 0) {
-				Element el_extra_hitcheck_flag = document
+				final Element el_extra_hitcheck_flag = document
 						.createElement("extra_hitcheck_flag");
 				el_extra_hitcheck_flag.appendChild(document
 						.createTextNode("" + mif.GetExtraHitcheckFlag()));
 				el_mission.appendChild(el_extra_hitcheck_flag);
 			}
 			if ((flags & DARKEN_SCREEN_FLAG) != 0) {
-				Element el_darken_screen_flag = document
+				final Element el_darken_screen_flag = document
 						.createElement("darken_screen_flag");
 				el_darken_screen_flag.appendChild(document
 						.createTextNode("" + mif.GetDarkenScreenFlag()));
 				el_mission.appendChild(el_darken_screen_flag);
 			}
 			if ((flags & ARTICLE_INFO_FILENAME) != 0) {
-				Element el_article_info_filename = document
+				final Element el_article_info_filename = document
 						.createElement("article_info_filename");
 				el_article_info_filename.appendChild(
 						document.createTextNode(mif.GetArticleInfoFilename()));
 				el_mission.appendChild(el_article_info_filename);
 			}
 			if ((flags & IMAGE1_FILENAME) != 0) {
-				Element el_image1_filename = document
+				final Element el_image1_filename = document
 						.createElement("image1_filename");
 				el_image1_filename.appendChild(
 						document.createTextNode(mif.GetImage1Filename()));
 				el_mission.appendChild(el_image1_filename);
 			}
 			if ((flags & IMAGE2_FILENAME) != 0) {
-				Element el_image2_filename = document
+				final Element el_image2_filename = document
 						.createElement("image2_filename");
 				el_image2_filename.appendChild(
 						document.createTextNode(mif.GetImage2Filename()));
 				el_mission.appendChild(el_image2_filename);
 			}
 			if ((flags & BRIEFING_TEXT) != 0) {
-				Element el_briefing_text = document
+				final Element el_briefing_text = document
 						.createElement("briefing_text");
 				el_mission.appendChild(el_briefing_text);
 
-				List<String> briefing_text_lines = mif.GetBriefingText();
+				final List<String> briefing_text_lines = mif.GetBriefingText();
 
 				int line_count = 0;
-				for (String line : briefing_text_lines) {
-					Element el_briefing_text_line = document
+				for (final String line : briefing_text_lines) {
+					final Element el_briefing_text_line = document
 							.createElement("line" + line_count);
 					el_briefing_text_line
 							.appendChild(document.createTextNode(line));
@@ -288,9 +289,9 @@ public class MIFList {
 			el_addon_list.appendChild(el_mission);
 		}
 
-		File file = new File(xml_filename);
+		final File file = new File(xml_filename);
 
-		int res = XMLFunctions.WriteXML(file, document);
+		final int res = XMLFunctions.WriteXML(file, document);
 		if (res < 0) {
 			return -1;
 		}
@@ -307,7 +308,7 @@ public class MIFList {
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteCSV(String csv_filename, int flags) {
-		List<String> lines = new ArrayList<>();
+		final List<String> lines = new ArrayList<>();
 
 		// Add columns.
 		String columns = "";
@@ -351,9 +352,9 @@ public class MIFList {
 
 		lines.add(columns);
 
-		for (Map.Entry<String, MissionInfo> entry : mission_info_map
+		for (final Map.Entry<String, MissionInfo> entry : mission_info_map
 				.entrySet()) {
-			MissionInfo mif = entry.getValue();
+			final MissionInfo mif = entry.getValue();
 
 			String line = "";
 			if ((flags & MISSION_NAME) != 0) {
@@ -372,7 +373,7 @@ public class MIFList {
 				line += mif.GetSkyType() + ",";
 			}
 			if ((flags & EXTRA_HITCHECK_FLAG) != 0) {
-				boolean extra_hitcheck_flag = mif.GetExtraHitcheckFlag();
+				final boolean extra_hitcheck_flag = mif.GetExtraHitcheckFlag();
 
 				if (extra_hitcheck_flag == false) {
 					line += "false";
@@ -382,7 +383,7 @@ public class MIFList {
 				line += ",";
 			}
 			if ((flags & DARKEN_SCREEN_FLAG) != 0) {
-				boolean darken_screen_flag = mif.GetDarkenScreenFlag();
+				final boolean darken_screen_flag = mif.GetDarkenScreenFlag();
 
 				if (darken_screen_flag == false) {
 					line += "false";
@@ -402,8 +403,8 @@ public class MIFList {
 			}
 			if ((flags & BRIEFING_TEXT) != 0) {
 				line += "\"";
-				List<String> briefing_text = mif.GetBriefingText();
-				for (String btline : briefing_text) {
+				final List<String> briefing_text = mif.GetBriefingText();
+				for (final String btline : briefing_text) {
 					line += btline + "<br>";
 				}
 				line += "\",";
@@ -414,7 +415,7 @@ public class MIFList {
 
 		try {
 			FileFunctions.CreateTextFile(csv_filename, "UTF-8", lines);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Error while writing.", e);
 			return -1;
 		}

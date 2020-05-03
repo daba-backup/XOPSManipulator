@@ -14,7 +14,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponData;
  *
  */
 public class XGSManipulator {
-	private Logger logger = LoggerFactory.getLogger(XGSManipulator.class);
+	private final Logger logger = LoggerFactory.getLogger(XGSManipulator.class);
 
 	private WeaponData[] weapon_data_array;
 
@@ -25,7 +25,7 @@ public class XGSManipulator {
 	 * @throws IOException
 	 */
 	public XGSManipulator(String xgs_filename) throws IOException {
-		XGSParser xgs_parser = new XGSParser(xgs_filename);
+		final XGSParser xgs_parser = new XGSParser(xgs_filename);
 		weapon_data_array = xgs_parser.GetWeaponData();
 	}
 	public XGSManipulator() {
@@ -43,7 +43,7 @@ public class XGSManipulator {
 			return null;
 		}
 
-		WeaponData[] ret = new WeaponData[weapon_data_array.length];
+		final WeaponData[] ret = new WeaponData[weapon_data_array.length];
 		for (int i = 0; i < ret.length; i++) {
 			ret[i] = new WeaponData(weapon_data_array[i]);
 		}
@@ -72,8 +72,8 @@ public class XGSManipulator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int Write(String xgs_filename) {
-		XGSWriter xgs_writer = new XGSWriter(weapon_data_array);
-		int ret = xgs_writer.Write(xgs_filename);
+		final XGSWriter xgs_writer = new XGSWriter(weapon_data_array);
+		final int ret = xgs_writer.Write(xgs_filename);
 
 		if (ret < 0) {
 			logger.error("Failed to write data in a XGS file. xgs_filename={}",

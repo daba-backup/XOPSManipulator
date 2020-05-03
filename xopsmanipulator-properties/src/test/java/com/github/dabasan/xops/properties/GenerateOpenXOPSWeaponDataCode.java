@@ -15,19 +15,19 @@ public class GenerateOpenXOPSWeaponDataCode {
 
 		try {
 			manipulator = new XGSManipulator("./TestData/weapons.xgs");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		WeaponData[] weapon_data = manipulator.GetWeaponData();
+		final WeaponData[] weapon_data = manipulator.GetWeaponData();
 		outputter = new WeaponDataCodeOutputter(weapon_data);
 
-		List<String> code = outputter.GetCode();
+		final List<String> code = outputter.GetCode();
 		try {
 			FileFunctions.CreateTextFile("./TestData/weapon_code.txt", "UTF-8",
 					code);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}

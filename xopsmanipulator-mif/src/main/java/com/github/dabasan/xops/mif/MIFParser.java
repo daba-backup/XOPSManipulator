@@ -15,14 +15,14 @@ import com.github.dabasan.tool.FileFunctions;
  *
  */
 class MIFParser {
-	private Logger logger = LoggerFactory.getLogger(MIFParser.class);
+	private final Logger logger = LoggerFactory.getLogger(MIFParser.class);
 
 	private MissionInfo mission_info;
 
 	public MIFParser(String mif_filename, String encoding) throws IOException {
 		mission_info = new MissionInfo();
 
-		List<String> lines = FileFunctions.GetFileAllLines(mif_filename,
+		final List<String> lines = FileFunctions.GetFileAllLines(mif_filename,
 				encoding);
 		if (lines.size() < 10) {
 			logger.warn(
@@ -39,12 +39,12 @@ class MIFParser {
 		int sky_type_index = 0;
 		try {
 			sky_type_index = Integer.parseInt(lines.get(4));
-		} catch (NumberFormatException e) {
+		} catch (final NumberFormatException e) {
 			logger.warn("Invalid format of number. sky_type");
 		}
 
 		SkyType sky_type = SkyType.NONE;
-		SkyType[] sky_types = SkyType.values();
+		final SkyType[] sky_types = SkyType.values();
 		if (0 <= sky_type_index && sky_type_index < sky_types.length) {
 			sky_type = sky_types[sky_type_index];
 		} else {

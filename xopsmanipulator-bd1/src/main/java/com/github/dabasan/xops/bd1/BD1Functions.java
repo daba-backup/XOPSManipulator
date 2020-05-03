@@ -8,7 +8,7 @@ package com.github.dabasan.xops.bd1;
  */
 public class BD1Functions {
 	public static int[] GetFaceCorrespondingVertexIndices(int face_index) {
-		int[] ret = new int[4];
+		final int[] ret = new int[4];
 
 		switch (face_index) {
 			case 0 :
@@ -57,7 +57,7 @@ public class BD1Functions {
 		return ret;
 	}
 	public static int[] GetFaceCorrespondingUVIndices(int face_index) {
-		int[] ret = new int[4];
+		final int[] ret = new int[4];
 
 		switch (face_index) {
 			case 0 :

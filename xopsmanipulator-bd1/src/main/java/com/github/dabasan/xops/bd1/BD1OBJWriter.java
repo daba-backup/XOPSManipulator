@@ -30,7 +30,7 @@ import de.javagl.obj.Objs;
  *
  */
 class BD1OBJWriter {
-	private Logger logger = LoggerFactory.getLogger(BD1OBJWriter.class);
+	private final Logger logger = LoggerFactory.getLogger(BD1OBJWriter.class);
 
 	private boolean data_prepared_flag;
 
@@ -48,18 +48,18 @@ class BD1OBJWriter {
 		this.texture_filenames_map = texture_filenames_map;
 		faces_map = new HashMap<>();
 
-		for (BD1Block block : blocks) {
-			int[] texture_ids = block.GetTextureIDs();
+		for (final BD1Block block : blocks) {
+			final int[] texture_ids = block.GetTextureIDs();
 
-			Vector[] vertex_positions = block.GetVertexPositions();
-			float[] us = block.GetUs();
-			float[] vs = block.GetVs();
+			final Vector[] vertex_positions = block.GetVertexPositions();
+			final float[] us = block.GetUs();
+			final float[] vs = block.GetVs();
 
 			// Calculate normals.
-			Vector[] normals = new Vector[6];
+			final Vector[] normals = new Vector[6];
 			Vector v1, v2;
 			for (int i = 0; i < 6; i++) {
-				int[] vertex_indices = BD1Functions
+				final int[] vertex_indices = BD1Functions
 						.GetFaceCorrespondingVertexIndices(i);
 
 				v1 = VectorFunctions.VSub(vertex_positions[vertex_indices[3]],
@@ -71,15 +71,15 @@ class BD1OBJWriter {
 				normals[i] = VectorFunctions.VNorm(normals[i]);
 			}
 
-			BD1Face[] faces = new BD1Face[6];
+			final BD1Face[] faces = new BD1Face[6];
 			for (int i = 0; i < 6; i++) {
 				faces[i] = new BD1Face();
 			}
 
 			for (int i = 0; i < 6; i++) {
-				int[] vertex_indices = BD1Functions
+				final int[] vertex_indices = BD1Functions
 						.GetFaceCorrespondingVertexIndices(i);
-				int[] uv_indices = BD1Functions
+				final int[] uv_indices = BD1Functions
 						.GetFaceCorrespondingUVIndices(i);
 
 				for (int j = 0; j < 4; j++) {
@@ -91,13 +91,13 @@ class BD1OBJWriter {
 			}
 
 			for (int i = 0; i < 6; i++) {
-				int texture_id = texture_ids[i];
+				final int texture_id = texture_ids[i];
 
 				if (faces_map.containsKey(texture_id) == false) {
-					List<BD1Face> list_temp = new ArrayList<>();
+					final List<BD1Face> list_temp = new ArrayList<>();
 					faces_map.put(texture_id, list_temp);
 				}
-				List<BD1Face> faces_list = faces_map.get(texture_id);
+				final List<BD1Face> faces_list = faces_map.get(texture_id);
 				faces_list.add(faces[i]);
 			}
 		}
@@ -128,15 +128,16 @@ class BD1OBJWriter {
 				.GetFilenameWithoutExtension(obj_filename);
 		mtl_filename = mtl_filename + ".mtl";
 
-		Obj obj = Objs.create();
-		List<Mtl> mtls = new ArrayList<>();
+		final Obj obj = Objs.create();
+		final List<Mtl> mtls = new ArrayList<>();
 
 		obj.setMtlFileNames(Arrays.asList(mtllib_str));
 		obj.setActiveGroupNames(Arrays.asList("map"));
 
 		int count = 0;
-		for (Map.Entry<Integer, List<BD1Face>> entry : faces_map.entrySet()) {
-			int texture_id = entry.getKey();
+		for (final Map.Entry<Integer, List<BD1Face>> entry : faces_map
+				.entrySet()) {
+			final int texture_id = entry.getKey();
 			String texture_filename = texture_filenames_map.get(texture_id);
 			if (texture_filename == null) {
 				texture_filename = "unknown_" + texture_id;
@@ -149,7 +150,7 @@ class BD1OBJWriter {
 					.GetFilenameWithoutExtension(material_name);
 			material_name += "_" + texture_id;
 
-			Mtl mtl = Mtls.create(material_name);
+			final Mtl mtl = Mtls.create(material_name);
 			mtl.setNs(0.0f);
 			mtl.setKa(1.0f, 1.0f, 1.0f);
 			mtl.setKd(1.0f, 1.0f, 1.0f);
@@ -161,13 +162,13 @@ class BD1OBJWriter {
 
 			obj.setActiveMaterialGroupName(material_name);
 
-			List<BD1Face> faces = entry.getValue();
+			final List<BD1Face> faces = entry.getValue();
 
-			for (BD1Face face : faces) {
-				Vector[] vertex_positions = face.GetVertexPositions();
-				Vector normal = face.GetNormal();
-				float[] us = face.GetUs();
-				float[] vs = face.GetVs();
+			for (final BD1Face face : faces) {
+				final Vector[] vertex_positions = face.GetVertexPositions();
+				final Vector normal = face.GetNormal();
+				final float[] us = face.GetUs();
+				final float[] vs = face.GetVs();
 
 				for (int i = 3; i >= 0; i--) {
 					obj.addVertex(vertex_positions[i].GetX(),
@@ -177,7 +178,7 @@ class BD1OBJWriter {
 					obj.addTexCoord(us[i], -vs[i]);
 				}
 
-				int[] indices = new int[]{count, count + 1, count + 2,
+				final int[] indices = new int[]{count, count + 1, count + 2,
 						count + 3};
 				obj.addFace(indices, indices, indices);
 
@@ -190,7 +191,7 @@ class BD1OBJWriter {
 		try {
 			os_obj = new FileOutputStream(obj_filename);
 			os_mtl = new FileOutputStream(mtl_filename);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Failed to create a stream.", e);
 			return -1;
 		}
@@ -198,7 +199,7 @@ class BD1OBJWriter {
 		try {
 			ObjWriter.write(obj, os_obj);
 			MtlWriter.write(mtls, os_mtl);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Failed to write data.", e);
 			return -1;
 		}

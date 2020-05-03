@@ -25,12 +25,12 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class IDSParser {
-	private Logger logger = LoggerFactory.getLogger(IDSParser.class);
+	private final Logger logger = LoggerFactory.getLogger(IDSParser.class);
 
 	private WeaponData weapon_data;
 
 	public IDSParser(String ids_filename) throws IOException {
-		List<Byte> bin = FileFunctions.GetFileAllBin(ids_filename);
+		final List<Byte> bin = FileFunctions.GetFileAllBin(ids_filename);
 		weapon_data = new WeaponData();
 
 		if (bin.size() != 84) {
@@ -234,7 +234,7 @@ class IDSParser {
 		pos += 2;
 
 		// Name
-		byte[] name_buffer = new byte[15 + 1];
+		final byte[] name_buffer = new byte[15 + 1];
 		for (int i = 0; i < 15; i++) {
 			name_buffer[i] = bin.get(pos + i);
 		}

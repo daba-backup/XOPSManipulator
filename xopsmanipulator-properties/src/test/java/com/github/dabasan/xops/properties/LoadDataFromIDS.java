@@ -10,12 +10,12 @@ public class LoadDataFromIDS {
 		IDSManipulator manipulator;
 		try {
 			manipulator = new IDSManipulator("./TestData/mp5.ids");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		WeaponData weapon_data = manipulator.GetWeaponData();
+		final WeaponData weapon_data = manipulator.GetWeaponData();
 		System.out.println(weapon_data);
 	}
 }

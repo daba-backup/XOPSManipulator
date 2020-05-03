@@ -12,13 +12,13 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class MIFManipulator {
-	private Logger logger = LoggerFactory.getLogger(MIFManipulator.class);
+	private final Logger logger = LoggerFactory.getLogger(MIFManipulator.class);
 
 	private MissionInfo mission_info;
 
 	public MIFManipulator(String mif_filename, String encoding)
 			throws IOException {
-		MIFParser mif_parser = new MIFParser(mif_filename, encoding);
+		final MIFParser mif_parser = new MIFParser(mif_filename, encoding);
 		mission_info = mif_parser.GetMissionInfo();
 	}
 	public MIFManipulator() {
@@ -37,8 +37,8 @@ public class MIFManipulator {
 	}
 
 	public int Write(String mif_filename, String encoding) {
-		MIFWriter mif_writer = new MIFWriter(mission_info);
-		int ret = mif_writer.Write(mif_filename, encoding);
+		final MIFWriter mif_writer = new MIFWriter(mission_info);
+		final int ret = mif_writer.Write(mif_filename, encoding);
 
 		if (ret < 0) {
 			logger.error("Failed to write in a MIF file. mif_filename={}",

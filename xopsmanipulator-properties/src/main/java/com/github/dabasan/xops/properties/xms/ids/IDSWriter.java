@@ -26,9 +26,9 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class IDSWriter {
-	private Logger logger = LoggerFactory.getLogger(IDSWriter.class);
+	private final Logger logger = LoggerFactory.getLogger(IDSWriter.class);
 
-	private WeaponData weapon_data;
+	private final WeaponData weapon_data;
 
 	public IDSWriter(WeaponData weapon_data) {
 		this.weapon_data = weapon_data;
@@ -40,7 +40,7 @@ class IDSWriter {
 			return -1;
 		}
 
-		List<Byte> bin = new ArrayList<>();
+		final List<Byte> bin = new ArrayList<>();
 
 		bin.add((byte) 0x49);// I
 		bin.add((byte) 0x44);// D
@@ -130,7 +130,8 @@ class IDSWriter {
 		ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 		// Shooting stance
-		WeaponShootingStance shooting_stance = weapon_data.GetShootingStance();
+		final WeaponShootingStance shooting_stance = weapon_data
+				.GetShootingStance();
 		itemp = WeaponBinSpecifierAndEnumConverter
 				.GetBinSpecifierFromWeaponShootingStance(shooting_stance);
 		ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
@@ -144,22 +145,22 @@ class IDSWriter {
 		ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 		// Scope mode
-		WeaponScopeMode scope_mode = weapon_data.GetScopeMode();
+		final WeaponScopeMode scope_mode = weapon_data.GetScopeMode();
 		itemp = WeaponBinSpecifierAndEnumConverter
 				.GetBinSpecifierFromWeaponScopeMode(scope_mode);
 		ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 		// Texture
-		String texture_filename = weapon_data.GetTextureFilename();
-		WeaponTextureType texture_type = WeaponTextureFilenamesStock
+		final String texture_filename = weapon_data.GetTextureFilename();
+		final WeaponTextureType texture_type = WeaponTextureFilenamesStock
 				.GetWeaponTextureTypeFromFilename(texture_filename);
 		itemp = WeaponBinSpecifierAndEnumConverter
 				.GetBinSpecifierFromWeaponTextureType(texture_type);
 		ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 		// Model
-		String model_filename = weapon_data.GetModelFilename();
-		WeaponModelType model_type = WeaponModelFilenamesStock
+		final String model_filename = weapon_data.GetModelFilename();
+		final WeaponModelType model_type = WeaponModelFilenamesStock
 				.GetWeaponModelTypeFromFilename(model_filename);
 		itemp = WeaponBinSpecifierAndEnumConverter
 				.GetBinSpecifierFromWeaponModelType(model_type);
@@ -195,9 +196,9 @@ class IDSWriter {
 		ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 		// Name
-		String name = weapon_data.GetName();
+		final String name = weapon_data.GetName();
 
-		byte[] name_buffer = new byte[15 + 1];
+		final byte[] name_buffer = new byte[15 + 1];
 		for (int i = 0; i < 16; i++) {
 			name_buffer[i] = 0;
 		}
@@ -215,7 +216,7 @@ class IDSWriter {
 
 		try {
 			FileFunctions.CreateBinFile(ids_filename, bin);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Error while writing.", e);
 			return -1;
 		}

@@ -7,13 +7,13 @@ public class PointNum {
 		PD1Manipulator manipulator;
 		try {
 			manipulator = new PD1Manipulator("./TestData/tr.pd1");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		int point_num = manipulator.GetPointNum();
-		int character_num = manipulator.GetPointNum(1);
+		final int point_num = manipulator.GetPointNum();
+		final int character_num = manipulator.GetPointNum(1);
 		System.out.printf("point_num=%d character_num=%d\n", point_num,
 				character_num);
 	}

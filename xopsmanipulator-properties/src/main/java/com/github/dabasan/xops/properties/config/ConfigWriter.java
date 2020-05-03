@@ -16,9 +16,9 @@ import com.github.dabasan.tool.FileFunctions;
  *
  */
 class ConfigWriter {
-	private Logger logger = LoggerFactory.getLogger(ConfigWriter.class);
+	private final Logger logger = LoggerFactory.getLogger(ConfigWriter.class);
 
-	private Config config;
+	private final Config config;
 
 	public ConfigWriter(Config config) {
 		this.config = config;
@@ -30,7 +30,7 @@ class ConfigWriter {
 			return -1;
 		}
 
-		List<Byte> bin = new ArrayList<>();
+		final List<Byte> bin = new ArrayList<>();
 		this.AddKeyCodeToBin(bin, config.GetTurnUp());
 		this.AddKeyCodeToBin(bin, config.GetTurnDown());
 		this.AddKeyCodeToBin(bin, config.GetTurnLeft());
@@ -62,7 +62,7 @@ class ConfigWriter {
 
 		try {
 			FileFunctions.CreateBinFile(config_filename, bin);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Error while writing.", e);
 			return -1;
 		}
@@ -70,11 +70,11 @@ class ConfigWriter {
 		return 0;
 	}
 	private void AddKeyCodeToBin(List<Byte> bin, KeyCode key_code) {
-		int ordinal = key_code.ordinal();
+		final int ordinal = key_code.ordinal();
 		bin.add((byte) ordinal);
 	}
 	private void AddWindowModeToBin(List<Byte> bin, WindowMode window_mode) {
-		int ordinal = window_mode.ordinal();
+		final int ordinal = window_mode.ordinal();
 		bin.add((byte) ordinal);
 	}
 	private void AddFlagToBin(List<Byte> bin, boolean flag) {
@@ -85,7 +85,7 @@ class ConfigWriter {
 		}
 	}
 	private void AddNameToBin(List<Byte> bin, String name) {
-		byte[] name_buffer = new byte[20 + 1];
+		final byte[] name_buffer = new byte[20 + 1];
 		for (int i = 0; i < 21; i++) {
 			name_buffer[i] = 0;
 		}

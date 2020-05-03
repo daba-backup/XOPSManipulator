@@ -7,7 +7,7 @@ public class WriteOBJ {
 		BD1Manipulator manipulator;
 		try {
 			manipulator = new BD1Manipulator("./TestData/temp.bd1");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}

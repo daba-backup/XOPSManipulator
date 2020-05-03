@@ -20,7 +20,8 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponData;
  *
  */
 public class XOPSExeManipulator {
-	private Logger logger = LoggerFactory.getLogger(XOPSExeManipulator.class);
+	private final Logger logger = LoggerFactory
+			.getLogger(XOPSExeManipulator.class);
 
 	private WeaponData[] weapon_data_array;
 	private CharacterData[] character_data_array;
@@ -32,8 +33,8 @@ public class XOPSExeManipulator {
 	 * @throws IOException
 	 */
 	public XOPSExeManipulator(String xops_filename) throws IOException {
-		List<Byte> bin = FileFunctions.GetFileAllBin(xops_filename);
-		XOPSVersion version = XOPSExeFunctions.GetXOPSVersion(bin);
+		final List<Byte> bin = FileFunctions.GetFileAllBin(xops_filename);
+		final XOPSVersion version = XOPSExeFunctions.GetXOPSVersion(bin);
 
 		if (version == XOPSVersion.UNKNOWN_VERSION) {
 			logger.warn("Unknown version of X operations.");
@@ -92,9 +93,9 @@ public class XOPSExeManipulator {
 				break;
 		}
 
-		XOPSExeWeaponDataParser weapon_data_parser = new XOPSExeWeaponDataParser(
+		final XOPSExeWeaponDataParser weapon_data_parser = new XOPSExeWeaponDataParser(
 				bin, weapon_data_start_pos, weapon_name_start_pos);
-		XOPSExeCharacterDataParser character_data_parser = new XOPSExeCharacterDataParser(
+		final XOPSExeCharacterDataParser character_data_parser = new XOPSExeCharacterDataParser(
 				bin, character_data_start_pos);
 
 		weapon_data_array = weapon_data_parser.GetWeaponData();
@@ -103,7 +104,7 @@ public class XOPSExeManipulator {
 	public XOPSExeManipulator(String xops_filename, int weapon_data_start_pos,
 			int weapon_name_start_pos, int character_data_start_pos)
 			throws IOException {
-		List<Byte> bin = FileFunctions.GetFileAllBin(xops_filename);
+		final List<Byte> bin = FileFunctions.GetFileAllBin(xops_filename);
 
 		XOPSExeWeaponDataParser weapon_data_parser = null;
 		XOPSExeCharacterDataParser character_data_parser = null;
@@ -113,7 +114,7 @@ public class XOPSExeManipulator {
 					weapon_data_start_pos, weapon_name_start_pos);
 			character_data_parser = new XOPSExeCharacterDataParser(bin,
 					character_data_start_pos);
-		} catch (IndexOutOfBoundsException e) {
+		} catch (final IndexOutOfBoundsException e) {
 			logger.error("Error while reading.", e);
 			return;
 		}
@@ -135,7 +136,7 @@ public class XOPSExeManipulator {
 			return null;
 		}
 
-		WeaponData[] ret = new WeaponData[weapon_data_array.length];
+		final WeaponData[] ret = new WeaponData[weapon_data_array.length];
 		for (int i = 0; i < ret.length; i++) {
 			ret[i] = new WeaponData(weapon_data_array[i]);
 		}
@@ -152,7 +153,7 @@ public class XOPSExeManipulator {
 			return null;
 		}
 
-		CharacterData[] ret = new CharacterData[character_data_array.length];
+		final CharacterData[] ret = new CharacterData[character_data_array.length];
 		for (int i = 0; i < ret.length; i++) {
 			ret[i] = new CharacterData(character_data_array[i]);
 		}
@@ -199,7 +200,7 @@ public class XOPSExeManipulator {
 		List<Byte> bin;
 		try {
 			bin = FileFunctions.GetFileAllBin(xops_filename);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Failed to write in an EXE file. exe_filename={}",
 					xops_filename);
 			logger.error("", e);
@@ -208,27 +209,27 @@ public class XOPSExeManipulator {
 
 		// Create a backup.
 		if (create_backup_flag == true) {
-			String date = DateFunctions.GetDateStringWithoutDelimiters();
-			String filename_without_extension = FilenameFunctions
+			final String date = DateFunctions.GetDateStringWithoutDelimiters();
+			final String filename_without_extension = FilenameFunctions
 					.GetFilenameWithoutExtension(xops_filename);
-			String backup_filename = filename_without_extension + "_" + date
-					+ ".exe";
+			final String backup_filename = filename_without_extension + "_"
+					+ date + ".exe";
 
 			try {
 				FileFunctions.CreateBinFile(backup_filename, bin);
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				logger.error("Failed to create a backup file.", e);
 				return -1;
 			}
 		}
 
 		// Create a modified file (overwrite).
-		XOPSExeWeaponDataWriter weapon_data_writer = new XOPSExeWeaponDataWriter(
+		final XOPSExeWeaponDataWriter weapon_data_writer = new XOPSExeWeaponDataWriter(
 				weapon_data_array);
-		XOPSExeCharacterDataWriter character_data_writer = new XOPSExeCharacterDataWriter(
+		final XOPSExeCharacterDataWriter character_data_writer = new XOPSExeCharacterDataWriter(
 				character_data_array);
 
-		XOPSVersion version = XOPSExeFunctions.GetXOPSVersion(bin);
+		final XOPSVersion version = XOPSExeFunctions.GetXOPSVersion(bin);
 
 		int weapon_data_start_pos;
 		int weapon_name_start_pos;
@@ -278,7 +279,7 @@ public class XOPSExeManipulator {
 
 		try {
 			FileFunctions.CreateBinFile(xops_filename, bin);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Failed to write in an EXE file. exe_filename={}",
 					xops_filename);
 			return -1;
@@ -308,7 +309,7 @@ public class XOPSExeManipulator {
 		List<Byte> bin;
 		try {
 			bin = FileFunctions.GetFileAllBin(xops_filename);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Failed to write in an EXE file. exe_filename={}",
 					xops_filename);
 			logger.error("", e);
@@ -317,38 +318,38 @@ public class XOPSExeManipulator {
 
 		// Create a backup.
 		if (create_backup_flag == true) {
-			String date = DateFunctions.GetDateStringWithoutDelimiters();
-			String filename_without_extension = FilenameFunctions
+			final String date = DateFunctions.GetDateStringWithoutDelimiters();
+			final String filename_without_extension = FilenameFunctions
 					.GetFilenameWithoutExtension(xops_filename);
-			String backup_filename = filename_without_extension + "_" + date
-					+ ".exe";
+			final String backup_filename = filename_without_extension + "_"
+					+ date + ".exe";
 
 			try {
 				FileFunctions.CreateBinFile(backup_filename, bin);
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				logger.error("Failed to create a backup file.", e);
 				return -1;
 			}
 		}
 
 		// Create a modified file (overwrite).
-		XOPSExeWeaponDataWriter weapon_data_writer = new XOPSExeWeaponDataWriter(
+		final XOPSExeWeaponDataWriter weapon_data_writer = new XOPSExeWeaponDataWriter(
 				weapon_data_array);
-		XOPSExeCharacterDataWriter character_data_writer = new XOPSExeCharacterDataWriter(
+		final XOPSExeCharacterDataWriter character_data_writer = new XOPSExeCharacterDataWriter(
 				character_data_array);
 
 		try {
 			weapon_data_writer.Write(bin, weapon_data_start_pos,
 					weapon_name_start_pos);
 			character_data_writer.Write(bin, character_data_start_pos);
-		} catch (IndexOutOfBoundsException e) {
+		} catch (final IndexOutOfBoundsException e) {
 			logger.error("Error while writing.", e);
 			return -1;
 		}
 
 		try {
 			FileFunctions.CreateBinFile(xops_filename, bin);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Failed to write in an EXE file. exe_filename={}",
 					xops_filename);
 			return -1;

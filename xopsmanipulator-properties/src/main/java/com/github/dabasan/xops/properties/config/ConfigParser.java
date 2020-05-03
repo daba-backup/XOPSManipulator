@@ -16,14 +16,14 @@ import com.github.dabasan.xops.properties.XOPSConstants;
  *
  */
 class ConfigParser {
-	private Logger logger = LoggerFactory.getLogger(ConfigParser.class);
+	private final Logger logger = LoggerFactory.getLogger(ConfigParser.class);
 
 	private Config config;
 
 	public ConfigParser(String config_filename) throws IOException {
 		config = new Config();
 
-		List<Byte> bin = FileFunctions.GetFileAllBin(config_filename);
+		final List<Byte> bin = FileFunctions.GetFileAllBin(config_filename);
 		if (bin.size() != XOPSConstants.CONFIG_FILE_SIZE) {
 			logger.warn("Invalid file size. config_filename={}",
 					config_filename);
@@ -61,9 +61,9 @@ class ConfigParser {
 	}
 	private KeyCode GetKeyCodeFromBin(List<Byte> bin, int pos) {
 		KeyCode ret;
-		KeyCode[] values = KeyCode.values();
+		final KeyCode[] values = KeyCode.values();
 
-		int key_index = Byte.toUnsignedInt(bin.get(pos));
+		final int key_index = Byte.toUnsignedInt(bin.get(pos));
 
 		if (0 <= key_index && key_index < values.length) {
 			ret = values[key_index];
@@ -75,7 +75,7 @@ class ConfigParser {
 		return ret;
 	}
 	private boolean GetFlagFromBin(List<Byte> bin, int pos) {
-		int i = Byte.toUnsignedInt(bin.get(pos));
+		final int i = Byte.toUnsignedInt(bin.get(pos));
 
 		if (i == 0) {
 			return false;
@@ -85,7 +85,7 @@ class ConfigParser {
 	}
 	private WindowMode GetWindowModeFromBin(List<Byte> bin, int pos) {
 		WindowMode ret;
-		int i = Byte.toUnsignedInt(bin.get(pos));
+		final int i = Byte.toUnsignedInt(bin.get(pos));
 
 		if (i == 0x00) {
 			ret = WindowMode.WINDOW;
@@ -96,7 +96,7 @@ class ConfigParser {
 		return ret;
 	}
 	private String GetNameFromBin(List<Byte> bin) {
-		byte[] name_buffer = new byte[20 + 1];
+		final byte[] name_buffer = new byte[20 + 1];
 		for (int i = 0; i < 20; i++) {
 			name_buffer[i] = bin.get(26 + i);
 		}

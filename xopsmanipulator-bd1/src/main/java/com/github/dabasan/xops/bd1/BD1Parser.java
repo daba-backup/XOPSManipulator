@@ -17,20 +17,20 @@ import com.github.dabasan.tool.FilenameFunctions;
  *
  */
 class BD1Parser {
-	private Map<Integer, String> texture_filenames_map;// (texture_id,texture_filename)
-	private List<BD1Block> blocks;
+	private final Map<Integer, String> texture_filenames_map;// (texture_id,texture_filename)
+	private final List<BD1Block> blocks;
 
 	public BD1Parser(String bd1_filename) throws IOException {
 		texture_filenames_map = new HashMap<>();
 		blocks = new ArrayList<>();
 
-		List<Byte> bin = FileFunctions.GetFileAllBin(bd1_filename);
+		final List<Byte> bin = FileFunctions.GetFileAllBin(bd1_filename);
 
 		int pos = 0;
 
 		// Texture filenames
 		for (int i = 0; i < 10; i++) {
-			byte[] texture_filename_buffer = new byte[31];
+			final byte[] texture_filename_buffer = new byte[31];
 			String texture_filename_temp;
 			int first_null_pos;
 
@@ -58,12 +58,12 @@ class BD1Parser {
 		}
 
 		// Number of blocks
-		int block_num = ByteFunctions.GetUShortValueFromBin_LE(bin, pos);
+		final int block_num = ByteFunctions.GetUShortValueFromBin_LE(bin, pos);
 		pos += 2;
 
 		// Blocks
 		for (int i = 0; i < block_num; i++) {
-			BD1Block block = new BD1Block();
+			final BD1Block block = new BD1Block();
 			float coordinate_temp;
 
 			// Vertex positions
@@ -102,13 +102,13 @@ class BD1Parser {
 
 			// Texture IDs
 			for (int j = 0; j < 6; j++) {
-				int texture_id = Byte.toUnsignedInt(bin.get(pos));
+				final int texture_id = Byte.toUnsignedInt(bin.get(pos));
 				block.SetTextureID(j, texture_id);
 				pos += 4;
 			}
 
 			// Enabled flag
-			int enabled_flag = Byte.toUnsignedInt(bin.get(pos));
+			final int enabled_flag = Byte.toUnsignedInt(bin.get(pos));
 			if (enabled_flag != 0) {
 				block.SetEnabledFlag(true);
 			} else {

@@ -10,10 +10,10 @@ import com.github.dabasan.basis.vector.VectorFunctions;
  *
  */
 public class BD1Block {
-	private Vector[] vertex_positions;
-	private float[] us;
-	private float[] vs;
-	private int[] texture_ids;
+	private final Vector[] vertex_positions;
+	private final float[] us;
+	private final float[] vs;
+	private final int[] texture_ids;
 	private boolean enabled_flag;
 
 	public BD1Block() {

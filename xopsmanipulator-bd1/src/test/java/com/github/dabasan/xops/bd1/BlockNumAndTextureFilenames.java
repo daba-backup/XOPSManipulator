@@ -8,17 +8,17 @@ public class BlockNumAndTextureFilenames {
 		BD1Manipulator manipulator;
 		try {
 			manipulator = new BD1Manipulator("./TestData/temp.bd1");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		int block_num = manipulator.GetBlockNum();
+		final int block_num = manipulator.GetBlockNum();
 		System.out.println(block_num);
 
-		Map<Integer, String> texture_filenames_map = manipulator
+		final Map<Integer, String> texture_filenames_map = manipulator
 				.GetTextureFilenames();
-		for (Map.Entry<Integer, String> entry : texture_filenames_map
+		for (final Map.Entry<Integer, String> entry : texture_filenames_map
 				.entrySet()) {
 			System.out.printf("(%d,%s)\n", entry.getKey(), entry.getValue());
 		}

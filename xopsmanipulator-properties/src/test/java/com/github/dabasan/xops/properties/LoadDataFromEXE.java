@@ -11,13 +11,13 @@ public class LoadDataFromEXE {
 		XOPSExeManipulator manipulator;
 		try {
 			manipulator = new XOPSExeManipulator("./TestData/xops0975t.exe");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		WeaponData[] weapon_data = manipulator.GetWeaponData();
-		CharacterData[] character_data = manipulator.GetCharacterData();
+		final WeaponData[] weapon_data = manipulator.GetWeaponData();
+		final CharacterData[] character_data = manipulator.GetCharacterData();
 
 		for (int i = 0; i < weapon_data.length; i++) {
 			System.out.printf("[%d]\n", i);

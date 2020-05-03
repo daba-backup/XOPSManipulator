@@ -114,7 +114,7 @@ public class CharacterBinSpecifierAndEnumConverter {
 	}
 	public static int GetBinSpecifierFromCharacterTextureType(
 			CharacterTextureType texture_type) {
-		int spc = texture_type.ordinal();
+		final int spc = texture_type.ordinal();
 		return spc;
 	}
 	public static CharacterModelType GetCharacterModelTypeFromBinSpecifier(
@@ -216,7 +216,7 @@ public class CharacterBinSpecifierAndEnumConverter {
 	}
 	public static int GetBinSpecifierFromCharacterAILevel(
 			CharacterAILevel ai_level) {
-		int spc = ai_level.ordinal();
+		final int spc = ai_level.ordinal();
 		return spc;
 	}
 	public static CharacterType GetCharacterTypeFromBinSpecifier(int spc) {
@@ -242,7 +242,7 @@ public class CharacterBinSpecifierAndEnumConverter {
 		return type;
 	}
 	public static int GetBinSpecifierFromCharacterType(CharacterType type) {
-		int spc = type.ordinal();
+		final int spc = type.ordinal();
 		return spc;
 	}
 }

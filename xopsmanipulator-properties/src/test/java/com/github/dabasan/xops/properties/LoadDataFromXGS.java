@@ -10,12 +10,12 @@ public class LoadDataFromXGS {
 		XGSManipulator manipulator;
 		try {
 			manipulator = new XGSManipulator("./TestData/weapons.xgs");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		WeaponData[] weapon_data = manipulator.GetWeaponData();
+		final WeaponData[] weapon_data = manipulator.GetWeaponData();
 		for (int i = 0; i < weapon_data.length; i++) {
 			System.out.printf("[%d]\n", i);
 			System.out.println(weapon_data[i]);

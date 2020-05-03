@@ -20,10 +20,10 @@ import com.github.dabasan.basis.vector.VectorFunctions;
  *
  */
 public class PD1Creator {
-	private Logger logger = LoggerFactory.getLogger(PD1Creator.class);
+	private final Logger logger = LoggerFactory.getLogger(PD1Creator.class);
 
 	private int point_count;
-	private Map<Integer, PD1Point> points_map;
+	private final Map<Integer, PD1Point> points_map;
 
 	public PD1Creator() {
 		point_count = 0;
@@ -52,7 +52,7 @@ public class PD1Creator {
 			return -1;
 		}
 
-		int point_handle = point_count;
+		final int point_handle = point_count;
 		point_count++;
 
 		points_map.put(point_handle, point);
@@ -73,10 +73,10 @@ public class PD1Creator {
 			return -1;
 		}
 
-		PD1Point orig_point = points_map.get(point_handle);
-		PD1Point duplicated_point = new PD1Point(orig_point);
+		final PD1Point orig_point = points_map.get(point_handle);
+		final PD1Point duplicated_point = new PD1Point(orig_point);
 
-		int duplicated_point_handle = point_count;
+		final int duplicated_point_handle = point_count;
 		point_count++;
 
 		points_map.put(duplicated_point_handle, duplicated_point);
@@ -103,7 +103,7 @@ public class PD1Creator {
 	 */
 	public int CreatePoint(Vector position, float rotation, int parameter_1,
 			int parameter_2, int parameter_3, int parameter_4) {
-		PD1Point point = new PD1Point();
+		final PD1Point point = new PD1Point();
 
 		point.SetPosition(position);
 		point.SetRotation(rotation);
@@ -112,7 +112,7 @@ public class PD1Creator {
 		point.SetParameter(2, parameter_3);
 		point.SetParameter(3, parameter_4);
 
-		int point_handle = point_count;
+		final int point_handle = point_count;
 		point_count++;
 
 		points_map.put(point_handle, point);
@@ -135,7 +135,7 @@ public class PD1Creator {
 			return -1;
 		}
 
-		PD1Point point = points_map.get(point_handle);
+		final PD1Point point = points_map.get(point_handle);
 		point.SetPosition(position);
 
 		return 0;
@@ -155,7 +155,7 @@ public class PD1Creator {
 			return -1;
 		}
 
-		PD1Point point = points_map.get(point_handle);
+		final PD1Point point = points_map.get(point_handle);
 		point.SetRotation(rotation);
 
 		return 0;
@@ -182,7 +182,7 @@ public class PD1Creator {
 			return -1;
 		}
 
-		PD1Point point = points_map.get(point_handle);
+		final PD1Point point = points_map.get(point_handle);
 		point.SetParameter(0, parameter_1);
 		point.SetParameter(1, parameter_2);
 		point.SetParameter(2, parameter_3);
@@ -219,17 +219,17 @@ public class PD1Creator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int Write(String pd1_filename, float offset_y) {
-		PD1Manipulator pd1_manipulator = new PD1Manipulator();
+		final PD1Manipulator pd1_manipulator = new PD1Manipulator();
 
-		List<PD1Point> points = new ArrayList<>();
-		for (PD1Point point : points_map.values()) {
+		final List<PD1Point> points = new ArrayList<>();
+		for (final PD1Point point : points_map.values()) {
 			points.add(point);
 		}
 
 		pd1_manipulator.SetPoints(points);
 		pd1_manipulator.Translate(VectorFunctions.VGet(0.0f, offset_y, 0.0f));
 
-		int ret = pd1_manipulator.Write(pd1_filename);
+		final int ret = pd1_manipulator.Write(pd1_filename);
 
 		return ret;
 	}

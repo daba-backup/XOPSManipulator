@@ -8,7 +8,7 @@ public class CharacterData {
 	private CharacterTextureType texture_type;
 	private int hp;
 	private CharacterAILevel ai_level;
-	private Map<Integer, Integer> weapon_ids_map;
+	private final Map<Integer, Integer> weapon_ids_map;
 	private CharacterType type;
 
 	public CharacterData() {

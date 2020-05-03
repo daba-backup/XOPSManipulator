@@ -44,7 +44,7 @@ public class WeaponTextureFilenamesStock {
 		texture_filenames_map.put(index, texture_filename);
 	}
 	public static String GetTextureFilename(WeaponTextureType texture_type) {
-		int ordinal = texture_type.ordinal();
+		final int ordinal = texture_type.ordinal();
 		return texture_filenames_map.get(ordinal);
 	}
 
@@ -68,10 +68,11 @@ public class WeaponTextureFilenamesStock {
 		}
 
 		for (int i = 0; i < texture_filenames_map.size(); i++) {
-			String filename = texture_filenames_map.get(i);
+			final String filename = texture_filenames_map.get(i);
 
 			if (texture_filename.equals(filename) == true) {
-				WeaponTextureType[] texture_types = WeaponTextureType.values();
+				final WeaponTextureType[] texture_types = WeaponTextureType
+						.values();
 				texture_type = texture_types[i];
 
 				break;

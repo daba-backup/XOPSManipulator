@@ -20,7 +20,7 @@ public class MissionInfo {
 	private String article_info_filename;
 	private String image1_filename;
 	private String image2_filename;
-	private List<String> briefing_text;// per line
+	private final List<String> briefing_text;// per line
 
 	public MissionInfo() {
 		mission_name = "";
@@ -66,7 +66,7 @@ public class MissionInfo {
 		ret += "image_2_filename:" + image2_filename + separator;
 
 		ret += "briefing text:" + separator;
-		int line_num = briefing_text.size();
+		final int line_num = briefing_text.size();
 		for (int i = 0; i < line_num; i++) {
 			ret += briefing_text.get(i);
 			if (i != line_num - 1) {

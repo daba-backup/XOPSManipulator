@@ -10,12 +10,12 @@ public class LoadConfig {
 		ConfigManipulator manipulator;
 		try {
 			manipulator = new ConfigManipulator("./TestData/config.dat");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		Config config = manipulator.GetConfig();
+		final Config config = manipulator.GetConfig();
 		System.out.println(config);
 	}
 }

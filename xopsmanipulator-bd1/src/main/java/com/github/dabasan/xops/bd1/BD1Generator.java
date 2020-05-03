@@ -10,7 +10,7 @@ import java.util.Set;
  *
  */
 public abstract class BD1Generator {
-	private BD1Creator bd1_creator;
+	private final BD1Creator bd1_creator;
 
 	public BD1Generator() {
 		bd1_creator = new BD1Creator();
@@ -44,12 +44,12 @@ public abstract class BD1Generator {
 	 *            The upper bound of the texture IDs
 	 */
 	public void RandomizeTextureIDsPerFace(int bound) {
-		Set<Integer> block_handles = bd1_creator.GetBlockHandles();
-		Random random = new Random();
+		final Set<Integer> block_handles = bd1_creator.GetBlockHandles();
+		final Random random = new Random();
 
-		for (int block_handle : block_handles) {
+		for (final int block_handle : block_handles) {
 			for (int i = 0; i < 6; i++) {
-				int texture_id = random.nextInt(bound);
+				final int texture_id = random.nextInt(bound);
 				bd1_creator.SetBlockTextureID(block_handle, i, texture_id);
 			}
 		}
@@ -61,11 +61,11 @@ public abstract class BD1Generator {
 	 *            The upper bound of the texture IDs
 	 */
 	public void RandomizeTextureIDsPerBlock(int bound) {
-		Set<Integer> block_handles = bd1_creator.GetBlockHandles();
-		Random random = new Random();
+		final Set<Integer> block_handles = bd1_creator.GetBlockHandles();
+		final Random random = new Random();
 
-		for (int block_handle : block_handles) {
-			int texture_id = random.nextInt(bound);
+		for (final int block_handle : block_handles) {
+			final int texture_id = random.nextInt(bound);
 
 			for (int i = 0; i < 6; i++) {
 				bd1_creator.SetBlockTextureID(block_handle, i, texture_id);

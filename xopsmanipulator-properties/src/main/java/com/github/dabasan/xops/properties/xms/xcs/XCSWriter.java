@@ -24,9 +24,9 @@ import com.github.dabasan.xops.properties.entity.character.CharacterType;
  *
  */
 class XCSWriter {
-	private Logger logger = LoggerFactory.getLogger(XCSWriter.class);
+	private final Logger logger = LoggerFactory.getLogger(XCSWriter.class);
 
-	private CharacterData[] character_data_array;
+	private final CharacterData[] character_data_array;
 
 	public XCSWriter(CharacterData[] character_data_array) {
 		this.character_data_array = character_data_array;
@@ -43,7 +43,7 @@ class XCSWriter {
 			return -1;
 		}
 
-		List<Byte> bin = new ArrayList<>();
+		final List<Byte> bin = new ArrayList<>();
 
 		bin.add((byte) 0x58);
 		bin.add((byte) 0x43);
@@ -63,14 +63,14 @@ class XCSWriter {
 			int itemp;
 
 			// Texture
-			CharacterTextureType texture_type = character_data_array[i]
+			final CharacterTextureType texture_type = character_data_array[i]
 					.GetTextureType();
 			itemp = CharacterBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromCharacterTextureType(texture_type);
 			ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 			// Model
-			CharacterModelType model_type = character_data_array[i]
+			final CharacterModelType model_type = character_data_array[i]
 					.GetModelType();
 			itemp = CharacterBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromCharacterModelType(model_type);
@@ -81,7 +81,8 @@ class XCSWriter {
 			ByteFunctions.AddUShortValueToBin_LE(bin, itemp);
 
 			// AI level
-			CharacterAILevel ai_level = character_data_array[i].GetAILevel();
+			final CharacterAILevel ai_level = character_data_array[i]
+					.GetAILevel();
 			itemp = CharacterBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromCharacterAILevel(ai_level);
 			ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
@@ -95,7 +96,7 @@ class XCSWriter {
 			ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
 
 			// Type
-			CharacterType type = character_data_array[i].GetType();
+			final CharacterType type = character_data_array[i].GetType();
 			itemp = CharacterBinSpecifierAndEnumConverter
 					.GetBinSpecifierFromCharacterType(type);
 			ByteFunctions.AddShortValueToBin_LE(bin, (short) itemp);
@@ -103,7 +104,7 @@ class XCSWriter {
 
 		try {
 			FileFunctions.CreateBinFile(xcs_filename, bin);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Error while writing.", e);
 			return -1;
 		}

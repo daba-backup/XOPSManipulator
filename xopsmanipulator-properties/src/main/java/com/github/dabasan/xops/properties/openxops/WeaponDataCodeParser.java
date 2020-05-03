@@ -24,7 +24,8 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponShootingStance;
  *
  */
 public class WeaponDataCodeParser {
-	private Logger logger = LoggerFactory.getLogger(WeaponDataCodeParser.class);
+	private final Logger logger = LoggerFactory
+			.getLogger(WeaponDataCodeParser.class);
 
 	private Map<Integer, WeaponData> weapon_data_map;
 
@@ -57,7 +58,7 @@ public class WeaponDataCodeParser {
 			throws IOException {
 		weapon_data_map = new HashMap<>();
 
-		List<String> lines = FileFunctions.GetFileAllLines(code_filename,
+		final List<String> lines = FileFunctions.GetFileAllLines(code_filename,
 				encoding);
 		this.ParseLines(lines);
 	}
@@ -67,14 +68,14 @@ public class WeaponDataCodeParser {
 			String line = lines.get(i);
 			line = line.replace(";", "");
 
-			String[] split_by_equal = line.split("=");
+			final String[] split_by_equal = line.split("=");
 			if (split_by_equal.length != 2) {
 				logger.warn("Syntax error. line:{}", i);
 				continue;
 			}
 
-			String left = split_by_equal[0];
-			String[] split_by_dot = left.split(Pattern.quote("."));
+			final String left = split_by_equal[0];
+			final String[] split_by_dot = left.split(Pattern.quote("."));
 
 			if (split_by_dot.length != 2) {
 				logger.warn("Syntax error. line:{}", i);
@@ -84,14 +85,14 @@ public class WeaponDataCodeParser {
 			String field_name = split_by_dot[1];
 			field_name = field_name.replace(" ", "");
 
-			String array_name_and_index = split_by_dot[0];
-			String index_str = StringFunctions
+			final String array_name_and_index = split_by_dot[0];
+			final String index_str = StringFunctions
 					.GetFirstStringInBetween(array_name_and_index, '[', ']');
 
 			int index = -1;
 			try {
 				index = Integer.parseInt(index_str);
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				logger.warn("Invalid index. line:{}", i);
 				continue;
 			}
@@ -103,11 +104,11 @@ public class WeaponDataCodeParser {
 
 			// Create weapon data if it does not exist in the map.
 			if (weapon_data_map.containsKey(index) == false) {
-				WeaponData weapon_data = new WeaponData();
+				final WeaponData weapon_data = new WeaponData();
 				weapon_data_map.put(index, weapon_data);
 			}
 
-			WeaponData weapon_data = weapon_data_map.get(index);
+			final WeaponData weapon_data = weapon_data_map.get(index);
 			String value = split_by_equal[1];
 
 			int itemp;
@@ -267,7 +268,7 @@ public class WeaponDataCodeParser {
 					case "scopemode" :
 						value = value.replace(" ", "");
 						itemp = Integer.parseInt(value);
-						WeaponScopeMode[] scope_modes = WeaponScopeMode
+						final WeaponScopeMode[] scope_modes = WeaponScopeMode
 								.values();
 						if (!(0 <= itemp && itemp < scope_modes.length)) {
 							logger.warn("Value out of bounds. line:{}", i);
@@ -306,7 +307,7 @@ public class WeaponDataCodeParser {
 					case "WeaponP" :
 						value = value.replace(" ", "");
 						itemp = Integer.parseInt(value);
-						WeaponShootingStance[] shooting_stances = WeaponShootingStance
+						final WeaponShootingStance[] shooting_stances = WeaponShootingStance
 								.values();
 						if (!(0 <= itemp && itemp < shooting_stances.length)) {
 							logger.warn("Value out of bounds. line:{}", i);
@@ -328,7 +329,7 @@ public class WeaponDataCodeParser {
 						logger.warn("Unknown field name. line:{}", i);
 						continue;
 				}
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				logger.warn("Invalid number format. line:{}", i);
 				continue;
 			}

@@ -44,7 +44,7 @@ public class WeaponModelFilenamesStock {
 		model_filenames_map.put(index, model_filename);
 	}
 	public static String GetModelFilename(WeaponModelType model_type) {
-		int ordinal = model_type.ordinal();
+		final int ordinal = model_type.ordinal();
 		return model_filenames_map.get(ordinal);
 	}
 
@@ -68,10 +68,10 @@ public class WeaponModelFilenamesStock {
 		}
 
 		for (int i = 0; i < model_filenames_map.size(); i++) {
-			String filename = model_filenames_map.get(i);
+			final String filename = model_filenames_map.get(i);
 
 			if (model_filename.equals(filename) == true) {
-				WeaponModelType[] model_types = WeaponModelType.values();
+				final WeaponModelType[] model_types = WeaponModelType.values();
 				model_type = model_types[i];
 
 				break;

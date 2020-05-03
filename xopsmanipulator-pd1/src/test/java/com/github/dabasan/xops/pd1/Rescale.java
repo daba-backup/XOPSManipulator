@@ -9,7 +9,7 @@ public class Rescale {
 		PD1Manipulator manipulator;
 		try {
 			manipulator = new PD1Manipulator("./TestData/tr.pd1");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}

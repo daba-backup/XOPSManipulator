@@ -11,12 +11,12 @@ public class MatrixOperation {
 		BD1Manipulator manipulator;
 		try {
 			manipulator = new BD1Manipulator("./TestData/temp.bd1");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		Matrix translate = MatrixFunctions
+		final Matrix translate = MatrixFunctions
 				.MGetTranslate(VectorFunctions.VGet(100.0f, 100.0f, 100.0f));
 		manipulator.SetMatrix(translate);
 		manipulator.WriteAsBD1("./TestData/temp_matrix.bd1");

@@ -12,13 +12,13 @@ public class GetCharacterDataFromOpenXOPSCode {
 		try {
 			parser = new CharacterDataCodeParser(
 					"./TestData/character_code.txt", "UTF-8");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		Map<Integer, CharacterData> data = parser.GetOrderedData();
-		for (Map.Entry<Integer, CharacterData> entry : data.entrySet()) {
+		final Map<Integer, CharacterData> data = parser.GetOrderedData();
+		for (final Map.Entry<Integer, CharacterData> entry : data.entrySet()) {
 			System.out.printf("[%d]\n", entry.getKey());
 			System.out.println(entry.getValue());
 		}

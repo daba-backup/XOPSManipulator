@@ -21,7 +21,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class XOPSExeWeaponDataParser {
-	private WeaponData[] weapon_data_array;
+	private final WeaponData[] weapon_data_array;
 
 	public XOPSExeWeaponDataParser(List<Byte> bin, int weapon_data_start_pos,
 			int weapon_name_start_pos) {
@@ -241,7 +241,7 @@ class XOPSExeWeaponDataParser {
 		pos = weapon_name_start_pos;
 
 		for (int i = 0; i < XOPSConstants.WEAPON_NUM; i++) {
-			byte[] name_buffer = new byte[15 + 1];
+			final byte[] name_buffer = new byte[15 + 1];
 
 			for (int j = 0; j < 15; j++) {
 				name_buffer[j] = bin.get(pos + j);

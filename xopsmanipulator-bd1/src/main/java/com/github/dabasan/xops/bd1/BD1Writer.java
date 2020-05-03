@@ -20,10 +20,10 @@ import com.github.dabasan.tool.FileFunctions;
  *
  */
 class BD1Writer {
-	private Logger logger = LoggerFactory.getLogger(BD1Writer.class);
+	private final Logger logger = LoggerFactory.getLogger(BD1Writer.class);
 
-	private List<BD1Block> blocks;
-	private Map<Integer, String> texture_filenames_map;
+	private final List<BD1Block> blocks;
+	private final Map<Integer, String> texture_filenames_map;
 
 	public BD1Writer(List<BD1Block> blocks,
 			Map<Integer, String> texture_filenames_map) {
@@ -37,22 +37,22 @@ class BD1Writer {
 			return -1;
 		}
 
-		List<Byte> bin = new ArrayList<>();
+		final List<Byte> bin = new ArrayList<>();
 
 		this.AddTextureFilenamesToBin(bin);
 
 		// Number of blocks
-		int block_num = blocks.size();
+		final int block_num = blocks.size();
 		ByteFunctions.AddUShortValueToBin_LE(bin, block_num);
 
 		// Block data
 		for (int i = 0; i < blocks.size(); i++) {
-			BD1Block block = blocks.get(i);
+			final BD1Block block = blocks.get(i);
 
-			Vector[] vertex_positions = block.GetVertexPositions();
-			float[] us = block.GetUs();
-			float[] vs = block.GetVs();
-			int[] texture_ids = block.GetTextureIDs();
+			final Vector[] vertex_positions = block.GetVertexPositions();
+			final float[] us = block.GetUs();
+			final float[] vs = block.GetVs();
+			final int[] texture_ids = block.GetTextureIDs();
 
 			// Vertex positions
 			for (int j = 0; j < 8; j++) {
@@ -97,7 +97,7 @@ class BD1Writer {
 
 		try {
 			FileFunctions.CreateBinFile(bd1_filename, bin);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			logger.error("Error while writing.", e);
 			return -1;
 		}
@@ -105,18 +105,18 @@ class BD1Writer {
 		return 0;
 	}
 	private void AddTextureFilenamesToBin(List<Byte> bin) {
-		Map<Integer, String> sorted_texture_filenames_map = new TreeMap<>(
+		final Map<Integer, String> sorted_texture_filenames_map = new TreeMap<>(
 				texture_filenames_map);
 
 		int texture_count = 0;
-		for (int texture_id : sorted_texture_filenames_map.keySet()) {
+		for (final int texture_id : sorted_texture_filenames_map.keySet()) {
 			String texture_filename = sorted_texture_filenames_map
 					.get(texture_id);
 			if (texture_filename.length() > 30) {
 				texture_filename = texture_filename.substring(0, 30);
 			}
 
-			byte[] texture_filename_buffer = new byte[31];
+			final byte[] texture_filename_buffer = new byte[31];
 
 			int pos;
 			for (pos = 0; pos < texture_filename.length(); pos++) {

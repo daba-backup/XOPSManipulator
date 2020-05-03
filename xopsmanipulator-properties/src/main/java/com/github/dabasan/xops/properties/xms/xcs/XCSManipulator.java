@@ -14,7 +14,7 @@ import com.github.dabasan.xops.properties.entity.character.CharacterData;
  *
  */
 public class XCSManipulator {
-	private Logger logger = LoggerFactory.getLogger(XCSManipulator.class);
+	private final Logger logger = LoggerFactory.getLogger(XCSManipulator.class);
 
 	private CharacterData[] character_data_array;
 
@@ -25,7 +25,7 @@ public class XCSManipulator {
 	 * @throws IOException
 	 */
 	public XCSManipulator(String xcs_filename) throws IOException {
-		XCSParser xcs_parser = new XCSParser(xcs_filename);
+		final XCSParser xcs_parser = new XCSParser(xcs_filename);
 		character_data_array = xcs_parser.GetCharacterData();
 	}
 	public XCSManipulator() {
@@ -42,7 +42,7 @@ public class XCSManipulator {
 			return null;
 		}
 
-		CharacterData[] ret = new CharacterData[character_data_array.length];
+		final CharacterData[] ret = new CharacterData[character_data_array.length];
 		for (int i = 0; i < ret.length; i++) {
 			ret[i] = new CharacterData(character_data_array[i]);
 		}
@@ -71,8 +71,8 @@ public class XCSManipulator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int Write(String xcs_filename) {
-		XCSWriter xcs_writer = new XCSWriter(character_data_array);
-		int ret = xcs_writer.Write(xcs_filename);
+		final XCSWriter xcs_writer = new XCSWriter(character_data_array);
+		final int ret = xcs_writer.Write(xcs_filename);
 
 		if (ret < 0) {
 			logger.error("Failed to write data in a XCS file.");

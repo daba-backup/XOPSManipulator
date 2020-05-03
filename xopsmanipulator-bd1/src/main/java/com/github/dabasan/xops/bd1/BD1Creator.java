@@ -22,11 +22,11 @@ import com.github.dabasan.basis.vector.VectorFunctions;
  *
  */
 public class BD1Creator {
-	private Logger logger = LoggerFactory.getLogger(BD1Creator.class);
+	private final Logger logger = LoggerFactory.getLogger(BD1Creator.class);
 
 	private int block_count;
-	private Map<Integer, String> texture_filenames_map;
-	private Map<Integer, BD1Block> blocks_map;
+	private final Map<Integer, String> texture_filenames_map;
+	private final Map<Integer, BD1Block> blocks_map;
 
 	public BD1Creator() {
 		block_count = 0;
@@ -71,7 +71,7 @@ public class BD1Creator {
 			return -1;
 		}
 
-		int block_handle = block_count;
+		final int block_handle = block_count;
 		block_count++;
 
 		blocks_map.put(block_handle, block);
@@ -92,10 +92,10 @@ public class BD1Creator {
 			return -1;
 		}
 
-		BD1Block orig_block = blocks_map.get(block_handle);
-		BD1Block duplicated_block = new BD1Block(orig_block);
+		final BD1Block orig_block = blocks_map.get(block_handle);
+		final BD1Block duplicated_block = new BD1Block(orig_block);
 
-		int duplicated_block_handle = block_count;
+		final int duplicated_block_handle = block_count;
 		block_count++;
 
 		blocks_map.put(duplicated_block_handle, duplicated_block);
@@ -113,14 +113,14 @@ public class BD1Creator {
 	 * @return Block handle
 	 */
 	public int CreateCube(Vector center, float edge_length) {
-		BD1Block block = new BD1Block();
+		final BD1Block block = new BD1Block();
 
-		float edge_half_length = edge_length / 2.0f;
+		final float edge_half_length = edge_length / 2.0f;
 
-		Vector[] vertex_positions = new Vector[8];
-		float x = center.GetX();
-		float y = center.GetY();
-		float z = center.GetZ();
+		final Vector[] vertex_positions = new Vector[8];
+		final float x = center.GetX();
+		final float y = center.GetY();
+		final float z = center.GetZ();
 
 		vertex_positions[0] = VectorFunctions.VGet(x - edge_half_length,
 				y + edge_half_length, z + edge_half_length);
@@ -159,7 +159,7 @@ public class BD1Creator {
 			block.SetTextureID(i, 0);
 		}
 
-		int block_handle = block_count;
+		final int block_handle = block_count;
 		block_count++;
 
 		blocks_map.put(block_handle, block);
@@ -185,7 +185,7 @@ public class BD1Creator {
 			return -1;
 		}
 
-		BD1Block block = new BD1Block();
+		final BD1Block block = new BD1Block();
 
 		for (int i = 0; i < 8; i++) {
 			block.SetVertexPosition(i, vertex_positions[i]);
@@ -207,7 +207,7 @@ public class BD1Creator {
 			block.SetTextureID(i, 0);
 		}
 
-		int block_handle = block_count;
+		final int block_handle = block_count;
 		block_count++;
 
 		blocks_map.put(block_handle, block);
@@ -230,9 +230,9 @@ public class BD1Creator {
 			return -1;
 		}
 
-		BD1Block block = blocks_map.get(block_handle);
+		final BD1Block block = blocks_map.get(block_handle);
 
-		Vector[] vertex_positions = block.GetVertexPositions();
+		final Vector[] vertex_positions = block.GetVertexPositions();
 		for (int i = 0; i < 8; i++) {
 			vertex_positions[i] = VectorFunctions.VAdd(vertex_positions[i],
 					translate);
@@ -258,12 +258,12 @@ public class BD1Creator {
 			return -1;
 		}
 
-		Matrix rot_x = MatrixFunctions.MGetRotX(rotate.GetX());
-		Matrix rot_y = MatrixFunctions.MGetRotY(rotate.GetY());
-		Matrix rot_z = MatrixFunctions.MGetRotZ(rotate.GetZ());
+		final Matrix rot_x = MatrixFunctions.MGetRotX(rotate.GetX());
+		final Matrix rot_y = MatrixFunctions.MGetRotY(rotate.GetY());
+		final Matrix rot_z = MatrixFunctions.MGetRotZ(rotate.GetZ());
 
-		BD1Block block = blocks_map.get(block_handle);
-		Vector[] vertex_positions = block.GetVertexPositions();
+		final BD1Block block = blocks_map.get(block_handle);
+		final Vector[] vertex_positions = block.GetVertexPositions();
 
 		Vector center = VectorFunctions.VGet(0.0f, 0.0f, 0.0f);
 		for (int i = 0; i < 8; i++) {
@@ -272,7 +272,7 @@ public class BD1Creator {
 		center = VectorFunctions.VScale(center, 1.0f / 8.0f);
 
 		// Move the block to the origin.
-		Vector to_orig_vec = VectorFunctions.VScale(center, -1.0f);
+		final Vector to_orig_vec = VectorFunctions.VScale(center, -1.0f);
 		for (int i = 0; i < 8; i++) {
 			vertex_positions[i] = VectorFunctions.VAdd(vertex_positions[i],
 					to_orig_vec);
@@ -316,12 +316,12 @@ public class BD1Creator {
 			return -1;
 		}
 
-		float scale_x = scale.GetX();
-		float scale_y = scale.GetY();
-		float scale_z = scale.GetZ();
+		final float scale_x = scale.GetX();
+		final float scale_y = scale.GetY();
+		final float scale_z = scale.GetZ();
 
-		BD1Block block = blocks_map.get(block_handle);
-		Vector[] vertex_positions = block.GetVertexPositions();
+		final BD1Block block = blocks_map.get(block_handle);
+		final Vector[] vertex_positions = block.GetVertexPositions();
 
 		for (int i = 0; i < 8; i++) {
 			float pos_x = vertex_positions[i].GetX();
@@ -365,7 +365,7 @@ public class BD1Creator {
 			return -1;
 		}
 
-		BD1Block block = blocks_map.get(block_handle);
+		final BD1Block block = blocks_map.get(block_handle);
 		block.SetUV(face_index, u, v);
 
 		return 0;
@@ -392,7 +392,7 @@ public class BD1Creator {
 			return -1;
 		}
 
-		BD1Block block = blocks_map.get(block_handle);
+		final BD1Block block = blocks_map.get(block_handle);
 		block.SetTextureID(face_index, texture_id);
 
 		return 0;
@@ -426,10 +426,10 @@ public class BD1Creator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteAsBD1(String bd1_filename, float offset_y) {
-		BD1Manipulator bd1_manipulator = new BD1Manipulator();
+		final BD1Manipulator bd1_manipulator = new BD1Manipulator();
 
-		List<BD1Block> blocks = new ArrayList<>();
-		for (BD1Block block : blocks_map.values()) {
+		final List<BD1Block> blocks = new ArrayList<>();
+		for (final BD1Block block : blocks_map.values()) {
 			blocks.add(block);
 		}
 
@@ -437,7 +437,7 @@ public class BD1Creator {
 		bd1_manipulator.SetBlocks(blocks);
 		bd1_manipulator.Translate(VectorFunctions.VGet(0.0f, offset_y, 0.0f));
 
-		int ret = bd1_manipulator.WriteAsBD1(bd1_filename);
+		final int ret = bd1_manipulator.WriteAsBD1(bd1_filename);
 
 		return ret;
 	}
@@ -451,10 +451,10 @@ public class BD1Creator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteAsOBJ(String obj_filename, float offset_y) {
-		BD1Manipulator bd1_manipulator = new BD1Manipulator();
+		final BD1Manipulator bd1_manipulator = new BD1Manipulator();
 
-		List<BD1Block> blocks = new ArrayList<>();
-		for (BD1Block block : blocks_map.values()) {
+		final List<BD1Block> blocks = new ArrayList<>();
+		for (final BD1Block block : blocks_map.values()) {
 			blocks.add(block);
 		}
 
@@ -462,7 +462,7 @@ public class BD1Creator {
 		bd1_manipulator.SetBlocks(blocks);
 		bd1_manipulator.Translate(VectorFunctions.VGet(0.0f, offset_y, 0.0f));
 
-		int ret = bd1_manipulator.WriteAsOBJ(obj_filename);
+		final int ret = bd1_manipulator.WriteAsOBJ(obj_filename);
 
 		return ret;
 	}

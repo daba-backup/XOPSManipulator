@@ -21,7 +21,7 @@ import com.github.dabasan.basis.vector.VectorFunctions;
  *
  */
 public class BD1Manipulator {
-	private Logger logger = LoggerFactory.getLogger(BD1Manipulator.class);
+	private final Logger logger = LoggerFactory.getLogger(BD1Manipulator.class);
 
 	private List<BD1Block> blocks;
 	private Map<Integer, String> texture_filenames_map;
@@ -32,13 +32,13 @@ public class BD1Manipulator {
 	 * @throws IOException
 	 */
 	public BD1Manipulator(String bd1_filename) throws IOException {
-		BD1Parser bd1_parser = new BD1Parser(bd1_filename);
+		final BD1Parser bd1_parser = new BD1Parser(bd1_filename);
 
 		blocks = bd1_parser.GetBlocks();
 		texture_filenames_map = bd1_parser.GetTextureFilenames();
 	}
 	public BD1Manipulator() {
-		blocks = new ArrayList<BD1Block>();
+		blocks = new ArrayList<>();
 		texture_filenames_map = new HashMap<>();
 
 		for (int i = 0; i < 10; i++) {
@@ -90,7 +90,7 @@ public class BD1Manipulator {
 			return "";
 		}
 
-		String texture_filename = texture_filenames_map.get(texture_id);
+		final String texture_filename = texture_filenames_map.get(texture_id);
 		return texture_filename;
 	}
 	/**
@@ -127,8 +127,7 @@ public class BD1Manipulator {
 	 *            Texture filenames
 	 * @return -1 on error and 0 on success
 	 */
-	public int SetTextureFilenames(
-			Map<Integer, String> texture_filenames_map) {
+	public int SetTextureFilenames(Map<Integer, String> texture_filenames_map) {
 		if (texture_filenames_map == null) {
 			logger.warn("Null argument where non-null required.");
 			return -1;
@@ -145,8 +144,8 @@ public class BD1Manipulator {
 	 *            Translation vector
 	 */
 	public void Translate(Vector translate) {
-		for (BD1Block block : blocks) {
-			Vector[] vertex_positions = block.GetVertexPositions();
+		for (final BD1Block block : blocks) {
+			final Vector[] vertex_positions = block.GetVertexPositions();
 			for (int i = 0; i < vertex_positions.length; i++) {
 				vertex_positions[i] = VectorFunctions.VAdd(vertex_positions[i],
 						translate);
@@ -163,12 +162,12 @@ public class BD1Manipulator {
 	 *            Angles of rotation (radian)
 	 */
 	public void Rotate(Vector rotate) {
-		Matrix rot_x = MatrixFunctions.MGetRotX(rotate.GetX());
-		Matrix rot_y = MatrixFunctions.MGetRotY(rotate.GetY());
-		Matrix rot_z = MatrixFunctions.MGetRotZ(rotate.GetZ());
+		final Matrix rot_x = MatrixFunctions.MGetRotX(rotate.GetX());
+		final Matrix rot_y = MatrixFunctions.MGetRotY(rotate.GetY());
+		final Matrix rot_z = MatrixFunctions.MGetRotZ(rotate.GetZ());
 
-		for (BD1Block block : blocks) {
-			Vector[] vertex_positions = block.GetVertexPositions();
+		for (final BD1Block block : blocks) {
+			final Vector[] vertex_positions = block.GetVertexPositions();
 			for (int i = 0; i < vertex_positions.length; i++) {
 				vertex_positions[i] = MatrixFunctions
 						.VTransform(vertex_positions[i], rot_x);
@@ -189,8 +188,8 @@ public class BD1Manipulator {
 	 *            Scaling vector
 	 */
 	public void Rescale(Vector scale) {
-		for (BD1Block block : blocks) {
-			Vector[] vertex_positions = block.GetVertexPositions();
+		for (final BD1Block block : blocks) {
+			final Vector[] vertex_positions = block.GetVertexPositions();
 			for (int i = 0; i < vertex_positions.length; i++) {
 				float x, y, z;
 				x = vertex_positions[i].GetX();
@@ -213,8 +212,8 @@ public class BD1Manipulator {
 	 *            Transformation matrix
 	 */
 	public void SetMatrix(Matrix m) {
-		for (BD1Block block : blocks) {
-			Vector[] vertex_positions = block.GetVertexPositions();
+		for (final BD1Block block : blocks) {
+			final Vector[] vertex_positions = block.GetVertexPositions();
 			for (int i = 0; i < vertex_positions.length; i++) {
 				vertex_positions[i] = MatrixFunctions
 						.VTransform(vertex_positions[i], m);
@@ -230,8 +229,8 @@ public class BD1Manipulator {
 	 * This method is used to make a mirrored map.
 	 */
 	public void InvertZ() {
-		for (BD1Block block : blocks) {
-			Vector[] vertex_positions = block.GetVertexPositions();
+		for (final BD1Block block : blocks) {
+			final Vector[] vertex_positions = block.GetVertexPositions();
 			for (int i = 0; i < 8; i++) {
 				vertex_positions[i].SetZ(vertex_positions[i].GetZ() * (-1.0f));
 			}
@@ -240,13 +239,13 @@ public class BD1Manipulator {
 			}
 		}
 
-		for (BD1Block block : blocks) {
-			Vector[] vertex_positions = block.GetVertexPositions();
-			float[] us = block.GetUs();
-			float[] vs = block.GetVs();
-			int[] texture_ids = block.GetTextureIDs();
+		for (final BD1Block block : blocks) {
+			final Vector[] vertex_positions = block.GetVertexPositions();
+			final float[] us = block.GetUs();
+			final float[] vs = block.GetVs();
+			final int[] texture_ids = block.GetTextureIDs();
 
-			Vector[] vertex_positions_orig = new Vector[8];
+			final Vector[] vertex_positions_orig = new Vector[8];
 			for (int i = 0; i < 8; i++) {
 				vertex_positions_orig[i] = new Vector(vertex_positions[i]);
 			}
@@ -258,8 +257,8 @@ public class BD1Manipulator {
 				block.SetVertexPosition(i + 4, vertex_positions_orig[7 - i]);
 			}
 
-			float[] us_orig = us.clone();
-			float[] vs_orig = vs.clone();
+			final float[] us_orig = us.clone();
+			final float[] vs_orig = vs.clone();
 
 			for (int i = 0; i < 6; i++) {
 				int[] uv_indices;
@@ -273,7 +272,7 @@ public class BD1Manipulator {
 				}
 
 				for (int j = 0; j < 4; j++) {
-					int index = i * 4 + j;
+					final int index = i * 4 + j;
 
 					us[index] = us_orig[uv_indices[j]];
 					vs[index] = vs_orig[uv_indices[j]];
@@ -283,7 +282,7 @@ public class BD1Manipulator {
 				block.SetUV(i, us[i], vs[i]);
 			}
 
-			int[] texture_ids_orig = texture_ids.clone();
+			final int[] texture_ids_orig = texture_ids.clone();
 			block.SetTextureID(2, texture_ids_orig[4]);
 			block.SetTextureID(4, texture_ids_orig[2]);
 		}
@@ -297,8 +296,9 @@ public class BD1Manipulator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteAsBD1(String bd1_filename) {
-		BD1Writer bd1_writer = new BD1Writer(blocks, texture_filenames_map);
-		int ret = bd1_writer.Write(bd1_filename);
+		final BD1Writer bd1_writer = new BD1Writer(blocks,
+				texture_filenames_map);
+		final int ret = bd1_writer.Write(bd1_filename);
 
 		if (ret < 0) {
 			logger.error(
@@ -318,10 +318,10 @@ public class BD1Manipulator {
 	 * @return -1 on error and 0 on success
 	 */
 	public int WriteAsOBJ(String obj_filename) {
-		BD1OBJWriter obj_writer = new BD1OBJWriter(texture_filenames_map,
+		final BD1OBJWriter obj_writer = new BD1OBJWriter(texture_filenames_map,
 				blocks);
 
-		int ret = obj_writer.Write(obj_filename);
+		final int ret = obj_writer.Write(obj_filename);
 		if (ret < 0) {
 			logger.error(
 					"Failed to write blocks in an OBJ file. obj_filename={}",

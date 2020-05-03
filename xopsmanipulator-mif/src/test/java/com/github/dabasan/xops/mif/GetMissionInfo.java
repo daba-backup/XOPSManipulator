@@ -8,12 +8,12 @@ public class GetMissionInfo {
 		try {
 			manipulator = new MIFManipulator("./TestData/mission.mif",
 					"Shift-JIS");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		MissionInfo mif = manipulator.GetMissionInfo();
+		final MissionInfo mif = manipulator.GetMissionInfo();
 		System.out.println(mif);
 	}
 }

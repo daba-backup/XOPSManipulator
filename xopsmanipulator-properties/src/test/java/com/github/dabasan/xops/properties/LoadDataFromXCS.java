@@ -10,12 +10,12 @@ public class LoadDataFromXCS {
 		XCSManipulator manipulator;
 		try {
 			manipulator = new XCSManipulator("./TestData/characters.xcs");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		CharacterData[] character_data = manipulator.GetCharacterData();
+		final CharacterData[] character_data = manipulator.GetCharacterData();
 		for (int i = 0; i < character_data.length; i++) {
 			System.out.printf("[%d]\n", i);
 			System.out.println(character_data[i]);

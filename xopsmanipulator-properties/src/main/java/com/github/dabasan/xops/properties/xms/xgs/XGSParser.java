@@ -26,7 +26,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
  *
  */
 class XGSParser {
-	private Logger logger = LoggerFactory.getLogger(XGSParser.class);
+	private final Logger logger = LoggerFactory.getLogger(XGSParser.class);
 
 	private WeaponData[] weapon_data_array;
 
@@ -36,7 +36,7 @@ class XGSParser {
 			weapon_data_array[i] = new WeaponData();
 		}
 
-		List<Byte> bin = FileFunctions.GetFileAllBin(xgs_filename);
+		final List<Byte> bin = FileFunctions.GetFileAllBin(xgs_filename);
 
 		if (bin.size() != 1732) {
 			logger.warn("Invalid file size. xgs_filename={}", xgs_filename);
@@ -253,7 +253,7 @@ class XGSParser {
 
 		pos = 0x00000544;
 		for (int i = 0; i < XOPSConstants.WEAPON_NUM; i++) {
-			byte[] name_buffer = new byte[15 + 1];
+			final byte[] name_buffer = new byte[15 + 1];
 
 			for (int j = 0; j < 15; j++) {
 				name_buffer[j] = bin.get(pos + j);

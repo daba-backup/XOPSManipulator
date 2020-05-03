@@ -15,19 +15,19 @@ public class GenerateOpenXOPSCharacterDataCode {
 
 		try {
 			manipulator = new XCSManipulator("./TestData/characters.xcs");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		CharacterData[] character_data = manipulator.GetCharacterData();
+		final CharacterData[] character_data = manipulator.GetCharacterData();
 		outputter = new CharacterDataCodeOutputter(character_data);
-		List<String> code = outputter.GetCode();
+		final List<String> code = outputter.GetCode();
 
 		try {
 			FileFunctions.CreateTextFile("./TestData/character_code.txt",
 					"UTF-8", code);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
