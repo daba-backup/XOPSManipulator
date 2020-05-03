@@ -15,7 +15,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponData;
 public class IDSManipulator {
 	private Logger logger=LoggerFactory.getLogger(IDSManipulator.class);
 	
-	private WeaponData weapon_data=null;
+	private WeaponData weapon_data;
 	
 	/**
 	 * 

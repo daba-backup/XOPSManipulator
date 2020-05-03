@@ -15,7 +15,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponData;
 public class XGSManipulator {
 	private Logger logger=LoggerFactory.getLogger(XGSManipulator.class);
 	
-	private WeaponData[] weapon_data_array=null;
+	private WeaponData[] weapon_data_array;
 	
 	/**
 	 * 

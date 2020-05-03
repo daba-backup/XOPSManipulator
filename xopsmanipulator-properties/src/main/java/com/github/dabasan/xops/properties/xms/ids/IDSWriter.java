@@ -27,7 +27,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
 class IDSWriter {
 	private Logger logger=LoggerFactory.getLogger(IDSWriter.class);
 	
-	private WeaponData weapon_data=null;
+	private WeaponData weapon_data;
 	
 	public IDSWriter(WeaponData weapon_data) {
 		this.weapon_data=weapon_data;

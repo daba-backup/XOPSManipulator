@@ -15,7 +15,7 @@ import com.github.dabasan.xops.properties.entity.character.CharacterData;
 public class XCSManipulator {
 	private Logger logger=LoggerFactory.getLogger(XCSManipulator.class);
 	
-	private CharacterData[] character_data_array=null;
+	private CharacterData[] character_data_array;
 	
 	/**
 	 * 

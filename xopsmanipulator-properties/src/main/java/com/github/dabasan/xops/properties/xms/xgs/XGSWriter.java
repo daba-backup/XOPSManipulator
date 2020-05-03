@@ -28,7 +28,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
 class XGSWriter {
 	private Logger logger=LoggerFactory.getLogger(XGSWriter.class);
 	
-	private WeaponData[] weapon_data_array=null;
+	private WeaponData[] weapon_data_array;
 	
 	public XGSWriter(WeaponData[] weapon_data_array) {
 		this.weapon_data_array=weapon_data_array;

@@ -25,7 +25,7 @@ import com.github.dabasan.xops.properties.entity.character.CharacterType;
 class XCSWriter {
 	private Logger logger=LoggerFactory.getLogger(XCSWriter.class);
 	
-	private CharacterData[] character_data_array=null;
+	private CharacterData[] character_data_array;
 	
 	public XCSWriter(CharacterData[] character_data_array) {
 		this.character_data_array=character_data_array;
