@@ -1,6 +1,7 @@
 package com.github.dabasan.xops.properties.openxops;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class CharacterDataCodeOutputter {
 		}
 	}
 
-	public String GetCharacterDataSourceCode() {
+	public String GetCharacterDataSourceCode_Concat() {
 		String ret = "";
 
 		if (character_data_list == null) {
@@ -77,6 +78,15 @@ public class CharacterDataCodeOutputter {
 					"type", character_data.GetType().ordinal()) + separator;
 		}
 
+		return ret;
+	}
+
+	public List<String> GetCharacterDataSourceCode() {
+		final String separator = System.getProperty("line.separator");
+		final String code = this.GetCharacterDataSourceCode_Concat();
+		final String[] split = code.split(separator);
+
+		final List<String> ret = Arrays.asList(split);
 		return ret;
 	}
 }

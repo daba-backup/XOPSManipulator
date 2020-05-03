@@ -1,6 +1,7 @@
 package com.github.dabasan.xops.properties.openxops;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponData;
  *
  */
 public class WeaponDataCodeOutputter {
-	private Logger logger = LoggerFactory
+	private final Logger logger = LoggerFactory
 			.getLogger(WeaponDataCodeOutputter.class);
 
 	private List<WeaponData> weapon_data_list;
@@ -37,7 +38,7 @@ public class WeaponDataCodeOutputter {
 		}
 	}
 
-	public String GetWeaponDataSourceCode() {
+	public String GetWeaponDataSourceCode_Concat() {
 		String ret = "";
 
 		if (weapon_data_list == null) {
@@ -49,7 +50,7 @@ public class WeaponDataCodeOutputter {
 		final String separator = System.getProperty("line.separator");
 
 		for (int i = 0; i < weapon_data_list.size(); i++) {
-			WeaponData weapon_data = weapon_data_list.get(i);
+			final WeaponData weapon_data = weapon_data_list.get(i);
 
 			ret += StringFunctions.GetCPPArrayFormatString(array_name, i,
 					"name", weapon_data.GetName()) + separator;
@@ -78,10 +79,12 @@ public class WeaponDataCodeOutputter {
 					"ErrorRangeMAX", weapon_data.GetErrorRangeMax())
 					+ separator;
 
-			Vector position = weapon_data.GetPosition();
-			Vector flash_position = weapon_data.GetFlashPosition();
-			Vector cartridge_position = weapon_data.GetCartridgePosition();
-			Vector cartridge_velocity = weapon_data.GetCartridgeVelocity();
+			final Vector position = weapon_data.GetPosition();
+			final Vector flash_position = weapon_data.GetFlashPosition();
+			final Vector cartridge_position = weapon_data
+					.GetCartridgePosition();
+			final Vector cartridge_velocity = weapon_data
+					.GetCartridgeVelocity();
 
 			ret += StringFunctions.GetCPPArrayFormatString(array_name, i, "mx",
 					position.GetX()) + separator;
@@ -136,6 +139,15 @@ public class WeaponDataCodeOutputter {
 					"burst", weapon_data.GetNumberOfProjectiles()) + separator;
 		}
 
+		return ret;
+	}
+
+	public List<String> GetWeaponDataSourceCode() {
+		final String separator = System.getProperty("line.separator");
+		final String code = this.GetWeaponDataSourceCode_Concat();
+		final String[] split = code.split(separator);
+
+		final List<String> ret = Arrays.asList(split);
 		return ret;
 	}
 }
