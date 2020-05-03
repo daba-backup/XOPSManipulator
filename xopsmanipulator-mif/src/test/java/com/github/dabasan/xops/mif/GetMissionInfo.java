@@ -6,14 +6,14 @@ public class GetMissionInfo {
 	public static void main(String[] args) {
 		MIFManipulator manipulator;
 		try {
-			manipulator=new MIFManipulator("./TestData/mission.mif", "Shift-JIS");
-		}
-		catch(IOException e) {
+			manipulator = new MIFManipulator("./TestData/mission.mif",
+					"Shift-JIS");
+		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
-		
-		MissionInfo mif=manipulator.GetMissionInfo();
+
+		MissionInfo mif = manipulator.GetMissionInfo();
 		System.out.println(mif);
 	}
 }
