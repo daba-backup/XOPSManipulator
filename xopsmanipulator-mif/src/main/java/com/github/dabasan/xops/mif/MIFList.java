@@ -346,7 +346,7 @@ public class MIFList {
 			columns += "\"" + "Briefing text" + "\",";
 		}
 
-		if (columns.charAt(columns.length() - 1) == ',') {
+		if (columns.length() != 0) {
 			columns = columns.substring(0, columns.length() - 1);
 		}
 
@@ -411,7 +411,7 @@ public class MIFList {
 				line += "\",";
 			}
 
-			if (line.charAt(line.length() - 1) == ',') {
+			if (line.length() != 0) {
 				line = line.substring(0, line.length() - 1);
 			}
 
