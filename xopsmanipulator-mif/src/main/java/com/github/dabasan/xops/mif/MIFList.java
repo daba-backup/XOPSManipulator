@@ -352,6 +352,7 @@ public class MIFList {
 
 		lines.add(columns);
 
+		// Add data.
 		for (final Map.Entry<String, MissionInfo> entry : mission_info_map
 				.entrySet()) {
 			final MissionInfo mif = entry.getValue();
@@ -408,6 +409,10 @@ public class MIFList {
 					line += btline + "<br>";
 				}
 				line += "\",";
+			}
+
+			if (line.charAt(line.length() - 1) == ',') {
+				line = line.substring(0, line.length() - 1);
 			}
 
 			lines.add(line);
