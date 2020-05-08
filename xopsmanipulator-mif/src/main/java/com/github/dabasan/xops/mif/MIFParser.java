@@ -40,7 +40,9 @@ class MIFParser {
 		try {
 			sky_type_index = Integer.parseInt(lines.get(4));
 		} catch (final NumberFormatException e) {
-			logger.warn("Invalid format of number. sky_type");
+			logger.warn("Invalid format of number. sky_type mif_filename={}",
+					mif_filename);
+			return;
 		}
 
 		SkyType sky_type = SkyType.NONE;
@@ -48,12 +50,20 @@ class MIFParser {
 		if (0 <= sky_type_index && sky_type_index < sky_types.length) {
 			sky_type = sky_types[sky_type_index];
 		} else {
-			logger.warn("Index out of bouds. sky_type");
+			logger.warn("Index out of bouds. sky_type mif_filename={}",
+					mif_filename);
+			return;
 		}
 		mission_info.SetSkyType(sky_type);
 
 		int flags;
-		flags = Integer.parseInt(lines.get(5));
+		try {
+			flags = Integer.parseInt(lines.get(5));
+		} catch (NumberFormatException e) {
+			logger.warn("Invalid format of number. flags mif_filename={}",
+					mif_filename);
+			return;
+		}
 
 		if ((flags & 0b00000010) != 0) {
 			mission_info.SetDarkenScreenFlag(true);
