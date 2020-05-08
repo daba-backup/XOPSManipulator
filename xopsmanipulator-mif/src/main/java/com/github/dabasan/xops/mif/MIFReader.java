@@ -59,7 +59,7 @@ class MIFReader {
 		int flags;
 		try {
 			flags = Integer.parseInt(lines.get(5));
-		} catch (NumberFormatException e) {
+		} catch (final NumberFormatException e) {
 			logger.warn("Invalid format of number. flags mif_filename={}",
 					mif_filename);
 			return;
