@@ -16,11 +16,11 @@ import com.github.dabasan.tool.FilenameFunctions;
  * @author Daba
  *
  */
-class BD1Parser {
+class BD1Reader {
 	private final Map<Integer, String> texture_filenames_map;// (texture_id,texture_filename)
 	private final List<BD1Block> blocks;
 
-	public BD1Parser(String bd1_filename) throws IOException {
+	public BD1Reader(String bd1_filename) throws IOException {
 		texture_filenames_map = new HashMap<>();
 		blocks = new ArrayList<>();
 

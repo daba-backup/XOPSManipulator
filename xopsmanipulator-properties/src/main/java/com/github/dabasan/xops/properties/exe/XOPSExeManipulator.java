@@ -93,9 +93,9 @@ public class XOPSExeManipulator {
 				break;
 		}
 
-		final XOPSExeWeaponDataParser weapon_data_parser = new XOPSExeWeaponDataParser(
+		final XOPSExeWeaponDataReader weapon_data_parser = new XOPSExeWeaponDataReader(
 				bin, weapon_data_start_pos, weapon_name_start_pos);
-		final XOPSExeCharacterDataParser character_data_parser = new XOPSExeCharacterDataParser(
+		final XOPSExeCharacterDataReader character_data_parser = new XOPSExeCharacterDataReader(
 				bin, character_data_start_pos);
 
 		weapon_data_array = weapon_data_parser.GetWeaponData();
@@ -106,13 +106,13 @@ public class XOPSExeManipulator {
 			throws IOException {
 		final List<Byte> bin = FileFunctions.GetFileAllBin(xops_filename);
 
-		XOPSExeWeaponDataParser weapon_data_parser = null;
-		XOPSExeCharacterDataParser character_data_parser = null;
+		XOPSExeWeaponDataReader weapon_data_parser = null;
+		XOPSExeCharacterDataReader character_data_parser = null;
 
 		try {
-			weapon_data_parser = new XOPSExeWeaponDataParser(bin,
+			weapon_data_parser = new XOPSExeWeaponDataReader(bin,
 					weapon_data_start_pos, weapon_name_start_pos);
-			character_data_parser = new XOPSExeCharacterDataParser(bin,
+			character_data_parser = new XOPSExeCharacterDataReader(bin,
 					character_data_start_pos);
 		} catch (final IndexOutOfBoundsException e) {
 			logger.error("Error while reading.", e);

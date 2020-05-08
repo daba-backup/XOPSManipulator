@@ -32,7 +32,7 @@ public class BD1Manipulator {
 	 * @throws IOException
 	 */
 	public BD1Manipulator(String bd1_filename) throws IOException {
-		final BD1Parser bd1_parser = new BD1Parser(bd1_filename);
+		final BD1Reader bd1_parser = new BD1Reader(bd1_filename);
 
 		blocks = bd1_parser.GetBlocks();
 		texture_filenames_map = bd1_parser.GetTextureFilenames();

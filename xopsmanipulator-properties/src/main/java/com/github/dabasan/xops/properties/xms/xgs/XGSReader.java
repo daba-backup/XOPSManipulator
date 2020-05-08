@@ -25,12 +25,12 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
  * @author Daba
  *
  */
-class XGSParser {
-	private final Logger logger = LoggerFactory.getLogger(XGSParser.class);
+class XGSReader {
+	private final Logger logger = LoggerFactory.getLogger(XGSReader.class);
 
 	private WeaponData[] weapon_data_array;
 
-	public XGSParser(String xgs_filename) throws IOException {
+	public XGSReader(String xgs_filename) throws IOException {
 		weapon_data_array = new WeaponData[XOPSConstants.WEAPON_NUM];
 		for (int i = 0; i < XOPSConstants.WEAPON_NUM; i++) {
 			weapon_data_array[i] = new WeaponData();

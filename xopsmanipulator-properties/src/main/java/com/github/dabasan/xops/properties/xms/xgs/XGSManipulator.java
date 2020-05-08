@@ -25,7 +25,7 @@ public class XGSManipulator {
 	 * @throws IOException
 	 */
 	public XGSManipulator(String xgs_filename) throws IOException {
-		final XGSParser xgs_parser = new XGSParser(xgs_filename);
+		final XGSReader xgs_parser = new XGSReader(xgs_filename);
 		weapon_data_array = xgs_parser.GetWeaponData();
 	}
 	public XGSManipulator() {

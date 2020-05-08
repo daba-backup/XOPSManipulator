@@ -25,7 +25,7 @@ public class IDSManipulator {
 	 * @throws IOException
 	 */
 	public IDSManipulator(String ids_filename) throws IOException {
-		final IDSParser ids_parser = new IDSParser(ids_filename);
+		final IDSReader ids_parser = new IDSReader(ids_filename);
 		weapon_data = ids_parser.GetWeaponData();
 	}
 	public IDSManipulator() {

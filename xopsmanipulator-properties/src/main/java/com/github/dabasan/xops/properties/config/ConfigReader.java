@@ -15,12 +15,12 @@ import com.github.dabasan.xops.properties.XOPSConstants;
  * @author Daba
  *
  */
-class ConfigParser {
-	private final Logger logger = LoggerFactory.getLogger(ConfigParser.class);
+class ConfigReader {
+	private final Logger logger = LoggerFactory.getLogger(ConfigReader.class);
 
 	private Config config;
 
-	public ConfigParser(String config_filename) throws IOException {
+	public ConfigReader(String config_filename) throws IOException {
 		config = new Config();
 
 		final List<Byte> bin = FileFunctions.GetFileAllBin(config_filename);

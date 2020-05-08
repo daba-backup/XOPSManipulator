@@ -18,7 +18,7 @@ public class ConfigManipulator {
 	private Config config;
 
 	public ConfigManipulator(String config_filename) throws IOException {
-		final ConfigParser config_parser = new ConfigParser(config_filename);
+		final ConfigReader config_parser = new ConfigReader(config_filename);
 		config = config_parser.GetConfig();
 	}
 	public ConfigManipulator() {

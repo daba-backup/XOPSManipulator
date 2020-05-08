@@ -13,10 +13,10 @@ import com.github.dabasan.tool.FileFunctions;
  * @author Daba
  *
  */
-class PD1Parser {
+class PD1Reader {
 	private final List<PD1Point> points;
 
-	public PD1Parser(String pd1_filename) throws IOException {
+	public PD1Reader(String pd1_filename) throws IOException {
 		points = new ArrayList<>();
 		final List<Byte> bin = FileFunctions.GetFileAllBin(pd1_filename);
 

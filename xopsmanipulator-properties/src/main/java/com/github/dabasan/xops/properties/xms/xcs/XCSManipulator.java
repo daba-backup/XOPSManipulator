@@ -25,7 +25,7 @@ public class XCSManipulator {
 	 * @throws IOException
 	 */
 	public XCSManipulator(String xcs_filename) throws IOException {
-		final XCSParser xcs_parser = new XCSParser(xcs_filename);
+		final XCSReader xcs_parser = new XCSReader(xcs_filename);
 		character_data_array = xcs_parser.GetCharacterData();
 	}
 	public XCSManipulator() {

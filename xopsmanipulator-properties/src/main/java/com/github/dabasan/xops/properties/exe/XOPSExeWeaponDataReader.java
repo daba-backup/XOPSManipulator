@@ -20,10 +20,10 @@ import com.github.dabasan.xops.properties.entity.weapon.WeaponTextureType;
  * @author Daba
  *
  */
-class XOPSExeWeaponDataParser {
+class XOPSExeWeaponDataReader {
 	private final WeaponData[] weapon_data_array;
 
-	public XOPSExeWeaponDataParser(List<Byte> bin, int weapon_data_start_pos,
+	public XOPSExeWeaponDataReader(List<Byte> bin, int weapon_data_start_pos,
 			int weapon_name_start_pos) {
 		weapon_data_array = new WeaponData[XOPSConstants.WEAPON_NUM];
 		for (int i = 0; i < XOPSConstants.WEAPON_NUM; i++) {

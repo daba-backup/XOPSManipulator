@@ -14,12 +14,12 @@ import com.github.dabasan.tool.FileFunctions;
  * @author Daba
  *
  */
-class MIFParser {
-	private final Logger logger = LoggerFactory.getLogger(MIFParser.class);
+class MIFReader {
+	private final Logger logger = LoggerFactory.getLogger(MIFReader.class);
 
 	private MissionInfo mission_info;
 
-	public MIFParser(String mif_filename, String encoding) throws IOException {
+	public MIFReader(String mif_filename, String encoding) throws IOException {
 		mission_info = new MissionInfo();
 
 		final List<String> lines = FileFunctions.GetFileAllLines(mif_filename,

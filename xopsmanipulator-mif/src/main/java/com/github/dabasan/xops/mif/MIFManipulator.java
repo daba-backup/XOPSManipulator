@@ -18,7 +18,7 @@ public class MIFManipulator {
 
 	public MIFManipulator(String mif_filename, String encoding)
 			throws IOException {
-		final MIFParser mif_parser = new MIFParser(mif_filename, encoding);
+		final MIFReader mif_parser = new MIFReader(mif_filename, encoding);
 		mission_info = mif_parser.GetMissionInfo();
 	}
 	public MIFManipulator() {

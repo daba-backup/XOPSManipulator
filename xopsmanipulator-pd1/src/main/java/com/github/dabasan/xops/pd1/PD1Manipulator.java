@@ -30,7 +30,7 @@ public class PD1Manipulator {
 	 * @throws IOException
 	 */
 	public PD1Manipulator(String pd1_filename) throws IOException {
-		final PD1Parser pd1_parser = new PD1Parser(pd1_filename);
+		final PD1Reader pd1_parser = new PD1Reader(pd1_filename);
 		points = pd1_parser.GetPoints();
 	}
 	public PD1Manipulator() {
