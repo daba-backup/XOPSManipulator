@@ -94,10 +94,7 @@ Java SE 8以上
 
 XOPSManipulatorはMITライセンスの下に公開されています。
 
-### 依存
-
-- [Obj](https://github.com/javagl/Obj/blob/master/LICENSE.txt)
-- [logback](https://github.com/qos-ch/logback/blob/master/LICENSE.txt)
+[LICENSES](./LICENSES)も参照してください。
 
 # 外部リンク
 
