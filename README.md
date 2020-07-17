@@ -96,6 +96,10 @@ XOPSManipulatorはMITライセンスの下に公開されています。
 
 [LICENSES](./LICENSES)も参照してください。
 
+# 作者のコメント
+
+Javaの命名規則を無視してごめんなさい。
+
 # 外部リンク
 
 - [X operations WEB](https://hp.vector.co.jp/authors/VA022962/xops/)
